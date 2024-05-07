@@ -1,6 +1,6 @@
 //
 //  AVBannerCell.swift
-//  TBPlixor
+//  HPlayer
 //
 //  Created by HF on 2024/4/9.
 //

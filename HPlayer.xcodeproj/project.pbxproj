@@ -103,7 +103,7 @@
 		A73BFC142BE8E29800A672E7 /* HPPlayLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFC132BE8E29800A672E7 /* HPPlayLayout.swift */; };
 		A73BFC172BE8E3B800A672E7 /* HPPlayEpsListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFC152BE8E3B800A672E7 /* HPPlayEpsListCell.xib */; };
 		A73BFC182BE8E3B800A672E7 /* HPPlayEpsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFC162BE8E3B800A672E7 /* HPPlayEpsListCell.swift */; };
-		A73BFC1C2BE8E71800A672E7 /* TBCaptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFC1B2BE8E71800A672E7 /* TBCaptionManager.swift */; };
+		A73BFC1C2BE8E71800A672E7 /* HPCaptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFC1B2BE8E71800A672E7 /* HPCaptionManager.swift */; };
 		A73BFC1E2BE8E83600A672E7 /* AVFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFC1D2BE8E83600A672E7 /* AVFilterView.swift */; };
 		A73BFC212BE8E88800A672E7 /* AVFilterListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFC1F2BE8E88700A672E7 /* AVFilterListCell.swift */; };
 		A73BFC222BE8E88800A672E7 /* AVFilterListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFC202BE8E88700A672E7 /* AVFilterListCell.xib */; };
@@ -241,7 +241,7 @@
 		A73BFC132BE8E29800A672E7 /* HPPlayLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPPlayLayout.swift; sourceTree = "<group>"; };
 		A73BFC152BE8E3B800A672E7 /* HPPlayEpsListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HPPlayEpsListCell.xib; sourceTree = "<group>"; };
 		A73BFC162BE8E3B800A672E7 /* HPPlayEpsListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPPlayEpsListCell.swift; sourceTree = "<group>"; };
-		A73BFC1B2BE8E71800A672E7 /* TBCaptionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBCaptionManager.swift; sourceTree = "<group>"; };
+		A73BFC1B2BE8E71800A672E7 /* HPCaptionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPCaptionManager.swift; sourceTree = "<group>"; };
 		A73BFC1D2BE8E83600A672E7 /* AVFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFilterView.swift; sourceTree = "<group>"; };
 		A73BFC1F2BE8E88700A672E7 /* AVFilterListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFilterListCell.swift; sourceTree = "<group>"; };
 		A73BFC202BE8E88700A672E7 /* AVFilterListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVFilterListCell.xib; sourceTree = "<group>"; };
@@ -560,7 +560,7 @@
 				A73BFBF72BE8DFA800A672E7 /* HPSubtitles.swift */,
 				A73BFBF92BE8E01600A672E7 /* PlayerLayerView.swift */,
 				A73BFBFB2BE8E04D00A672E7 /* HPTimeSlider.swift */,
-				A73BFC1B2BE8E71800A672E7 /* TBCaptionManager.swift */,
+				A73BFC1B2BE8E71800A672E7 /* HPCaptionManager.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -856,7 +856,7 @@
 				A73BFBBE2BE8D73300A672E7 /* AVAlertController.swift in Sources */,
 				A73BFBC82BE8DB7100A672E7 /* HPPlayerControlView.swift in Sources */,
 				A7969A512BE878A300FE02FB /* HPRemoteManager.swift in Sources */,
-				A73BFC1C2BE8E71800A672E7 /* TBCaptionManager.swift in Sources */,
+				A73BFC1C2BE8E71800A672E7 /* HPCaptionManager.swift in Sources */,
 				A73BFC1E2BE8E83600A672E7 /* AVFilterView.swift in Sources */,
 				A73BFBE42BE8DC0900A672E7 /* HPPlayerFailView.swift in Sources */,
 				A73BFB972BE8C78A00A672E7 /* AVFeedBackViewController.swift in Sources */,

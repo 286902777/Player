@@ -1,8 +1,8 @@
 //
 //  AVPlayViewController.swift
-//  TBPlixor
+//  HPlayer
 //
-//  Created by HF on 2023/1/3.
+//  Created by HF on 2024/1/23.
 //
 
 import UIKit
@@ -411,8 +411,15 @@ class AVPlayViewController: UIViewController {
                                     if self.epsId.count == 0 {
                                         if let epsModel = epslist.first {
                                             self.epsId = epsModel.id
+                                            self.videoModel.video = epsModel.video
+                                        }
+                                    } else {
+                                        if let url = epslist.first(where: {$0.id == self.epsId})?.video
+                                        {
+                                            self.videoModel.video = url
                                         }
                                     }
+                                    epslist.first(where: {$0.id == self.epsId})?.isSelect = true
                                     self.model.eps_list = epslist
                                     self.videoModel.eps_list = epslist
                                 } else {

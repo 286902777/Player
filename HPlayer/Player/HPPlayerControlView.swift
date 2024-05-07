@@ -752,7 +752,7 @@ class HPPlayerControlView: UIView {
      */
     func update(subtitles: HPSubtitles?) {
         resource?.subtitle = subtitles
-        self.ccButton.isHidden = subtitles == nil
+        self.ccButton.isEnabled = subtitles != nil
     }
     
     /**

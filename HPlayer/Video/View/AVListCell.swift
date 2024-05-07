@@ -1,8 +1,8 @@
 //
 //  AVListCell.swift
-//  TBPlixor
+//  HPlayer
 //
-//  Created by HF on 2023/1/3.
+//  Created by HF on 2024/5/3.
 //
 
 import UIKit

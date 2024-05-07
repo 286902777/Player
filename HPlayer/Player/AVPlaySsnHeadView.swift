@@ -1,6 +1,6 @@
 //
 //  AVPlaySsnHeadView.swift
-//  TBPlixor
+//  HPlayer
 //
 //  Created by HF on 2024/3/18.
 //

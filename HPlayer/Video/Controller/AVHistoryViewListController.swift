@@ -1,8 +1,8 @@
 //
 //  AVHistoryViewListController.swift
-//  TBPlixor
+//  HPlayer
 //
-//  Created by HF on 2023/1/3.
+//  Created by HF on 2024/1/9.
 //
 
 import UIKit

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AVHomeHeadView" customModule="HPlayer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="54"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ4-Zs-D3c">
+                    <rect key="frame" x="347" y="1" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="KiM-1d-4l7"/>
+                        <constraint firstAttribute="width" constant="44" id="n8r-cS-VMq"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="set_icon"/>
+                    <connections>
+                        <action selector="clickVipAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="F4w-k8-eLh"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOI-ww-dzT">
+                    <rect key="frame" x="12" y="2" width="328" height="42"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_search" translatesAutoresizingMaskIntoConstraints="NO" id="zol-Ef-WgZ">
+                            <rect key="frame" x="12" y="9" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="djQ-QN-WlV"/>
+                                <constraint firstAttribute="width" constant="24" id="wPU-MU-SO5"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9jx-tn-XIq">
+                            <rect key="frame" x="48" y="12.666666666666664" width="45" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="9jx-tn-XIq" firstAttribute="leading" secondItem="zol-Ef-WgZ" secondAttribute="trailing" constant="12" id="3hC-vz-2l2"/>
+                        <constraint firstItem="zol-Ef-WgZ" firstAttribute="leading" secondItem="bOI-ww-dzT" secondAttribute="leading" constant="12" id="HyM-dt-Zmd"/>
+                        <constraint firstAttribute="height" constant="42" id="KZx-UA-hy2"/>
+                        <constraint firstItem="9jx-tn-XIq" firstAttribute="centerY" secondItem="bOI-ww-dzT" secondAttribute="centerY" id="MYZ-3T-qdD"/>
+                        <constraint firstItem="zol-Ef-WgZ" firstAttribute="centerY" secondItem="bOI-ww-dzT" secondAttribute="centerY" id="zba-ca-vBL"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="ZZ4-Zs-D3c" firstAttribute="centerY" secondItem="bOI-ww-dzT" secondAttribute="centerY" id="6Nm-aL-UQf"/>
+                <constraint firstItem="bOI-ww-dzT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="E5F-6W-qLg"/>
+                <constraint firstItem="ZZ4-Zs-D3c" firstAttribute="leading" secondItem="bOI-ww-dzT" secondAttribute="trailing" constant="7" id="Ogq-xn-55X"/>
+                <constraint firstAttribute="bottom" secondItem="bOI-ww-dzT" secondAttribute="bottom" constant="10" id="fUI-hh-yw2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ZZ4-Zs-D3c" secondAttribute="trailing" constant="2" id="lFy-Pp-KhD"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="searchView" destination="bOI-ww-dzT" id="CtD-gG-fPC"/>
+            </connections>
+            <point key="canvasLocation" x="46.564885496183201" y="36.971830985915496"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_search" width="24" height="24"/>
+        <image name="set_icon" width="24" height="24"/>
+    </resources>
+</document>

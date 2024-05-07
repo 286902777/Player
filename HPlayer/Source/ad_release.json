@@ -1,0 +1,32 @@
+{
+    "h_totalShowCount": 150,
+    "h_mixOpenWait": 10,
+    "h_sameInterval": 60,
+    "h_differentInterval": 60,
+    "h_openInterval": 60,
+    "h_play_point_time": 540,
+    "h_open": [
+        {
+            "id": "34bd34d61555a220",
+            "level": 1,
+            "type": "open",
+            "source": "max"
+        }
+    ],
+    "h_play": [
+        {
+            "id": "0bcc0aaed34edf1f",
+            "level": 1,
+            "type": "rewarded",
+            "source": "max"
+        }
+    ],
+    "h_landscape": [
+        {
+            "id": "ca-app-pub-6819622642661650/7457234871",
+            "level": 3,
+            "type": "interstitial",
+            "source": "admob"
+        }
+    ]
+}

@@ -1,0 +1,62 @@
+platform :ios, '14.0'
+
+target 'HPlayer' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for HPlayer 
+  pod 'SnapKit'
+  pod 'lottie-ios'
+  pod 'MJRefresh'
+  pod 'Alamofire'
+  pod 'HandyJSON'
+  pod 'SVProgressHUD'
+  pod 'Kingfisher'
+  pod 'IQKeyboardManagerSwift'
+  pod 'CryptoSwift'
+  pod 'JXBanner'
+  pod 'JXPagingView/Paging'
+  pod 'JXSegmentedView'
+  pod 'Adjust'
+
+  pod 'Firebase/Analytics'
+  pod 'FirebaseCrashlytics'
+  pod 'FirebasePerformance'
+  pod 'FirebaseRemoteConfig'
+  pod 'FirebaseMessaging'
+  pod 'ReklamupAdmobAdapter', '~> 1.0'
+
+  pod 'Google-Mobile-Ads-SDK', '~> 10.14.0'
+  pod 'GoogleUserMessagingPlatform'
+#  pod 'GoogleMobileAdsMediationAdColony'
+#  pod 'GoogleMobileAdsMediationAppLovin'
+#  pod 'GoogleMobileAdsMediationChartboost'
+#  pod 'GoogleMobileAdsMediationFyber'
+#  pod 'GoogleMobileAdsMediationInMobi'
+#  pod 'GoogleMobileAdsMediationIronSource'
+#  pod 'GoogleMobileAdsMediationVungle'
+#  pod 'GoogleMobileAdsMediationFacebook'
+#  pod 'GoogleMobileAdsMediationMintegral'
+#  pod 'GoogleMobileAdsMediationPangle'
+#  pod 'GoogleMobileAdsMediationTapjoy'
+#  pod 'GoogleMobileAdsMediationUnity'
+
+  pod 'AppLovinSDK'
+#  pod 'AppLovinMediationGoogleAdapter'
+#  pod 'AppLovinMediationAdColonyAdapter'
+#  pod 'AppLovinMediationChartboostAdapter'
+#  pod 'AppLovinMediationFyberAdapter'
+#  pod 'AppLovinMediationInMobiAdapter'
+#  pod 'AppLovinMediationIronSourceAdapter'
+#  pod 'AppLovinMediationVungleAdapter'
+#  pod 'AppLovinMediationFacebookAdapter'
+#  pod 'AppLovinMediationMintegralAdapter'
+#  pod 'AppLovinMediationByteDanceAdapter'
+#  pod 'AppLovinMediationSmaatoAdapter'
+#  pod 'AppLovinMediationTapjoyAdapter'
+#  pod 'AppLovinMediationUnityAdsAdapter'
+#  pod 'AppLovinMediationVerveAdapter'
+  
+  pod 'FBSDKCoreKit'
+
+end

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22225" systemVersion="22G74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AVDB" representedClassName="AVDB" syncable="YES">
+        <attribute name="captions" optional="YES" attributeType="Transformable" valueTransformerName="CapTransformer" customClassName="[AVCaption]"/>
+        <attribute name="cover" optional="YES" attributeType="String"/>
+        <attribute name="dataSize" optional="YES" attributeType="String"/>
+        <attribute name="delete" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="eps_id" optional="YES" attributeType="String"/>
+        <attribute name="eps_name" optional="YES" attributeType="String"/>
+        <attribute name="eps_num" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="format" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="path" optional="YES" attributeType="String"/>
+        <attribute name="playedTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="playProgress" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="quality" optional="YES" attributeType="String"/>
+        <attribute name="rate" optional="YES" attributeType="String"/>
+        <attribute name="ssn_eps" optional="YES" attributeType="String"/>
+        <attribute name="ssn_id" optional="YES" attributeType="String"/>
+        <attribute name="ssn_name" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="totalTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
+        <attribute name="updateTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="uploadTime" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="avShip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CapDB" inverseName="capShip" inverseEntity="CapDB"/>
+    </entity>
+    <entity name="CapDB" representedClassName="CapDB" syncable="YES">
+        <attribute name="captionId" optional="YES" attributeType="String"/>
+        <attribute name="display_name" optional="YES" attributeType="String"/>
+        <attribute name="local_address" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="original_address" optional="YES" attributeType="String"/>
+        <attribute name="short_name" optional="YES" attributeType="String"/>
+        <relationship name="capShip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AVDB" inverseName="avShip" inverseEntity="AVDB"/>
+    </entity>
+</model>

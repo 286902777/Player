@@ -112,9 +112,16 @@ class AVFilterViewController: VBaseViewController {
             make.bottom.equalToSuperview()
             make.height.equalTo(72)
         }
+        view.addSubview(emptyView)
+        emptyView.snp.makeConstraints { make in
+            make.top.left.bottom.right.equalTo(collectionView)
+        }
+        self.emptyView.setType()
+
         view.insertSubview(collectionView, at: 0)
         view.insertSubview(infoView, at: 1)
-        view.insertSubview(self.navBar, at: 2)
+        view.insertSubview(infoView, at: 2)
+        view.insertSubview(self.navBar, at: 3)
     }
     
     func setRefresh() {
@@ -232,7 +239,6 @@ class AVFilterViewController: VBaseViewController {
         for items in self.filterList {
             for (index, item) in items.enumerated() {
                 if index > 0, item.isSelect == true {
-//                    HPLog.tb_explore_cl(kid: "\(index)")
                     arr.append(item.title)
                 }
             }
@@ -249,7 +255,7 @@ class AVFilterViewController: VBaseViewController {
     private func loadMoreData() {
         if HPConfig.share.isNetWork == false {
             self.collectionView.mj_header?.endRefreshing()
-//            self.showEmpty(.noNet, self.collectionView, self.HeadHeight)
+            self.emptyView.isHidden = false
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.categroyView.isHidden = true
@@ -267,9 +273,9 @@ class AVFilterViewController: VBaseViewController {
             }
             if !success {
                 self.categroyView.isHidden = true
-//                self.showEmpty(.noNet, self.collectionView, self.HeadHeight)
+                self.emptyView.isHidden = false
             } else {
-//                self.dismissEmpty(self.collectionView)
+                self.emptyView.isHidden = true
                 if list.count > 0 {
                     self.dataList.append(contentsOf: list)
                 }

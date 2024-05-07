@@ -47,6 +47,11 @@ class AVListViewController: VBaseViewController {
             make.top.equalTo(navBar.snp.bottom)
             make.left.bottom.right.equalToSuperview()
         }
+        view.addSubview(emptyView)
+        emptyView.snp.makeConstraints { make in
+            make.top.left.bottom.right.equalTo(collectionView)
+        }
+        self.emptyView.setType()
     }
     
     func addRefresh() {
@@ -73,7 +78,7 @@ class AVListViewController: VBaseViewController {
     func initData() {
         if HPConfig.share.isNetWork == false {
             self.collectionView.mj_header?.endRefreshing()
-//            self.showEmpty(.noNet, self.collectionView)
+            self.emptyView.isHidden = false
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.dataList.removeAll()
@@ -86,13 +91,13 @@ class AVListViewController: VBaseViewController {
             HPProgressHUD.dismiss()
             guard let self = self else { return }
             if !success {
-//                self.showEmpty(.noNet, self.collectionView)
+                self.emptyView.isHidden = false
             } else {
                 if list.count > 0 {
                     self.dataList.append(contentsOf: list)
                 }
                 if self.dataList.count == 0 {
-//                    self.dismissEmpty(self.collectionView)
+                    self.emptyView.isHidden = true
                 }
             }
             self.collectionView.mj_header?.endRefreshing()

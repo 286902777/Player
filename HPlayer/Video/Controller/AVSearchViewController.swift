@@ -129,6 +129,13 @@ class AVSearchViewController: VBaseViewController {
             make.top.equalTo(searchView.snp.bottom)
             make.bottom.left.right.equalToSuperview()
         }
+        
+        view.addSubview(emptyView)
+        emptyView.snp.makeConstraints { make in
+            make.top.left.bottom.right.equalTo(tableView)
+        }
+        self.emptyView.setType()
+
     }
     override func reSetRequest() {
         self.topList.removeAll()
@@ -141,14 +148,14 @@ class AVSearchViewController: VBaseViewController {
             guard let self = self else { return }
             HPProgressHUD.dismiss()
             if success {
-//                self.dismissEmpty(self.pageView.mainTableView)
+                self.emptyView.isHidden = true
                 self.topList.append(contentsOf: list)
                 self.segementView.isHidden = false
                 if self.topList.count == 0 {
                     self.pageView.isHidden = true
                 }
             } else {
-//                self.showEmpty(.noNet, self.pageView.mainTableView)
+                self.emptyView.isHidden = false
                 self.segementView.isHidden = true
                 self.historyView.isHidden = true
             }

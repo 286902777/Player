@@ -704,7 +704,8 @@ class AVPlayViewController: UIViewController {
             m.type = mod.type
             self.id = mod._id
             DBManager.share.updateData(m)
-            self.getVideoData(self.id) { vMod in
+            self.getVideoData(self.id) { [weak self] vMod in
+                guard let self = self else { return }
                 self.model = vMod
                 self.videoModel = vMod
                 self.from = .push
@@ -859,27 +860,27 @@ extension AVPlayViewController: UITableViewDelegate, UITableViewDataSource {
                         PlayerNetAPI.share.AVTVEpsData(id: vModel.id, ssnId: mod.id) { success, epsList in
                             if let epsM = epsList.first {
                                 DispatchQueue.main.async {
-                                    let AVModel = AVModel()
-                                    self.videoModel.id = vModel.id
-                                    self.videoModel.title = vModel.title
-                                    self.videoModel.cover = vModel.cover
-                                    self.videoModel.rate = vModel.rate
-                                    self.videoModel.video = epsM.video
-                                    self.videoModel.ssn_eps = vModel.ssn_eps
-                                    self.videoModel.country = vModel.country
-                                    self.videoModel.ssn_id = mod.id
-                                    self.videoModel.ssn_name = mod.title
-                                    self.videoModel.eps_id = epsM.id
-                                    self.videoModel.eps_num = epsM.eps_num
-                                    self.videoModel.eps_name = epsM.title
-                                    self.videoModel.type = 2
-                                    self.videoModel.eps_list = epsList
-                                    self.videoModel.ssn_list = ssnList
+                                    let avModel = AVModel()
+                                    avModel.id = vModel.id
+                                    avModel.title = vModel.title
+                                    avModel.cover = vModel.cover
+                                    avModel.rate = vModel.rate
+                                    avModel.video = epsM.video
+                                    avModel.ssn_eps = vModel.ssn_eps
+                                    avModel.country = vModel.country
+                                    avModel.ssn_id = mod.id
+                                    avModel.ssn_name = mod.title
+                                    avModel.eps_id = epsM.id
+                                    avModel.eps_num = epsM.eps_num
+                                    avModel.eps_name = epsM.title
+                                    avModel.type = 2
+                                    avModel.eps_list = epsList
+                                    avModel.ssn_list = ssnList
                                     self.ssnId = mod.id
                                     self.epsId = epsM.id
                                     self.epsName = epsM.title
-                                    DBManager.share.updateData(self.videoModel)
-                                    completion(self.videoModel)
+                                    DBManager.share.updateData(avModel)
+                                    completion(avModel)
                                 }
                             }
                         }
@@ -898,7 +899,9 @@ extension AVPlayViewController: UITableViewDelegate, UITableViewDataSource {
         }
         PlayerNetAPI.share.AVTVEpsData(id: self.id, ssnId: ssnId) { [weak self] success, list in
             guard let self = self else { return }
-            list.first(where: {$0.id == self.epsId})?.isSelect = true
+            if let m = list.first(where: {$0.id == self.epsId}) {
+                m.isSelect = true
+            }
             self.model.eps_list = list
             self.videoModel.eps_list = list
             DispatchQueue.main.async {

@@ -117,7 +117,11 @@ class AVSearchResultViewController: VBaseViewController {
             make.top.equalTo(searchView.snp.bottom)
             make.left.bottom.right.equalToSuperview()
         }
-    }    
+        view.addSubview(emptyView)
+        emptyView.snp.makeConstraints { make in
+            make.top.left.bottom.right.equalTo(collectionView)
+        }
+    }
     
     func addRefresh() {
         let footer = RefreshAutoNormalFooter { [weak self] in
@@ -151,11 +155,12 @@ class AVSearchResultViewController: VBaseViewController {
             HPProgressHUD.dismiss()
             if !success {
                 self.collectionView.mj_footer?.isHidden = true
-//                self.showEmpty(.noNet, self.collectionView)
+                self.emptyView.setType()
+                self.emptyView.isHidden = false
             } else {
                 if list.count > 0 {
                     self.collectionView.mj_footer?.isHidden = false
-//                    self.dismissEmpty(self.collectionView)
+                    self.emptyView.isHidden = true
                     self.dataList.append(contentsOf: list)
                 } else {
                     self.collectionView.mj_footer?.endRefreshingWithNoMoreData()
@@ -163,7 +168,8 @@ class AVSearchResultViewController: VBaseViewController {
                 
                 if self.dataList.count == 0 {
                     self.collectionView.mj_footer?.isHidden = true
-//                    self.showEmpty(.noContent, self.collectionView)
+                    self.emptyView.setType(.content)
+                    self.emptyView.isHidden = false
                 }
             }
             self.collectionView.mj_header?.endRefreshing()

@@ -9,7 +9,7 @@ import UIKit
 
 class AVPlaySsnHeadView: UIView {
     private let cellIdentifier = "HPPlayerSelectSsnCell"
-    private var dataList: [AVInfoSsnlistModel?] = []
+    private var list: [AVInfoSsnlistModel?] = []
     
     lazy var lineL: UILabel = {
         let label = UILabel()
@@ -64,9 +64,9 @@ class AVPlaySsnHeadView: UIView {
     
     func setModel(_ list: [AVInfoSsnlistModel?], clickBlock: clickBlock?) {
         self.clickHandle = clickBlock
-        self.dataList = list
+        self.list = list
         self.collectionView.reloadData()
-        for (index, item) in self.dataList.enumerated() {
+        for (index, item) in self.list.enumerated() {
             if let m = item, m.isSelect {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
                     guard let self = self else { return }
@@ -79,7 +79,7 @@ class AVPlaySsnHeadView: UIView {
 
 extension AVPlaySsnHeadView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.dataList.count
+        return self.list.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -88,14 +88,14 @@ extension AVPlaySsnHeadView: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! HPPlayerSelectSsnCell
-        if let model = self.dataList.indexOfSafe(indexPath.item), let m = model {
+        if let model = self.list.indexOfSafe(indexPath.item), let m = model {
             cell.model = m
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let model = self.dataList.indexOfSafe(indexPath.item), let m = model {
+        if let model = self.list.indexOfSafe(indexPath.item), let m = model {
             self.clickHandle?(m.id)
         }
     }
@@ -110,7 +110,7 @@ extension AVPlaySsnHeadView: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var w: CGFloat = 0
-        if let m = self.dataList.indexOfSafe(indexPath.item), let model = m {
+        if let m = self.list.indexOfSafe(indexPath.item), let model = m {
             if model.isSelect {
                 w = model.title.getStrW(font: .font(weigth: .medium, size: 18), h: 36)
             } else {

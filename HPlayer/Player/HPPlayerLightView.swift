@@ -14,7 +14,6 @@ class HPPlayerLightView: UIView {
     
     @IBOutlet weak var progressView: UIProgressView!
     
-    
     class func view() -> HPPlayerLightView {
         let view = Bundle.main.loadNibNamed(String(describing: HPPlayerLightView.self), owner: nil)?.first as! HPPlayerLightView
         view.frame = CGRect(x: 0, y: 0, width: 204, height: 40)

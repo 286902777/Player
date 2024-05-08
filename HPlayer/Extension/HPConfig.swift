@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 import AdSupport
 import Alamofire
-import GoogleMobileAds
-import UserMessagingPlatform
+//import GoogleMobileAds
+//import UserMessagingPlatform
 
 class HPConfig{
     static let share = HPConfig()
@@ -76,17 +76,17 @@ class HPConfig{
     
     
     private func setGoogleUMP() {
-        #if DEBUG
-        UMPConsentInformation.sharedInstance.reset()
-        #endif
-        if let vc = HPConfig.topVC() {
-            HPUMPManager.shared.gatherConsent(from: vc) { consentError in
-                if let consentError {
-                    // Consent gathering failed.
-                    print("Error: \(consentError.localizedDescription)")
-                }
-            }
-        }
+//        #if DEBUG
+//        UMPConsentInformation.sharedInstance.reset()
+//        #endif
+//        if let vc = HPConfig.topVC() {
+//            HPUMPManager.shared.gatherConsent(from: vc) { consentError in
+//                if let consentError {
+//                    // Consent gathering failed.
+//                    print("Error: \(consentError.localizedDescription)")
+//                }
+//            }
+//        }
     }
     
     private func clockRequest(complete: @escaping ((_ info: String?) -> Void)) {
@@ -227,33 +227,33 @@ class HPConfig{
     }
     
     func showADS(type: HPADType, complete: @escaping(Bool) -> Void) {
-        HPADManager.share.hplayerShowAds(type: type) { result, ad in
-            DispatchQueue.main.async {
-                if result, let vc = HPConfig.topVC() {
-                    if let ad = ad as? GADInterstitialAd {
-                        ad.present(fromRootViewController: vc)
-                        complete(true)
-                    } else if let ad = ad as? GADAppOpenAd {
-                        ad.present(fromRootViewController: vc)
-                        complete(true)
-                    } else if let ad = ad as? GADRewardedAd {
-                        ad.present(fromRootViewController: vc, userDidEarnRewardHandler: {
-                            toast("Reward received!")
-                        })
-                        complete(true)
-                    } else if let ad = ad as? GADRewardedInterstitialAd {
-                        ad.present(fromRootViewController: vc, userDidEarnRewardHandler: {
-                            toast("Reward received!")
-                        })
-                        complete(true)
-                    } else {
-                        complete(true)
-                    }
-                } else {
-                    complete(false)
-                }
-            }
-        }
+//        HPADManager.share.hplayerShowAds(type: type) { result, ad in
+//            DispatchQueue.main.async {
+//                if result, let vc = HPConfig.topVC() {
+//                    if let ad = ad as? GADInterstitialAd {
+//                        ad.present(fromRootViewController: vc)
+//                        complete(true)
+//                    } else if let ad = ad as? GADAppOpenAd {
+//                        ad.present(fromRootViewController: vc)
+//                        complete(true)
+//                    } else if let ad = ad as? GADRewardedAd {
+//                        ad.present(fromRootViewController: vc, userDidEarnRewardHandler: {
+//                            toast("Reward received!")
+//                        })
+//                        complete(true)
+//                    } else if let ad = ad as? GADRewardedInterstitialAd {
+//                        ad.present(fromRootViewController: vc, userDidEarnRewardHandler: {
+//                            toast("Reward received!")
+//                        })
+//                        complete(true)
+//                    } else {
+//                        complete(true)
+//                    }
+//                } else {
+//                    complete(false)
+//                }
+//            }
+//        }
     }
 }
 

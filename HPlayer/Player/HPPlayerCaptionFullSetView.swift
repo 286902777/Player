@@ -27,19 +27,19 @@ class HPPlayerCaptionFullSetView: UIView {
             self.langView?.snp.makeConstraints { make in
                 make.left.right.top.bottom.equalToSuperview()
             }
-            self.langView?.setModel(self.datalist)
+            self.langView?.setModel(self.list)
             self.langView?.clickBlock = { [weak self] address in
                 self?.clickBlock?(address)
             }
             self.langView?.backBlock = { [weak self] in
-                self?.dismissView()
+                self?.dismissSelf()
             }
         }
     }
     
     private var langView: HPPlayerLanguageFullView?
     private var baseView: UIView?
-    private var datalist: [AVCaption] = []
+    private var list: [AVCaption] = []
     var clickBlock: ((_ address: String)->())?
 
     class func view() -> HPPlayerCaptionFullSetView {
@@ -50,15 +50,15 @@ class HPPlayerCaptionFullSetView: UIView {
         return view
     }
     
-    func setModel(_ list: [AVCaption], view: UIView) {
-        self.datalist = list
-        self.baseView = view
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissView))
-        self.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissView() {
+    @objc func dismissSelf() {
         self.langView?.removeFromSuperview()
         self.removeFromSuperview()
+    }
+    
+    func setModel(_ list: [AVCaption], view: UIView) {
+        self.list = list
+        self.baseView = view
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissSelf))
+        self.addGestureRecognizer(tap)
     }
 }

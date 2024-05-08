@@ -13,12 +13,12 @@ class AVPlayHeadInfoCell: UITableViewCell {
     
     @IBOutlet weak var collectH: NSLayoutConstraint!
     @IBOutlet weak var collectionView: UICollectionView!
-    var dataList: [AVCastsModel] = [] {
+    var list: [AVCastsModel] = [] {
         didSet {
-            collectH.constant = dataList.count == 0 ? 0 : 120
+            collectH.constant = list.count == 0 ? 0 : 120
         }
     }
-    private let cellIdentifier = "VideoPlayHeadIconCell"
+    private let cellIdentifier = "AVPlayHeadIconCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,7 +32,7 @@ class AVPlayHeadInfoCell: UITableViewCell {
     }
     
     func setModel(_ model: AVMoreModel) {
-        self.dataList = model.celebrity_list
+        self.list = model.celebrity_list
         self.infoL.text = model.description
         self.collectionView.reloadData()
     }
@@ -40,7 +40,7 @@ class AVPlayHeadInfoCell: UITableViewCell {
 
 extension AVPlayHeadInfoCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        dataList.count
+        list.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -49,8 +49,8 @@ extension AVPlayHeadInfoCell: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! AVPlayHeadIconCell
-        if let model = self.dataList.indexOfSafe(indexPath.item) {
-            cell.model = model
+        if let mod = self.list.indexOfSafe(indexPath.item) {
+            cell.model = mod
         }
         return cell
     }

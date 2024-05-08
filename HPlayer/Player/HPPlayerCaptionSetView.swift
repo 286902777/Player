@@ -58,7 +58,6 @@ class HPPlayerCaptionSetView: UIViewController {
     private func setUpUI() {
         view.setEffectView(CGSize(width: kScreenWidth, height: kScreenHeight))
         bgView.backgroundColor = UIColor.hexColor("#FFFFFF", alpha: 0.05)
-//        bgView.setEffectView(CGSize(width: kScreenWidth, height: 254))
         bgView.setCorner(conrners: [.topLeft, .topRight], radius: 24)
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissAnimation))
         self.clickView.addGestureRecognizer(tap)

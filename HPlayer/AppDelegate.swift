@@ -11,15 +11,15 @@ import Alamofire
 import IQKeyboardManagerSwift
 import SVProgressHUD
 import AppTrackingTransparency
-import GoogleMobileAds
-import AppLovinSDK
-import FirebaseCore
-import FirebaseMessaging
+//import GoogleMobileAds
+//import AppLovinSDK
+//import FirebaseCore
+//import FirebaseMessaging
 //import StoreKit
 import Adjust
 import AdSupport
 import AdServices
-import FBSDKCoreKit
+//import FBSDKCoreKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -126,7 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             ATTrackingManager.requestTrackingAuthorization { status in
                 if status == .authorized {
-                    Settings.shared.isAdvertiserTrackingEnabled = true
+//                    Settings.shared.isAdvertiserTrackingEnabled = true
                 }
             }
         }

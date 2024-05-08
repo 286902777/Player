@@ -36,7 +36,7 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
-                                <action selector="remindAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ji2-JS-tr7"/>
+                                <action selector="clickAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="qiq-80-vcT"/>
                             </connections>
                         </button>
                     </subviews>
@@ -54,7 +54,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="label" destination="HmI-gP-hkT" id="dxC-9j-8Gj"/>
-                <outlet property="remindButton" destination="jt5-SW-NUY" id="2VN-o4-pmF"/>
+                <outlet property="tryBtn" destination="jt5-SW-NUY" id="sqU-zQ-xoL"/>
             </connections>
             <point key="canvasLocation" x="130.53435114503816" y="-235.56338028169014"/>
         </view>

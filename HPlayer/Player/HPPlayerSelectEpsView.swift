@@ -30,7 +30,7 @@ class HPPlayerSelectEpsView: UIView {
         return view
     }
     
-    @objc func dismissView() {
+    @objc func dismissSelf() {
         self.removeFromSuperview()
     }
     
@@ -40,7 +40,7 @@ class HPPlayerSelectEpsView: UIView {
         self.ssnCollectionView.register(UINib(nibName: String(describing: HPPlayerSelectSsnCell.self), bundle: nil), forCellWithReuseIdentifier: ssnCellId)
         self.epsCollectionView.register(UINib(nibName: String(describing: HPPlayerSelectEpsCell.self), bundle: nil), forCellWithReuseIdentifier: epsCellId)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissView))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissSelf))
         self.addGestureRecognizer(tap)
         tap.delegate = self
         self.clickHandle = clickBlock
@@ -131,7 +131,7 @@ extension HPPlayerSelectEpsView: UICollectionViewDelegate, UICollectionViewDataS
                 let _ = self.epsList.map({$0.isSelect = false})
                 self.epsList.first(where: {$0.id == model.id})?.isSelect = true
                 self.epsCollectionView.reloadData()
-                self.dismissView()
+                self.dismissSelf()
             }
         }
     }

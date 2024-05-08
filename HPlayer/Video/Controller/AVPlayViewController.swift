@@ -518,12 +518,12 @@ class AVPlayViewController: UIViewController {
         
         let device = UIDevice.current
         if isFull == false {
-            HPADManager.share.hplayeraddAds(type: .play)
+//            HPADManager.share.hplayeraddAds(type: .play)
             if let view = self.epsView {
-                view.dismissView()
+                view.dismissSelf()
             }
             if let view = self.captionView {
-                view.dismissView()
+                view.dismissSelf()
             }
             if #available(iOS 16.0, *) {
                 self.setNeedsUpdateOfSupportedInterfaceOrientations()
@@ -543,7 +543,7 @@ class AVPlayViewController: UIViewController {
                 }
             }
         } else {
-            HPADManager.share.hplayeraddAds(type: .other)
+//            HPADManager.share.hplayeraddAds(type: .other)
             if #available(iOS 16.0, *) {
                 self.setNeedsUpdateOfSupportedInterfaceOrientations()
                 let scene = UIApplication.shared.connectedScenes.first

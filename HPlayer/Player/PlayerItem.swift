@@ -22,7 +22,6 @@ class PlayerResource {
         if let subtitle = subtitle {
             subtitles = HPSubtitles(url: subtitle)
         }
-        
         self.init(name: name, definitions: [definition], cover: cover, subtitles: subtitles)
     }
 

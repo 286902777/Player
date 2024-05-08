@@ -52,7 +52,7 @@ extension HPPlayLayoutDelegate {
 class HPPlayLayout: UICollectionViewFlowLayout {
     var cacheWidth: [IndexPath: CGFloat] = [:]
     var cellAttributes: [UICollectionViewLayoutAttributes] = []
-    var isLoaded: Bool = false
+    var isLoadData: Bool = false
     weak var delegate: HPPlayLayoutDelegate?
     var isHorizon = true {
         didSet {
@@ -63,7 +63,7 @@ class HPPlayLayout: UICollectionViewFlowLayout {
     func reloadData() {
         self.cellAttributes.removeAll()
         self.cacheWidth.removeAll()
-        self.isLoaded = false
+        self.isLoadData = false
         self.prepare()
     }
     

@@ -15,11 +15,11 @@ class AVPlayLikeCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var collectH: NSLayoutConstraint!
-    private let cellIdentifier = "VideoCell"
+    private let cellIdentifier = "AVCell"
     typealias clickBlock = (_ index: Int) -> Void
     var clickHandle : clickBlock?
 
-    var dataList: [AVDataInfoModel] = []
+    var list: [AVDataInfoModel] = []
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,14 +35,14 @@ class AVPlayLikeCell: UITableViewCell {
     func setModel(_ model: AVMoreListModel, clickBlock: clickBlock?) {
         self.clickHandle = clickBlock
         self.titleL.text = model.title
-        self.dataList = model.data_list
+        self.list = model.data_list
         self.collectionView.reloadData()
     }
 }
 
 extension AVPlayLikeCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        dataList.count
+        list.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -51,7 +51,7 @@ extension AVPlayLikeCell: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! AVCell
-        if let model = self.dataList.indexOfSafe(indexPath.item) {
+        if let model = self.list.indexOfSafe(indexPath.item) {
             cell.setModel(model: model)
         }
         return cell

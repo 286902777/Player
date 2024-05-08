@@ -32,9 +32,9 @@ class AVSettingViewController: VBaseViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
         self.dataList = [SettingModel(type: .About), SettingModel(type: .Feedback), SettingModel(type: .Share), SettingModel(type: .Evaluate), SettingModel(type: .Privacy), SettingModel(type: .Terms)]
-        if HPUMPManager.shared.isPrivacyOptionsRequired {
-            self.dataList.append(SettingModel(type: .PrivacySetting))
-        }
+//        if HPUMPManager.shared.isPrivacyOptionsRequired {
+//            self.dataList.append(SettingModel(type: .PrivacySetting))
+//        }
         self.tableView.reloadData()
     }
     
@@ -91,11 +91,11 @@ extension AVSettingViewController: UITableViewDelegate, UITableViewDataSource {
 //            vc.urlLink = "https://plixor.net/terms/"
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
-        case .PrivacySetting:
-            if HPUMPManager.shared.isPrivacyOptionsRequired {
-                HPUMPManager.shared.presentPrivacyOptionsForm(from: self) { _ in
-                }
-            }
+//        case .PrivacySetting:
+//            if HPUMPManager.shared.isPrivacyOptionsRequired {
+//                HPUMPManager.shared.presentPrivacyOptionsForm(from: self) { _ in
+//                }
+//            }
         case .Feedback:
             let vc = AVFeedBackViewController()
             if let model = self.dataList.indexOfSafe(indexPath.row) {

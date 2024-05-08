@@ -12,7 +12,7 @@ import UIKit
 
 class AVSettingViewController: VBaseViewController {
     let cellIdentifier = "AVSettingCell"
-    var dataList: [SettingModel] = []
+    var list: [SettingModel] = []
     lazy var tableView: UITableView = {
         let table = UITableView.init(frame: .zero, style: .plain)
         table.delegate = self
@@ -31,9 +31,9 @@ class AVSettingViewController: VBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
-        self.dataList = [SettingModel(type: .About), SettingModel(type: .Feedback), SettingModel(type: .Share), SettingModel(type: .Evaluate), SettingModel(type: .Privacy), SettingModel(type: .Terms)]
+        self.list = [SettingModel(type: .About), SettingModel(type: .Feedback), SettingModel(type: .Share), SettingModel(type: .Evaluate), SettingModel(type: .Privacy), SettingModel(type: .Terms)]
 //        if HPUMPManager.shared.isPrivacyOptionsRequired {
-//            self.dataList.append(SettingModel(type: .PrivacySetting))
+//            self.list.append(SettingModel(type: .PrivacySetting))
 //        }
         self.tableView.reloadData()
     }
@@ -58,26 +58,26 @@ class AVSettingViewController: VBaseViewController {
 
 extension AVSettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        dataList.count
+        list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:AVSettingCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! AVSettingCell
-        let t = self.dataList[indexPath.row].type.rawValue
+        let t = self.list[indexPath.row].type.rawValue
         cell.titleL.textColor = .white
         cell.titleL.text = t
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch dataList[indexPath.row].type {
+        switch list[indexPath.row].type {
         case .About:
             let vc = AVAboutViewController()
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         case .Privacy:
             let vc = AVWebViewController()
-            if let model = self.dataList.indexOfSafe(indexPath.row) {
+            if let model = self.list.indexOfSafe(indexPath.row) {
                 vc.name = model.type.rawValue
             }
 //            vc.link = "https://plixor.net/privacy/"
@@ -85,7 +85,7 @@ extension AVSettingViewController: UITableViewDelegate, UITableViewDataSource {
             self.navigationController?.pushViewController(vc, animated: true)
         case .Terms:
             let vc = AVWebViewController()
-            if let model = self.dataList.indexOfSafe(indexPath.row) {
+            if let model = self.list.indexOfSafe(indexPath.row) {
                 vc.name = model.type.rawValue
             }
 //            vc.link = "https://plixor.net/terms/"
@@ -98,7 +98,7 @@ extension AVSettingViewController: UITableViewDelegate, UITableViewDataSource {
 //            }
         case .Feedback:
             let vc = AVFeedBackViewController()
-            if let model = self.dataList.indexOfSafe(indexPath.row) {
+            if let model = self.list.indexOfSafe(indexPath.row) {
                 vc.titleName = model.type.rawValue
             }
             vc.hidesBottomBarWhenPushed = true

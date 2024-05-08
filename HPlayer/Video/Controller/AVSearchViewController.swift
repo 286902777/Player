@@ -87,7 +87,7 @@ class AVSearchViewController: VBaseViewController {
         super.viewDidLoad()
         setSearchBar()
         setUpUI()
-        loadTopData()
+        requestListData()
         HPLog.tb_home_cl(kid: "2", c_id: "", c_name: "", ctype: "", secname: "", secid: "")
     }
     
@@ -139,10 +139,10 @@ class AVSearchViewController: VBaseViewController {
     }
     override func reSetRequest() {
         self.topList.removeAll()
-        self.loadTopData()
+        self.requestListData()
     }
     
-    func loadTopData() {
+    func requestListData() {
         HPProgressHUD.show()
         PlayerNetAPI.share.AVSearchTopData(from: "\(self.from.rawValue)", {[weak self] success, list in
             guard let self = self else { return }

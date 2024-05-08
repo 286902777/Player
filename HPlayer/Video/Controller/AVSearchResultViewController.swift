@@ -8,10 +8,10 @@
 import UIKit
 
 class AVSearchResultViewController: VBaseViewController {
-    let hostUrl = "https://suggestqueries.google.com/complete/search?client=youtube&q="
+    let glHostUrl = "https://suggestqueries.google.com/complete/search?client=youtube&q="
     let cellIdentifier = "AVSearchCellIdentifier"
     var searchKeys: [String] = []
-    var dataList: [AVDataInfoModel] = []
+    var list: [AVDataInfoModel] = []
 
     var from: AVSearchViewController.searchFrom = .home
     var addSearchKeyBlock:((_ text: String) -> Void)?
@@ -75,7 +75,7 @@ class AVSearchResultViewController: VBaseViewController {
         super.viewDidLoad()
         setSearchBar()
         setUpUI()
-        addRefresh()
+        setRefresh()
         requestData()
         HPLog.tb_search_result_sh(keyword: key)
     }
@@ -123,7 +123,7 @@ class AVSearchResultViewController: VBaseViewController {
         }
     }
     
-    func addRefresh() {
+    func setRefresh() {
         let footer = RefreshAutoNormalFooter { [weak self] in
             guard let self = self else { return }
             self.page += 1
@@ -134,7 +134,7 @@ class AVSearchResultViewController: VBaseViewController {
     
     func requestData() {
         self.page = 1
-        self.dataList.removeAll()
+        self.list.removeAll()
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.tableView.isHidden = true
@@ -161,12 +161,12 @@ class AVSearchResultViewController: VBaseViewController {
                 if list.count > 0 {
                     self.collectionView.mj_footer?.isHidden = false
                     self.emptyView.isHidden = true
-                    self.dataList.append(contentsOf: list)
+                    self.list.append(contentsOf: list)
                 } else {
                     self.collectionView.mj_footer?.endRefreshingWithNoMoreData()
                 }
                 
-                if self.dataList.count == 0 {
+                if self.list.count == 0 {
                     self.collectionView.mj_footer?.isHidden = true
                     self.emptyView.setType(.content)
                     self.emptyView.isHidden = false
@@ -189,7 +189,7 @@ class AVSearchResultViewController: VBaseViewController {
             return
         }
         NetManager.cancelAllRequest()
-        NetManager.requestSearch(url: hostUrl + text) { [weak self] data in
+        NetManager.requestSearch(url: glHostUrl + text) { [weak self] data in
             guard let self = self else { return }
             self.searchKeys.removeAll()
             if let arr = self.getSearchData(data) {
@@ -268,7 +268,7 @@ extension AVSearchResultViewController: UITableViewDelegate, UITableViewDataSour
 
 extension AVSearchResultViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        self.dataList.count
+        self.list.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -277,14 +277,14 @@ extension AVSearchResultViewController: UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! AVCell
-        if let model = self.dataList.indexOfSafe(indexPath.item) {
+        if let model = self.list.indexOfSafe(indexPath.item) {
             cell.setModel(model: model)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let model = self.dataList.indexOfSafe(indexPath.item) {
+        if let model = self.list.indexOfSafe(indexPath.item) {
             DBManager.share.updateData(model)
             HPLog.tb_search_result_cl(kid: "1", movie_id: model.id, movie_name: model.title)
             PlayerNetAPI.share.AVSearchClickInfo(model.id) { success, model in

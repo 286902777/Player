@@ -21,7 +21,7 @@ class VBaseViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    var backImageView = UIImageView()
+    var backView = UIImageView()
 
     var emptyView: AVNoNetView = AVNoNetView.view()
     
@@ -33,10 +33,10 @@ class VBaseViewController: UIViewController {
             appDelegate.addTrack()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(netStatusChange), name: Notification.Name("netStatus"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(pushPlayVC), name: HPKey.Noti_PushAPNS, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(openPlayVC), name: HPKey.Noti_PushAPNS, object: nil)
         view.backgroundColor = UIColor.hexColor("#141414")
         setBackgroudView()
-        setNavBar()
+        addNavBar()
         emptyView.isHidden = true
         emptyView.clickBlock = { [weak self] in
             guard let self = self else { return }
@@ -60,7 +60,7 @@ class VBaseViewController: UIViewController {
         }
     }
     
-    @objc func pushPlayVC(_ info: Notification) {
+    @objc func openPlayVC(_ info: Notification) {
         if HPConfig.topVC()?.isKind(of: VBaseViewController.self) == true {
             if let u = info.userInfo as? [String: Any], let model = apnsModel.deserialize(from: u) {
                 let mod = AVModel()
@@ -77,16 +77,16 @@ class VBaseViewController: UIViewController {
     }
 
     func setBackgroudView() {
-        view.addSubview(backImageView)
-        backImageView.contentMode = .scaleToFill
-        backImageView.image = UIImage.init(named: "home_bg")
-        view.insertSubview(backImageView, at: 0)
-        backImageView.snp.makeConstraints { make in
+        view.addSubview(backView)
+        backView.contentMode = .scaleToFill
+        backView.image = UIImage.init(named: "home_bg")
+        view.insertSubview(backView, at: 0)
+        backView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
     
-    func setNavBar() {
+    func addNavBar() {
         self.navigationController?.navigationBar.barStyle = .black
         view.addSubview(self.navBar)
         navBar.snp.makeConstraints { make in

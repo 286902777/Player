@@ -344,16 +344,16 @@ extension AVFilterViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if self.showInfoL.text?.count == 0 {
             self.infoView.isHidden = true
-            self.backImageView.isHidden = false
+            self.backView.isHidden = false
             return
         }
         
         if scrollView.contentOffset.y > 0 {
             self.infoView.isHidden = false
-            self.backImageView.isHidden = true
+            self.backView.isHidden = true
         } else {
             self.infoView.isHidden = true
-            self.backImageView.isHidden = false
+            self.backView.isHidden = false
         }
     }
 }

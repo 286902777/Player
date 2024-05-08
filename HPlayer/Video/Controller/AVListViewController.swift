@@ -36,7 +36,7 @@ class AVListViewController: VBaseViewController {
         super.viewDidLoad()
         setUI()
         addRefresh()
-        initData()
+        requestData()
     }
     
     func setUI() {
@@ -58,7 +58,7 @@ class AVListViewController: VBaseViewController {
         let footer = RefreshAutoNormalFooter { [weak self] in
             guard let self = self else { return }
             self.page += 1
-            self.initData()
+            self.requestData()
         }
         collectionView.mj_footer = footer
     }
@@ -72,10 +72,10 @@ class AVListViewController: VBaseViewController {
     override func reSetRequest() {
         self.page = 1
         self.dataList.removeAll()
-        self.initData()
+        self.requestData()
     }
     
-    func initData() {
+    func requestData() {
         if HPConfig.share.isNetWork == false {
             self.collectionView.mj_header?.endRefreshing()
             self.emptyView.isHidden = false

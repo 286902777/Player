@@ -22,13 +22,12 @@ class AVAboutViewController: VBaseViewController {
         super.viewDidLoad()
         self.navBar.rightBtn.isHidden = true
         self.navBar.titleL.text = "About us"
-
-        if let appName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String {
-            self.nameL.text = appName
-        }
-    
+        
         if HPConfig.app_version.isEmpty == false {
             self.versonL.text = "V\(HPConfig.app_version)"
+        }
+        if let appName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String {
+            self.nameL.text = appName
         }
     }
 }

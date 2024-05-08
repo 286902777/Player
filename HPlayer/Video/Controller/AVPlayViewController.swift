@@ -103,7 +103,7 @@ class AVPlayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initUI()
+        setUI()
         configPlayerManager()
         getVideoResource()
         
@@ -246,7 +246,7 @@ class AVPlayViewController: UIViewController {
                 self.player = nil
             }
    
-            deinitTimer()
+            removeTimer()
             NotificationCenter.default.removeObserver(self)
         }
         let name = self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.title
@@ -260,7 +260,7 @@ class AVPlayViewController: UIViewController {
         print("player deinit")
     }
     
-    func initUI() {
+    func setUI() {
         view.backgroundColor = UIColor.hexColor("#141414")
         player = HPPlayer(customControlView: controller)
         view.addSubview(player)
@@ -371,7 +371,7 @@ class AVPlayViewController: UIViewController {
                     self.dataModel.cover = model.cover
                     self.dataModel.type = self.model.type
                     self.model.captions = self.dataModel.captions
-                    self.getCcptionData()
+                    self.getCaptionData()
                 } else {
                     requestResult = false
                 }
@@ -478,7 +478,7 @@ class AVPlayViewController: UIViewController {
         }
     }
     
-    func getCcptionData() {
+    func getCaptionData() {
         DispatchQueue.global().async { [weak self] in
             guard let self = self else { return }
             HPCaptionManager.share.downLoadCaptions(self.model)
@@ -491,20 +491,20 @@ class AVPlayViewController: UIViewController {
         PlayerManager.share.topBarInCase = .always
     }
     
-    func playerTransed(isFull: Bool) {
+    func setPlayerTransed(isFull: Bool) {
         if let vc = self.captionVC, isFull {
             vc.dismiss(animated: false) { [weak self] in
                 guard let self = self else { return }
                 DispatchQueue.main.async {
-                    self.changeScreenInterfaceOrientation(isFull)
+                    self.changeScreenOrientation(isFull)
                 }
             }
         } else {
-            self.changeScreenInterfaceOrientation(isFull)
+            self.changeScreenOrientation(isFull)
         }
     }
     
-    func changeScreenInterfaceOrientation(_ isFull: Bool) {
+    func changeScreenOrientation(_ isFull: Bool) {
         self.player.snp.remakeConstraints { (make) in
             if isFull {
                 make.edges.equalToSuperview()
@@ -530,9 +530,9 @@ class AVPlayViewController: UIViewController {
                 guard let window = scene as? UIWindowScene else { return }
                 let dirction: UIInterfaceOrientationMask =  UIInterfaceOrientationMask.portrait
                 
-                let geometryPreferencesIOS = UIWindowScene.GeometryPreferences.iOS(interfaceOrientations: dirction)
-                window.requestGeometryUpdate(geometryPreferencesIOS) { error in
-                    print("geometryPreferencesIOS error: \(error)")
+                let gs = UIWindowScene.GeometryPreferences.iOS(interfaceOrientations: dirction)
+                window.requestGeometryUpdate(gs) { error in
+                    print("gs error: \(error)")
                 }
             } else {
                 if device.orientation == .portrait {
@@ -555,9 +555,9 @@ class AVPlayViewController: UIViewController {
                     dirction = .landscapeLeft
                 }
                 
-                let geometryPreferencesIOS = UIWindowScene.GeometryPreferences.iOS(interfaceOrientations: dirction)
-                window.requestGeometryUpdate(geometryPreferencesIOS) { error in
-                    print("geometryPreferencesIOS error: \(error)")
+                let gs = UIWindowScene.GeometryPreferences.iOS(interfaceOrientations: dirction)
+                window.requestGeometryUpdate(gs) { error in
+                    print("gs error: \(error)")
                 }
             } else {
                 if device.orientation == .landscapeLeft {
@@ -573,7 +573,7 @@ class AVPlayViewController: UIViewController {
     func screenOrientationChanged(isLand: Bool) {
         if self.playLock == false, let _ = self.player {
             self.player.isFullScreen = isLand
-            self.playerTransed(isFull: isLand)
+            self.setPlayerTransed(isFull: isLand)
             self.player.reSetUI(isLand)
             self.tableView.isHidden = isLand
         }
@@ -590,11 +590,11 @@ class AVPlayViewController: UIViewController {
             list.first(where: {$0.id == self.epsId})?.isSelect = true
             self.model.eps_list = list
             self.dataModel.eps_list = list
-            self.addNextResource()
+            self.getNextResource()
         }
     }
     
-    func addNextResource() {
+    func getNextResource() {
         for (index, m) in self.dataModel.eps_list.enumerated() {
             if self.epsId == m.id {
                 m.isSelect = false
@@ -655,7 +655,7 @@ class AVPlayViewController: UIViewController {
             }
         }
     }
-    func initPlayerTimer() {
+    func addPlayerTimer() {
         currentPlayTime = 30
         if let _ = timer {
             
@@ -670,14 +670,14 @@ class AVPlayViewController: UIViewController {
     @objc func countTime() {
         currentPlayTime -= 1
         if currentPlayTime == 0 {
-            deinitTimer()
+            removeTimer()
             self.player.playerLayer?.distroyPrepare()
             self.FailedView.isHidden = false
             self.player.isFaceBook = true
         }
     }
     
-    func deinitTimer() {
+    func removeTimer() {
         self.controller.hideLottie()
         if (timer != nil) {
             timer?.invalidate()
@@ -837,7 +837,6 @@ extension AVPlayViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    
     func getVideoData(_ vid: String, _ completion: @escaping (_ model: AVModel) -> ()) {
         if let vModel = DBManager.share.selectAVData(id: vid) {
             if vModel.type == 1 {
@@ -962,9 +961,9 @@ extension AVPlayViewController: HPPlayerDelegate {
             }
             self.isPlayStatus = true
         case .waiting:
-            self.initPlayerTimer()
+            self.addPlayerTimer()
         case .end:
-            self.deinitTimer()
+            self.removeTimer()
             self.playerNextAction()
         case .finished:
 //            var event = ADJEvent(eventToken: "y7ntfn")
@@ -980,7 +979,7 @@ extension AVPlayViewController: HPPlayerDelegate {
                     p.pause()
                 }
             }
-            self.deinitTimer()
+            self.removeTimer()
         case .error:
             self.isPlayStatus = false
             if let error = player.playerLayer?.playerItem?.error?.localizedDescription {
@@ -1038,8 +1037,6 @@ extension AVPlayViewController: HPPlayerDelegate {
         epsView?.snp.makeConstraints { make in
             make.left.right.top.bottom.equalToSuperview()
         }
-//        let _ = self.dataModel.ssn_list.map({$0?.isSelect = false})
-//        self.dataModel.ssn_list.filter({$0?.id == self.ssnId}).first??.isSelect = true
         epsView?.setModel(self.id, self.dataModel.ssn_list, self.dataModel.eps_list, self.epsId) { [weak self] epsList, ssnId, epsId in
             guard let self = self else { return }
             self.model.eps_list = epsList
@@ -1072,7 +1069,7 @@ extension AVPlayViewController: HPPlayerDelegate {
             self.captionView = HPPlayerCaptionFullSetView.view()
             view.addSubview(self.captionView!)
             self.captionView?.snp.makeConstraints { make in
-                make.left.right.top.bottom.equalToSuperview()
+                make.edges.equalToSuperview()
             }
             self.captionView?.setModel(self.catptionList, view: view)
             self.captionView?.clickBlock = {[weak self] address in
@@ -1125,7 +1122,7 @@ extension AVPlayViewController: HPPlayerDelegate {
             if #available(iOS 16.0, *) {
                 self.setNeedsUpdateOfSupportedInterfaceOrientations()
                 let scene = UIApplication.shared.connectedScenes.first
-                guard let windowScene = scene as? UIWindowScene else { return }
+                guard let window = scene as? UIWindowScene else { return }
                 var dirction: UIInterfaceOrientationMask =  UIInterfaceOrientationMask.landscapeLeft
                 
                 if device.orientation == .landscapeRight {
@@ -1133,9 +1130,9 @@ extension AVPlayViewController: HPPlayerDelegate {
                 } else {
                     dirction = .landscapeRight
                 }
-                let geometryPreferencesIOS = UIWindowScene.GeometryPreferences.iOS(interfaceOrientations: dirction)
-                windowScene.requestGeometryUpdate(geometryPreferencesIOS) { error in
-                    print("geometryPreferencesIOS error: \(error)")
+                let gs = UIWindowScene.GeometryPreferences.iOS(interfaceOrientations: dirction)
+                window.requestGeometryUpdate(gs) { error in
+                    print("gs error: \(error)")
                 }
             } else {
                 if device.orientation == .landscapeLeft {

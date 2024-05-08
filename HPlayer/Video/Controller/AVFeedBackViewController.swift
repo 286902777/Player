@@ -33,12 +33,13 @@ class AVFeedBackViewController: VBaseViewController {
         emailV.layer.masksToBounds = true
         emailV.textContainerInset = UIEdgeInsets.init(top: 12, left: 12, bottom: 12, right: 12)
         contentV.placeholder = "Please input"
-        emailV.placeholder = "Please input"
         contentV.textColor = UIColor.white
         contentV.placeholderTextColor = UIColor.hexColor("#FFFFFF", alpha: 0.5)
+        contentV.backgroundColor = UIColor.hexColor("#FFFFFF", alpha: 0.1)
+        
+        emailV.placeholder = "Please input"
         emailV.textColor = UIColor.white
         emailV.placeholderTextColor = UIColor.hexColor("#FFFFFF", alpha: 0.5)
-        contentV.backgroundColor = UIColor.hexColor("#FFFFFF", alpha: 0.1)
         emailV.backgroundColor = UIColor.hexColor("#FFFFFF", alpha: 0.1)
     }
 

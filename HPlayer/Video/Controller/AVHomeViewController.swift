@@ -120,7 +120,7 @@ class AVHomeViewController: VBaseViewController {
                     HPLog.tb_vip_sh(source: "2")
                     HPLog.tb_home_cl(kid: "6", c_id: "", c_name: "", ctype: "", secname: "", secid: "")
                 } else {
-                    self.pushSearch()
+                    self.openSearch()
                 }
             }
         }
@@ -246,7 +246,7 @@ class AVHomeViewController: VBaseViewController {
         }
     }
     
-    @objc func pushSearch() {
+    @objc func openSearch() {
         let vc = AVSearchViewController()
         vc.hidesBottomBarWhenPushed = true
         vc.from = .home

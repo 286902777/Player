@@ -9,6 +9,12 @@
 import UIKit
 import AVFoundation
 
+enum PlayerAspect : Int {
+    case normal    = 0
+    case sixteen // 16: 9
+    case four    // 4 : 3
+}
+
 enum PlayerState: Int {
     case noURL = 0
     case ready
@@ -16,12 +22,6 @@ enum PlayerState: Int {
     case finished
     case end
     case error
-}
-
-enum PlayerAspectRatio : Int {
-    case normal    = 0
-    case sixteen // 16: 9
-    case four    // 4 : 3
 }
 
 protocol PlayerLayerViewDelegate : AnyObject {
@@ -69,7 +69,7 @@ class PlayerLayerView: UIView {
        }
    }
    
-   var aspectRatio: PlayerAspectRatio = .normal {
+   var aspectRatio: PlayerAspect = .normal {
        didSet {
            self.setNeedsLayout()
        }
@@ -171,7 +171,6 @@ class PlayerLayerView: UIView {
      self.playerLayer?.removeFromSuperlayer()
      // 替换PlayerItem为nil
      self.player?.replaceCurrentItem(with: nil)
-//    player?.removeObserver(self, forKeyPath: "rate")
 //    把player置为nil
      self.player = nil
    }
@@ -191,8 +190,8 @@ class PlayerLayerView: UIView {
            return
        }
        if self.player?.currentItem?.status == AVPlayerItem.Status.readyToPlay {
-           let draggedTime = CMTime(value: Int64(secounds), timescale: 1)
-           self.player!.seek(to: draggedTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero, completionHandler: { (finished) in
+           let time = CMTime(value: Int64(secounds), timescale: 1)
+           self.player!.seek(to: time, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero, completionHandler: { (finished) in
                completion?()
            })
        } else {
@@ -245,12 +244,12 @@ class PlayerLayerView: UIView {
    fileprivate func configPlayer(){
        playerItem = AVPlayerItem(asset: urlAsset!)
        player     = AVPlayer(playerItem: playerItem!)
-       self.connectPlayerLayer()
+       self.reSetPlayerLayer()
        setNeedsLayout()
        layoutIfNeeded()
        
-       NotificationCenter.default.addObserver(self, selector: #selector(self.connectPlayerLayer), name: UIApplication.willEnterForegroundNotification, object: nil)
-       NotificationCenter.default.addObserver(self, selector: #selector(self.disconnectPlayerLayer), name: UIApplication.didEnterBackgroundNotification, object: nil)
+       NotificationCenter.default.addObserver(self, selector: #selector(self.reSetPlayerLayer), name: UIApplication.willEnterForegroundNotification, object: nil)
+       NotificationCenter.default.addObserver(self, selector: #selector(self.disPlayerLayer), name: UIApplication.didEnterBackgroundNotification, object: nil)
    }
    
    func setupTimer() {
@@ -322,18 +321,18 @@ class PlayerLayerView: UIView {
    
    /// 插拔耳机
    @objc func routeChanged(notification: Notification) {
-       let dic = notification.userInfo
-       if let changeReasonInt = dic?[AVAudioSessionRouteChangeReasonKey] {
+       let info = notification.userInfo
+       if let changeReasonInt = info?[AVAudioSessionRouteChangeReasonKey] {
            let changeReason = AVAudioSession.RouteChangeReason(rawValue: changeReasonInt as! UInt)
            // 旧输出不可用
            if changeReason == AVAudioSession.RouteChangeReason.oldDeviceUnavailable {
-               let routeDescription = dic?[AVAudioSessionRouteChangePreviousRouteKey] as? AVAudioSessionRouteDescription
-               let portDescription = routeDescription?.outputs.first
-               let newPortDescription = routeDescription?.outputs.first
+               let rDescription = info?[AVAudioSessionRouteChangePreviousRouteKey] as? AVAudioSessionRouteDescription
+               let pDescription = rDescription?.outputs.first
+               let nDescription = rDescription?.outputs.first
                // 原设备为耳机则暂停
-               if portDescription?.portType == .headphones || portDescription?.portType == .bluetoothHFP  || portDescription?.portType == .bluetoothA2DP {
+               if pDescription?.portType == .headphones || pDescription?.portType == .bluetoothHFP  || pDescription?.portType == .bluetoothA2DP {
                    self.pause()
-                   if newPortDescription?.portType == .builtInSpeaker {
+                   if nDescription?.portType == .builtInSpeaker {
                        do {
                            // 扬声器
                            try AVAudioSession.sharedInstance().overrideOutputAudioPort(.speaker)
@@ -414,8 +413,8 @@ class PlayerLayerView: UIView {
     - returns: 缓冲进度
     */
    fileprivate func availableDuration() -> TimeInterval? {
-       if let loadedTimeRanges = player?.currentItem?.loadedTimeRanges,
-           let first = loadedTimeRanges.first {
+       if let ranges = player?.currentItem?.loadedTimeRanges,
+           let first = ranges.first {
            
            let timeRange = first.timeRangeValue
            let startSeconds = CMTimeGetSeconds(timeRange.start)
@@ -456,7 +455,7 @@ class PlayerLayerView: UIView {
        }
    }
    
-   @objc fileprivate func connectPlayerLayer() {
+   @objc fileprivate func reSetPlayerLayer() {
        playerLayer?.removeFromSuperlayer()
        playerLayer = AVPlayerLayer(player: player)
        playerLayer!.videoGravity = videoGravity
@@ -464,7 +463,7 @@ class PlayerLayerView: UIView {
        layer.addSublayer(playerLayer!)
    }
    
-   @objc fileprivate func disconnectPlayerLayer() {
+   @objc fileprivate func disPlayerLayer() {
        playerLayer?.removeFromSuperlayer()
        playerLayer = nil
    }

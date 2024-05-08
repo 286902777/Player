@@ -58,14 +58,14 @@ class NetManager {
     var contentType: String = "application/x-www-form-urlencoded"
     
     /// 接口地址
-//#if DEBUG
-    let Host: String = "https://test.plixenapp.com/"
-//#else
-//    let Host: String = "https://prod.plixoriosbox.com/"
-//#endif
+#if DEBUG
+    let Host: String = "https://prod.plixoriosbox.com/"
+#else
+    let Host: String = ""
+#endif
         
     /// 参数编码方式
-    let TBParameterEncoder : ParameterEncoder = URLEncodedFormParameterEncoder.default
+    let ParameterEncoder : ParameterEncoder = URLEncodedFormParameterEncoder.default
 }
 
 extension NetManager{
@@ -80,7 +80,7 @@ extension NetManager{
         headers.add(name: Head_uuid, value: HPConfig.share.getDistinctId())
         headers.add(name: Head_version, value: HPConfig.app_version)
 
-        let encoder : ParameterEncoder = NetManager.share.TBParameterEncoder
+        let encoder : ParameterEncoder = NetManager.share.ParameterEncoder
         let requestUrl = url.jointHost()
 
         let request : DataRequest = AF.request(requestUrl, method: method, parameters: parameters, encoder: encoder, headers: headers, interceptor: nil, requestModifier: { $0.timeoutInterval = 15 })

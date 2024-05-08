@@ -943,7 +943,7 @@ class HPPlayerControlView: UIView {
             item.removeFromSuperview()
         }
         
-        for i in 0..<resource.definitions.count {
+        for i in 0..<resource.config.count {
             //            let button = BMPlayerClearityChooseButton()
             let button = UIButton()
             if i == 0 {
@@ -954,7 +954,7 @@ class HPPlayerControlView: UIView {
                 button.tag = i
             }
             
-            button.setTitle("\(resource.definitions[button.tag].definition)", for: UIControl.State())
+            button.setTitle("\(resource.config[button.tag].definition)", for: UIControl.State())
             defChooseView.addSubview(button)
             button.addTarget(self, action: #selector(self.clickDefinitionAction(_:)), for: UIControl.Event.touchUpInside)
             button.snp.makeConstraints({ (make) in
@@ -965,7 +965,7 @@ class HPPlayerControlView: UIView {
                 make.centerX.equalTo(defChooseView)
             })
             
-            if resource.definitions.count == 1 {
+            if resource.config.count == 1 {
                 button.isEnabled = false
                 button.isHidden = true
             }
@@ -1115,7 +1115,7 @@ class HPPlayerControlView: UIView {
     }
     
     @objc fileprivate func clickDefinitionAction(_ button:UIButton) {
-        let height = isSelectDefinition ? 35 : resource!.definitions.count * 40
+        let height = isSelectDefinition ? 35 : resource!.config.count * 40
         defChooseView.snp.updateConstraints { (make) in
             make.height.equalTo(height)
         }

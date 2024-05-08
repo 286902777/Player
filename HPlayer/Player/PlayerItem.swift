@@ -13,23 +13,23 @@ class PlayerResource {
     let name: String
     let cover: URL?
     var subtitle: HPSubtitles?
-    let definitions: [HPPlayerResourceConfig]
+    let config: [HPPlayerResourceConfig]
     
     convenience init(url: URL, name: String = "", cover: URL? = nil, subtitle: URL? = nil) {
-        let definition = HPPlayerResourceConfig(url: url, definition: "")
+        let cfg = HPPlayerResourceConfig(url: url, definition: "")
         
-        var subtitles: HPSubtitles? = nil
+        var s: HPSubtitles? = nil
         if let subtitle = subtitle {
-            subtitles = HPSubtitles(url: subtitle)
+            s = HPSubtitles(url: subtitle)
         }
-        self.init(name: name, definitions: [definition], cover: cover, subtitles: subtitles)
+        self.init(name: name, config: [cfg], cover: cover, subtitles: s)
     }
 
-    init(name: String = "", definitions: [HPPlayerResourceConfig], cover: URL? = nil, subtitles: HPSubtitles? = nil) {
+    init(name: String = "", config: [HPPlayerResourceConfig], cover: URL? = nil, subtitles: HPSubtitles? = nil) {
         self.name        = name
         self.cover       = cover
         self.subtitle    = subtitles
-        self.definitions = definitions
+        self.config = config
     }
 }
 

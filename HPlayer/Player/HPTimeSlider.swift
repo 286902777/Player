@@ -10,17 +10,17 @@ import UIKit
 
 class HPTimeSlider: UISlider {
     override func thumbRect(forBounds bounds: CGRect, trackRect rect: CGRect, value: Float) -> CGRect {
-        let frame = super.thumbRect(forBounds: bounds, trackRect: rect, value: value)
-        let x = frame.origin.x - 10
-        let t = CGRect(x: x, y: 0, width: 30, height: 30)
-        return t
+        let rect = super.thumbRect(forBounds: bounds, trackRect: rect, value: value)
+        let x = rect.origin.x - 10
+        let result = CGRect(x: x, y: 0, width: 30, height: 30)
+        return result
     }
     
     override func trackRect(forBounds bounds: CGRect) -> CGRect {
         let point = CGPoint(x: 0, y: 13)
-        let h: CGFloat = 4
-        let r = CGRect(origin: point, size: CGSize(width: bounds.size.width, height: h))
-        super.trackRect(forBounds: r)
-        return r
+        let height: CGFloat = 4
+        let result = CGRect(origin: point, size: CGSize(width: bounds.size.width, height: height))
+        super.trackRect(forBounds: result)
+        return result
     }
 }

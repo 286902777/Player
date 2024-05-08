@@ -133,7 +133,7 @@ class HPPlayer: UIView {
     
     var isPlayEnd  = false
     //视频画面比例
-    var aspectRatio: PlayerAspectRatio = .normal
+    var aspectRatio: PlayerAspect = .normal
     
     //Cache is playing result to improve callback performance
     fileprivate var isPlayingCache: Bool? = nil
@@ -160,7 +160,7 @@ class HPPlayer: UIView {
         
         if PlayerManager.share.autoPlay {
             isURLSet = true
-            let asset = resource.definitions[index]
+            let asset = resource.config[index]
             playerLayer?.playAsset(asset: asset.avURLAsset)
         } else {
             controlView.showCover(url: resource.cover)
@@ -184,7 +184,7 @@ class HPPlayer: UIView {
         guard resource != nil else { return }
         
         if !isURLSet {
-            let asset = resource.definitions[IndexDef]
+            let asset = resource.config[IndexDef]
             playerLayer?.playAsset(asset: asset.avURLAsset)
             controlView.hideCoverImageView()
             isURLSet = true
@@ -601,7 +601,7 @@ extension HPPlayer: HPPlayerControlViewDelegate {
         shouldSeekTo = currentPosition
         playerLayer?.resetPlayer()
         IndexDef = index
-        playerLayer?.playAsset(asset: resource.definitions[index].avURLAsset)
+        playerLayer?.playAsset(asset: resource.config[index].avURLAsset)
     }
     
     func controlView(view: HPPlayerControlView,
@@ -711,7 +711,7 @@ extension HPPlayer: HPPlayerControlViewDelegate {
         }
     }
     
-    func controlView(view: HPPlayerControlView, didChangeVideoAspectRatio: PlayerAspectRatio) {
+    func controlView(view: HPPlayerControlView, didChangeVideoAspectRatio: PlayerAspect) {
         self.playerLayer?.aspectRatio = self.aspectRatio
     }
     

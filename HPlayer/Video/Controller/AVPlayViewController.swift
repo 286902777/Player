@@ -13,7 +13,7 @@ import Adjust
 class AVPlayViewController: UIViewController {
     private var model: AVModel = AVModel()
     private var from: PlayFrom = .index
-    private var videoModel: AVModel = AVModel()
+    private var dataModel: AVModel = AVModel()
     private var infoModel: AVMoreModel = AVMoreModel()
     
     private let videoHeight = kScreenWidth * 9 / 16
@@ -105,7 +105,7 @@ class AVPlayViewController: UIViewController {
         super.viewDidLoad()
         initUI()
         configPlayerManager()
-        setPlayResource()
+        getVideoResource()
         
         NotificationCenter.default.addObserver(self, selector: #selector(loadPushVideo), name: HPKey.Noti_PushAPNS, object: nil)
 
@@ -127,9 +127,9 @@ class AVPlayViewController: UIViewController {
             guard let self = self, let _ = self.player else { return }
             self.player.pause()
             self.screenOrientationChanged(isLand: self.isScreenFull)
-            let name = self.videoModel.eps_list.first(where: {$0.id == self.epsId})?.title
+            let name = self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.title
             
-            HPLog.tb_movie_play_len(movie_id: self.id, movie_name: self.videoModel.title, eps_id: self.epsId, eps_name: name ?? "", movie_type: "\(self.model.type)", watch_len: String(Int(ceil(Date().timeIntervalSince1970 - self.currentTime))))
+            HPLog.tb_movie_play_len(movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: name ?? "", movie_type: "\(self.model.type)", watch_len: String(Int(ceil(Date().timeIntervalSince1970 - self.currentTime))))
         }
         
         NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: .main) { [weak self] _ in
@@ -249,10 +249,10 @@ class AVPlayViewController: UIViewController {
             deinitTimer()
             NotificationCenter.default.removeObserver(self)
         }
-        let name = self.videoModel.eps_list.first(where: {$0.id == self.epsId})?.title
+        let name = self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.title
 
-        if self.videoModel.title.count > 0 || name?.count ?? 0 > 0 {
-            HPLog.tb_movie_play_len(movie_id: self.id, movie_name: self.videoModel.title, eps_id: self.epsId, eps_name: name ?? "", movie_type: "\(self.model.type)", watch_len: String(Int(ceil(Date().timeIntervalSince1970 - self.currentTime))))
+        if self.dataModel.title.count > 0 || name?.count ?? 0 > 0 {
+            HPLog.tb_movie_play_len(movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: name ?? "", movie_type: "\(self.model.type)", watch_len: String(Int(ceil(Date().timeIntervalSince1970 - self.currentTime))))
         }
     }
     
@@ -280,7 +280,7 @@ class AVPlayViewController: UIViewController {
         
         FailedView.clickBlock = { [weak self] in
             guard let self = self else { return }
-            self.setPlayResource()
+            self.getVideoResource()
         }
         player.vc = self
         player.delegate = self
@@ -314,7 +314,7 @@ class AVPlayViewController: UIViewController {
         self.view.layoutIfNeeded()
     }
     
-    func setPlayResource() {
+    func getVideoResource() {
         self.currentTime = Date().timeIntervalSince1970
         self.getSourceDate = Date().timeIntervalSince1970
         self.readyDate = nil
@@ -354,30 +354,24 @@ class AVPlayViewController: UIViewController {
             guard let self = self else { return }
             PlayerNetAPI.share.AVInfoData(isMovie: self.model.type == 1 ? true : false, id: self.id) { success, model in
                 if success {
-                    self.videoModel = model
-                    self.videoModel.ssn_list = self.model.ssn_list
-                    self.videoModel.eps_list = self.model.eps_list
+                    self.dataModel = model
+                    self.dataModel.ssn_list = self.model.ssn_list
+                    self.dataModel.eps_list = self.model.eps_list
                     if self.model.type == 2 {
-                        self.videoModel.video = self.model.video
-                        if let list = self.videoModel.eps_list.first(where: {$0.id == self.epsId})?.caption_list {
+                        self.dataModel.video = self.model.video
+                        if let list = self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.caption_list {
                             self.model.caption_list = list
-                            self.videoModel.caption_list = list
-                            self.videoModel.captions = self.model.midCaptions
+                            self.dataModel.caption_list = list
+                            self.dataModel.captions = self.model.midCaptions
                         }
                     } else {
-                        self.videoModel.caption_list = model.caption_list
-                        self.videoModel.captions = model.midCaptions
+                        self.dataModel.caption_list = model.caption_list
+                        self.dataModel.captions = model.midCaptions
                     }
-                    self.videoModel.cover = model.cover
-                    self.videoModel.type = self.model.type
-                    self.model.captions = self.videoModel.captions
+                    self.dataModel.cover = model.cover
+                    self.dataModel.type = self.model.type
+                    self.model.captions = self.dataModel.captions
                     self.getCcptionData()
-                                
-                    if self.model.type == 2 {
-                        self.videoModel.ssn_list.first(where: {$0.id == self.ssnId})?.isSelect = true
-                        self.videoModel.eps_list.first(where: {$0.id == self.epsId})?.isSelect = true
-                        self.epsName = self.videoModel.eps_name
-                    }
                 } else {
                     requestResult = false
                 }
@@ -396,7 +390,7 @@ class AVPlayViewController: UIViewController {
                 group.leave()
             }
         }
-        if self.model.type == 2, self.videoModel.ssn_list.count == 0 {
+        if self.model.type == 2, self.dataModel.ssn_list.count == 0 {
             group.enter()
             dispatchQueue.async {[weak self] in
                 guard let self = self else { return }
@@ -404,24 +398,24 @@ class AVPlayViewController: UIViewController {
                     if success, let mod = list.last {
                         self.ssnId = mod.id
                         self.model.ssn_list = list
-                        self.videoModel.ssn_list = list
-                        if self.videoModel.eps_list.count == 0 {
+                        self.dataModel.ssn_list = list
+                        if self.dataModel.eps_list.count == 0 {
                             PlayerNetAPI.share.AVTVEpsData(id: self.id, ssnId: mod.id) { success, epslist in
                                 if success {
                                     if self.epsId.count == 0 {
                                         if let epsModel = epslist.first {
                                             self.epsId = epsModel.id
-                                            self.videoModel.video = epsModel.video
+                                            self.dataModel.video = epsModel.video
                                         }
                                     } else {
                                         if let url = epslist.first(where: {$0.id == self.epsId})?.video
                                         {
-                                            self.videoModel.video = url
+                                            self.dataModel.video = url
                                         }
                                     }
                                     epslist.first(where: {$0.id == self.epsId})?.isSelect = true
                                     self.model.eps_list = epslist
-                                    self.videoModel.eps_list = epslist
+                                    self.dataModel.eps_list = epslist
                                 } else {
                                     requestResult = false
                                 }
@@ -440,23 +434,28 @@ class AVPlayViewController: UIViewController {
             guard let self = self else { return }
             DispatchQueue.main.async {
                 HPProgressHUD.dismiss()
-                self.infoModel.pub_date = self.videoModel.pub_date
-                self.infoModel.country = self.videoModel.country
+                self.infoModel.pub_date = self.dataModel.pub_date
+                self.infoModel.country = self.dataModel.country
                 self.tableView.isHidden = false
                 self.tableView.reloadData()
-                if self.videoModel.type == 1 {
+                if self.model.type == 2 {
+                    self.dataModel.ssn_list.first(where: {$0.id == self.ssnId})?.isSelect = true
+                    self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.isSelect = true
+                    self.epsName = self.dataModel.eps_name
+                }
+                if self.dataModel.type == 1 {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                         self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
                     }
                 }
 
-                let name = self.videoModel.eps_list.first(where: {$0.id == self.epsId})?.title
+                let name = self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.title
 
-                if let url = URL(string: self.videoModel.video), requestResult {
+                if let url = URL(string: self.dataModel.video), requestResult {
                     self.FailedView.isHidden = true
                     self.player.isFaceBook = false
-                    asset = PlayerResource(name: self.videoModel.title, definitions: [HPPlayerResourceConfig(url: url, definition: "480p")], cover: nil, subtitles: self.captions)
-                    HPLog.tb_movie_play_sh(movie_id: self.id, movie_name: self.videoModel.title, eps_id: self.videoModel.type == 1 ? "" : self.epsId, eps_name: (self.videoModel.type == 1 ? "" : name) ?? "", source: "\(self.from.rawValue)", movie_type: "\(self.videoModel.type)")
+                    asset = PlayerResource(name: self.dataModel.title, config: [HPPlayerResourceConfig(url: url, definition: "480p")], cover: nil, subtitles: self.captions)
+                    HPLog.tb_movie_play_sh(movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.dataModel.type == 1 ? "" : self.epsId, eps_name: (self.dataModel.type == 1 ? "" : name) ?? "", source: "\(self.from.rawValue)", movie_type: "\(self.dataModel.type)")
                     self.player.setVideo(resource: asset!, sourceKey: self.id)
                 } else {
                     self.tableView.isHidden = true
@@ -582,27 +581,27 @@ class AVPlayViewController: UIViewController {
     
     // tv播放下一集
     func playerNextAction() {
-        let _ = self.videoModel.ssn_list.map({$0.isSelect = false})
-        self.videoModel.ssn_list.first(where: {$0.id == self.ssnId})?.isSelect = true
+        let _ = self.dataModel.ssn_list.map({$0.isSelect = false})
+        self.dataModel.ssn_list.first(where: {$0.id == self.ssnId})?.isSelect = true
         HPProgressHUD.show()
         PlayerNetAPI.share.AVTVEpsData(id: self.id, ssnId: self.ssnId) { [weak self] success, list in
             guard let self = self else { return }
             HPProgressHUD.dismiss()
             list.first(where: {$0.id == self.epsId})?.isSelect = true
             self.model.eps_list = list
-            self.videoModel.eps_list = list
+            self.dataModel.eps_list = list
             self.addNextResource()
         }
     }
     
     func addNextResource() {
-        for (index, m) in self.videoModel.eps_list.enumerated() {
+        for (index, m) in self.dataModel.eps_list.enumerated() {
             if self.epsId == m.id {
                 m.isSelect = false
-                if index == self.videoModel.eps_list.count - 1 {
-                    for (ssnIdx, ssnItem) in self.videoModel.ssn_list.enumerated() {
+                if index == self.dataModel.eps_list.count - 1 {
+                    for (ssnIdx, ssnItem) in self.dataModel.ssn_list.enumerated() {
                         if self.ssnId == ssnItem.id {
-                            if let model = self.videoModel.ssn_list.indexOfSafe(ssnIdx + 1) {
+                            if let model = self.dataModel.ssn_list.indexOfSafe(ssnIdx + 1) {
                                 self.ssnId = model.id
                                 HPProgressHUD.show()
                                 PlayerNetAPI.share.AVTVEpsData(id: self.id, ssnId: self.ssnId) { [weak self] success, epsList in
@@ -614,10 +613,10 @@ class AVPlayViewController: UIViewController {
                                         self.epsName = first.title
                                         self.model.eps_list = epsList
                                         self.model.video = first.video
-                                        self.setPlayResource()
-                                        let _ = self.videoModel.ssn_list.map({$0.isSelect = false})
-                                        self.videoModel.ssn_list.first(where: {$0.id == self.ssnId})?.isSelect = true
-                                        HPLog.tb_movie_play_cl(kid: "2", movie_id: self.id, movie_name: self.videoModel.title, eps_id: self.epsId, eps_name: self.epsName)
+                                        self.getVideoResource()
+                                        let _ = self.dataModel.ssn_list.map({$0.isSelect = false})
+                                        self.dataModel.ssn_list.first(where: {$0.id == self.ssnId})?.isSelect = true
+                                        HPLog.tb_movie_play_cl(kid: "2", movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: self.epsName)
                                         DispatchQueue.main.async {
                                             self.tableView.reloadData()
                                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
@@ -633,23 +632,23 @@ class AVPlayViewController: UIViewController {
                                     mod.playedTime = 0
                                     mod.playProgress = 0
                                     self.model.video = mod.video
-                                    HPLog.tb_movie_play_cl(kid: "2", movie_id: self.id, movie_name: self.videoModel.title, eps_id: self.epsId, eps_name: mod.eps_name)
+                                    HPLog.tb_movie_play_cl(kid: "2", movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: mod.eps_name)
                                     DBManager.share.updatePlayData(model)
-                                    self.setPlayResource()
+                                    self.getVideoResource()
                                     return
                                 }
                             }
                         }
                     }
                 } else {
-                    if let model = self.videoModel.eps_list.indexOfSafe(index + 1) {
+                    if let model = self.dataModel.eps_list.indexOfSafe(index + 1) {
                         self.epsId = model.id
                         self.epsName = model.title
                         self.model.video = model.video
-                        let _ = self.videoModel.eps_list.map({$0.isSelect = false})
-                        self.videoModel.eps_list.first(where: {$0.id == self.epsId})?.isSelect = true
-                        HPLog.tb_movie_play_cl(kid: "2", movie_id: self.id, movie_name: self.videoModel.title, eps_id: self.epsId, eps_name: self.epsName)
-                        self.setPlayResource()
+                        let _ = self.dataModel.eps_list.map({$0.isSelect = false})
+                        self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.isSelect = true
+                        HPLog.tb_movie_play_cl(kid: "2", movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: self.epsName)
+                        self.getVideoResource()
                         return
                     }
                 }
@@ -707,9 +706,9 @@ class AVPlayViewController: UIViewController {
             self.getVideoData(self.id) { [weak self] vMod in
                 guard let self = self else { return }
                 self.model = vMod
-                self.videoModel = vMod
+                self.dataModel = vMod
                 self.from = .push
-                self.showSeekTime()
+                self.setSeekTime()
             }
         }
     }
@@ -749,12 +748,12 @@ extension AVPlayViewController: UITableViewDelegate, UITableViewDataSource {
                                 DBManager.share.updateData(mod)
                                 self.getVideoData(mod.id) { m in
                                     self.model = m
-                                    self.videoModel = m
+                                    self.dataModel = m
                                     self.model.title = mod.title
-                                    self.videoModel.title = mod.title
+                                    self.dataModel.title = mod.title
                                     self.from = .play
                                     HPLog.tb_movie_play_cl(kid: "1", movie_id: self.id, movie_name: mod.title, eps_id: self.epsId, eps_name: self.epsName)
-                                    self.showSeekTime()
+                                    self.setSeekTime()
                                 }
                             }
                         }
@@ -763,7 +762,7 @@ extension AVPlayViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             } else {
                 let cell:HPPlayEpsListCell = tableView.dequeueReusableCell(withIdentifier: HPPlayEpsListCellID) as! HPPlayEpsListCell
-                if let model = self.videoModel.eps_list.indexOfSafe(indexPath.row) {
+                if let model = self.dataModel.eps_list.indexOfSafe(indexPath.row) {
                     cell.model = model
                 }
                 return cell
@@ -774,7 +773,7 @@ extension AVPlayViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if self.model.type == 2, section != 0 {
             let view = AVPlaySsnHeadView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: 68))
-            view.setModel(self.videoModel.ssn_list) { [weak self] id in
+            view.setModel(self.dataModel.ssn_list) { [weak self] id in
                 guard let self = self else { return }
                 self.midSsnId = id
                 self.getTVData(id, section: section)
@@ -785,7 +784,7 @@ extension AVPlayViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section != 0, let model = self.videoModel.eps_list.indexOfSafe(indexPath.row) {
+        if indexPath.section != 0, let model = self.dataModel.eps_list.indexOfSafe(indexPath.row) {
             self.epsId = model.id
             if self.midSsnId.count > 0 {
                 self.ssnId = self.midSsnId
@@ -796,13 +795,13 @@ extension AVPlayViewController: UITableViewDelegate, UITableViewDataSource {
             self.model.playedTime = 0
 
             DBManager.share.updateData(self.model)
-            let _ = self.videoModel.eps_list.map({$0.isSelect = false})
+            let _ = self.dataModel.eps_list.map({$0.isSelect = false})
             model.isSelect = true
             self.model.video = model.video
-            self.showSeekTime()
+            self.setSeekTime()
             self.from = .selectTV
             self.epsName = model.title
-            HPLog.tb_movie_play_cl(kid: "3", movie_id: self.id, movie_name: self.videoModel.title, eps_id: self.epsId, eps_name: model.title)
+            HPLog.tb_movie_play_cl(kid: "3", movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: model.title)
             self.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
         }
     }
@@ -833,7 +832,7 @@ extension AVPlayViewController: UITableViewDelegate, UITableViewDataSource {
             if self.model.type == 1 {
                 return self.infoModel.related_list.count
             } else {
-                return self.videoModel.eps_list.count
+                return self.dataModel.eps_list.count
             }
         }
     }
@@ -891,11 +890,11 @@ extension AVPlayViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func getTVData(_ ssnId: String, section: Int) {
-        if let _ = self.videoModel.ssn_list.first(where: {$0.isSelect == true && $0.id == ssnId}) {
+        if let _ = self.dataModel.ssn_list.first(where: {$0.isSelect == true && $0.id == ssnId}) {
             return
         } else {
-            let _ = self.videoModel.ssn_list.map({$0.isSelect = false})
-            self.videoModel.ssn_list.first(where: {$0.id == ssnId})?.isSelect = true
+            let _ = self.dataModel.ssn_list.map({$0.isSelect = false})
+            self.dataModel.ssn_list.first(where: {$0.id == ssnId})?.isSelect = true
         }
         PlayerNetAPI.share.AVTVEpsData(id: self.id, ssnId: ssnId) { [weak self] success, list in
             guard let self = self else { return }
@@ -903,10 +902,10 @@ extension AVPlayViewController: UITableViewDelegate, UITableViewDataSource {
                 m.isSelect = true
             }
             self.model.eps_list = list
-            self.videoModel.eps_list = list
+            self.dataModel.eps_list = list
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-                for (index, item) in self.videoModel.eps_list.enumerated() {
+                for (index, item) in self.dataModel.eps_list.enumerated() {
                     if item.isSelect {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             self.tableView.scrollToRow(at: IndexPath(row: index, section: section), at: .none, animated: false)
@@ -917,10 +916,10 @@ extension AVPlayViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func showSeekTime() {
-        let name = self.videoModel.eps_list.first(where: {$0.id == self.epsId})?.title
-        HPLog.tb_movie_play_len(movie_id: self.id, movie_name: self.videoModel.title, eps_id: self.epsId, eps_name: name ?? "", movie_type: "\(self.model.type)", watch_len: String(Int(ceil(Date().timeIntervalSince1970 - self.currentTime))))
-        self.setPlayResource()
+    func setSeekTime() {
+        let name = self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.title
+        HPLog.tb_movie_play_len(movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: name ?? "", movie_type: "\(self.model.type)", watch_len: String(Int(ceil(Date().timeIntervalSince1970 - self.currentTime))))
+        self.getVideoResource()
         if let db = DBManager.share.selectAVData(id: self.id, ssn_id: self.ssnId, eps_id: self.epsId) {
             self.seekTime = db.playedTime
         }
@@ -954,11 +953,11 @@ extension AVPlayViewController: HPPlayerDelegate {
                 
             } else {
                 self.readyDate = Date().timeIntervalSince1970
-                let name = self.videoModel.eps_list.first(where: {$0.id == self.epsId})?.title
+                let name = self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.title
                 
                 if let oldTime = self.getSourceDate, let ready = self.readyDate {
                     let time = abs(Int(ready - oldTime))
-                    HPLog.tb_playback_status(movie_id: self.id, movie_name: self.videoModel.title, eps_id: self.epsId, eps_name: name ?? "", source: "\(self.from.rawValue)", movie_type: "\(self.model.type)", cache_len: "\(time)", if_success: "1", errorinfo: "")
+                    HPLog.tb_playback_status(movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: name ?? "", source: "\(self.from.rawValue)", movie_type: "\(self.model.type)", cache_len: "\(time)", if_success: "1", errorinfo: "")
                 }
             }
             self.isPlayStatus = true
@@ -986,11 +985,11 @@ extension AVPlayViewController: HPPlayerDelegate {
             self.isPlayStatus = false
             if let error = player.playerLayer?.playerItem?.error?.localizedDescription {
                 self.errorInfo = error
-                let name = self.videoModel.eps_list.first(where: {$0.id == self.epsId})?.title
+                let name = self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.title
                 
                 if let oldTime = self.getSourceDate {
                     let time = abs(Int(Date().timeIntervalSince1970 - oldTime))
-                    HPLog.tb_playback_status(movie_id: self.id, movie_name: self.videoModel.title, eps_id: self.epsId, eps_name: name ?? "", source: "\(self.from.rawValue)", movie_type: "\(self.model.type)", cache_len: "\(time)", if_success: "2", errorinfo: self.errorInfo)
+                    HPLog.tb_playback_status(movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: name ?? "", source: "\(self.from.rawValue)", movie_type: "\(self.model.type)", cache_len: "\(time)", if_success: "2", errorinfo: self.errorInfo)
                 }
             }
             DispatchQueue.main.async { [weak self] in
@@ -1009,16 +1008,16 @@ extension AVPlayViewController: HPPlayerDelegate {
         model.ssn_id = self.ssnId
         model.eps_id = self.epsId
         model.totalTime = Double(totalTime)
-        model.title = self.videoModel.title
-        model.cover = self.videoModel.cover
+        model.title = self.dataModel.title
+        model.cover = self.dataModel.cover
         model.type = self.model.type
         var ssn_num: String = ""
-        for (index, item) in self.videoModel.ssn_list.enumerated() {
+        for (index, item) in self.dataModel.ssn_list.enumerated() {
             if item.isSelect {
                 ssn_num = "\(index + 1)"
             }
         }
-        if let epsModel = self.videoModel.eps_list.filter({$0.isSelect == true}).first {
+        if let epsModel = self.dataModel.eps_list.filter({$0.isSelect == true}).first {
             let num = "\(epsModel.eps_num)"
             model.ssn_eps = "S\(ssn_num.changeToNum()) E\(num.changeToNum())"
             model.eps_name = epsModel.title
@@ -1039,9 +1038,9 @@ extension AVPlayViewController: HPPlayerDelegate {
         epsView?.snp.makeConstraints { make in
             make.left.right.top.bottom.equalToSuperview()
         }
-//        let _ = self.videoModel.ssn_list.map({$0?.isSelect = false})
-//        self.videoModel.ssn_list.filter({$0?.id == self.ssnId}).first??.isSelect = true
-        epsView?.setModel(self.id, self.videoModel.ssn_list, self.videoModel.eps_list, self.epsId) { [weak self] epsList, ssnId, epsId in
+//        let _ = self.dataModel.ssn_list.map({$0?.isSelect = false})
+//        self.dataModel.ssn_list.filter({$0?.id == self.ssnId}).first??.isSelect = true
+        epsView?.setModel(self.id, self.dataModel.ssn_list, self.dataModel.eps_list, self.epsId) { [weak self] epsList, ssnId, epsId in
             guard let self = self else { return }
             self.model.eps_list = epsList
             self.ssnId = ssnId
@@ -1049,8 +1048,8 @@ extension AVPlayViewController: HPPlayerDelegate {
             self.from = .selectTV
             let name = epsList.first(where: {$0.id == epsId})?.title
             self.epsName = name ?? ""
-            HPLog.tb_movie_play_cl(kid: "3", movie_id: self.id, movie_name: self.videoModel.title, eps_id: self.epsId, eps_name: self.epsName)
-            self.setPlayResource()
+            HPLog.tb_movie_play_cl(kid: "3", movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: self.epsName)
+            self.getVideoResource()
         }
     }
     
@@ -1064,8 +1063,8 @@ extension AVPlayViewController: HPPlayerDelegate {
     }
     
     func playerChangeVideoGravity() {
-        let name = self.videoModel.eps_list.first(where: {$0.id == self.epsId})?.title
-        HPLog.tb_movie_play_cl(kid: "4", movie_id: self.id, movie_name: self.videoModel.title, eps_id: self.epsId, eps_name: name ?? "")
+        let name = self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.title
+        HPLog.tb_movie_play_cl(kid: "4", movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: name ?? "")
     }
     
     func playerShowCaptionView(_ isfull: Bool) {

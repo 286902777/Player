@@ -258,7 +258,7 @@ class AVFilterViewController: VBaseViewController {
             self.emptyView.isHidden = false
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                self.categroyView.isHidden = true
+                self.collectionView.isHidden = true
                 self.dataList.removeAll()
                 self.collectionView.reloadData()
             }
@@ -272,9 +272,10 @@ class AVFilterViewController: VBaseViewController {
                 self.collectionView.mj_footer?.endRefreshingWithNoMoreData()
             }
             if !success {
-                self.categroyView.isHidden = true
+                self.collectionView.isHidden = true
                 self.emptyView.isHidden = false
             } else {
+                self.collectionView.isHidden = false
                 self.emptyView.isHidden = true
                 if list.count > 0 {
                     self.dataList.append(contentsOf: list)
@@ -282,7 +283,6 @@ class AVFilterViewController: VBaseViewController {
             }
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                self.categroyView.isHidden = false
                 self.collectionView.reloadData()
             }
         }

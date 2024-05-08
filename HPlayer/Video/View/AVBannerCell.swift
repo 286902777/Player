@@ -15,7 +15,7 @@ class AVBannerCell: JXBannerBaseCell {
         return label
     }()
     
-    lazy var mImgView: UIImageView = {
+    lazy var bgView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.image = UIImage(named: "banner_mask")
@@ -76,7 +76,7 @@ class AVBannerCell: JXBannerBaseCell {
         self.layer.cornerRadius = 8
         self.layer.masksToBounds = true
         self.imageView.contentMode = .scaleAspectFill
-        contentView.addSubview(mImgView)
+        contentView.addSubview(bgView)
         contentView.addSubview(newL)
         contentView.addSubview(playView)
         contentView.addSubview(starImgV)
@@ -85,7 +85,7 @@ class AVBannerCell: JXBannerBaseCell {
         contentView.addSubview(titleL)
         contentView.addSubview(topMView)
 
-        mImgView.snp.makeConstraints { make in
+        bgView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
@@ -130,8 +130,8 @@ class AVBannerCell: JXBannerBaseCell {
     }
 
     func setModel(_ model: AVDataInfoModel) {
-        let titleAttr: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium), NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.strokeColor: UIColor.hexColor("#141414"), NSAttributedString.Key.strokeWidth: -0.5]
-        self.titleL.attributedText = NSAttributedString(string: model.title, attributes: titleAttr)
+        let attr: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium), NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.strokeColor: UIColor.hexColor("#141414"), NSAttributedString.Key.strokeWidth: -0.5]
+        self.titleL.attributedText = NSAttributedString(string: model.title, attributes: attr)
         
         self.imageView.setImage(with: model.horizontal_cover)
         if let r = Float(model.rate) {

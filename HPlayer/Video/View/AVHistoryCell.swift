@@ -37,6 +37,7 @@ class AVHistoryCell: UITableViewCell {
         self.epsL.text = model.ssn_eps
         self.selectImgV.isHidden = !isShow
         self.leftW.constant = isShow ? 44 : 0
+        self.coverImgV.setImage(with: model.cover)
         self.progressView.progress = Float(model.playProgress)
         if let r = Float(model.rate) {
             self.scoreL.isHidden = false
@@ -46,7 +47,6 @@ class AVHistoryCell: UITableViewCell {
         }
         self.nameL.text = model.title
         self.selectImgV.image = UIImage(named: model.isSelect ? "his_select" : "his_unSelect")
-        self.coverImgV.setImage(with: model.cover)
     }
     
 }

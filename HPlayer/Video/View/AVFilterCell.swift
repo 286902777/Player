@@ -12,7 +12,7 @@ class AVFilterCell: UICollectionViewCell {
     @IBOutlet weak var titleL: UILabel!
     var model: AVFilterCategoryInfoModel = AVFilterCategoryInfoModel() {
         didSet {
-            self.setData()
+            self.refreshData()
         }
     }
     override func awakeFromNib() {
@@ -20,7 +20,8 @@ class AVFilterCell: UICollectionViewCell {
         self.titleL.layer.masksToBounds = true
     }
 
-    func setData() {
+    func refreshData() {
+        self.titleL.text = self.model.title
         if self.model.isSelect {
             self.titleL.layer.cornerRadius = 16
             self.titleL.font = UIFont.systemFont(ofSize: 14, weight: .medium)
@@ -30,6 +31,5 @@ class AVFilterCell: UICollectionViewCell {
             self.titleL.font = UIFont.systemFont(ofSize: 12, weight: .medium)
             self.titleL.backgroundColor = .clear
         }
-        self.titleL.text = self.model.title
     }
 }

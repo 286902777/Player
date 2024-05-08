@@ -80,7 +80,7 @@ extension AVSettingViewController: UITableViewDelegate, UITableViewDataSource {
             if let model = self.dataList.indexOfSafe(indexPath.row) {
                 vc.name = model.type.rawValue
             }
-//            vc.urlLink = "https://plixor.net/privacy/"
+//            vc.link = "https://plixor.net/privacy/"
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         case .Terms:
@@ -88,12 +88,12 @@ extension AVSettingViewController: UITableViewDelegate, UITableViewDataSource {
             if let model = self.dataList.indexOfSafe(indexPath.row) {
                 vc.name = model.type.rawValue
             }
-//            vc.urlLink = "https://plixor.net/terms/"
+//            vc.link = "https://plixor.net/terms/"
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
 //        case .PrivacySetting:
 //            if HPUMPManager.shared.isPrivacyOptionsRequired {
-//                HPUMPManager.shared.presentPrivacyOptionsForm(from: self) { _ in
+//                HPUMPManager.shared.getPrivacyOptionsForm(from: self) { _ in
 //                }
 //            }
         case .Feedback:

@@ -8,7 +8,7 @@
 import UIKit
 
 class AVTabController: UITabBarController {
-    enum TabBarItem: String {
+    enum TabBarStauts: String {
         case index = "Home"
         case explore = "Explore"
         case vip = "Premium"
@@ -17,9 +17,9 @@ class AVTabController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let index = setChildVC(vc: AVHomeViewController(),title: TabBarItem.index.rawValue, image: "index", selectImage: "index_sel")
-        let explore = setChildVC(vc: AVFilterViewController(),title: TabBarItem.explore.rawValue, image: "exp", selectImage: "exp_sel")
-        let set = setChildVC(vc: AVSettingViewController(),title: TabBarItem.set.rawValue, image: "setting", selectImage: "setting_sel")
+        let index = addChildVC(controller: AVHomeViewController(),title: TabBarStauts.index.rawValue, image: "index", selectImage: "index_sel")
+        let explore = addChildVC(controller: AVFilterViewController(),title: TabBarStauts.explore.rawValue, image: "exp", selectImage: "exp_sel")
+        let set = addChildVC(controller: AVSettingViewController(),title: TabBarStauts.set.rawValue, image: "setting", selectImage: "setting_sel")
 //        let vip = setChildVC(vc: VipViewController(),title: TabBarItem.vip.rawValue, image: "vipTab", selectImage: "vipTab_select")
 
         self.tabBar.barTintColor = UIColor.hexColor("#141414")
@@ -28,21 +28,21 @@ class AVTabController: UITabBarController {
         self.viewControllers = [index, explore, set]
     }
     
-    func setChildVC(vc: UIViewController, title: String, image: String, selectImage: String) -> UINavigationController {
-        vc.tabBarItem.title = title
-        vc.tabBarItem.image = UIImage(named: image)
-        vc.tabBarItem.setTitleTextAttributes([.foregroundColor: UIColor.hexColor("#FFFFFF", alpha: 0.5), .font: UIFont.systemFont(ofSize: 10)], for: .normal)
+    func addChildVC(controller: UIViewController, title: String, image: String, selectImage: String) -> UINavigationController {
+        controller.tabBarItem.title = title
+        controller.tabBarItem.image = UIImage(named: image)
+        controller.tabBarItem.setTitleTextAttributes([.foregroundColor: UIColor.hexColor("#FFFFFF", alpha: 0.5), .font: UIFont.systemFont(ofSize: 10)], for: .normal)
         
-        vc.tabBarItem.setTitleTextAttributes([.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 10)], for: .selected)
+        controller.tabBarItem.setTitleTextAttributes([.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 10)], for: .selected)
 
-        vc.tabBarItem.selectedImage = UIImage(named: selectImage)?.withRenderingMode(.alwaysOriginal)
-        return UINavigationController.init(rootViewController: vc)
+        controller.tabBarItem.selectedImage = UIImage(named: selectImage)?.withRenderingMode(.alwaysOriginal)
+        return UINavigationController.init(rootViewController: controller)
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         print(item.title ?? "")
         if let t = item.title {
-            switch TabBarItem.init(rawValue: t) {
+            switch TabBarStauts.init(rawValue: t) {
             case .explore:
                 HPLog.tb_home_cl(kid: "5", c_id: "", c_name: "", ctype: "", secname: "", secid: "")
             case .vip:

@@ -59,9 +59,9 @@ class NetManager {
     
     /// 接口地址
 //#if DEBUG
-//    let defaultHost: String = "https://test.plixenapp.com/"
+    let Host: String = "https://test.plixenapp.com/"
 //#else
-    let defaultHost: String = "https://prod.plixoriosbox.com/"
+//    let Host: String = "https://prod.plixoriosbox.com/"
 //#endif
         
     /// 参数编码方式
@@ -155,7 +155,7 @@ extension NetManager{
             return
         }
         var responseModel = ResponseModel<T>()
-        let baseModel = ResponseData.deserialize(from: NetManager.share.codeJsonData(responseData))
+        let baseModel = ResponseData.deserialize(from: NetManager.share.codeToJson(responseData))
         
         guard let baseModel = baseModel else {
             return resultBlock(responseModel)
@@ -170,8 +170,8 @@ extension NetManager{
         guard let data = baseModel.data else {
             return resultBlock(responseModel)
         }
-        if let dataArray = data as? [Any]{          // 解析数组
-            responseModel.models = [T].deserialize(from: dataArray)
+        if let dataArr = data as? [Any]{          // 解析数组
+            responseModel.models = [T].deserialize(from: dataArr)
             return resultBlock(responseModel)
         }
         else if let data = data as? [String : Any]{     //解析字典
@@ -184,12 +184,12 @@ extension NetManager{
         }
     }
     
-    fileprivate func codeJsonData(_ text: String?) -> String? {
+    fileprivate func codeToJson(_ text: String?) -> String? {
         if let str = text, str.count > 9 {
             let s = str.substring(to: str.count - 9) 
-            let jsonData = Data(base64Encoded: String(s.reversed())) ?? Data()
-            let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)
-            return jsonString
+            let data = Data(base64Encoded: String(s.reversed())) ?? Data()
+            let json = String(data: data, encoding: String.Encoding.utf8)
+            return json
         }
         return nil
     }
@@ -197,7 +197,7 @@ extension NetManager{
 
 extension String{
     fileprivate func jointHost() -> String{
-        let host = NetManager.share.defaultHost
+        let host = NetManager.share.Host
         guard !self.isEmpty else {
             return host
         }

@@ -12,7 +12,7 @@ class AVListCell: UITableViewCell {
     let cellIdentifier = "AVCell"
     typealias clickMoreBlock = () -> Void
     var clickMoreHandle : clickMoreBlock?
-    var dataList: [AVDataInfoModel] = []
+    var list: [AVDataInfoModel] = []
     typealias clickBlock = (_ movieModel: AVDataInfoModel) -> Void
     var clickHandle : clickBlock?
     
@@ -27,7 +27,7 @@ class AVListCell: UITableViewCell {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: String(describing: AVCell.self), bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
-        moreBtn.addTarget(self, action: #selector(moreAction), for: .touchUpInside)
+        moreBtn.addTarget(self, action: #selector(clickAction), for: .touchUpInside)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,37 +35,35 @@ class AVListCell: UITableViewCell {
 
     }
     
-    @objc func moreAction() {
+    @objc func clickAction() {
         self.clickMoreHandle?()
     }
     
     func setModel( model: AVHomeModel, clickMoreBlock: clickMoreBlock?, clickBlock: clickBlock?) {
+        self.titleL.text = model.name
         self.clickMoreHandle = clickMoreBlock
         self.clickHandle = clickBlock
-//        if let mod = model.data.first {
-            self.history = (model.name == "History" && model.id.isEmpty)
-            self.titleL.text = model.name
-            self.dataList = model.m20
-            self.collectionView.reloadData()
-//        }
+        self.history = (model.name == "History" && model.id.isEmpty)
+        self.list = model.m20
+        self.collectionView.reloadData()
     }
 }
 
 extension AVListCell: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        min(20, self.dataList.count) 
+        min(20, self.list.count) 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! AVCell
-        if let model = self.dataList.indexOfSafe(indexPath.item) {
+        if let model = self.list.indexOfSafe(indexPath.item) {
             cell.setModel(model: model, self.history)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let model = self.dataList.indexOfSafe(indexPath.item) {
+        if let model = self.list.indexOfSafe(indexPath.item) {
             self.clickHandle?(model)
         }
     }

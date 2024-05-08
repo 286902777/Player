@@ -11,7 +11,7 @@ class AVPlayHeadCategoryCell: UICollectionViewCell {
 
     @IBOutlet weak var imgV: UIImageView!
     @IBOutlet weak var nameL: UILabel!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.cornerRadius = 12

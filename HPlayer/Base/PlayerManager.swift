@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum PlayerShowCase: Int {
+    case always         = 0 /// 始终显示
+    case horizantal     = 1 /// 只在横屏界面显示
+    case none           = 2 /// 不显示
+}
 
 enum PlayFrom: Int {
     case index = 1
@@ -22,12 +27,6 @@ enum PlayFrom: Int {
     case searchList
     case selectTV
     case push
-}
-
-enum PlayerBarCase: Int {
-    case always         = 0 /// 始终显示
-    case horizantal     = 1 /// 只在横屏界面显示
-    case none           = 2 /// 不显示
 }
 
 class PlayerManager {

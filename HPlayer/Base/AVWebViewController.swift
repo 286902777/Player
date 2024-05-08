@@ -11,8 +11,8 @@ import WebKit
 
 class AVWebViewController: VBaseViewController {
     var name: String = ""
-    var urlLink: String = ""
-    private lazy var webV: WKWebView = {
+    var link: String = ""
+    private lazy var webView: WKWebView = {
         let view = WKWebView()
         return view
     }()
@@ -29,12 +29,12 @@ class AVWebViewController: VBaseViewController {
     
     func setUpUI() {
         self.navBar.titleL.text = name
-        view.addSubview(webV)
-        webV.snp.makeConstraints { make in
+        view.addSubview(webView)
+        webView.snp.makeConstraints { make in
             make.left.bottom.right.equalToSuperview()
             make.top.equalTo(navBar.snp.bottom)
         }
-        if let u = URL(string: self.urlLink) {
+        if let u = URL(string: self.link) {
             webV.load(URLRequest(url: u))
         }
     }

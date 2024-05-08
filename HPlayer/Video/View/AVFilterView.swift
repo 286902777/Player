@@ -8,7 +8,7 @@
 import UIKit
 
 class AVFilterView: UIView {
-    enum filterCategroy: Int {
+    enum FilterType: Int {
         case type = 0
         case genre
         case year
@@ -16,7 +16,7 @@ class AVFilterView: UIView {
     }
     
     let cellIdentifier = "AVFilterListCellIdentifier"
-    typealias clickBlock = (_ index: filterCategroy, _ name: String, _ index: Int) -> Void
+    typealias clickBlock = (_ index: FilterType, _ name: String, _ index: Int) -> Void
     var clickHandle : clickBlock?
 
     private var dataList: [[AVFilterCategoryInfoModel]] = []
@@ -70,7 +70,7 @@ extension AVFilterView: UITableViewDelegate, UITableViewDataSource {
         if let model = self.dataList.indexOfSafe(indexPath.row) {
             cell.setModel(model, clickBlock: { [weak self] title, idx in
                 guard let self = self else { return }
-                self.clickHandle?(filterCategroy(rawValue: indexPath.row) ?? .type,  idx == 0 ? "all" : title, idx)
+                self.clickHandle?(FilterType(rawValue: indexPath.row) ?? .type,  idx == 0 ? "all" : title, idx)
             })
         }
         return cell

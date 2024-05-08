@@ -18,7 +18,7 @@ class CapTransformer: NSSecureUnarchiveFromDataTransformer {
    
    // 定义Transformer转换器注册方法
    public static func defaultConfig() {
-       let transformer = CapTransformer()
-       ValueTransformer.setValueTransformer(transformer, forName: name)
+       let trans = CapTransformer()
+       ValueTransformer.setValueTransformer(trans, forName: name)
    }
 }

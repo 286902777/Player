@@ -12,12 +12,12 @@ import Kingfisher
 
 extension UIImage {
     func saveImage(_ complete: @escaping (String?)->()){
-        var saveUrl:String?
+        var url:String?
         PHPhotoLibrary.shared().performChanges({
             let result = PHAssetChangeRequest.creationRequestForAsset(from: self)
             let asset = result.placeholderForCreatedAsset
             //保存标志符
-            saveUrl = asset?.localIdentifier
+            url = asset?.localIdentifier
         }) { (isSuccess: Bool, error: Error?) in
             if isSuccess {
                 print("保存成功!")
@@ -32,7 +32,7 @@ extension UIImage {
 extension UIImageView {
     typealias CompletionHandler = (_ image: UIImage?)->()
     func setImage(with url: String?, placeholder: String = "placeholder", complete: CompletionHandler? = nil) {
-        let placeImage = UIImage(named: placeholder)
+        let placeImg = UIImage(named: placeholder)
 
         var imageUrl: String? = url
         
@@ -42,12 +42,12 @@ extension UIImageView {
         }
         
         guard let urlString = imageUrl?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else {
-            self.image = placeImage
+            self.image = placeImg
             return
         }
         
         let imgUrl = URL(string: urlString)
-        self.kf.setImage(with: imgUrl, placeholder: placeImage, options: [.cacheSerializer(DefaultCacheSerializer.default)], progressBlock: nil) { (result) in
+        self.kf.setImage(with: imgUrl, placeholder: placeImg, options: [.cacheSerializer(DefaultCacheSerializer.default)], progressBlock: nil) { (result) in
             switch result {
             case let .success(imgResult):
                 complete?(imgResult.image.kf.normalized)

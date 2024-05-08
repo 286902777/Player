@@ -50,8 +50,8 @@ extension HPPlayLayoutDelegate {
 
 
 class HPPlayLayout: UICollectionViewFlowLayout {
-    var cacheWidth: [IndexPath: CGFloat] = [:]
-    var cellAttributes: [UICollectionViewLayoutAttributes] = []
+    var cacheW: [IndexPath: CGFloat] = [:]
+    var cellAttr: [UICollectionViewLayoutAttributes] = []
     var isLoaded: Bool = false
     weak var delegate: HPPlayLayoutDelegate?
     var isHorizon = true {
@@ -61,8 +61,8 @@ class HPPlayLayout: UICollectionViewFlowLayout {
     }
     
     func reloadData() {
-        self.cellAttributes.removeAll()
-        self.cacheWidth.removeAll()
+        self.cellAttr.removeAll()
+        self.cacheW.removeAll()
         self.isLoaded = false
         self.prepare()
     }
@@ -70,10 +70,10 @@ class HPPlayLayout: UICollectionViewFlowLayout {
     override func prepare() {
         guard let collectionView = self.collectionView, let delegate = self.delegate else { return }
         
-        self.cellAttributes.removeAll()
-        self.cacheWidth.removeAll()
+        self.cellAttr.removeAll()
+        self.cacheW.removeAll()
         
-        let sectionContentWidth = delegate.playLayoutLineWidth()
+        let w = delegate.playLayoutLineWidth()
         let sections = collectionView.numberOfSections
         var lastOffsetY: CGFloat = 0
 
@@ -89,7 +89,7 @@ class HPPlayLayout: UICollectionViewFlowLayout {
                 let sectionHeaderAttri = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                                                             with: IndexPath(item: 0, section: s))
                 sectionHeaderAttri.frame = CGRect(x: leftInset, y: lastOffsetY, width: headerSize.width, height: headerSize.height)
-                self.cellAttributes.append(sectionHeaderAttri)
+                self.cellAttr.append(sectionHeaderAttri)
                 lastOffsetY += headerSize.height
             }
             /// cells
@@ -102,7 +102,7 @@ class HPPlayLayout: UICollectionViewFlowLayout {
                 let attr = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 var x: CGFloat = lastOffsetX
                 var y: CGFloat = lastOffsetY
-                let leftSpacing = sectionContentWidth - leftInset - rightInset - lastOffsetX - itemSize.width - itemSpacing
+                let leftSpacing = w - leftInset - rightInset - lastOffsetX - itemSize.width - itemSpacing
                 if leftSpacing >= 0 {
                     /// 继续拼接
                     x = lastOffsetX
@@ -117,7 +117,7 @@ class HPPlayLayout: UICollectionViewFlowLayout {
                     lastOffsetX = (x + itemSize.width + itemSpacing)
                 }
                 attr.frame = CGRect(origin: CGPoint(x: x, y: y), size: itemSize)
-                self.cellAttributes.append(attr)
+                self.cellAttr.append(attr)
             }
             if items > 0 {
                 lastOffsetY += (lineSpacing + delegate.playLayoutLineHeight())
@@ -129,17 +129,17 @@ class HPPlayLayout: UICollectionViewFlowLayout {
                                                                       with: IndexPath(item: items + 1, section: s))
                 sectionFooterAttri.frame = CGRect(x: leftInset, y: lastOffsetY + delegate.playLayoutLineHeight(), width: footerSize.width, height: footerSize.height)
                 lastOffsetY += footerSize.height + delegate.playLayoutLineHeight()
-                self.cellAttributes.append(sectionFooterAttri)
+                self.cellAttr.append(sectionFooterAttri)
             }
         }
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        return self.cellAttributes
+        return self.cellAttr
     }
     
     override var collectionViewContentSize: CGSize {
-        guard let collectionView = self.collectionView, let last = self.cellAttributes.last else { return CGSize.zero }
+        guard let collectionView = self.collectionView, let last = self.cellAttr.last else { return CGSize.zero }
         return CGSize(width: collectionView.bounds.width - sectionInset.left - sectionInset.right - collectionView.contentInset.left - collectionView.contentInset.right, height: last.frame.maxY)
     }
 }

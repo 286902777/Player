@@ -23,6 +23,9 @@ class AVSearchItemCell: UICollectionViewCell {
     }
 
     func setModel(model: AVDataInfoModel, _ index: Int) {
+        self.topL.text = "\(index + 1)"
+        self.contentL.text = model.title
+        self.imageV.setImage(with: model.cover)
         switch index {
         case 0:
             self.topImgV.image = UIImage(named: "play_top_1")
@@ -33,8 +36,5 @@ class AVSearchItemCell: UICollectionViewCell {
         default:
             self.topImgV.image = UIImage(named: "play_top_4")
         }
-        self.topL.text = "\(index + 1)"
-        self.contentL.text = model.title
-        self.imageV.setImage(with: model.cover)
     }
 }

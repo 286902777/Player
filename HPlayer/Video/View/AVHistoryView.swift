@@ -79,7 +79,7 @@ class AVHistoryView: UIView {
                     if (line > 4 && x + width >= kScreenWidth - 56) || (i == arr.count - 1) {
                         let moreBtn = UIButton()
                         moreBtn.setImage(UIImage(named: "search_up"), for: .normal)
-                        moreBtn.addTarget(self, action: #selector(clickUpAction), for: .touchUpInside)
+                        moreBtn.addTarget(self, action: #selector(upAction), for: .touchUpInside)
                         moreBtn.frame = CGRectMake(kScreenWidth - 32, y + 8, 20, 20)
                         self.addSubview(moreBtn)
                         self.endUpdateUI(y)
@@ -89,7 +89,7 @@ class AVHistoryView: UIView {
                     if line > 1, x + width >= kScreenWidth - 56 {
                         let showBtn = UIButton()
                         showBtn.setImage(UIImage(named: "search_down"), for: .normal)
-                        showBtn.addTarget(self, action: #selector(clickDownAction), for: .touchUpInside)
+                        showBtn.addTarget(self, action: #selector(downAction), for: .touchUpInside)
                         showBtn.frame = CGRectMake(kScreenWidth - 32, y + 8, 20, 20)
                         self.addSubview(showBtn)
                         self.endUpdateUI(y)
@@ -128,13 +128,13 @@ class AVHistoryView: UIView {
         self.totalH = Int(height)
     }
     
-    @objc func clickDownAction() {
+    @objc func downAction() {
         self.show = true
         self.setUI()
         self.changeUIBlock?()
     }
     
-    @objc func clickUpAction() {
+    @objc func upAction() {
         self.show = false
         self.setUI()
         self.changeUIBlock?()
@@ -153,10 +153,5 @@ class AVHistoryView: UIView {
 }
 
 class AVHistoryModel: BaseModel {
-    enum historyType: Int {
-        case text
-        case show
-        case dismiss
-    }
     var text: String = ""
 }

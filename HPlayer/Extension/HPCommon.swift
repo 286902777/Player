@@ -29,9 +29,9 @@ var kNavBarHeight:CGFloat {
 var kStatusBarHeight:CGFloat {
     get {
         let scene = UIApplication.shared.connectedScenes.first
-        guard let windowScene = scene as? UIWindowScene else { return 0 }
-        guard let statusBarManager = windowScene.statusBarManager else { return 0 }
-        return statusBarManager.statusBarFrame.height
+        guard let window = scene as? UIWindowScene else { return 0 }
+        guard let status = window.statusBarManager else { return 0 }
+        return status.statusBarFrame.height
     }
 }
 
@@ -41,8 +41,8 @@ var isScreenFull = false
 var kTopSafeHeight:CGFloat {
     get {
         let scene = UIApplication.shared.connectedScenes.first
-        if let windowScene = scene as? UIWindowScene, let keyWindow = windowScene.windows.first  {
-            return keyWindow.safeAreaInsets.top
+        if let window = scene as? UIWindowScene, let key = window.windows.first  {
+            return key.safeAreaInsets.top
         } else {
             return 0
         }
@@ -52,8 +52,8 @@ var kTopSafeHeight:CGFloat {
 var kBottomSafeHeight:CGFloat {
     get {
         let scene = UIApplication.shared.connectedScenes.first
-        if let windowScene = scene as? UIWindowScene, let keyWindow = windowScene.windows.first  {
-            return keyWindow.safeAreaInsets.bottom
+        if let window = scene as? UIWindowScene, let key = window.windows.first  {
+            return key.safeAreaInsets.bottom
         } else {
             return 0
         }
@@ -77,10 +77,10 @@ extension UIFont {
 
 extension UIDevice {
     var modelName: String {
-        var systemInfo = utsname()
-        uname(&systemInfo)
-        let machineMirror = Mirror(reflecting: systemInfo.machine)
-        let identifier = machineMirror.children.reduce("") { identifier, element in
+        var info = utsname()
+        uname(&info)
+        let mirror = Mirror(reflecting: info.machine)
+        let identifier = mirror.children.reduce("") { identifier, element in
             guard let value = element.value as? Int8, value != 0 else { return identifier }
             return identifier + String(UnicodeScalar(UInt8(value)))
         }

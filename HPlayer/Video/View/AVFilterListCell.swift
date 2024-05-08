@@ -12,7 +12,7 @@ class AVFilterListCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var dataList: [AVFilterCategoryInfoModel] = []
+    var list: [AVFilterCategoryInfoModel] = []
     let cellIdentifier = "AVFilterCellIdentifier"
     typealias clickBlock = (_ title: String, _ idx: Int) -> Void
     var clickHandle : clickBlock?
@@ -34,7 +34,7 @@ class AVFilterListCell: UITableViewCell {
         if let m = arr.first {
             m.isSelect = true
         }
-        self.dataList = arr
+        self.list = arr
         self.collectionView.reloadData()
         self.collectionView.scrollToItem(at: IndexPath.init(item: 0, section: 0), at: .left, animated: false)
     }
@@ -42,7 +42,7 @@ class AVFilterListCell: UITableViewCell {
 
 extension AVFilterListCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        self.dataList.count
+        self.list.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -51,18 +51,18 @@ extension AVFilterListCell: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! AVFilterCell
-        if let model = dataList.indexOfSafe(indexPath.item) {
+        if let model = list.indexOfSafe(indexPath.item) {
             cell.model = model
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let _ = dataList.map{$0.isSelect = false}
-        dataList[indexPath.item].isSelect = true
+        let _ = list.map{$0.isSelect = false}
+        list[indexPath.item].isSelect = true
         self.collectionView.reloadData()
         
-        self.clickHandle?(dataList[indexPath.item].title, indexPath.item)
+        self.clickHandle?(list[indexPath.item].title, indexPath.item)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -74,7 +74,9 @@ extension AVFilterListCell: UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let model = self.dataList[indexPath.item]
-        return CGSize(width: model.isSelect ? (model.width + 16) : model.width, height: 50)
+        if let mod = self.list.indexOfSafe(indexPath.item) {
+            return CGSize(width: model.isSelect ? (model.width + 16) : model.width, height: 50)
+        }
+        return CGSize.zero
     }
 }

@@ -54,10 +54,10 @@ class HPUMPManager: NSObject {
     }
     
     /// Helper method to call the UMP SDK method to present the privacy options form.
-    func presentPrivacyOptionsForm(
-        from viewController: UIViewController, completionHandler: @escaping (Error?) -> Void
+    func getPrivacyOptionsForm(
+        from vc: UIViewController, completionHandler: @escaping (Error?) -> Void
     ) {
         UMPConsentForm.presentPrivacyOptionsForm(
-            from: viewController, completionHandler: completionHandler)
+            from: vc, completionHandler: completionHandler)
     }
 }

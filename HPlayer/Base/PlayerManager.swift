@@ -40,7 +40,7 @@ class PlayerManager {
     /// auto play
     var autoPlay = true
     
-    var topBarInCase = PlayerBarCase.always
+    var topBarInCase = PlayerShowCase.always
     
     var animateDelayInterval = TimeInterval(3)
     

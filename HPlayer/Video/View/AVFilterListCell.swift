@@ -75,7 +75,7 @@ extension AVFilterListCell: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if let mod = self.list.indexOfSafe(indexPath.item) {
-            return CGSize(width: model.isSelect ? (model.width + 16) : model.width, height: 50)
+            return CGSize(width: mod.isSelect ? (mod.width + 16) : mod.width, height: 50)
         }
         return CGSize.zero
     }

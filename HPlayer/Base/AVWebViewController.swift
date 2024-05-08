@@ -34,8 +34,8 @@ class AVWebViewController: VBaseViewController {
             make.left.bottom.right.equalToSuperview()
             make.top.equalTo(navBar.snp.bottom)
         }
-        if let u = URL(string: self.link) {
-            webV.load(URLRequest(url: u))
+        if let url = URL(string: self.link) {
+            webView.load(URLRequest(url: url))
         }
     }
 }

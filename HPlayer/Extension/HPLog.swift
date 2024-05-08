@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import FirebaseAnalytics
-import Adjust
-import FBSDKCoreKit
+//import FirebaseAnalytics
+//import Adjust
+//import FBSDKCoreKit
 
 class HPLog: NSObject {
     /// debug 打印
@@ -23,29 +23,29 @@ extension HPLog {
     class func hp_ad_impression_revenue(value: Double, currency: String, adFormat: String, adSource: String, adPlatform: String, adUnitName: String, precision: String, placement: String) {
         
         HPLog.log("[LOG-Message] ---- value: \(value), currency: \(currency), adFormat: \(adFormat), adSource: \(adSource), adPlatform: \(adPlatform), adUnitName: \(adUnitName), precision: \(precision), placement: \(placement)")
-        var event = ADJEvent(eventToken: "g3qup0")
-        #if DEBUG
-        #else
-        event = ADJEvent(eventToken: "tsg9xy")
-        #endif
-        event?.setRevenue(value, currency: "USD")
-        Adjust.trackEvent(event)
-        
-        AppEvents.shared.logPurchase(amount: value, currency: "USD")
-
-        HPTBAManager.shared.setAdSubParas(capstan: Int64(value * 1000000), anew: currency, bright: adSource, avocate: adPlatform, smear: adUnitName, thruway: placement, drowsy: adFormat, trefoil: precision)
-        HPTBAManager.shared.setParamlist(type: .ads)
-        /* 上报firebase */
-        HPLog.logEvent(
-            "Ad_impression_revenue",
-            parameters: [
-                AnalyticsParameterAdPlatform: adPlatform,
-                AnalyticsParameterAdSource: adSource,
-                AnalyticsParameterAdFormat: adFormat,
-                AnalyticsParameterAdUnitName: adUnitName,
-                AnalyticsParameterCurrency: currency,
-                AnalyticsParameterValue: value
-            ])
+//        var event = ADJEvent(eventToken: "g3qup0")
+//        #if DEBUG
+//        #else
+//        event = ADJEvent(eventToken: "tsg9xy")
+//        #endif
+//        event?.setRevenue(value, currency: "USD")
+//        Adjust.trackEvent(event)
+//        
+//        AppEvents.shared.logPurchase(amount: value, currency: "USD")
+//
+//        HPTBAManager.shared.setAdSubParas(capstan: Int64(value * 1000000), anew: currency, bright: adSource, avocate: adPlatform, smear: adUnitName, thruway: placement, drowsy: adFormat, trefoil: precision)
+//        HPTBAManager.shared.setParamlist(type: .ads)
+//        /* 上报firebase */
+//        HPLog.logEvent(
+//            "Ad_impression_revenue",
+//            parameters: [
+//                AnalyticsParameterAdPlatform: adPlatform,
+//                AnalyticsParameterAdSource: adSource,
+//                AnalyticsParameterAdFormat: adFormat,
+//                AnalyticsParameterAdUnitName: adUnitName,
+//                AnalyticsParameterCurrency: currency,
+//                AnalyticsParameterValue: value
+//            ])
     }
 }
 

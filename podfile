@@ -19,15 +19,15 @@ target 'HPlayer' do
   pod 'JXSegmentedView'
   pod 'Adjust'
 
-  pod 'Firebase/Analytics'
-  pod 'FirebaseCrashlytics'
-  pod 'FirebasePerformance'
-  pod 'FirebaseRemoteConfig'
-  pod 'FirebaseMessaging'
-  pod 'ReklamupAdmobAdapter', '~> 1.0'
+#  pod 'Firebase/Analytics'
+#  pod 'FirebaseCrashlytics'
+#  pod 'FirebasePerformance'
+#  pod 'FirebaseRemoteConfig'
+#  pod 'FirebaseMessaging'
+#  pod 'ReklamupAdmobAdapter', '~> 1.0'
 
-  pod 'Google-Mobile-Ads-SDK', '~> 10.14.0'
-  pod 'GoogleUserMessagingPlatform'
+#  pod 'Google-Mobile-Ads-SDK', '~> 10.14.0'
+#  pod 'GoogleUserMessagingPlatform'
 #  pod 'GoogleMobileAdsMediationAdColony'
 #  pod 'GoogleMobileAdsMediationAppLovin'
 #  pod 'GoogleMobileAdsMediationChartboost'
@@ -41,7 +41,7 @@ target 'HPlayer' do
 #  pod 'GoogleMobileAdsMediationTapjoy'
 #  pod 'GoogleMobileAdsMediationUnity'
 
-  pod 'AppLovinSDK'
+#  pod 'AppLovinSDK'
 #  pod 'AppLovinMediationGoogleAdapter'
 #  pod 'AppLovinMediationAdColonyAdapter'
 #  pod 'AppLovinMediationChartboostAdapter'
@@ -57,6 +57,6 @@ target 'HPlayer' do
 #  pod 'AppLovinMediationUnityAdsAdapter'
 #  pod 'AppLovinMediationVerveAdapter'
   
-  pod 'FBSDKCoreKit'
+#  pod 'FBSDKCoreKit'
 
 end

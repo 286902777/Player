@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 import Adjust
-import FBSDKCoreKit
+//import FBSDKCoreKit
 
 class AVPlayViewController: UIViewController {
     private var model: AVModel = AVModel()
@@ -968,14 +968,14 @@ extension AVPlayViewController: HPPlayerDelegate {
             self.deinitTimer()
             self.playerNextAction()
         case .finished:
-            var event = ADJEvent(eventToken: "y7ntfn")
-            #if DEBUG
-            #else
-            event = ADJEvent(eventToken: "d3h40b")
-            #endif
-            Adjust.trackEvent(event)
-            AppEvents.shared.logEvent(AppEvents.Name.viewedContent)
-            
+//            var event = ADJEvent(eventToken: "y7ntfn")
+//            #if DEBUG
+//            #else
+//            event = ADJEvent(eventToken: "d3h40b")
+//            #endif
+//            Adjust.trackEvent(event)
+//            AppEvents.shared.logEvent(AppEvents.Name.viewedContent)
+
             if self.isAdsPlaying || HPConfig.topVC()?.isKind(of: AVPlayViewController.self) == false   {
                 if let p = self.player {
                     p.pause()

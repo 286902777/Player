@@ -23,12 +23,12 @@ class HPPlayerSelectEpsCell: UICollectionViewCell {
     func refreshData() {
         self.titleL.text = "\(self.model.eps_num)"
         if self.model.isSelect {
+            self.titleL.layer.borderWidth = 1
             self.titleL.backgroundColor = UIColor.hexColor("#7061FF", alpha: 0.05)
             self.titleL.layer.borderColor = UIColor.hexColor("#B2AAFF").cgColor
-            self.titleL.layer.borderWidth = 1
         } else {
-            self.titleL.backgroundColor = UIColor.hexColor("#FFFFFF", alpha: 0.05)
             self.titleL.layer.borderWidth = 0
+            self.titleL.backgroundColor = UIColor.hexColor("#FFFFFF", alpha: 0.05)
         }
     }
 }

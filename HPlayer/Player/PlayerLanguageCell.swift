@@ -16,7 +16,7 @@ class PlayerLanguageCell: UITableViewCell {
     
     var model: AVCaption = AVCaption() {
         didSet {
-            self.setData()
+            self.refreshData()
         }
     }
     override func awakeFromNib() {
@@ -25,16 +25,16 @@ class PlayerLanguageCell: UITableViewCell {
         self.bgView.layer.masksToBounds = true
     }
 
-    func setData() {
+    func refreshData() {
+        self.nameL.text = self.model.display_name
         if self.model.isSelect {
+            self.bgView.layer.borderWidth = 1
             self.bgView.backgroundColor = UIColor.hexColor("#7061FF", alpha: 0.05)
             self.bgView.layer.borderColor = UIColor.hexColor("#B2AAFF").cgColor
-            self.bgView.layer.borderWidth = 1
         } else {
-            self.bgView.backgroundColor = UIColor.hexColor("#FFFFFF", alpha: 0.05)
             self.bgView.layer.borderWidth = 0
+            self.bgView.backgroundColor = UIColor.hexColor("#FFFFFF", alpha: 0.05)
         }
-        self.nameL.text = self.model.display_name
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

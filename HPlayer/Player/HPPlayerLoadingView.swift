@@ -16,14 +16,14 @@ class HPPlayerLoadingView: UIView {
     
     class func view() -> HPPlayerLoadingView {
         let view = Bundle.main.loadNibNamed(String(describing: HPPlayerLoadingView.self), owner: nil)?.first as! HPPlayerLoadingView
-        view.setUI()
+        view.setUpUI()
         return view
     }
     
-    func setUI() {
+    func setUpUI() {
         animaView = LottieAnimationView(name: "loading")
-        animaView?.isHidden = true
         lottieView.addSubview(animaView!)
+        animaView?.isHidden = true
         animaView?.snp.makeConstraints({make in
             make.edges.equalToSuperview()
         })

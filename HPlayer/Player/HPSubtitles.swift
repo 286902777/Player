@@ -21,12 +21,12 @@ class HPSubtitles {
         
         init(_ index: Int, _ start: NSString, _ end: NSString, _ text: NSString) {
             self.index = index
-            self.start = GroupList.parseDuration(start as String)
-            self.end   = GroupList.parseDuration(end as String)
+            self.start = GroupList.getTimeData(start as String)
+            self.end   = GroupList.getTimeData(end as String)
             self.text  = text as String
         }
         
-        static func parseDuration(_ fromStr:String) -> TimeInterval {
+        static func getTimeData(_ fromStr:String) -> TimeInterval {
             var h: TimeInterval = 0.0, m: TimeInterval = 0.0, s: TimeInterval = 0.0, c: TimeInterval = 0.0
             let scanner = Scanner(string: fromStr)
             scanner.scanDouble(&h)
@@ -36,8 +36,8 @@ class HPSubtitles {
             scanner.scanDouble(&s)
             scanner.scanString(",", into: nil)
             scanner.scanDouble(&c)
-            let parse = (h * 3600.0) + (m * 60.0) + s + (c / 1000.0)
-            return parse
+            let p = (h * 3600.0) + (m * 60.0) + s + (c / 1000.0)
+            return p
         }
         
         var description: String {
@@ -102,7 +102,7 @@ class HPSubtitles {
     }
     
     
-    func searchSubtitle(for time: TimeInterval) -> GroupList? {
+    func checkSubtitle(for time: TimeInterval) -> GroupList? {
         let result = groups.first(where: { group -> Bool in
             if group.start - delayTime <= time && group.end - delayTime >= time {
                 return true

@@ -243,10 +243,8 @@ class PlayerLayerView: UIView {
    }
    
    fileprivate func configPlayer(){
-//       player?.removeObserver(self, forKeyPath: "rate")
        playerItem = AVPlayerItem(asset: urlAsset!)
        player     = AVPlayer(playerItem: playerItem!)
-//       player!.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.new, context: nil)
        self.connectPlayerLayer()
        setNeedsLayout()
        layoutIfNeeded()
@@ -408,10 +406,6 @@ class PlayerLayerView: UIView {
                }
            }
        }
-       
-//       if keyPath == "rate" {
-//           updateStatus()
-//       }
    }
    
    /**

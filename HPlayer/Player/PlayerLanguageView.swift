@@ -16,7 +16,7 @@ class PlayerLanguageView: UIViewController {
     var clickBlock: ((_ address: String)->())?
     var backBlock: (()->())?
 
-    var backgroudView: UIView = UIView()
+    var bgView: UIView = UIView()
     private let cellIdentifier = "PlayerLanguageCell"
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
@@ -32,7 +32,7 @@ class PlayerLanguageView: UIViewController {
         return view
     }()
     
-    private lazy var lineLabel:UILabel = {
+    private lazy var lineL:UILabel = {
         let label = UILabel()
         label.backgroundColor = UIColor.hexColor("#FFFFFF",alpha: 0.1)
         return label
@@ -41,40 +41,40 @@ class PlayerLanguageView: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIView.animate(withDuration: 0.25) { [weak self] in
-            self?.backgroudView.transform = CGAffineTransform.identity
+            self?.bgView.transform = CGAffineTransform.identity
         }
     }
     
     private func show() {
-        backgroudView.transform = CGAffineTransform(translationX: 0, y: 0)
+        bgView.transform = CGAffineTransform(translationX: 0, y: 0)
     }
     
     private func setUpUI() {
-        view.addSubview(backgroudView)
+        view.addSubview(bgView)
         view.backgroundColor = .clear
-        backgroudView.backgroundColor = UIColor.hexColor("#FFFFFF", alpha: 0.05)
-        backgroudView.frame = CGRectMake(0, kScreenHeight - height, kScreenWidth, height)
-        backgroudView.setEffectView(CGSize(width: kScreenWidth, height: height), UIBlurEffect.Style.systemChromeMaterialDark)
-        backgroudView.setCorner(conrners: [.topLeft, .topRight], radius: 24)
-        backgroudView.addSubview(tableView)
+        bgView.backgroundColor = UIColor.hexColor("#FFFFFF", alpha: 0.05)
+        bgView.frame = CGRectMake(0, kScreenHeight - height, kScreenWidth, height)
+        bgView.setEffectView(CGSize(width: kScreenWidth, height: height), UIBlurEffect.Style.systemChromeMaterialDark)
+        bgView.setCorner(conrners: [.topLeft, .topRight], radius: 24)
+        bgView.addSubview(tableView)
         let backButton = UIButton()
         backButton.setImage(UIImage(named: "nav_back"), for: .normal)
         backButton.addTarget(self, action: #selector(clickBackAction), for: .touchUpInside)
         
-        let lauguageL = UILabel()
-        lauguageL.textColor = .white
-        lauguageL.font = .font(weigth: .medium, size: 20)
-        lauguageL.text = "Switch Language"
-        lauguageL.textAlignment = .center
+        let laugL = UILabel()
+        laugL.textColor = .white
+        laugL.font = .font(weigth: .medium, size: 20)
+        laugL.text = "Switch Language"
+        laugL.textAlignment = .center
         
-        backgroudView.addSubview(backButton)
-        backgroudView.addSubview(lauguageL)
+        bgView.addSubview(backButton)
+        bgView.addSubview(laugL)
         backButton.snp.makeConstraints { make in
             make.width.height.equalTo(40)
             make.left.equalTo(8)
             make.top.equalTo(24)
         }
-        lauguageL.snp.makeConstraints { make in
+        laugL.snp.makeConstraints { make in
             make.centerY.equalTo(backButton)
             make.centerX.equalToSuperview()
         }

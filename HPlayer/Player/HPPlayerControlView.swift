@@ -1105,7 +1105,7 @@ class HPPlayerControlView: UIView {
     fileprivate func showCaption(from subtitle: HPSubtitles?, at time: TimeInterval) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            if let subtitle = subtitle, let group = subtitle.searchSubtitle(for: time), PlayerManager.share.subtitleOn == true {
+            if let subtitle = subtitle, let group = subtitle.checkSubtitle(for: time), PlayerManager.share.subtitleOn == true {
                 self.captionBgView.isHidden = false
                 self.captionL.attributedText = NSAttributedString(string: group.text, attributes: self.subtileAttr)
             } else {

@@ -18,7 +18,7 @@ class AVPlayHeadInfoCell: UITableViewCell {
             collectH.constant = dataList.count == 0 ? 0 : 120
         }
     }
-    private let cellIdentifier = "VideoPlayHeadIconCell"
+    private let cellIdentifier = "AVPlayHeadIconCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()

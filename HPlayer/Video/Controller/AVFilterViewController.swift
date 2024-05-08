@@ -27,7 +27,7 @@ class AVFilterViewController: VBaseViewController {
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout:layout)
         collectionView.contentInset = UIEdgeInsets(top: 216, left: 12, bottom: 16, right: 12)
         collectionView.register(UINib(nibName: String(describing: AVCell.self), bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
-        collectionView.register(AVFilterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "VideoFilterView")
+        collectionView.register(AVFilterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "AVFilterView")
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -38,7 +38,7 @@ class AVFilterViewController: VBaseViewController {
     
     private lazy var infoView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "video_filter_showBg")
+        view.image = UIImage(named: "filter_show_Bg")
         view.isHidden = true
         return view
     }()

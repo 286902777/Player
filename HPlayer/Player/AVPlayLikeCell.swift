@@ -15,7 +15,7 @@ class AVPlayLikeCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var collectH: NSLayoutConstraint!
-    private let cellIdentifier = "VideoCell"
+    private let cellIdentifier = "AVCell"
     typealias clickBlock = (_ index: Int) -> Void
     var clickHandle : clickBlock?
 

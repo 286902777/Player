@@ -30,7 +30,7 @@ class AVPlayHeadCell: UITableViewCell {
     var clickMoreHandle : clickMoreBlock?
     
     var dataArr: [String] = []
-    private let cellIdentifier = "VideoPlayHeadCategoryCell"
+    private let cellIdentifier = "AVPlayHeadCategoryCell"
     private var height: CGFloat = 0 {
         didSet {
             if height != oldValue, height > 0 {

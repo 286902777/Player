@@ -17,7 +17,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOI-ww-dzT">
                     <rect key="frame" x="12" y="1" width="369" height="42"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_home_icon_search" translatesAutoresizingMaskIntoConstraints="NO" id="zol-Ef-WgZ">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_search" translatesAutoresizingMaskIntoConstraints="NO" id="zol-Ef-WgZ">
                             <rect key="frame" x="12" y="9" width="24" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="djQ-QN-WlV"/>
@@ -56,6 +56,6 @@
         </view>
     </objects>
     <resources>
-        <image name="video_home_icon_search" width="24" height="24"/>
+        <image name="icon_search" width="24" height="24"/>
     </resources>
 </document>

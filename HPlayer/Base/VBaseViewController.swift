@@ -79,7 +79,7 @@ class VBaseViewController: UIViewController {
     func setBackgroudView() {
         view.addSubview(backImageView)
         backImageView.contentMode = .scaleToFill
-        backImageView.image = UIImage.init(named: "video_home_bg")
+        backImageView.image = UIImage.init(named: "home_bg")
         view.insertSubview(backImageView, at: 0)
         backImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

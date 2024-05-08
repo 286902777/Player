@@ -9,7 +9,7 @@ import UIKit
 
 class AVSearchCell: UITableViewCell {
     
-    lazy var titleLabel: UILabel = {
+    lazy var titleL: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .font(weigth: .medium, size: 14)
@@ -18,7 +18,7 @@ class AVSearchCell: UITableViewCell {
     
     lazy var searchView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "video_his_search")
+        view.image = UIImage(named: "search_cell")
         return view
     }()
     
@@ -36,13 +36,13 @@ class AVSearchCell: UITableViewCell {
     
     func setUpUI() {
         self.addSubview(searchView)
-        self.addSubview(titleLabel)
+        self.addSubview(titleL)
         searchView.snp.makeConstraints { make in
             make.left.equalTo(12)
             make.centerY.equalToSuperview()
             make.size.equalTo(CGSize(width: 14, height: 14))
         }
-        titleLabel.snp.makeConstraints { make in
+        titleL.snp.makeConstraints { make in
             make.left.equalTo(searchView.snp.right).offset(13)
             make.right.equalTo(-12)
             make.centerY.equalTo(searchView)
@@ -50,7 +50,7 @@ class AVSearchCell: UITableViewCell {
     }
     
     func setText(_ text: String, _ key: String) {
-        self.titleLabel.attributedText = self.setAttributeStringTexts(text, [key], [UIColor.hexColor("#FFFFFF", alpha: 0.5)])
+        self.titleL.attributedText = self.setAttributeStringTexts(text, [key], [UIColor.hexColor("#FFFFFF", alpha: 0.5)])
     }
 
     /// 获取字符出现的位置信息(支持多次位置获取)

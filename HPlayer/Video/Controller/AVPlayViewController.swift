@@ -45,9 +45,9 @@ class AVPlayViewController: UIViewController {
     }
     
     private var catptionList: [AVCaption] = []
-    private let AVPlayHeadCellID = "VideoPlayHeadCell"
-    private let AVPlayHeadInfoCellID = "VideoPlayHeadInfoCell"
-    private let AVPlayLikeCellID = "VideoPlayLikeCell"
+    private let AVPlayHeadCellID = "AVPlayHeadCell"
+    private let AVPlayHeadInfoCellID = "AVPlayHeadInfoCell"
+    private let AVPlayLikeCellID = "AVPlayLikeCell"
     private let HPPlayEpsListCellID = "HPPlayEpsListCell"
     private var showInfo: Bool = false {
         didSet {

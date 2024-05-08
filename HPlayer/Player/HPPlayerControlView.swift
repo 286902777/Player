@@ -774,9 +774,6 @@ class HPPlayerControlView: UIView {
             self.isReadyToPlayed = false
             showLottie()
         case .finished:
-//            if let p = self.player, p.tempIsPlaying, HPConfig.currentVC()?.isKind(of: VideoPlayViewController.self) == true {
-//                self.player?.play()
-//            }
             if isReadyToPlayed {
                 hideLottie()
             }

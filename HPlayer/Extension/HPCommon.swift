@@ -13,9 +13,9 @@ let kScreenBounds = UIScreen.main.bounds
 //屏幕大小
 let kScreenSize                           = kScreenBounds.size
 //屏幕高度
-let kScreenHeight:CGFloat                 = kScreenSize.height
+let kScreenHeight: CGFloat                = kScreenSize.height
 //屏幕宽度
-let kScreenWidth:CGFloat                  = kScreenSize.width
+let kScreenWidth: CGFloat                 = kScreenSize.width
 
 
 //导航栏默认高度
@@ -48,6 +48,7 @@ var kTopSafeHeight:CGFloat {
         }
     }
 }
+
 /// 底部安全区高度
 var kBottomSafeHeight:CGFloat {
     get {

@@ -389,7 +389,7 @@ extension AVHomeViewController: JXBannerDataSource {
     func jxBanner(_ banner: JXBannerType, centerIndex: Int, centerCell: UICollectionViewCell) {
         let tempCell = centerCell as! AVBannerCell
         tempCell.playView.isHidden = false
-        tempCell.topMView.isHidden = true
+        tempCell.topMengView.isHidden = true
         if let model = self.bannerList.indexOfSafe(centerIndex) {
             self.bgView.imageV.setImage(with: model.horizontal_cover)
         }
@@ -398,7 +398,7 @@ extension AVHomeViewController: JXBannerDataSource {
     func jxBanner(_ banner: JXBannerType, lastCenterIndex: Int?, lastCenterCell: UICollectionViewCell?) {
         if let tempCell = lastCenterCell, let cell = tempCell as? AVBannerCell {
             cell.playView.isHidden = true
-            cell.topMView.isHidden = false
+            cell.topMengView.isHidden = false
         }
     }
 }

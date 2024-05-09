@@ -8,8 +8,8 @@
 import UIKit
 
 class AVHomeHeadView: UIView {
-    var clickBlock: ((_ type: ButtonType) -> Void)?
-    enum ButtonType: Int {
+    var clickBlock: ((_ type: HomeHeadButtonType) -> Void)?
+    enum HomeHeadButtonType: Int {
         case vip = 0
         case search
     }

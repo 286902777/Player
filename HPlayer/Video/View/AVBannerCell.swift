@@ -36,7 +36,7 @@ class AVBannerCell: JXBannerBaseCell {
         return label
     }()
     
-    lazy var HDL: UILabel = {
+    lazy var pxL: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
@@ -65,7 +65,7 @@ class AVBannerCell: JXBannerBaseCell {
         return view
     }()
     
-    lazy var topMView: UIView = {
+    lazy var topMengView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.hexColor("#141414", alpha: 0.35)
         return view
@@ -81,9 +81,9 @@ class AVBannerCell: JXBannerBaseCell {
         contentView.addSubview(playView)
         contentView.addSubview(starImgV)
         contentView.addSubview(starL)
-        contentView.addSubview(HDL)
+        contentView.addSubview(pxL)
         contentView.addSubview(titleL)
-        contentView.addSubview(topMView)
+        contentView.addSubview(topMengView)
 
         bgView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -112,7 +112,7 @@ class AVBannerCell: JXBannerBaseCell {
             make.centerY.equalTo(starImgV)
         }
         
-        HDL.snp.makeConstraints { make in
+        pxL.snp.makeConstraints { make in
             make.left.equalTo(starL.snp.right).offset(12)
             make.centerY.equalTo(starImgV)
             make.size.equalTo(CGSize(width: 36, height: 20))
@@ -124,7 +124,7 @@ class AVBannerCell: JXBannerBaseCell {
             make.bottom.equalTo(starImgV.snp.top).offset(-5)
         }
         
-        topMView.snp.makeConstraints { make in
+        topMengView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
@@ -141,9 +141,9 @@ class AVBannerCell: JXBannerBaseCell {
             self.starL.isHidden = true
         }
         self.newL.isHidden = Date.IsWeekData(tp: model.storage_timestamp)
-        self.HDL.isHidden = model.quality.count > 0 ? false : true
-        self.HDL.text = model.quality
+        self.pxL.isHidden = model.quality.count > 0 ? false : true
+        self.pxL.text = model.quality
         self.playView.isHidden = true
-        self.topMView.isHidden = false
+        self.topMengView.isHidden = false
     }
 }

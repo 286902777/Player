@@ -10,8 +10,8 @@ import SnapKit
 
 class BaseViewController: UIViewController {
 
-    lazy var navBar: BaseNavigationBar = {
-        let view = BaseNavigationBar.view()
+    lazy var navBar: WNavigationBar = {
+        let view = WNavigationBar.view()
         return view
     }()
     override func viewDidLoad() {

@@ -107,6 +107,9 @@
 		A73BFC1E2BE8E83600A672E7 /* AVFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFC1D2BE8E83600A672E7 /* AVFilterView.swift */; };
 		A73BFC212BE8E88800A672E7 /* AVFilterListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFC1F2BE8E88700A672E7 /* AVFilterListCell.swift */; };
 		A73BFC222BE8E88800A672E7 /* AVFilterListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFC202BE8E88700A672E7 /* AVFilterListCell.xib */; };
+		A793983D2BEB81680030F9DE /* IndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A793983C2BEB81680030F9DE /* IndexViewController.swift */; };
+		A79398402BEB81A50030F9DE /* WNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = A793983E2BEB81A40030F9DE /* WNavigationBar.xib */; };
+		A79398412BEB81A50030F9DE /* WNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A793983F2BEB81A50030F9DE /* WNavigationBar.swift */; };
 		A7969A152BE8748200FE02FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7969A142BE8748200FE02FB /* AppDelegate.swift */; };
 		A7969A172BE8748200FE02FB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7969A162BE8748200FE02FB /* SceneDelegate.swift */; };
 		A7969A192BE8748200FE02FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7969A182BE8748200FE02FB /* ViewController.swift */; };
@@ -245,6 +248,9 @@
 		A73BFC1D2BE8E83600A672E7 /* AVFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFilterView.swift; sourceTree = "<group>"; };
 		A73BFC1F2BE8E88700A672E7 /* AVFilterListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFilterListCell.swift; sourceTree = "<group>"; };
 		A73BFC202BE8E88700A672E7 /* AVFilterListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVFilterListCell.xib; sourceTree = "<group>"; };
+		A793983C2BEB81680030F9DE /* IndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewController.swift; sourceTree = "<group>"; };
+		A793983E2BEB81A40030F9DE /* WNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WNavigationBar.xib; sourceTree = "<group>"; };
+		A793983F2BEB81A50030F9DE /* WNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WNavigationBar.swift; sourceTree = "<group>"; };
 		A7969A112BE8748200FE02FB /* HPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7969A142BE8748200FE02FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7969A162BE8748200FE02FB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -306,6 +312,8 @@
 				A73BFB7D2BE8C4DF00A672E7 /* PlayerManager.swift */,
 				A7969A312BE8777100FE02FB /* BaseModel.swift */,
 				A7969A302BE8777100FE02FB /* BaseViewController.swift */,
+				A793983F2BEB81A50030F9DE /* WNavigationBar.swift */,
+				A793983E2BEB81A40030F9DE /* WNavigationBar.xib */,
 				A73BFB442BE8B05D00A672E7 /* BaseNavigationBar.swift */,
 				A73BFB452BE8B05D00A672E7 /* BaseNavigationBar.xib */,
 				A73BFB4B2BE8BA8600A672E7 /* VBaseViewController.swift */,
@@ -426,6 +434,7 @@
 		A73BFBC42BE8DA8500A672E7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A793983C2BEB81680030F9DE /* IndexViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -662,6 +671,7 @@
 				A73BFB9F2BE8C9B400A672E7 /* AVHomeHeadView.xib in Resources */,
 				A73BFB422BE8A62300A672E7 /* GoogleService-Info.plist in Resources */,
 				A79ECFF92BE9BEBA00E7356B /* AVFilterSearchView.xib in Resources */,
+				A79398402BEB81A50030F9DE /* WNavigationBar.xib in Resources */,
 				A73BFB902BE8C78A00A672E7 /* AVAboutViewController.xib in Resources */,
 				A73BFBF42BE8DD3F00A672E7 /* PlayerLanguageCell.xib in Resources */,
 				A73BFB942BE8C78A00A672E7 /* AVFeedBackViewController.xib in Resources */,
@@ -746,6 +756,7 @@
 				A73BFBEC2BE8DC0900A672E7 /* HPPlayerLoadingView.swift in Sources */,
 				A73BFB812BE8C6C200A672E7 /* AVWebViewController.swift in Sources */,
 				A73BFBDC2BE8DC0900A672E7 /* HPPlayerLightView.swift in Sources */,
+				A793983D2BEB81680030F9DE /* IndexViewController.swift in Sources */,
 				A73BFBB82BE8D63A00A672E7 /* AVSearchTopView.swift in Sources */,
 				A73BFB7C2BE8C37900A672E7 /* CapDB+CoreDataProperties.swift in Sources */,
 				A73BFB6C2BE8C09D00A672E7 /* DBManager.swift in Sources */,
@@ -822,6 +833,7 @@
 				A7969A512BE878A300FE02FB /* HPRemoteManager.swift in Sources */,
 				A73BFC1C2BE8E71800A672E7 /* HPCaptionManager.swift in Sources */,
 				A73BFC1E2BE8E83600A672E7 /* AVFilterView.swift in Sources */,
+				A79398412BEB81A50030F9DE /* WNavigationBar.swift in Sources */,
 				A73BFBE42BE8DC0900A672E7 /* HPPlayerFailView.swift in Sources */,
 				A73BFB972BE8C78A00A672E7 /* AVFeedBackViewController.swift in Sources */,
 				A7969A452BE878A300FE02FB /* String+Extension.swift in Sources */,

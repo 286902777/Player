@@ -28,7 +28,7 @@ class VBaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        HPTBAManager.shared.setParamlist(type: .session)
+//        HPTBAManager.shared.setParamlist(type: .session)
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.addTrack()
         }

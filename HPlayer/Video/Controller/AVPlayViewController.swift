@@ -66,6 +66,7 @@ class AVPlayViewController: UIViewController {
         table.register(UINib(nibName: String(describing: AVPlayLikeCell.self), bundle: nil), forCellReuseIdentifier: AVPlayLikeCellID)
         table.register(UINib(nibName: String(describing: HPPlayEpsListCell.self), bundle: nil), forCellReuseIdentifier: HPPlayEpsListCellID)
         table.isHidden = true
+        table.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: kBottomSafeHeight, right: 0)
         table.contentInsetAdjustmentBehavior = .never
         return table
     }()

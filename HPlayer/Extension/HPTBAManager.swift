@@ -27,12 +27,6 @@ class HPTBAManager: NSObject {
     #else
     var HPaHost = "https://archaic.plixor.net/filbert/shelley/lin"
     #endif
-        
-    var ip: String = UserDefaults.standard.value(forKey: HPKey.lastIp) as? String ?? "" {
-        didSet {
-            UserDefaults.standard.set(ip, forKey: HPKey.lastIp)
-        }
-    }
     
     var timer: DispatchSourceTimer?
     

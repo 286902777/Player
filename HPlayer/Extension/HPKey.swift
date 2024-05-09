@@ -2,7 +2,7 @@
 //  HPKey.swift
 //  HPlayer
 //
-//  Created by HF on 2024/1/3.
+//  Created by HF on 2024/4/15.
 //
 
 import Foundation
@@ -55,12 +55,10 @@ class HPKey {
     static let isUser = "isUser"
     static let isVip = "isVip"
     
-    static let email = "mihayescwtu@hotmail.com"
+    static let email = "slihacwtu@hotmail.com"
     
     static let app_version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     static let HPLogs = "HPLogs"
-    static let lastIpCountryCode = "last_ip_country_code"
-    static let lastIp = "lastIp"
     static let advertiseKey = "advertiseKey"
     static let history = "history"
     static let appOpen = "appOpen"
@@ -75,5 +73,5 @@ class HPKey {
     static let Noti_CcRefresh = NSNotification.Name(rawValue: "captionRefresh")
     static let Noti_VipStatusChange = NSNotification.Name(rawValue: "vipStatusChange")
     static let Noti_CaptionRefresh = NSNotification.Name(rawValue: "captionRefresh")
-    static let Noti_PushAPNS = NSNotification.Name(rawValue: "PushAPNS")
+    static let Noti_PushAPNS = NSNotification.Name(rawValue: "pushAPNS")
 }

@@ -48,7 +48,7 @@ class HPConfig{
                 guard let self = self else { return }
                 if let result = info, result == "ocarina" {
                     HPConfig.share.setClock(true)
-                    HPTBAManager.shared.setParamlist(type: .session)
+//                    HPTBAManager.shared.setParamlist(type: .session)
                     self.setRoot(.play)
                 } else {
                     self.setRoot(.home)

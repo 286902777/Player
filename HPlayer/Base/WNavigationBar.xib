@@ -22,14 +22,14 @@
                                 <constraint firstAttribute="width" secondItem="fGK-vH-W18" secondAttribute="height" multiplier="1:1" id="b8v-qV-REW"/>
                                 <constraint firstAttribute="height" constant="44" id="yEW-NX-ul1"/>
                             </constraints>
-                            <state key="normal" image="nav_back"/>
+                            <state key="normal" image="w_back"/>
                             <connections>
                                 <action selector="BtnAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="b3o-fG-Btt"/>
                             </connections>
                         </button>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1al-TN-nXN">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1al-TN-nXN">
                             <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -85,9 +85,9 @@
                         <constraint firstAttribute="height" constant="44" id="hOj-LD-LD5"/>
                     </constraints>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYr-LD-VdQ">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYr-LD-VdQ">
                     <rect key="frame" x="196.66666666666666" y="22" width="0.0" height="0.0"/>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -117,6 +117,6 @@
         </view>
     </objects>
     <resources>
-        <image name="nav_back" width="24" height="24"/>
+        <image name="w_back" width="27" height="33"/>
     </resources>
 </document>

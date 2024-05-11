@@ -119,7 +119,7 @@ class AVFilterViewController: VBaseViewController {
         self.emptyView.setType()
 
         view.insertSubview(collectionView, at: 0)
-        view.insertSubview(infoView, at: 1)
+        view.insertSubview(emptyView, at: 1)
         view.insertSubview(infoView, at: 2)
         view.insertSubview(self.navBar, at: 3)
     }

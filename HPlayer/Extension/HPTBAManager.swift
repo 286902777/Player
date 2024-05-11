@@ -23,9 +23,10 @@ class HPTBAManager: NSObject {
     static let shared = HPTBAManager()
     
     #if DEBUG
-    var HPaHost = "https://test-archaic.plixor.net/blissful/meg/nc"
+    var HPaHost = ""
+//    var HPaHost = "https://test-archaic.plixor.net/blissful/meg/nc"
     #else
-    var HPaHost = "https://archaic.plixor.net/filbert/shelley/lin"
+    var HPaHost = ""
     #endif
     
     var timer: DispatchSourceTimer?

@@ -6,22 +6,34 @@
 //
 
 import Foundation
-import SVProgressHUD
+import ProgressHUD
 
 class HPProgressHUD {
+    static func config() {
+        ProgressHUD.animationType = .circleRotateChase
+        ProgressHUD.colorBackground = .white
+        ProgressHUD.colorAnimation = .darkGray
+        ProgressHUD.mediaSize = 60
+        ProgressHUD.marginSize = 20
+        ProgressHUD.colorStatus = .black
+        ProgressHUD.fontStatus = .systemFont(ofSize: 18)
+    }
     static func show() {
-        SVProgressHUD.show(withStatus: "loading")
+        HPProgressHUD.config()
+        ProgressHUD.animate("loading...")
     }
     
     static func success(_ text: String) {
-        SVProgressHUD.showSuccess(withStatus: text)
+        HPProgressHUD.config()
+        ProgressHUD.succeed("text", delay: 2)
     }
     
     static func error(_ text: String) {
-        SVProgressHUD.showError(withStatus: text)
+        HPProgressHUD.config()
+        ProgressHUD.failed("text", delay: 2)
     }
     
     static func dismiss() {
-        SVProgressHUD.dismiss()
+        ProgressHUD.dismiss()
     }
 }

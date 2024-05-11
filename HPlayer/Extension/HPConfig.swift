@@ -19,11 +19,11 @@ class HPConfig{
         case play
     }
     
-    static let SafeBUNDLEID = "com.HPlayer.six"
+    static let SafeBUNDLEID = "com.movietackios.flix"
 
     static let app_version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     
-    private let ClOCK_HOST: String = "https://cannery.plixor.net/wiggly/shoHPush"
+    private let ClOCK_HOST: String = ""
 
     static let idfa = ASIdentifierManager.shared().advertisingIdentifier.uuidString
     static let idfv = UIDevice.current.identifierForVendor?.uuidString ?? ""

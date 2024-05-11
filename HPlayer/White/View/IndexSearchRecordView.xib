@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="IndexSearchRecordView" customModule="HPlayer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History record" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVC-lQ-laE">
+                    <rect key="frame" x="12" y="22" width="132" height="24"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6WA-Yx-bfd">
+                    <rect key="frame" x="347" y="12" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="IKw-qX-CKX"/>
+                        <constraint firstAttribute="width" constant="44" id="M6J-I3-QyV"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="w_search_delete"/>
+                    <connections>
+                        <action selector="clickDeleteAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="eT6-oy-qcY"/>
+                    </connections>
+                </button>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="pf7-zz-2xc">
+                    <rect key="frame" x="0.0" y="58" width="393" height="794"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gGn-U8-2xZ">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="TVC-lQ-laE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="0Mw-Z0-yqV"/>
+                <constraint firstItem="6WA-Yx-bfd" firstAttribute="centerY" secondItem="TVC-lQ-laE" secondAttribute="centerY" id="4w6-ng-W2X"/>
+                <constraint firstAttribute="trailing" secondItem="6WA-Yx-bfd" secondAttribute="trailing" constant="2" id="6CC-n2-jeg"/>
+                <constraint firstAttribute="bottom" secondItem="pf7-zz-2xc" secondAttribute="bottom" id="HY0-Xe-kWT"/>
+                <constraint firstAttribute="trailing" secondItem="pf7-zz-2xc" secondAttribute="trailing" id="LwX-JB-rRA"/>
+                <constraint firstItem="TVC-lQ-laE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="eC3-Wg-Aw4"/>
+                <constraint firstItem="pf7-zz-2xc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iAe-Q8-DCH"/>
+                <constraint firstItem="pf7-zz-2xc" firstAttribute="top" secondItem="TVC-lQ-laE" secondAttribute="bottom" constant="12" id="iIG-8r-5Ey"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="collectionView" destination="pf7-zz-2xc" id="eYl-AK-VHE"/>
+            </connections>
+            <point key="canvasLocation" x="126" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="w_search_delete" width="24" height="24"/>
+    </resources>
+</document>

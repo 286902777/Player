@@ -14,12 +14,37 @@ class BaseViewController: UIViewController {
         let view = WNavigationBar.view()
         return view
     }()
+    
+    var backView = UIImageView()
+    var emptyView: AVNoNetView = AVNoNetView.view()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.BGColor
+        view.backgroundColor = UIColor.F141414
         addNavBar()
+        addBackView()
+        setUI()
+        emptyView.isHidden = true
+        emptyView.clickBlock = { [weak self] in
+            guard let self = self else { return }
+            self.reSetRequest()
+        }
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.addTrack()
+        }
+    }
+    
+    func reSetRequest() {
+        
+    }
+    
+    func addBackView() {
+        view.addSubview(backView)
+        backView.contentMode = .scaleToFill
+        backView.image = UIImage.init(named: "home_bg")
+        view.insertSubview(backView, at: 0)
+        backView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
     
@@ -45,6 +70,10 @@ class BaseViewController: UIViewController {
                 self.vipAction()
             }
         }
+    }
+    
+    func setUI() {
+        
     }
     
     func backAction() {

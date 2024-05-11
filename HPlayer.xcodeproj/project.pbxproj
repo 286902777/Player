@@ -135,6 +135,41 @@
 		A7969A4F2BE878A300FE02FB /* HPRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7969A412BE878A300FE02FB /* HPRefresh.swift */; };
 		A7969A512BE878A300FE02FB /* HPRemoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7969A432BE878A300FE02FB /* HPRemoteManager.swift */; };
 		A7969A532BE881A700FE02FB /* VipManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7969A522BE881A700FE02FB /* VipManager.swift */; };
+		A79A23482BEDB3780010B0EC /* IndexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A23462BEDB3780010B0EC /* IndexCell.swift */; };
+		A79A23492BEDB3780010B0EC /* IndexCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79A23472BEDB3780010B0EC /* IndexCell.xib */; };
+		A79A234C2BEDB5960010B0EC /* PeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A234A2BEDB5960010B0EC /* PeopleCell.swift */; };
+		A79A234D2BEDB5970010B0EC /* PeopleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79A234B2BEDB5960010B0EC /* PeopleCell.xib */; };
+		A79A234F2BEDB7610010B0EC /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A234E2BEDB7610010B0EC /* ListViewController.swift */; };
+		A79A23512BEDBC000010B0EC /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A23502BEDBC000010B0EC /* PlayViewController.swift */; };
+		A79A23532BEDBDB50010B0EC /* PlaySegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A23522BEDBDB50010B0EC /* PlaySegView.swift */; };
+		A79A23552BEDC3590010B0EC /* PlayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A23542BEDC3590010B0EC /* PlayListViewController.swift */; };
+		A79A23572BEDE7440010B0EC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A23562BEDE7440010B0EC /* SearchViewController.swift */; };
+		A79A235A2BEDE7A60010B0EC /* IndexSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79A23582BEDE7A60010B0EC /* IndexSearchView.xib */; };
+		A79A235B2BEDE7A60010B0EC /* IndexSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A23592BEDE7A60010B0EC /* IndexSearchView.swift */; };
+		A79A235D2BEDECE10010B0EC /* IndexSearchRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A235C2BEDECE10010B0EC /* IndexSearchRecordView.swift */; };
+		A79A235F2BEDECE70010B0EC /* IndexSearchRecordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79A235E2BEDECE70010B0EC /* IndexSearchRecordView.xib */; };
+		A79A23622BEDF73F0010B0EC /* SearchAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A23602BEDF73F0010B0EC /* SearchAlertController.swift */; };
+		A79A23632BEDF73F0010B0EC /* SearchAlertController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79A23612BEDF73F0010B0EC /* SearchAlertController.xib */; };
+		A79A23672BEDFC060010B0EC /* PlayDetailsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A23662BEDFC060010B0EC /* PlayDetailsListViewController.swift */; };
+		A79A236A2BEDFCA00010B0EC /* PlayDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A23682BEDFCA00010B0EC /* PlayDetailsCell.swift */; };
+		A79A236B2BEDFCA00010B0EC /* PlayDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79A23692BEDFCA00010B0EC /* PlayDetailsCell.xib */; };
+		A79A236E2BEE03330010B0EC /* PlayPeopleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79A236C2BEE03330010B0EC /* PlayPeopleCell.xib */; };
+		A79A236F2BEE03330010B0EC /* PlayPeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A236D2BEE03330010B0EC /* PlayPeopleCell.swift */; };
+		A79A23722BEE0EC00010B0EC /* PlaySeasonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A23702BEE0EC00010B0EC /* PlaySeasonCell.swift */; };
+		A79A23732BEE0EC00010B0EC /* PlaySeasonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79A23712BEE0EC00010B0EC /* PlaySeasonCell.xib */; };
+		A79A23752BEE10B70010B0EC /* PlaySeasonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A23742BEE10B70010B0EC /* PlaySeasonListViewController.swift */; };
+		A79A23782BEE120D0010B0EC /* PlaySeasonListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A23762BEE120D0010B0EC /* PlaySeasonListCell.swift */; };
+		A79A23792BEE120D0010B0EC /* PlaySeasonListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79A23772BEE120D0010B0EC /* PlaySeasonListCell.xib */; };
+		A79A237B2BEE16520010B0EC /* PlaySeasonSubListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A237A2BEE16520010B0EC /* PlaySeasonSubListViewController.swift */; };
+		A79A237E2BEE28F60010B0EC /* PlayMaxImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A237C2BEE28F60010B0EC /* PlayMaxImgCell.swift */; };
+		A79A237F2BEE28F60010B0EC /* PlayMaxImgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79A237D2BEE28F60010B0EC /* PlayMaxImgCell.xib */; };
+		A79A23822BEE2A8F0010B0EC /* PlayDoubleImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A23802BEE2A8F0010B0EC /* PlayDoubleImgCell.swift */; };
+		A79A23832BEE2A8F0010B0EC /* PlayDoubleImgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79A23812BEE2A8F0010B0EC /* PlayDoubleImgCell.xib */; };
+		A79A23862BEE2B9D0010B0EC /* PlayMixImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A23842BEE2B9D0010B0EC /* PlayMixImgCell.swift */; };
+		A79A23872BEE2B9D0010B0EC /* PlayMixImgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79A23852BEE2B9D0010B0EC /* PlayMixImgCell.xib */; };
+		A79A23892BEE2D4A0010B0EC /* PlayImgListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A23882BEE2D4A0010B0EC /* PlayImgListViewController.swift */; };
+		A79C3C4B2BEF155C00E8FAA7 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C3C492BEF155C00E8FAA7 /* StartViewController.swift */; };
+		A79C3C4C2BEF155C00E8FAA7 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79C3C4A2BEF155C00E8FAA7 /* StartViewController.xib */; };
 		A79ECFF52BE9BD0500E7356B /* AVFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79ECFF32BE9BD0500E7356B /* AVFilterCell.xib */; };
 		A79ECFF62BE9BD0500E7356B /* AVFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79ECFF42BE9BD0500E7356B /* AVFilterCell.swift */; };
 		A79ECFF92BE9BEBA00E7356B /* AVFilterSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79ECFF72BE9BEB900E7356B /* AVFilterSearchView.xib */; };
@@ -146,6 +181,15 @@
 		A79ED0042BE9C52700E7356B /* AVNoNetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79ED0032BE9C52700E7356B /* AVNoNetView.swift */; };
 		A79ED0062BE9C53600E7356B /* AVNoNetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79ED0052BE9C53600E7356B /* AVNoNetView.xib */; };
 		A79ED0082BEA082100E7356B /* BebasNeue-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A79ED0072BEA082100E7356B /* BebasNeue-Regular.ttf */; };
+		A79EE4DE2BECADEA00526257 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE4DD2BECADEA00526257 /* FavoriteViewController.swift */; };
+		A79EE4E22BECAEC200526257 /* MyLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE4E12BECAEC200526257 /* MyLibraryViewController.swift */; };
+		A79EE4E52BECAF1F00526257 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE4E32BECAF1F00526257 /* FavoriteCell.swift */; };
+		A79EE4E62BECAF1F00526257 /* FavoriteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79EE4E42BECAF1F00526257 /* FavoriteCell.xib */; };
+		A79EE4E82BECBA0600526257 /* WTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE4E72BECBA0600526257 /* WTabController.swift */; };
+		A79EE4EA2BECCEEB00526257 /* IndexHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE4E92BECCEEB00526257 /* IndexHeadView.swift */; };
+		A79EE4EC2BECD70700526257 /* IndexBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE4EB2BECD70700526257 /* IndexBannerCell.swift */; };
+		A79EE4EF2BED03F900526257 /* IndexListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79EE4ED2BED03F900526257 /* IndexListCell.xib */; };
+		A79EE4F02BED03F900526257 /* IndexListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE4EE2BED03F900526257 /* IndexListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -278,6 +322,41 @@
 		A7969A412BE878A300FE02FB /* HPRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPRefresh.swift; sourceTree = "<group>"; };
 		A7969A432BE878A300FE02FB /* HPRemoteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPRemoteManager.swift; sourceTree = "<group>"; };
 		A7969A522BE881A700FE02FB /* VipManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VipManager.swift; sourceTree = "<group>"; };
+		A79A23462BEDB3780010B0EC /* IndexCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexCell.swift; sourceTree = "<group>"; };
+		A79A23472BEDB3780010B0EC /* IndexCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndexCell.xib; sourceTree = "<group>"; };
+		A79A234A2BEDB5960010B0EC /* PeopleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleCell.swift; sourceTree = "<group>"; };
+		A79A234B2BEDB5960010B0EC /* PeopleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeopleCell.xib; sourceTree = "<group>"; };
+		A79A234E2BEDB7610010B0EC /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		A79A23502BEDBC000010B0EC /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
+		A79A23522BEDBDB50010B0EC /* PlaySegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySegView.swift; sourceTree = "<group>"; };
+		A79A23542BEDC3590010B0EC /* PlayListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListViewController.swift; sourceTree = "<group>"; };
+		A79A23562BEDE7440010B0EC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		A79A23582BEDE7A60010B0EC /* IndexSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndexSearchView.xib; sourceTree = "<group>"; };
+		A79A23592BEDE7A60010B0EC /* IndexSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexSearchView.swift; sourceTree = "<group>"; };
+		A79A235C2BEDECE10010B0EC /* IndexSearchRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexSearchRecordView.swift; sourceTree = "<group>"; };
+		A79A235E2BEDECE70010B0EC /* IndexSearchRecordView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IndexSearchRecordView.xib; sourceTree = "<group>"; };
+		A79A23602BEDF73F0010B0EC /* SearchAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAlertController.swift; sourceTree = "<group>"; };
+		A79A23612BEDF73F0010B0EC /* SearchAlertController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchAlertController.xib; sourceTree = "<group>"; };
+		A79A23662BEDFC060010B0EC /* PlayDetailsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayDetailsListViewController.swift; sourceTree = "<group>"; };
+		A79A23682BEDFCA00010B0EC /* PlayDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayDetailsCell.swift; sourceTree = "<group>"; };
+		A79A23692BEDFCA00010B0EC /* PlayDetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayDetailsCell.xib; sourceTree = "<group>"; };
+		A79A236C2BEE03330010B0EC /* PlayPeopleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayPeopleCell.xib; sourceTree = "<group>"; };
+		A79A236D2BEE03330010B0EC /* PlayPeopleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayPeopleCell.swift; sourceTree = "<group>"; };
+		A79A23702BEE0EC00010B0EC /* PlaySeasonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySeasonCell.swift; sourceTree = "<group>"; };
+		A79A23712BEE0EC00010B0EC /* PlaySeasonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaySeasonCell.xib; sourceTree = "<group>"; };
+		A79A23742BEE10B70010B0EC /* PlaySeasonListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaySeasonListViewController.swift; sourceTree = "<group>"; };
+		A79A23762BEE120D0010B0EC /* PlaySeasonListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySeasonListCell.swift; sourceTree = "<group>"; };
+		A79A23772BEE120D0010B0EC /* PlaySeasonListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaySeasonListCell.xib; sourceTree = "<group>"; };
+		A79A237A2BEE16520010B0EC /* PlaySeasonSubListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySeasonSubListViewController.swift; sourceTree = "<group>"; };
+		A79A237C2BEE28F60010B0EC /* PlayMaxImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayMaxImgCell.swift; sourceTree = "<group>"; };
+		A79A237D2BEE28F60010B0EC /* PlayMaxImgCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayMaxImgCell.xib; sourceTree = "<group>"; };
+		A79A23802BEE2A8F0010B0EC /* PlayDoubleImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayDoubleImgCell.swift; sourceTree = "<group>"; };
+		A79A23812BEE2A8F0010B0EC /* PlayDoubleImgCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayDoubleImgCell.xib; sourceTree = "<group>"; };
+		A79A23842BEE2B9D0010B0EC /* PlayMixImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayMixImgCell.swift; sourceTree = "<group>"; };
+		A79A23852BEE2B9D0010B0EC /* PlayMixImgCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayMixImgCell.xib; sourceTree = "<group>"; };
+		A79A23882BEE2D4A0010B0EC /* PlayImgListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayImgListViewController.swift; sourceTree = "<group>"; };
+		A79C3C492BEF155C00E8FAA7 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		A79C3C4A2BEF155C00E8FAA7 /* StartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartViewController.xib; sourceTree = "<group>"; };
 		A79ECFF32BE9BD0500E7356B /* AVFilterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVFilterCell.xib; sourceTree = "<group>"; };
 		A79ECFF42BE9BD0500E7356B /* AVFilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFilterCell.swift; sourceTree = "<group>"; };
 		A79ECFF72BE9BEB900E7356B /* AVFilterSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVFilterSearchView.xib; sourceTree = "<group>"; };
@@ -289,6 +368,16 @@
 		A79ED0032BE9C52700E7356B /* AVNoNetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVNoNetView.swift; sourceTree = "<group>"; };
 		A79ED0052BE9C53600E7356B /* AVNoNetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AVNoNetView.xib; sourceTree = "<group>"; };
 		A79ED0072BEA082100E7356B /* BebasNeue-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Regular.ttf"; sourceTree = "<group>"; };
+		A79EE4DC2BECABB000526257 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		A79EE4DD2BECADEA00526257 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		A79EE4E12BECAEC200526257 /* MyLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryViewController.swift; sourceTree = "<group>"; };
+		A79EE4E32BECAF1F00526257 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
+		A79EE4E42BECAF1F00526257 /* FavoriteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteCell.xib; sourceTree = "<group>"; };
+		A79EE4E72BECBA0600526257 /* WTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTabController.swift; sourceTree = "<group>"; };
+		A79EE4E92BECCEEB00526257 /* IndexHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexHeadView.swift; sourceTree = "<group>"; };
+		A79EE4EB2BECD70700526257 /* IndexBannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexBannerCell.swift; sourceTree = "<group>"; };
+		A79EE4ED2BED03F900526257 /* IndexListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndexListCell.xib; sourceTree = "<group>"; };
+		A79EE4EE2BED03F900526257 /* IndexListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexListCell.swift; sourceTree = "<group>"; };
 		CF7FE3CD896F4338FA2CCBDD /* Pods_HPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51F623333A3D17A5E570F06 /* Pods-HPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HPlayer.debug.xcconfig"; path = "Target Support Files/Pods-HPlayer/Pods-HPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		F59FA9FD3EAC701A4364737D /* Pods-HPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HPlayer.release.xcconfig"; path = "Target Support Files/Pods-HPlayer/Pods-HPlayer.release.xcconfig"; sourceTree = "<group>"; };
@@ -319,8 +408,11 @@
 				A73BFB4B2BE8BA8600A672E7 /* VBaseViewController.swift */,
 				A73BFB582BE8BCFE00A672E7 /* NetManager.swift */,
 				A73BFB572BE8BCFE00A672E7 /* HPUMPManager.swift */,
+				A79EE4E72BECBA0600526257 /* WTabController.swift */,
 				A73BFB802BE8C6C200A672E7 /* AVTabController.swift */,
 				A73BFB7F2BE8C6C200A672E7 /* AVWebViewController.swift */,
+				A79C3C492BEF155C00E8FAA7 /* StartViewController.swift */,
+				A79C3C4A2BEF155C00E8FAA7 /* StartViewController.xib */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -435,6 +527,16 @@
 			isa = PBXGroup;
 			children = (
 				A793983C2BEB81680030F9DE /* IndexViewController.swift */,
+				A79A234E2BEDB7610010B0EC /* ListViewController.swift */,
+				A79EE4DD2BECADEA00526257 /* FavoriteViewController.swift */,
+				A79EE4E12BECAEC200526257 /* MyLibraryViewController.swift */,
+				A79A23562BEDE7440010B0EC /* SearchViewController.swift */,
+				A79A23502BEDBC000010B0EC /* PlayViewController.swift */,
+				A79A23542BEDC3590010B0EC /* PlayListViewController.swift */,
+				A79A23662BEDFC060010B0EC /* PlayDetailsListViewController.swift */,
+				A79A23742BEE10B70010B0EC /* PlaySeasonListViewController.swift */,
+				A79A23882BEE2D4A0010B0EC /* PlayImgListViewController.swift */,
+				A79A237A2BEE16520010B0EC /* PlaySeasonSubListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -442,6 +544,37 @@
 		A73BFBC52BE8DA8800A672E7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A79EE4EE2BED03F900526257 /* IndexListCell.swift */,
+				A79EE4ED2BED03F900526257 /* IndexListCell.xib */,
+				A79A23462BEDB3780010B0EC /* IndexCell.swift */,
+				A79A23472BEDB3780010B0EC /* IndexCell.xib */,
+				A79A234A2BEDB5960010B0EC /* PeopleCell.swift */,
+				A79A234B2BEDB5960010B0EC /* PeopleCell.xib */,
+				A79EE4E32BECAF1F00526257 /* FavoriteCell.swift */,
+				A79EE4E42BECAF1F00526257 /* FavoriteCell.xib */,
+				A79EE4E92BECCEEB00526257 /* IndexHeadView.swift */,
+				A79EE4EB2BECD70700526257 /* IndexBannerCell.swift */,
+				A79A23522BEDBDB50010B0EC /* PlaySegView.swift */,
+				A79A23592BEDE7A60010B0EC /* IndexSearchView.swift */,
+				A79A23582BEDE7A60010B0EC /* IndexSearchView.xib */,
+				A79A235C2BEDECE10010B0EC /* IndexSearchRecordView.swift */,
+				A79A235E2BEDECE70010B0EC /* IndexSearchRecordView.xib */,
+				A79A23602BEDF73F0010B0EC /* SearchAlertController.swift */,
+				A79A23612BEDF73F0010B0EC /* SearchAlertController.xib */,
+				A79A23682BEDFCA00010B0EC /* PlayDetailsCell.swift */,
+				A79A23692BEDFCA00010B0EC /* PlayDetailsCell.xib */,
+				A79A236D2BEE03330010B0EC /* PlayPeopleCell.swift */,
+				A79A236C2BEE03330010B0EC /* PlayPeopleCell.xib */,
+				A79A23702BEE0EC00010B0EC /* PlaySeasonCell.swift */,
+				A79A23712BEE0EC00010B0EC /* PlaySeasonCell.xib */,
+				A79A23762BEE120D0010B0EC /* PlaySeasonListCell.swift */,
+				A79A23772BEE120D0010B0EC /* PlaySeasonListCell.xib */,
+				A79A237C2BEE28F60010B0EC /* PlayMaxImgCell.swift */,
+				A79A237D2BEE28F60010B0EC /* PlayMaxImgCell.xib */,
+				A79A23802BEE2A8F0010B0EC /* PlayDoubleImgCell.swift */,
+				A79A23812BEE2A8F0010B0EC /* PlayDoubleImgCell.xib */,
+				A79A23842BEE2B9D0010B0EC /* PlayMixImgCell.swift */,
+				A79A23852BEE2B9D0010B0EC /* PlayMixImgCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -489,6 +622,7 @@
 				A7969A222BE8748400FE02FB /* LaunchScreen.storyboard */,
 				A7969A252BE8748400FE02FB /* Info.plist */,
 				A73BFB412BE8A62300A672E7 /* GoogleService-Info.plist */,
+				A79EE4DC2BECABB000526257 /* OpenSans-Bold.ttf */,
 				A79ED0072BEA082100E7356B /* BebasNeue-Regular.ttf */,
 			);
 			path = HPlayer;
@@ -661,6 +795,7 @@
 				A73BFC0C2BE8E20800A672E7 /* AVPlayLikeCell.xib in Resources */,
 				A73BFC102BE8E20800A672E7 /* AVPlayHeadIconCell.xib in Resources */,
 				A79ECFF52BE9BD0500E7356B /* AVFilterCell.xib in Resources */,
+				A79A23632BEDF73F0010B0EC /* SearchAlertController.xib in Resources */,
 				A7969A242BE8748400FE02FB /* LaunchScreen.storyboard in Resources */,
 				A79ED0082BEA082100E7356B /* BebasNeue-Regular.ttf in Resources */,
 				A79ED0022BE9BF6A00E7356B /* AVHistoryBottomView.xib in Resources */,
@@ -668,31 +803,45 @@
 				A73BFBE02BE8DC0900A672E7 /* HPPlayerFailView.xib in Resources */,
 				A73BFC122BE8E20800A672E7 /* AVPlayHeadCategoryCell.xib in Resources */,
 				A73BFBDE2BE8DC0900A672E7 /* HPPlayerLanguageFullView.xib in Resources */,
+				A79A235F2BEDECE70010B0EC /* IndexSearchRecordView.xib in Resources */,
 				A73BFB9F2BE8C9B400A672E7 /* AVHomeHeadView.xib in Resources */,
 				A73BFB422BE8A62300A672E7 /* GoogleService-Info.plist in Resources */,
 				A79ECFF92BE9BEBA00E7356B /* AVFilterSearchView.xib in Resources */,
 				A79398402BEB81A50030F9DE /* WNavigationBar.xib in Resources */,
+				A79A23832BEE2A8F0010B0EC /* PlayDoubleImgCell.xib in Resources */,
+				A79A23792BEE120D0010B0EC /* PlaySeasonListCell.xib in Resources */,
 				A73BFB902BE8C78A00A672E7 /* AVAboutViewController.xib in Resources */,
+				A79A237F2BEE28F60010B0EC /* PlayMaxImgCell.xib in Resources */,
+				A79A236E2BEE03330010B0EC /* PlayPeopleCell.xib in Resources */,
+				A79A236B2BEDFCA00010B0EC /* PlayDetailsCell.xib in Resources */,
 				A73BFBF42BE8DD3F00A672E7 /* PlayerLanguageCell.xib in Resources */,
+				A79C3C4C2BEF155C00E8FAA7 /* StartViewController.xib in Resources */,
 				A73BFB942BE8C78A00A672E7 /* AVFeedBackViewController.xib in Resources */,
 				A73BFBE52BE8DC0900A672E7 /* HPPlayerCaptionSetView.xib in Resources */,
 				A73BFBEE2BE8DC0900A672E7 /* HPPlayerSelectEpsCell.xib in Resources */,
 				A7969A212BE8748400FE02FB /* Assets.xcassets in Resources */,
+				A79A23732BEE0EC00010B0EC /* PlaySeasonCell.xib in Resources */,
 				A73BFBA92BE8CB2900A672E7 /* AVCell.xib in Resources */,
 				A73BFB472BE8B05D00A672E7 /* BaseNavigationBar.xib in Resources */,
 				A73BFC0B2BE8E20800A672E7 /* AVPlayHeadInfoCell.xib in Resources */,
 				A73BFC172BE8E3B800A672E7 /* HPPlayEpsListCell.xib in Resources */,
+				A79A23492BEDB3780010B0EC /* IndexCell.xib in Resources */,
 				A73BFBEB2BE8DC0900A672E7 /* HPPlayerLightView.xib in Resources */,
 				A73BFBE92BE8DC0900A672E7 /* HPPlayerCaptionFullSetView.xib in Resources */,
 				A73BFC222BE8E88800A672E7 /* AVFilterListCell.xib in Resources */,
+				A79EE4EF2BED03F900526257 /* IndexListCell.xib in Resources */,
 				A73BFB542BE8BB8500A672E7 /* loading.json in Resources */,
 				A73BFBBD2BE8D73300A672E7 /* AVAlertController.xib in Resources */,
+				A79A234D2BEDB5970010B0EC /* PeopleCell.xib in Resources */,
 				A73BFB532BE8BB8500A672E7 /* ad_release.json in Resources */,
 				A79ED0062BE9C53600E7356B /* AVNoNetView.xib in Resources */,
+				A79A23872BEE2B9D0010B0EC /* PlayMixImgCell.xib in Resources */,
 				A73BFC0A2BE8E20800A672E7 /* AVPlayHeadCell.xib in Resources */,
 				A73BFBB62BE8D5B500A672E7 /* AVHistorySearchView.xib in Resources */,
+				A79A235A2BEDE7A60010B0EC /* IndexSearchView.xib in Resources */,
 				A79ECFFE2BE9BF2800E7356B /* AVHistoryCell.xib in Resources */,
 				A7969A1C2BE8748200FE02FB /* Main.storyboard in Resources */,
+				A79EE4E62BECAF1F00526257 /* FavoriteCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,15 +900,18 @@
 				A73BFB4C2BE8BA8600A672E7 /* VBaseViewController.swift in Sources */,
 				A73BFB952BE8C78A00A672E7 /* AVSearchViewController.swift in Sources */,
 				A73BFBAA2BE8CB2900A672E7 /* AVCell.swift in Sources */,
+				A79A23532BEDBDB50010B0EC /* PlaySegView.swift in Sources */,
 				A7969A482BE878A300FE02FB /* HPToast.swift in Sources */,
 				A73BFB602BE8BE4500A672E7 /* AVModel.swift in Sources */,
 				A73BFBEC2BE8DC0900A672E7 /* HPPlayerLoadingView.swift in Sources */,
 				A73BFB812BE8C6C200A672E7 /* AVWebViewController.swift in Sources */,
 				A73BFBDC2BE8DC0900A672E7 /* HPPlayerLightView.swift in Sources */,
 				A793983D2BEB81680030F9DE /* IndexViewController.swift in Sources */,
+				A79A234F2BEDB7610010B0EC /* ListViewController.swift in Sources */,
 				A73BFBB82BE8D63A00A672E7 /* AVSearchTopView.swift in Sources */,
 				A73BFB7C2BE8C37900A672E7 /* CapDB+CoreDataProperties.swift in Sources */,
 				A73BFB6C2BE8C09D00A672E7 /* DBManager.swift in Sources */,
+				A79EE4EA2BECCEEB00526257 /* IndexHeadView.swift in Sources */,
 				A73BFBA52BE8CAC600A672E7 /* AVListCell.swift in Sources */,
 				A73BFB922BE8C78A00A672E7 /* AVHomeViewController.swift in Sources */,
 				A73BFBE62BE8DC0900A672E7 /* HPPlayerSelectEpsView.swift in Sources */,
@@ -772,25 +924,34 @@
 				A73BFBB02BE8CCF200A672E7 /* AVSettingCell.swift in Sources */,
 				A7969A4A2BE878A300FE02FB /* UIView+Extension.swift in Sources */,
 				A73BFBAC2BE8CB8C00A672E7 /* AVBannerCell.swift in Sources */,
+				A79A235B2BEDE7A60010B0EC /* IndexSearchView.swift in Sources */,
 				A73BFB992BE8C78A00A672E7 /* AVSearchListViewController.swift in Sources */,
 				A73BFBE12BE8DC0900A672E7 /* HPPlayerLanguageFullView.swift in Sources */,
 				A73BFB9C2BE8C78A00A672E7 /* AVHistoryViewListController.swift in Sources */,
 				A7969A4C2BE878A300FE02FB /* HPKey.swift in Sources */,
 				A73BFBED2BE8DC0900A672E7 /* HPPlayerCaptionFullSetView.swift in Sources */,
 				A73BFBBA2BE8D6DB00A672E7 /* AVSearchCell.swift in Sources */,
+				A79A237B2BEE16520010B0EC /* PlaySeasonSubListViewController.swift in Sources */,
 				A73BFC112BE8E20800A672E7 /* AVPlayHeadCell.swift in Sources */,
 				A7969A322BE8777100FE02FB /* Date+Extension.swift in Sources */,
+				A79A23822BEE2A8F0010B0EC /* PlayDoubleImgCell.swift in Sources */,
 				A73BFB7E2BE8C4DF00A672E7 /* PlayerManager.swift in Sources */,
+				A79A23722BEE0EC00010B0EC /* PlaySeasonCell.swift in Sources */,
 				A73BFC142BE8E29800A672E7 /* HPPlayLayout.swift in Sources */,
+				A79EE4F02BED03F900526257 /* IndexListCell.swift in Sources */,
+				A79A237E2BEE28F60010B0EC /* PlayMaxImgCell.swift in Sources */,
 				A73BFBAE2BE8CC1000A672E7 /* PlayerNetAPI.swift in Sources */,
 				A73BFBB52BE8D5B500A672E7 /* AVHistorySearchView.swift in Sources */,
 				A73BFBB22BE8D4EB00A672E7 /* AVHistoryView.swift in Sources */,
+				A79A236F2BEE03330010B0EC /* PlayPeopleCell.swift in Sources */,
 				A7969A192BE8748200FE02FB /* ViewController.swift in Sources */,
 				A73BFB822BE8C6C200A672E7 /* AVTabController.swift in Sources */,
+				A79A23482BEDB3780010B0EC /* IndexCell.swift in Sources */,
 				A7969A1F2BE8748200FE02FB /* HPlayer.xcdatamodeld in Sources */,
 				A73BFC182BE8E3B800A672E7 /* HPPlayEpsListCell.swift in Sources */,
 				A73BFB462BE8B05D00A672E7 /* BaseNavigationBar.swift in Sources */,
 				A73BFB7B2BE8C37900A672E7 /* CapDB+CoreDataClass.swift in Sources */,
+				A79A236A2BEDFCA00010B0EC /* PlayDetailsCell.swift in Sources */,
 				A7969A492BE878A300FE02FB /* HPLog.swift in Sources */,
 				A73BFBFC2BE8E04D00A672E7 /* HPTimeSlider.swift in Sources */,
 				A79ED0042BE9C52700E7356B /* AVNoNetView.swift in Sources */,
@@ -803,42 +964,59 @@
 				A73BFB932BE8C78A00A672E7 /* AVListViewController.swift in Sources */,
 				A73BFC082BE8E20800A672E7 /* AVPlayHeadInfoCell.swift in Sources */,
 				A73BFBF82BE8DFA800A672E7 /* HPSubtitles.swift in Sources */,
+				A79A23572BEDE7440010B0EC /* SearchViewController.swift in Sources */,
 				A73BFBF32BE8DD3F00A672E7 /* PlayerLanguageCell.swift in Sources */,
 				A73BFBF02BE8DCDA00A672E7 /* PlayerLanguageView.swift in Sources */,
+				A79A23512BEDBC000010B0EC /* PlayViewController.swift in Sources */,
 				A73BFC0E2BE8E20800A672E7 /* AVPlayHeadIconCell.swift in Sources */,
+				A79A23752BEE10B70010B0EC /* PlaySeasonListViewController.swift in Sources */,
 				A7969A4D2BE878A300FE02FB /* HPADManager.swift in Sources */,
 				A7969A4F2BE878A300FE02FB /* HPRefresh.swift in Sources */,
+				A79EE4E22BECAEC200526257 /* MyLibraryViewController.swift in Sources */,
 				A7969A152BE8748200FE02FB /* AppDelegate.swift in Sources */,
 				A79ED0012BE9BF6A00E7356B /* AVHistoryBottomView.swift in Sources */,
 				A73BFB792BE8C37900A672E7 /* AVDB+CoreDataClass.swift in Sources */,
 				A73BFBA22BE8C9F900A672E7 /* AVBannerEffectView.swift in Sources */,
+				A79EE4E82BECBA0600526257 /* WTabController.swift in Sources */,
 				A7969A4B2BE878A300FE02FB /* HPProgressHUD.swift in Sources */,
 				A73BFC0D2BE8E20800A672E7 /* AVPlaySsnHeadView.swift in Sources */,
 				A7969A462BE878A300FE02FB /* HPTBAManager.swift in Sources */,
 				A79ECFF62BE9BD0500E7356B /* AVFilterCell.swift in Sources */,
 				A73BFB592BE8BCFE00A672E7 /* HPUMPManager.swift in Sources */,
 				A73BFB622BE8BE4500A672E7 /* AVHomeModel.swift in Sources */,
+				A79A23622BEDF73F0010B0EC /* SearchAlertController.swift in Sources */,
 				A7969A532BE881A700FE02FB /* VipManager.swift in Sources */,
 				A73BFBA02BE8C9B400A672E7 /* AVHomeHeadView.swift in Sources */,
 				A73BFBC12BE8D89F00A672E7 /* AVSearchItemCell.swift in Sources */,
+				A79EE4E52BECAF1F00526257 /* FavoriteCell.swift in Sources */,
+				A79EE4EC2BECD70700526257 /* IndexBannerCell.swift in Sources */,
 				A73BFBFA2BE8E01600A672E7 /* PlayerLayerView.swift in Sources */,
+				A79A234C2BEDB5960010B0EC /* PeopleCell.swift in Sources */,
+				A79A23892BEE2D4A0010B0EC /* PlayImgListViewController.swift in Sources */,
 				A73BFBE22BE8DC0900A672E7 /* HPPlayer.swift in Sources */,
 				A79ECFFD2BE9BF2800E7356B /* AVHistoryCell.swift in Sources */,
 				A73BFC092BE8E20800A672E7 /* AVPlayLikeCell.swift in Sources */,
+				A79EE4DE2BECADEA00526257 /* FavoriteViewController.swift in Sources */,
 				A7969A342BE8777100FE02FB /* BaseViewController.swift in Sources */,
 				A7969A352BE8777100FE02FB /* BaseModel.swift in Sources */,
 				A7969A4E2BE878A300FE02FB /* UIImage+Extension.swift in Sources */,
+				A79A23782BEE120D0010B0EC /* PlaySeasonListCell.swift in Sources */,
 				A73BFBBE2BE8D73300A672E7 /* AVAlertController.swift in Sources */,
 				A73BFBC82BE8DB7100A672E7 /* HPPlayerControlView.swift in Sources */,
 				A7969A512BE878A300FE02FB /* HPRemoteManager.swift in Sources */,
 				A73BFC1C2BE8E71800A672E7 /* HPCaptionManager.swift in Sources */,
 				A73BFC1E2BE8E83600A672E7 /* AVFilterView.swift in Sources */,
+				A79A23552BEDC3590010B0EC /* PlayListViewController.swift in Sources */,
+				A79C3C4B2BEF155C00E8FAA7 /* StartViewController.swift in Sources */,
+				A79A23672BEDFC060010B0EC /* PlayDetailsListViewController.swift in Sources */,
 				A79398412BEB81A50030F9DE /* WNavigationBar.swift in Sources */,
 				A73BFBE42BE8DC0900A672E7 /* HPPlayerFailView.swift in Sources */,
 				A73BFB972BE8C78A00A672E7 /* AVFeedBackViewController.swift in Sources */,
+				A79A23862BEE2B9D0010B0EC /* PlayMixImgCell.swift in Sources */,
 				A7969A452BE878A300FE02FB /* String+Extension.swift in Sources */,
 				A73BFBDF2BE8DC0900A672E7 /* HPPlayerSelectEpsCell.swift in Sources */,
 				A73BFB982BE8C78A00A672E7 /* AVAboutViewController.swift in Sources */,
+				A79A235D2BEDECE10010B0EC /* IndexSearchRecordView.swift in Sources */,
 				A73BFC212BE8E88800A672E7 /* AVFilterListCell.swift in Sources */,
 				A7969A172BE8748200FE02FB /* SceneDelegate.swift in Sources */,
 				A73BFBE32BE8DC0900A672E7 /* HPPlayerCaptionSetView.swift in Sources */,
@@ -998,7 +1176,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HPlayer/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = XXX;
+				INFOPLIST_KEY_CFBundleDisplayName = MovieTrack;
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This identifier will be used to deliver personalized ads to you.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
@@ -1034,7 +1212,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HPlayer/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = XXX;
+				INFOPLIST_KEY_CFBundleDisplayName = MovieTrack;
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This identifier will be used to deliver personalized ads to you.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;

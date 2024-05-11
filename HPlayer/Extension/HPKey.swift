@@ -52,6 +52,9 @@ let Mod_video = "rZBdd"
 let Mod_description = "LgghDQW"
 
 class HPKey {
+    static let privacy = "privacy"
+    static let terms = "terms"
+    static let APPID = "6474994352"
     static let isUser = "isUser"
     static let isVip = "isVip"
     
@@ -61,6 +64,8 @@ class HPKey {
     static let HPLogs = "HPLogs"
     static let advertiseKey = "advertiseKey"
     static let history = "history"
+    static let searchRecord = "searchRecord"
+
     static let appOpen = "appOpen"
     
     static let product_id = "product_id"

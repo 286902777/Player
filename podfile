@@ -10,7 +10,7 @@ target 'HPlayer' do
   pod 'MJRefresh'
   pod 'Alamofire'
   pod 'HandyJSON'
-  pod 'SVProgressHUD'
+  pod 'ProgressHUD'
   pod 'Kingfisher'
   pod 'IQKeyboardManagerSwift'
   pod 'CryptoSwift'

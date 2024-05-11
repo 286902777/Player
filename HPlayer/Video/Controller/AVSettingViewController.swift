@@ -73,6 +73,7 @@ extension AVSettingViewController: UITableViewDelegate, UITableViewDataSource {
         switch list[indexPath.row].type {
         case .About:
             let vc = AVAboutViewController()
+            vc.isVideo = true
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         case .Privacy:
@@ -80,7 +81,7 @@ extension AVSettingViewController: UITableViewDelegate, UITableViewDataSource {
             if let model = self.list.indexOfSafe(indexPath.row) {
                 vc.name = model.type.rawValue
             }
-//            vc.link = "https://plixor.net/privacy/"
+            vc.link = HPKey.privacy
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         case .Terms:
@@ -88,7 +89,7 @@ extension AVSettingViewController: UITableViewDelegate, UITableViewDataSource {
             if let model = self.list.indexOfSafe(indexPath.row) {
                 vc.name = model.type.rawValue
             }
-//            vc.link = "https://plixor.net/terms/"
+            vc.link = HPKey.terms
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
 //        case .PrivacySetting:
@@ -104,11 +105,11 @@ extension AVSettingViewController: UITableViewDelegate, UITableViewDataSource {
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         case .Share:
-            let url: String = "https://apps.apple.com/us/app/id6474994352"
+            let url: String = "https://apps.apple.com/us/app/id\(HPKey.APPID)"
             let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
             present(activityController, animated: true, completion: nil)
         case .Evaluate:
-            if let url = URL(string: "itms-apps://itunes.apple.com/app/id6474994352?action=write-review") {
+            if let url = URL(string: "itms-apps://itunes.apple.com/app/id\(HPKey.APPID)?action=write-review") {
                 UIApplication.shared.open(url)
             }
         default:

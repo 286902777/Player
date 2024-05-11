@@ -8,7 +8,7 @@
 import UIKit
 
 class AVAboutViewController: VBaseViewController {
-
+    var isVideo: Bool = false
     @IBOutlet weak var nameL: UILabel!
     
     @IBOutlet weak var versonL: UILabel!
@@ -21,6 +21,7 @@ class AVAboutViewController: VBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navBar.rightBtn.isHidden = true
+        self.navBar.backBtn.setImage(UIImage(named: self.isVideo ? "nav_back" : "w_back"), for: .normal)
         self.navBar.titleL.text = "About us"
         
         if HPConfig.app_version.isEmpty == false {

@@ -106,8 +106,8 @@ class HPADManager: NSObject {
 //    var sameInterval: Int = 60
 //    var differentInterval: Int = 60
 //    var openInterval: Int = 60
-//    var mixOpenWait: Int = 10
-//    
+    var maxStartWait: Int = 10
+//
 //    var playTime: TimeInterval = 0
 //    var openTime: TimeInterval = 0 {
 //        didSet {

@@ -1,5 +1,5 @@
 //
-//  ListViewController.swift
+//  PeopleListViewController.swift
 //  HPlayer
 //
 //  Created by HF on 2024/5/10.
@@ -8,18 +8,17 @@
 
 import UIKit
 
-class ListViewController: BaseViewController {
+class PeopleListViewController: BaseViewController {
     let cellW = floor((kScreenWidth - 36) / 3)
     var name: String = ""
-    var listId: String = ""
-    var list: [AVDataInfoModel] = []
-    let cellIdentifier = "IndexCellIdentifier"
+    var list: [IndexDataListModel] = []
+    let cellIdentifier = "PeopleCellIdentifier"
     private var page: Int = 1
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout:layout)
         collectionView.contentInset = UIEdgeInsets(top: 12, left: 12, bottom: 16, right: 12)
-        collectionView.register(UINib(nibName: String(describing: IndexCell.self), bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
+        collectionView.register(UINib(nibName: String(describing: PeopleCell.self), bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
@@ -37,10 +36,6 @@ class ListViewController: BaseViewController {
         super.viewDidLoad()
         addRefresh()
         requestData()
-        NotificationCenter.default.addObserver(forName: HPKey.Noti_Like, object: nil, queue: .main) { [weak self] _ in
-            guard let self = self else { return }
-            self.collectionView.reloadData()
-        }
     }
     
     deinit {
@@ -90,7 +85,7 @@ class ListViewController: BaseViewController {
             return
         }
         HPProgressHUD.show()
-        PlayerNetAPI.share.AVMoreList(id: self.listId, page: self.page) { [weak self] success, list in
+        PlayerNetAPI.share.WPeopleInfo(self.page, 30) { [weak self] success, list in
             HPProgressHUD.dismiss()
             guard let self = self else { return }
             if !success {
@@ -115,7 +110,7 @@ class ListViewController: BaseViewController {
     }
 }
 
-extension ListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension PeopleListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         self.list.count
     }
@@ -125,9 +120,9 @@ extension ListViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! IndexCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! PeopleCell
         if let model = self.list.indexOfSafe(indexPath.item) {
-//            cell.setModel(model: model)
+            cell.setModel(model: model)
         }
         return cell
     }

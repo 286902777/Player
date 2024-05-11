@@ -10,10 +10,13 @@ import UIKit
 class IndexListCell: UITableViewCell {
     let cellW = floor((kScreenWidth - 48) / 3)
     let cellIdentifier = "IndexCell"
+    let peopleCellIdentifier = "PeopleCell"
+
     typealias clickMoreBlock = () -> Void
     var clickMoreHandle : clickMoreBlock?
-    var list: [AVDataInfoModel] = []
-    typealias clickBlock = (_ movieModel: AVDataInfoModel) -> Void
+    var type: IndexDataType = .list
+    var list: [IndexDataListModel] = []
+    typealias clickBlock = (_ model: IndexDataListModel) -> Void
     var clickHandle : clickBlock?
     
     @IBOutlet weak var titleL: UILabel!
@@ -28,6 +31,7 @@ class IndexListCell: UITableViewCell {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: String(describing: IndexCell.self), bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
+        collectionView.register(UINib(nibName: String(describing: PeopleCell.self), bundle: nil), forCellWithReuseIdentifier: peopleCellIdentifier)
         moreBtn.addTarget(self, action: #selector(clickAction), for: .touchUpInside)
         moreL.attributedText = NSAttributedString(string: "More", attributes: [.font: UIFont.systemFont(ofSize: 12, weight: .medium), .foregroundColor: UIColor.hexColor("#CCC7FF"), .underlineStyle: NSUnderlineStyle.single.rawValue, .underlineColor: UIColor.hexColor("#CCC7FF")])
     }
@@ -41,12 +45,15 @@ class IndexListCell: UITableViewCell {
         self.clickMoreHandle?()
     }
     
-    func setModel( model: AVHomeModel, clickMoreBlock: clickMoreBlock?, clickBlock: clickBlock?) {
-        self.titleL.text = model.name
+    func setModel( model: IndexModel, clickMoreBlock: clickMoreBlock?, clickBlock: clickBlock?) {
+        self.titleL.text = model.title
+        self.type = model.type
         self.clickMoreHandle = clickMoreBlock
         self.clickHandle = clickBlock
-        self.list = model.m20
-        self.collectionView.reloadData()
+        if let list = model.data.first?.data_list {
+            self.list = list
+            self.collectionView.reloadData()
+        }
     }
 }
 
@@ -56,11 +63,19 @@ extension IndexListCell: UICollectionViewDelegateFlowLayout, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! IndexCell
-        if let model = self.list.indexOfSafe(indexPath.item) {
-            cell.setModel(model: model)
+        if self.type == .list {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! IndexCell
+            if let model = self.list.indexOfSafe(indexPath.item) {
+                cell.setModel(model: model)
+            }
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: peopleCellIdentifier, for: indexPath) as! PeopleCell
+            if let model = self.list.indexOfSafe(indexPath.item) {
+                cell.setModel(model: model)
+            }
+            return cell
         }
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -12,6 +12,7 @@ class AVNoNetView: UIView {
     enum EmptyType: Int {
         case net = 1
         case content
+        case favorite
     }
     
     @IBOutlet weak var tryBtn: UIButton!
@@ -30,12 +31,17 @@ class AVNoNetView: UIView {
     }
     
     func setType(_ type: EmptyType = .net) {
-        if type == .net {
+        switch type {
+        case .net:
             self.desL.text = "Oops! Looks like you're offline. Please reconnect."
             self.iconV.image = UIImage(named: "no_network")
-        } else {
+        case .content:
             self.desL.text = "Oops!Failed to load data."
             self.iconV.image = UIImage(named: "no_content")
+        default:
+            self.desL.text = "No favorite content, please go to the homepage to view your favorite movies."
+            self.iconV.image = UIImage(named: "no_content")
+            self.tryBtn.isHidden = true
         }
     }
     

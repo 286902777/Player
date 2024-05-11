@@ -35,13 +35,9 @@ class HPPlayEpsListCell: UITableViewCell {
             self.bgView.layer.borderWidth = 0
             self.bgView.backgroundColor = UIColor.hexColor("#FFFFFF", alpha: 0.05)
         }
-        let arr: [String] = self.model.title.components(separatedBy: ":")
-        if let sub = arr.first {
-            let subArr = sub.components(separatedBy: " ")
-            self.epsL.text = subArr.first
-            self.numL.text = subArr.last
-            self.nameL.text = arr.last
-        }        
+        self.epsL.text = "Eps"
+        self.numL.text = "\(model.eps_num)"
+        self.nameL.text = model.title
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -34,14 +34,18 @@ class IndexCell: UICollectionViewCell {
         scoreL.attributedText = NSAttributedString(string: text, attributes: attr)
     }
   
-    func setModel(model: AVDataInfoModel) {
+    func setModel(model: IndexDataListModel) {
+        let arr = DBManager.share.selectWhiteData()
+        if let m = arr.first(where: {$0.id == model.id}) {
+            model.isLike = true
+        }
         if let r = Float(model.rate) {
             self.scoreL.isHidden = false
             self.setScoreFont(String(format: "%.1f", r))
         } else {
             self.scoreL.isHidden = true
         }
-        self.likeView.image = UIImage(named: model.isSelect ? "w_like" : "w_unlike")
+        self.likeView.image = UIImage(named: model.isLike ? "w_like" : "w_unlike")
         self.contentL.text = model.title
         self.imageV.setImage(with: model.cover)
     }

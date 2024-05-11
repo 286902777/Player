@@ -170,6 +170,10 @@
 		A79A23892BEE2D4A0010B0EC /* PlayImgListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A23882BEE2D4A0010B0EC /* PlayImgListViewController.swift */; };
 		A79C3C4B2BEF155C00E8FAA7 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C3C492BEF155C00E8FAA7 /* StartViewController.swift */; };
 		A79C3C4C2BEF155C00E8FAA7 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79C3C4A2BEF155C00E8FAA7 /* StartViewController.xib */; };
+		A79C3C4E2BEF487F00E8FAA7 /* WhiteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C3C4D2BEF487F00E8FAA7 /* WhiteModel.swift */; };
+		A79C3C512BEF667E00E8FAA7 /* LikeDB+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C3C4F2BEF667E00E8FAA7 /* LikeDB+CoreDataClass.swift */; };
+		A79C3C522BEF667E00E8FAA7 /* LikeDB+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C3C502BEF667E00E8FAA7 /* LikeDB+CoreDataProperties.swift */; };
+		A79C3C542BEF814500E8FAA7 /* PeopleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C3C532BEF814500E8FAA7 /* PeopleListViewController.swift */; };
 		A79ECFF52BE9BD0500E7356B /* AVFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79ECFF32BE9BD0500E7356B /* AVFilterCell.xib */; };
 		A79ECFF62BE9BD0500E7356B /* AVFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79ECFF42BE9BD0500E7356B /* AVFilterCell.swift */; };
 		A79ECFF92BE9BEBA00E7356B /* AVFilterSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79ECFF72BE9BEB900E7356B /* AVFilterSearchView.xib */; };
@@ -357,6 +361,10 @@
 		A79A23882BEE2D4A0010B0EC /* PlayImgListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayImgListViewController.swift; sourceTree = "<group>"; };
 		A79C3C492BEF155C00E8FAA7 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		A79C3C4A2BEF155C00E8FAA7 /* StartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartViewController.xib; sourceTree = "<group>"; };
+		A79C3C4D2BEF487F00E8FAA7 /* WhiteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteModel.swift; sourceTree = "<group>"; };
+		A79C3C4F2BEF667E00E8FAA7 /* LikeDB+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LikeDB+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		A79C3C502BEF667E00E8FAA7 /* LikeDB+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LikeDB+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		A79C3C532BEF814500E8FAA7 /* PeopleListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleListViewController.swift; sourceTree = "<group>"; };
 		A79ECFF32BE9BD0500E7356B /* AVFilterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVFilterCell.xib; sourceTree = "<group>"; };
 		A79ECFF42BE9BD0500E7356B /* AVFilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFilterCell.swift; sourceTree = "<group>"; };
 		A79ECFF72BE9BEB900E7356B /* AVFilterSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVFilterSearchView.xib; sourceTree = "<group>"; };
@@ -406,6 +414,7 @@
 				A73BFB442BE8B05D00A672E7 /* BaseNavigationBar.swift */,
 				A73BFB452BE8B05D00A672E7 /* BaseNavigationBar.xib */,
 				A73BFB4B2BE8BA8600A672E7 /* VBaseViewController.swift */,
+				A73BFBAD2BE8CC1000A672E7 /* PlayerNetAPI.swift */,
 				A73BFB582BE8BCFE00A672E7 /* NetManager.swift */,
 				A73BFB572BE8BCFE00A672E7 /* HPUMPManager.swift */,
 				A79EE4E72BECBA0600526257 /* WTabController.swift */,
@@ -490,6 +499,8 @@
 		A73BFB4D2BE8BB3200A672E7 /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
+				A79C3C4F2BEF667E00E8FAA7 /* LikeDB+CoreDataClass.swift */,
+				A79C3C502BEF667E00E8FAA7 /* LikeDB+CoreDataProperties.swift */,
 				A73BFB752BE8C37900A672E7 /* AVDB+CoreDataClass.swift */,
 				A73BFB762BE8C37900A672E7 /* AVDB+CoreDataProperties.swift */,
 				A73BFB772BE8C37900A672E7 /* CapDB+CoreDataClass.swift */,
@@ -508,7 +519,6 @@
 				A73BFB4F2BE8BB8500A672E7 /* ad_release.json */,
 				A73BFB502BE8BB8500A672E7 /* loading.json */,
 				A73BFB522BE8BB8500A672E7 /* refresh.json */,
-				A73BFBAD2BE8CC1000A672E7 /* PlayerNetAPI.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -528,6 +538,7 @@
 			children = (
 				A793983C2BEB81680030F9DE /* IndexViewController.swift */,
 				A79A234E2BEDB7610010B0EC /* ListViewController.swift */,
+				A79C3C532BEF814500E8FAA7 /* PeopleListViewController.swift */,
 				A79EE4DD2BECADEA00526257 /* FavoriteViewController.swift */,
 				A79EE4E12BECAEC200526257 /* MyLibraryViewController.swift */,
 				A79A23562BEDE7440010B0EC /* SearchViewController.swift */,
@@ -582,6 +593,7 @@
 		A73BFBC62BE8DA8A00A672E7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A79C3C4D2BEF487F00E8FAA7 /* WhiteModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -930,6 +942,7 @@
 				A73BFB9C2BE8C78A00A672E7 /* AVHistoryViewListController.swift in Sources */,
 				A7969A4C2BE878A300FE02FB /* HPKey.swift in Sources */,
 				A73BFBED2BE8DC0900A672E7 /* HPPlayerCaptionFullSetView.swift in Sources */,
+				A79C3C512BEF667E00E8FAA7 /* LikeDB+CoreDataClass.swift in Sources */,
 				A73BFBBA2BE8D6DB00A672E7 /* AVSearchCell.swift in Sources */,
 				A79A237B2BEE16520010B0EC /* PlaySeasonSubListViewController.swift in Sources */,
 				A73BFC112BE8E20800A672E7 /* AVPlayHeadCell.swift in Sources */,
@@ -958,6 +971,7 @@
 				A73BFBF62BE8DF7E00A672E7 /* PlayerItem.swift in Sources */,
 				A79ECFFA2BE9BEBA00E7356B /* AVFilterSearchView.swift in Sources */,
 				A7969A332BE8777100FE02FB /* Array+Extension.swift in Sources */,
+				A79C3C542BEF814500E8FAA7 /* PeopleListViewController.swift in Sources */,
 				A73BFB9A2BE8C78A00A672E7 /* AVFilterViewController.swift in Sources */,
 				A73BFC0F2BE8E20800A672E7 /* AVPlayHeadCategoryCell.swift in Sources */,
 				A73BFB912BE8C78A00A672E7 /* AVSearchResultViewController.swift in Sources */,
@@ -973,6 +987,7 @@
 				A7969A4D2BE878A300FE02FB /* HPADManager.swift in Sources */,
 				A7969A4F2BE878A300FE02FB /* HPRefresh.swift in Sources */,
 				A79EE4E22BECAEC200526257 /* MyLibraryViewController.swift in Sources */,
+				A79C3C522BEF667E00E8FAA7 /* LikeDB+CoreDataProperties.swift in Sources */,
 				A7969A152BE8748200FE02FB /* AppDelegate.swift in Sources */,
 				A79ED0012BE9BF6A00E7356B /* AVHistoryBottomView.swift in Sources */,
 				A73BFB792BE8C37900A672E7 /* AVDB+CoreDataClass.swift in Sources */,
@@ -1003,6 +1018,7 @@
 				A79A23782BEE120D0010B0EC /* PlaySeasonListCell.swift in Sources */,
 				A73BFBBE2BE8D73300A672E7 /* AVAlertController.swift in Sources */,
 				A73BFBC82BE8DB7100A672E7 /* HPPlayerControlView.swift in Sources */,
+				A79C3C4E2BEF487F00E8FAA7 /* WhiteModel.swift in Sources */,
 				A7969A512BE878A300FE02FB /* HPRemoteManager.swift in Sources */,
 				A73BFC1C2BE8E71800A672E7 /* HPCaptionManager.swift in Sources */,
 				A73BFC1E2BE8E83600A672E7 /* AVFilterView.swift in Sources */,

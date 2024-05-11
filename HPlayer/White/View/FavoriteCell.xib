@@ -23,6 +23,9 @@
                             <constraint firstAttribute="width" constant="160" id="tNd-h5-mkp"/>
                         </constraints>
                     </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="w_favorite_mark" translatesAutoresizingMaskIntoConstraints="NO" id="E1k-fV-8BP">
+                        <rect key="frame" x="12" y="0.0" width="160" height="90"/>
+                    </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mor-yg-OIM">
                         <rect key="frame" x="182" y="17.666666666666671" width="154" height="55"/>
                         <subviews>
@@ -54,7 +57,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="i10-sN-7Wq">
                                                 <rect key="frame" x="10" y="0.0" width="76" height="26"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="w_unlike" translatesAutoresizingMaskIntoConstraints="NO" id="GGF-aK-hhN">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="w_like" translatesAutoresizingMaskIntoConstraints="NO" id="GGF-aK-hhN">
                                                         <rect key="frame" x="0.0" y="5" width="16" height="16"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="16" id="LQ7-4Q-vud"/>
@@ -68,7 +71,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -98,7 +101,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="tKV-ac-Kr2" secondAttribute="bottom" constant="24" id="1kJ-jr-zgD"/>
+                    <constraint firstItem="E1k-fV-8BP" firstAttribute="trailing" secondItem="tKV-ac-Kr2" secondAttribute="trailing" id="4Tn-qc-BeG"/>
                     <constraint firstItem="tKV-ac-Kr2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="6VI-I6-DzR"/>
+                    <constraint firstItem="E1k-fV-8BP" firstAttribute="leading" secondItem="tKV-ac-Kr2" secondAttribute="leading" id="8JP-KY-jI5"/>
+                    <constraint firstItem="E1k-fV-8BP" firstAttribute="top" secondItem="tKV-ac-Kr2" secondAttribute="top" id="Ild-PD-caD"/>
+                    <constraint firstItem="E1k-fV-8BP" firstAttribute="bottom" secondItem="tKV-ac-Kr2" secondAttribute="bottom" id="PNx-0i-3Fr"/>
                     <constraint firstItem="mor-yg-OIM" firstAttribute="leading" secondItem="tKV-ac-Kr2" secondAttribute="trailing" constant="10" id="aiN-Zh-olJ"/>
                     <constraint firstItem="tKV-ac-Kr2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cQe-YN-hGk"/>
                     <constraint firstAttribute="trailing" secondItem="mor-yg-OIM" secondAttribute="trailing" constant="12" id="qc0-Dd-s4r"/>
@@ -118,7 +125,8 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="w_favorite_mark" width="160" height="90"/>
+        <image name="w_like" width="16" height="16"/>
         <image name="w_star" width="16" height="16"/>
-        <image name="w_unlike" width="16" height="16"/>
     </resources>
 </document>

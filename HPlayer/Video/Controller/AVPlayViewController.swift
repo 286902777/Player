@@ -1044,8 +1044,11 @@ extension AVPlayViewController: HPPlayerDelegate {
             self.ssnId = ssnId
             self.epsId = epsId
             self.from = .selectTV
-            let name = epsList.first(where: {$0.id == epsId})?.title
-            self.epsName = name ?? ""
+            if let m = epsList.first(where: {$0.id == epsId}) {
+                self.epsName = m.title
+                self.model.video = m.video
+            }
+            
             HPLog.tb_movie_play_cl(kid: "3", movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: self.epsName)
             self.getVideoResource()
         }

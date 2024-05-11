@@ -57,8 +57,16 @@ class SearchViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.recordView.refreshData()
+        NotificationCenter.default.addObserver(forName: HPKey.Noti_Like, object: nil, queue: .main) { [weak self] _ in
+            guard let self = self else { return }
+            self.collectionView.reloadData()
+        }
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func setUI() {
         navBar.isHidden = true
         setSearchBar()
@@ -243,7 +251,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! IndexCell
         if let model = self.list.indexOfSafe(indexPath.item) {
-            cell.setModel(model: model)
+//            cell.setModel(model: model)
         }
         return cell
     }

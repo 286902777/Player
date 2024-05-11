@@ -35,4 +35,12 @@
         <attribute name="short_name" optional="YES" attributeType="String"/>
         <relationship name="capShip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AVDB" inverseName="avShip" inverseEntity="AVDB"/>
     </entity>
+    <entity name="LikeDB" representedClassName="LikeDB" syncable="YES">
+        <attribute name="cover" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="rate" optional="YES" attributeType="String"/>
+        <attribute name="time" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
 </model>

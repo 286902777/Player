@@ -21,8 +21,8 @@ class WTabController: UITabBarController {
         let fav = addChildVC(controller: FavoriteViewController(),title: wTabBarStauts.favorite.rawValue, image: "w_favorite", selectImage: "w_favorite_sel")
         let my = addChildVC(controller: MyLibraryViewController(),title: wTabBarStauts.my.rawValue, image: "w_my", selectImage: "w_my_sel")
 
-        self.tabBar.barTintColor = UIColor.hexColor("#141414", alpha: 0.9)
-        self.tabBar.backgroundColor = UIColor.hexColor("#141414", alpha: 0.9)
+        self.tabBar.barTintColor = UIColor.hexColor("#141414", alpha: 0.95)
+        self.tabBar.backgroundColor = UIColor.hexColor("#141414", alpha: 0.95)
         self.tabBar.isTranslucent = false
         self.viewControllers = [index, fav, my]
     }

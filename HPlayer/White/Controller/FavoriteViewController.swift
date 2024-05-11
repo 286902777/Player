@@ -10,7 +10,7 @@ import UIKit
 
 class FavoriteViewController: BaseViewController {
     let cellIdentifier = "FavoriteCell"
-    private var list: [String] = []
+
     lazy var tableView: UITableView = {
         let table = UITableView.init(frame: .zero, style: .plain)
         table.delegate = self
@@ -21,11 +21,22 @@ class FavoriteViewController: BaseViewController {
         if #available(iOS 15.0, *) {
             table.sectionHeaderTopPadding = 0
         }
-        table.contentInset = .zero
+        table.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: kNavBarHeight, right: 0)
         table.contentInsetAdjustmentBehavior = .never
         return table
     }()
     
+    private var list: [IndexDataListModel] = [] {
+        didSet {
+            self.emptyView.isHidden = self.list.count > 0
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.list = DBManager.share.selectWhiteData()
+        self.tableView.reloadData()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navBar.setBackHidden(true)
@@ -37,10 +48,16 @@ class FavoriteViewController: BaseViewController {
     override func setUI() {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(navBar.snp.bottom)
-            make.left.right.bottom.equalToSuperview()
+            make.top.equalTo(navBar.snp.bottom).offset(16)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(kScreenHeight - kNavBarHeight)
         }
-        tableView.reloadData()
+        view.addSubview(emptyView)
+        emptyView.snp.makeConstraints { make in
+            make.top.equalTo(navBar.snp.bottom)
+            make.left.bottom.right.equalToSuperview()
+        }
+        self.emptyView.setType(.favorite)
     }
     
     override func rightAction() {
@@ -53,7 +70,9 @@ class FavoriteViewController: BaseViewController {
 extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:FavoriteCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! FavoriteCell
-        
+        if let model = self.list.indexOfSafe(indexPath.row) {
+            cell.setModel(model)
+        }
         return cell
     }
     
@@ -66,7 +85,12 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        self.list.count
-        20
+        self.list.count
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let model = self.list.indexOfSafe(indexPath.row) {
+
+        }
     }
 }

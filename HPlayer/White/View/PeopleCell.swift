@@ -22,4 +22,9 @@ class PeopleCell: UICollectionViewCell {
         self.iconV.layer.cornerRadius = r
         self.iconV.layer.masksToBounds = true
     }
+    
+    func setModel(model: IndexDataListModel) {
+        self.iconV.setImage(with: model.cover)
+        self.nameL.text = model.name
+    }
 }

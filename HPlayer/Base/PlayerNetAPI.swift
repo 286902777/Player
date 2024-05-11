@@ -29,6 +29,12 @@ enum AVNetAPI: String {
     case AVMoreInfoApi = "gqbRSXaW/itFFKq"
     /// SearchClickCount
     case AVSearchClickCountApi = "YOpRgNvAn/QVN/mpqDGp"
+    /// A page Trending、Popular
+    case WBannerApi = "fijpptGv/PUfQhW/xWPIwviisA"
+    /// A page Popular People
+    case WPeopleApi = "xgSIPeYFCw/zjyeKK"
+    /// A page Popular People Video
+    case WPeopleDataApi = "mzcAySvZp/uFnkX"
 }
 
 class PlayerNetAPI {
@@ -210,6 +216,45 @@ class PlayerNetAPI {
                 completion(responseModel.status == .success, list)
             } else {
                 completion(false, [AVInfoSsnlistModel()])
+            }
+        }
+    }
+    
+    // MARK: - White Page
+    func WBannerData(_ completion: @escaping (_ success: Bool, _ list: [IndexModel]) -> ()) {
+        var para: [String: String] = [:]
+        NetManager.request(url: AVNetAPI.WBannerApi.rawValue, method: .get, parameters: para, modelType: IndexModel.self) { responseModel in
+            if let list = responseModel.models as? [IndexModel] {
+                completion(responseModel.status == .success, list)
+            } else {
+                completion(false, [IndexModel()])
+            }
+        }
+    }
+    
+    func WPeopleInfo(_ page: Int, _ pageSize: Int, _ completion: @escaping (_ success: Bool, _ list: [IndexDataListModel]) -> ()) {
+        var para: [String: String] = [:]
+        para[Para_page] = "\(page)"
+        para[Para_pageSize] = "\(pageSize)"
+        NetManager.request(url: AVNetAPI.WPeopleApi.rawValue, method: .post, parameters: para, modelType: IndexDataListModel.self) { responseModel in
+            if let list = responseModel.models as? [IndexDataListModel] {
+                completion(responseModel.status == .success, list)
+            } else {
+                completion(false, [IndexDataListModel()])
+            }
+        }
+    }
+    
+    func WPeopleInfoData(_ id: String, _ page: Int, _ pageSize: Int, _ completion: @escaping (_ success: Bool, _ list: [IndexDataListModel]) -> ()) {
+        var para: [String: String] = [:]
+        para[Mod_id] = "\(id)"
+        para[Para_page] = "\(page)"
+        para[Para_pageSize] = "\(pageSize)"
+        NetManager.request(url: AVNetAPI.WPeopleDataApi.rawValue, method: .post, parameters: para, modelType: IndexDataListModel.self) { responseModel in
+            if let list = responseModel.models as? [IndexDataListModel] {
+                completion(responseModel.status == .success, list)
+            } else {
+                completion(false, [IndexDataListModel()])
             }
         }
     }

@@ -389,4 +389,81 @@ class DBManager {
             return dataArray
         }
     }
+    
+    // MARK: - White 增、删、查
+    func findWhiteDataWithModel(id: String) -> Bool {
+        let context:NSManagedObjectContext = DBManager.share.context
+        let request:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "LikeDB")
+        request.predicate = NSPredicate(format: "id=%@", id)
+       
+        do {
+            let results = try context.fetch(request)
+            if results.count > 0 {
+                return true
+            }
+        } catch  {
+            print(error)
+        }
+        return false
+    }
+    
+    func insertWhiteData(mod: IndexDataListModel) {
+        if self.findWhiteDataWithModel(id: mod.id) == false {
+            let context:NSManagedObjectContext = DBManager.share.context
+            let m = NSEntityDescription.insertNewObject(forEntityName: "LikeDB", into: context) as! LikeDB
+            m.id = mod.id
+            m.type = Int16(mod.type)
+            m.title = mod.title
+            m.cover = mod.cover
+            m.rate = mod.rate
+            m.time = Double(Date().timeIntervalSince1970)
+            do {
+                try context.save()
+                NotificationCenter.default.post(name: HPKey.Noti_Like, object: nil)
+            } catch { }
+        }
+    }
+    
+    func deleteWhiteData(_ model: IndexDataListModel) {
+        let context:NSManagedObjectContext = DBManager.share.context
+        let request:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "LikeDB")
+        request.predicate = NSPredicate(format: "id=%@", model.id)
+        do {
+            let results = try context.fetch(request)
+            for result in results {
+                if let entity = result as? LikeDB {
+                    context.delete(entity)
+                }
+            }
+            try context.save()
+            NotificationCenter.default.post(name: HPKey.Noti_Like, object: nil)
+        } catch {
+        
+        }
+    }
+    
+    func selectWhiteData() ->[IndexDataListModel] {
+        let context:NSManagedObjectContext = DBManager.share.context
+        let request:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "LikeDB")
+        request.sortDescriptors = [NSSortDescriptor.init(key: "time", ascending: false)]
+        var dataArray = Array<IndexDataListModel>()
+
+        do {
+            let results = try context.fetch(request)
+            for item in results {
+                if let model = item as? LikeDB {
+                    let m = IndexDataListModel()
+                    m.id = model.id ?? ""
+                    m.title = model.title ?? ""
+                    m.cover = model.cover ?? ""
+                    m.rate = model.rate ?? ""
+                    m.type = Int(model.type)
+                    dataArray.append(m)
+                }
+            }
+            return dataArray
+        } catch {
+            return dataArray
+        }
+    }
 }

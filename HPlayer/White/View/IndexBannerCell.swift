@@ -133,10 +133,9 @@ class IndexBannerCell: JXBannerBaseCell {
         }
     }
 
-    func setModel(_ model: AVDataInfoModel) {
+    func setModel(_ model: IndexDataListModel) {
         let attr: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium), NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.strokeColor: UIColor.hexColor("#141414"), NSAttributedString.Key.strokeWidth: -0.5]
         self.titleL.attributedText = NSAttributedString(string: model.title, attributes: attr)
-        
         self.imageView.setImage(with: model.horizontal_cover)
         if let r = Float(model.rate) {
             self.starL.isHidden = false
@@ -144,5 +143,11 @@ class IndexBannerCell: JXBannerBaseCell {
         } else {
             self.starL.isHidden = true
         }
+        let arr = DBManager.share.selectWhiteData()
+        if let m = arr.first(where: {$0.id == model.id}) {
+            model.isLike = true
+        }
+        self.favImgV.image = UIImage(named: model.isLike ? "w_like" : "w_unlike")
+        self.favoriteL.text = model.isLike ? "Favorited" : "Favorite"
     }
 }

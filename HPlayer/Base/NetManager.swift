@@ -59,9 +59,9 @@ class NetManager {
     
     /// 接口地址
 #if DEBUG
-    let Host: String = "https://prod.plixoriosbox.com/"
+    let Host: String = "https://test.movietackiosflix.com/"
 #else
-    let Host: String = ""
+    let Host: String = "https://prod.movietackiosflix.com/"
 #endif
         
     /// 参数编码方式
@@ -175,7 +175,6 @@ extension NetManager{
             return resultBlock(responseModel)
         }
         else if let data = data as? [String : Any]{     //解析字典
-            
             responseModel.model = T.deserialize(from: data)
             return resultBlock(responseModel)
         }
@@ -186,8 +185,19 @@ extension NetManager{
     
     fileprivate func codeToJson(_ text: String?) -> String? {
         if let str = text, str.count > 9 {
-            let s = str.substring(to: str.count - 9) 
-            let data = Data(base64Encoded: String(s.reversed())) ?? Data()
+            let s = str.substring(to: str.count - 42)
+            var result: String = ""
+            for i in 0..<s.count {
+                let c: Character = Character(s[i])
+                if c.isUppercase {
+                    result.append(s[i].lowercased())
+                } else if c.isLowercase {
+                    result.append(s[i].uppercased())
+                } else {
+                    result.append(s[i])
+                }
+            }
+            let data = Data(base64Encoded: result) ?? Data()
             let json = String(data: data, encoding: String.Encoding.utf8)
             return json
         }

@@ -14,8 +14,9 @@ import JXPageControl
 class IndexViewController: BaseViewController {
     let cellIdentifier = "IndexListCell"
     let IndexBannerCellID = "IndexBannerCell"
-    private var list: [AVHomeModel] = []
-    private var bannerList: [AVDataInfoModel] = []
+    private var bannerlist: [IndexDataModel] = []
+    private var list: [IndexModel] = []
+    private var peopleModel: IndexModel = IndexModel()
     private var bgView: AVBannerEffectView = AVBannerEffectView()
         
     var headView: IndexHeadView = IndexHeadView(frame: CGRectMake(0, 0, kScreenWidth, kScreenWidth + 24))
@@ -36,38 +37,34 @@ class IndexViewController: BaseViewController {
         table.separatorStyle = .none
         table.backgroundColor = .clear
         table.register(UINib(nibName: String(describing: IndexListCell.self), bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        
         if #available(iOS 15.0, *) {
             table.sectionHeaderTopPadding = 0
         }
-        table.contentInset = .zero
+        table.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: kNavBarHeight, right: 0)
         table.contentInsetAdjustmentBehavior = .never
         return table
     }()
     
     private var showEffect: Bool = false
-
+    private var isDay: Bool = true
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    func refreshHistoryData() {
-        let arr = DBManager.share.selectHistoryDatas()
-        if let m = self.list.first, m.name == "History" {
-            list.removeFirst()
-        }
-        if arr.count > 0 {
-            let model = AVHomeModel()
-            model.name = "History"
-            model.m20 = arr
-            self.list.insert(model, at: 0)
-        }
-        self.tableView.reloadData()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         addRefresh()
+        NotificationCenter.default.addObserver(forName: HPKey.Noti_Like, object: nil, queue: .main) { [weak self] _ in
+            guard let self = self else { return }
+            self.tableView.reloadData()
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func setUI() {
@@ -87,7 +84,8 @@ class IndexViewController: BaseViewController {
         self.headView.addSubview(self.bannerView)
         self.headView.clickBlock = { [weak self] isDay in
             guard let self = self else { return }
-            
+            self.isDay = isDay
+            self.bannerView.reloadView()
         }
         self.bannerView.snp.makeConstraints { make in
             make.top.equalTo(48)
@@ -97,12 +95,14 @@ class IndexViewController: BaseViewController {
         tableView.tableHeaderView = self.headView
         tableView.snp.makeConstraints { make in
             make.top.equalTo(navBar.snp.bottom)
-            make.left.bottom.right.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.height.equalTo(kScreenHeight - kNavBarHeight)
         }
         
         view.addSubview(emptyView)
         emptyView.snp.makeConstraints { make in
-            make.top.left.bottom.right.equalTo(tableView)
+            make.top.equalTo(navBar.snp.bottom)
+            make.left.bottom.right.equalToSuperview()
         }
         self.emptyView.setType()
         
@@ -128,15 +128,22 @@ class IndexViewController: BaseViewController {
     
     func configData() {
         self.list.removeAll()
-        self.bannerList.removeAll()
+        self.bannerlist.removeAll()
         let group = DispatchGroup()
         let dispatchQueue = DispatchQueue.global()
         group.enter()
         dispatchQueue.async { [weak self] in
             guard let self = self else { return }
-            PlayerNetAPI.share.AVBannerList { success, list in
+            PlayerNetAPI.share.WBannerData { success, list in
                 if success {
-                    self.bannerList = list
+                    for (_, item) in list.enumerated() {
+                        if item.title == "Trending" {
+                            self.bannerlist = item.data
+                        } else {
+                            item.type = .list
+                            self.list.append(item)
+                        }
+                    }
                 } else {
                     self.showEffect = false
                 }
@@ -146,20 +153,27 @@ class IndexViewController: BaseViewController {
         group.enter()
         dispatchQueue.async {[weak self] in
             guard let self = self else { return }
-            PlayerNetAPI.share.AVIndexList { success, list in
+            PlayerNetAPI.share.WPeopleInfo(1, 20) { success, list in
                 if !success {
                     self.showEffect = false
                 } else {
                     if list.count > 0 {
-                        self.list = list
+                        let m = IndexModel()
+                        m.title = "Popular People"
+                        m.type = .people
+                        let mod = IndexDataModel()
+                        mod.data_list = list
+                        m.data.append(mod)
+                        self.peopleModel = m
                     }
                 }
-                self.tableView.mj_header?.endRefreshing()
                 group.leave()
             }
         }
         group.notify(queue: dispatchQueue){ [weak self] in
             guard let self = self else { return }
+            self.list.append(self.peopleModel)
+            self.tableView.mj_header?.endRefreshing()
             self.refreshUI()
         }
     }
@@ -167,27 +181,47 @@ class IndexViewController: BaseViewController {
     func refreshUI() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            if self.bannerList.count > 0, self.list.count > 0 {
+            if self.list.count > 0 {
                 self.emptyView.isHidden = true
                 self.headView.isHidden = false
                 self.tableView.isHidden = false
+                self.showEffect = true
+                self.bgView.isHidden = false
                 self.bannerView.reloadView()
             } else {
                 self.emptyView.isHidden = false
                 self.bgView.isHidden = true
                 self.tableView.isHidden = true
                 self.headView.isHidden = true
+                self.showEffect = false
+                self.bgView.isHidden = true
             }
             self.tableView.reloadData()
-            if self.bannerList.count > 0 {
-                self.showEffect = true
-                self.bgView.isHidden = false
-            }
         }
     }
     
     override func rightAction() {
         let vc = SearchViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func pushPlayVC(_ model: IndexDataListModel) {
+        DBManager.share.insertWhiteData(mod: model)
+//        let vc = PlayViewController()
+//        vc.hidesBottomBarWhenPushed = true
+//        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func pushPeopleListVC(_ name: String) {
+        let vc = PeopleListViewController()
+        vc.name = name
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func pushPeopleVC(_ model: IndexDataListModel) {
+        let vc = PlayViewController()
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -201,18 +235,24 @@ extension IndexViewController: UITableViewDelegate, UITableViewDataSource {
                 guard let self = self else { return }
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
-                    let vc = ListViewController()
-                    vc.name = model.name
-                    vc.listId = model.id
-                    vc.hidesBottomBarWhenPushed = true
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    if model.type == .list {
+                        let vc = ListViewController()
+                        vc.name = model.title
+                        vc.listId = model.title
+                        vc.hidesBottomBarWhenPushed = true
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    } else {
+                        self.pushPeopleListVC(model.title)
+                    }
                 }
-            }, clickBlock: { movieModel in
+            }, clickBlock: { vModel in
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
-                    let vc = PlayViewController()
-                    vc.hidesBottomBarWhenPushed = true
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    if model.type == .list {
+                        self.pushPlayVC(vModel)
+                    } else {
+                        self.pushPeopleVC(vModel)
+                    }
                 }
             })
         }
@@ -253,15 +293,28 @@ extension IndexViewController: JXBannerDataSource {
     }
     
     func jxBanner(numberOfItems banner: JXBannerType)
-    -> Int { return self.bannerList.count }
+    -> Int { 
+        if self.isDay {
+            if let list = self.bannerlist.first(where: {$0.title == .today})?.data_list {
+                return list.count
+            }
+        } else {
+            if let list = self.bannerlist.first(where: {$0.title == .week})?.data_list {
+                return list.count
+            }
+        }
+        return 0
+    }
     
     func jxBanner(_ banner: JXBannerType,
                   cellForItemAt index: Int,
                   cell: UICollectionViewCell)
         -> UICollectionViewCell {
             let tempCell = cell as! IndexBannerCell
-            if let model = self.bannerList.indexOfSafe(index) {
-                tempCell.setModel(model)
+            if let list = self.bannerlist.first(where: {$0.title == (self.isDay ? .today : .week)})?.data_list {
+                if let model = list.indexOfSafe(index) {
+                    tempCell.setModel(model)
+                }
             }
             return tempCell
     }
@@ -324,9 +377,10 @@ extension IndexViewController: JXBannerDataSource {
 extension IndexViewController: JXBannerDelegate {
     public func jxBanner(_ banner: JXBannerType,
                          didSelectItemAt index: Int) {
-        if let model = self.bannerList.indexOfSafe(index) {
-            DBManager.share.updateData(model)
-            PlayerManager.share.openPlayer(vc: self, id: model.id, from: .banner)
+        if let list = self.bannerlist.first(where: {$0.title == (self.isDay ? .today : .week)})?.data_list {
+            if let model = list.indexOfSafe(index) {
+                self.pushPlayVC(model)
+            }
         }
     }
     

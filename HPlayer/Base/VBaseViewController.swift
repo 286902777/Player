@@ -107,6 +107,7 @@ class VBaseViewController: UIViewController {
     }
     
     func clickBackAction() {
+        HPProgressHUD.dismiss()
         self.navigationController?.popViewController(animated: true)
     }
     

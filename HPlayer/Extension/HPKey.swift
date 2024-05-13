@@ -55,6 +55,13 @@ let Mod_gender = "DdQVoTVn"
 let Mod_biography = "itQhqkmWH"
 let Mod_birthday = "CPouuFULWi"
 let Mod_place_of_birth = "hcSA"
+let Mod_trailer = "MhoGW"
+let Mod_images = "uOtr"
+let Mod_url = "zYXzSrfD"
+let Mod_img_mode = "IpHELe"
+let Mod_cast = "lVY"
+let Mod_overview = "ZmBJYTkerx"
+let Mod_runtime = "HSbQnp"
 
 class HPKey {
     static let privacy = "privacy"

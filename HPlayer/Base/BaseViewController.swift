@@ -77,6 +77,7 @@ class BaseViewController: UIViewController {
     }
     
     func backAction() {
+        HPProgressHUD.dismiss()
         self.navigationController?.popViewController(animated: true)
     }
     

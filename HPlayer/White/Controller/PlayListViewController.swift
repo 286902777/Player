@@ -12,13 +12,13 @@ import JXPagingView
 class PlayListViewController: UIViewController {
     var list: [AVDataInfoModel] = []
     let cellW = floor((kScreenWidth - 36) / 3)
-    let cellIdentifier = "AVSearchItemCellIdentifier"
+    let cellIdentifier = "IndexCellIdentifier"
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout:layout)
         collectionView.contentInset = UIEdgeInsets(top: 12, left: 12, bottom: 16, right: 12)
-        collectionView.register(UINib(nibName: String(describing: AVSearchItemCell.self), bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
+        collectionView.register(UINib(nibName: String(describing: IndexCell.self), bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
@@ -26,11 +26,12 @@ class PlayListViewController: UIViewController {
         collectionView.contentInsetAdjustmentBehavior = .never
         return collectionView
     }()
-    
+    var refreshBlock: ((_ rModel: IndexDataListModel) -> Void)?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        requestData()
+        self.collectionView.reloadData()
     }
     
     func setUI() {
@@ -38,25 +39,6 @@ class PlayListViewController: UIViewController {
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-        }
-    }
-    
-    func requestData() {
-        HPProgressHUD.show()
-        PlayerNetAPI.share.AVMoreList(id: "1", page: 1) { [weak self] success, list in
-            HPProgressHUD.dismiss()
-            guard let self = self else { return }
-            if !success {
-
-            } else {
-                if list.count > 0 {
-                    self.list.append(contentsOf: list)
-                }
-            }
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.collectionView.reloadData()
-            }
         }
     }
 }
@@ -71,15 +53,23 @@ extension PlayListViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! AVSearchItemCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! IndexCell
         if let model = self.list.indexOfSafe(indexPath.item) {
-            cell.setModel(model: model, indexPath.item)
+            cell.setPlayModel(model: model)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        if let model = self.list.indexOfSafe(indexPath.item) {
+            let mod = IndexDataListModel()
+            mod.id = model.id
+            mod.type = model.type
+            mod.title = model.title
+            mod.cover = model.cover
+            mod.rate = model.rate
+            self.refreshBlock?(mod)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

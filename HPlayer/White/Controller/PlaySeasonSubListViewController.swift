@@ -12,7 +12,9 @@ class PlaySeasonSubListViewController: BaseViewController {
 
     let cellIdentifier = "PlaySeasonListCell"
     var name: String = ""
-    
+    var id: String = ""
+    var ssnId: String = ""
+    var list: [AVEpsModel] = []
     lazy var tableView: UITableView = {
         let table = UITableView.init(frame: .zero, style: .plain)
         table.delegate = self
@@ -32,7 +34,7 @@ class PlaySeasonSubListViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        request()
     }
     
     override func setUI() {
@@ -47,25 +49,43 @@ class PlaySeasonSubListViewController: BaseViewController {
         }
         tableView.reloadData()
     }
+    
+    func request() {
+        HPProgressHUD.show()
+        PlayerNetAPI.share.AVTVEpsData(id: self.id, ssnId: self.ssnId) { [weak self] success, list in
+            guard let self = self else { return }
+            HPProgressHUD.dismiss()
+            if success {
+                self.list = list
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
 }
 
 extension PlaySeasonSubListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PlaySeasonListCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! PlaySeasonListCell
-        cell.clickBlock = { [weak self] in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        if let model = self.list.indexOfSafe(indexPath.row) {
+            cell.setModel(model)
+            cell.clickBlock = { [weak self] in
+                guard let self = self else { return }
+                model.isSelect = true
+                DispatchQueue.main.async {
+                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                }
             }
         }
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        4
+        1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        self.list.count
     }
 }

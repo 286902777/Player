@@ -10,6 +10,7 @@ import UIKit
 import WebKit
 
 class AVWebViewController: VBaseViewController {
+    var isvideo: Bool = true
     var name: String = ""
     var link: String = ""
     private lazy var webView: WKWebView = {
@@ -29,6 +30,7 @@ class AVWebViewController: VBaseViewController {
     
     func setUpUI() {
         self.navBar.titleL.text = name
+        self.navBar.backBtn.setImage(UIImage(named: self.isvideo ? "nav_back" : "w_back"), for: .normal)
         view.addSubview(webView)
         webView.snp.makeConstraints { make in
             make.left.bottom.right.equalToSuperview()

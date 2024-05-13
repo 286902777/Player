@@ -35,10 +35,7 @@ class IndexCell: UICollectionViewCell {
     }
   
     func setModel(model: IndexDataListModel) {
-        let arr = DBManager.share.selectWhiteData()
-        if let m = arr.first(where: {$0.id == model.id}) {
-            model.isLike = true
-        }
+        model.isLike = DBManager.share.findWhiteDataWithModel(id: model.id)
         if let r = Float(model.rate) {
             self.scoreL.isHidden = false
             self.setScoreFont(String(format: "%.1f", r))
@@ -46,6 +43,19 @@ class IndexCell: UICollectionViewCell {
             self.scoreL.isHidden = true
         }
         self.likeView.image = UIImage(named: model.isLike ? "w_like" : "w_unlike")
+        self.contentL.text = model.title
+        self.imageV.setImage(with: model.cover)
+    }
+    
+    func setPlayModel(model: AVDataInfoModel) {
+        let like = DBManager.share.findWhiteDataWithModel(id: model.id)
+        if let r = Float(model.rate) {
+            self.scoreL.isHidden = false
+            self.setScoreFont(String(format: "%.1f", r))
+        } else {
+            self.scoreL.isHidden = true
+        }
+        self.likeView.image = UIImage(named: like ? "w_like" : "w_unlike")
         self.contentL.text = model.title
         self.imageV.setImage(with: model.cover)
     }

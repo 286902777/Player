@@ -22,7 +22,8 @@ class PlayPeopleCell: UICollectionViewCell {
         self.iconV.layer.masksToBounds = true
     }
     
-    func setM() {
-        
+    func setModel(_ model: IndexDataListModel) {
+        self.iconV.setImage(with: model.cover)
+        self.nameL.text = model.name
     }
 }

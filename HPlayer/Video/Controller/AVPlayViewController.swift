@@ -86,6 +86,10 @@ class AVPlayViewController: UIViewController {
     private var captionVC: HPPlayerCaptionSetView?
     private var isFirst: Bool = true
 
+    private var tempPlay: Bool = true
+    private var isPlayStatus: Bool = true
+    private var errorInfo: String = "play failed"
+    
     init(model: AVModel, from: PlayFrom) {
         self.model = model
         self.id = self.model.id
@@ -94,10 +98,7 @@ class AVPlayViewController: UIViewController {
         self.from = from
         super.init(nibName: nil, bundle: nil)
     }
-    private var tempPlay: Bool = true
-    private var isPlayStatus: Bool = true
-    private var errorInfo: String = "play failed"
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

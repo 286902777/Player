@@ -1,5 +1,5 @@
 //
-//  PeopleListViewController.swift
+//  PeopleInfoController.swift
 //  HPlayer
 //
 //  Created by HF on 2024/5/10.
@@ -8,17 +8,20 @@
 
 import UIKit
 
-class PeopleListViewController: BaseViewController {
+class PeopleInfoController: BaseViewController {
+    var isRefresh: Bool = false
     let cellW = floor((kScreenWidth - 36) / 3)
     var name: String = ""
+    var pId: String = ""
     var list: [IndexDataListModel] = []
-    let cellIdentifier = "PeopleCellIdentifier"
+    let cellIdentifier = "IndexCellIdentifier"
+    var refreshBlock: ((_ mod: IndexDataListModel) -> Void)?
     private var page: Int = 1
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout:layout)
         collectionView.contentInset = UIEdgeInsets(top: 12, left: 12, bottom: 16, right: 12)
-        collectionView.register(UINib(nibName: String(describing: PeopleCell.self), bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
+        collectionView.register(UINib(nibName: String(describing: IndexCell.self), bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
@@ -36,6 +39,10 @@ class PeopleListViewController: BaseViewController {
         super.viewDidLoad()
         addRefresh()
         requestData()
+        NotificationCenter.default.addObserver(forName: HPKey.Noti_Like, object: nil, queue: .main) { [weak self] _ in
+            guard let self = self else { return }
+            self.collectionView.reloadData()
+        }
     }
     
     deinit {
@@ -55,7 +62,6 @@ class PeopleListViewController: BaseViewController {
         emptyView.snp.makeConstraints { make in
             make.top.left.bottom.right.equalTo(collectionView)
         }
-        self.emptyView.setType()
     }
     
     func addRefresh() {
@@ -85,15 +91,14 @@ class PeopleListViewController: BaseViewController {
             return
         }
         HPProgressHUD.show()
-        PlayerNetAPI.share.WPeopleInfo(self.page, 30) { [weak self] success, list in
+        PlayerNetAPI.share.WPeopleInfoData(self.pId, self.page, 30) { [weak self] success, list in
             HPProgressHUD.dismiss()
             guard let self = self else { return }
             if !success {
+                self.emptyView.setType()
                 self.emptyView.isHidden = false
             } else {
-                if list.count > 0 {
-                    self.list.append(contentsOf: list)
-                }
+                self.list.append(contentsOf: list)
                 self.emptyView.isHidden = true
             }
             self.collectionView.mj_header?.endRefreshing()
@@ -110,7 +115,7 @@ class PeopleListViewController: BaseViewController {
     }
 }
 
-extension PeopleListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension PeopleInfoController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         self.list.count
     }
@@ -120,7 +125,7 @@ extension PeopleListViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! PeopleCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! IndexCell
         if let model = self.list.indexOfSafe(indexPath.item) {
             cell.setModel(model: model)
         }
@@ -128,11 +133,14 @@ extension PeopleListViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let model = self.list.indexOfSafe(indexPath.item) {
-            let vc = PeopleInfoController()
-            vc.pId = model.id
-            vc.name = model.name
-            self.navigationController?.pushViewController(vc, animated: true)
+        if let mod = self.list.indexOfSafe(indexPath.item) {
+            if self.isRefresh {
+                self.refreshBlock?(mod)
+                self.navigationController?.popViewController(animated: false)
+            } else {
+                let vc = PlayViewController(model: mod)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
     

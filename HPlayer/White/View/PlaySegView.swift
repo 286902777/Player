@@ -10,6 +10,18 @@ import UIKit
 import JXSegmentedView
 
 class PlaySegView: UIView {
+    private lazy var imgV: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
+        return view
+    }()
+    
+    private lazy var playBtn: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(named: "w_banner_play"), for: .normal)
+        return btn
+    }()
     var lineV: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.hexColor("#FFFFFF", alpha: 0.1)
@@ -27,6 +39,8 @@ class PlaySegView: UIView {
     }
     let segView: PlaySegListView = PlaySegListView()
     
+    var clickBlock: (() -> Void)?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -38,7 +52,12 @@ class PlaySegView: UIView {
     }
     
     func setupUI() {
+        self.addSubview(imgV)
         self.addSubview(lineV)
+        imgV.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(kScreenWidth)
+        }
         lineV.snp.makeConstraints { make in
             make.bottom.left.right.equalToSuperview()
             make.height.equalTo(1)
@@ -46,9 +65,24 @@ class PlaySegView: UIView {
         
         self.addSubview(segView)
         segView.snp.makeConstraints { (make) in
-            make.top.left.right.equalToSuperview()
+            make.top.equalTo(imgV.snp.bottom)
+            make.left.right.equalToSuperview()
             make.bottom.equalTo(lineV.snp.top)
         }
+        self.addSubview(self.playBtn)
+        self.playBtn.snp.makeConstraints { make in
+            make.center.equalTo(self.imgV)
+            make.size.equalTo(CGSize(width: 48, height: 48))
+        }
+        self.playBtn.addTarget(self, action: #selector(clickPlayAction), for: .touchUpInside)
+    }
+    
+    @objc func clickPlayAction() {
+        self.clickBlock?()
+    }
+    
+    func setUrl(_ url: String) {
+        self.imgV.setImage(with: url)
     }
 }
 

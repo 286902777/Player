@@ -8,27 +8,27 @@
 import Foundation
 enum AVNetAPI: String {
     /// 首页
-    case AVIndexApi = "NzFzHk/iSM/NfCUKew"
+    case AVIndexApi = "KRFUhMzQTo/oLtyNph/uIgoF"
     /// banner
-    case AVBannerApi = "lfIHLAXbZQ/uGjdxuUQVs/GeiwvPOt"
+    case AVBannerApi = "unKteclflZ/aJqjiX/qKmEWjORV"
     /// 更多
-    case AVMoreListApi = "hVaGQuI/BauTCfa"
+    case AVMoreListApi = "AarX/TzDrCPvQp/sBzmLk"
     /// 搜索TopData
-    case AVSearchTopApi = "YNawcSJTX/oeRqNCaNf"
+    case AVSearchTopApi = "nZxIU/RTmh"
     /// filter head
-    case AVFilterHeadApi = "pGfiuRvgy/KbYUmQO"
+    case AVFilterHeadApi = "TiaeYYPwuk/tsELcc/yghQMy"
     /// filter
-    case AVFilterApi = "PUTDlH/IfqvFuaF/fgMJkQO"
+    case AVFilterApi = "oDes/qiBDnvl/jxt"
     /// tveps
-    case AVTvEpsApi = "deUBnDWtN/daZLK/wbvRvyf"
+    case AVTvEpsApi = "uEUfPCMYo/sBNOCKgoD/aleQ"
     /// tvssn
-    case AVTvSsnApi = "hEz/KgJmHx"
+    case AVTvSsnApi = "jLNJFqEOY/ZopR"
     /// AV,tvInfo
-    case AVInfoApi = "tlqOBIE/WHXFgWnOU"
+    case AVInfoApi = "jpjVqEiw/CJwVvvVh/EILLTXpOEC"
     /// AV More Info
-    case AVMoreInfoApi = "gqbRSXaW/itFFKq"
+    case AVMoreInfoApi = "idGyp/FsM/yGeKlmCz"
     /// SearchClickCount
-    case AVSearchClickCountApi = "YOpRgNvAn/QVN/mpqDGp"
+    case AVSearchClickCountApi = "KjIJMX/qmj"
     /// A page Trending、Popular
     case WBannerApi = "fijpptGv/PUfQhW/xWPIwviisA"
     /// A page Popular People
@@ -222,7 +222,7 @@ class PlayerNetAPI {
     
     // MARK: - White Page
     func WBannerData(_ completion: @escaping (_ success: Bool, _ list: [IndexModel]) -> ()) {
-        var para: [String: String] = [:]
+        let para: [String: String] = [:]
         NetManager.request(url: AVNetAPI.WBannerApi.rawValue, method: .get, parameters: para, modelType: IndexModel.self) { responseModel in
             if let list = responseModel.models as? [IndexModel] {
                 completion(responseModel.status == .success, list)

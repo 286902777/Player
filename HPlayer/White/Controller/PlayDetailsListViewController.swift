@@ -10,7 +10,9 @@ import UIKit
 import JXPagingView
 
 class PlayDetailsListViewController: UIViewController {
-
+    var model: AVModel = AVModel()
+    var list: [IndexDataListModel] = []
+    var refreshBlock: ((_ mod: IndexDataListModel) -> Void)?
     let cellIdentifier = "PlayDetailsCell"
     lazy var tableView: UITableView = {
         let table = UITableView.init(frame: .zero, style: .plain)
@@ -54,12 +56,38 @@ class PlayDetailsListViewController: UIViewController {
 extension PlayDetailsListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PlayDetailsCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! PlayDetailsCell
-        cell.setM()
+        cell.setModel(self.model, self.list)
         cell.clickBlock = { [weak self] share in
             guard let self = self else { return }
             self.openAppshow(share)
         }
-        
+        cell.clickLikeBlock = { [weak self] like in
+            guard let self = self else { return }
+            let m = IndexDataListModel()
+            m.id = self.model.id
+            m.type = self.model.type
+            m.title = self.model.title
+            m.cover = self.model.cover
+            m.rate = self.model.rate
+            if like {
+                DBManager.share.insertWhiteData(mod: m)
+            } else {
+                DBManager.share.deleteWhiteData(m)
+            }
+        }
+        cell.clickItemBlock = { [weak self] m in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                let vc = PeopleInfoController()
+                vc.name = m.name
+                vc.pId = m.id
+                vc.isRefresh = true
+                vc.refreshBlock = { mod in
+                    self.refreshBlock?(mod)
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
         return cell
     }
  

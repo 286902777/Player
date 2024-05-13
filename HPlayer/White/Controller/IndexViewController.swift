@@ -207,10 +207,9 @@ class IndexViewController: BaseViewController {
     }
     
     func pushPlayVC(_ model: IndexDataListModel) {
-        DBManager.share.insertWhiteData(mod: model)
-//        let vc = PlayViewController()
-//        vc.hidesBottomBarWhenPushed = true
-//        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = PlayViewController(model: model)
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func pushPeopleListVC(_ name: String) {
@@ -221,7 +220,7 @@ class IndexViewController: BaseViewController {
     }
     
     func pushPeopleVC(_ model: IndexDataListModel) {
-        let vc = PlayViewController()
+        let vc = PlayViewController(model: model)
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }

@@ -30,8 +30,10 @@ class PlayDetailsCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     let cellIdentifier = "PlayPeopleCell"
-    var list: [String] = []
+    var list: [IndexDataListModel] = []
     var clickBlock: ((_ share: Bool) -> Void)?
+    var clickLikeBlock: ((_ like: Bool) -> Void)?
+    var clickItemBlock: ((_ model: IndexDataListModel) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,18 +46,25 @@ class PlayDetailsCell: UITableViewCell {
 
     }
 
-    func setM() {
-        self.nameL.text = "Spider Man Spider Man Spider ManSpider Man Spider Man Spider ManSpider Man Sp…"
-        self.starL.text = "8.5"
-        self.contryL.text = "USA"
-        self.typeL.text = "Animation / Comedy / Family"
-        self.desL.text = "Introduction to text content Introduction to text contentIntroduction to text content Introduction to text content Introduction to text contentIntroductionxt content Introduction to text content Introduction to text contentIntroduction to text content Introduction to t content Introduction to text contentIntroduction to text content Introduction to text content Introduction to tecontentIntroduction to text content Introduction to text content Introduction to text contentIntroduction to text content Introduction to text content Introduction to text contentIntroduction to text content Introduction"
-        //        if let r = Float(model.rate) {
-        //            self.starL.isHidden = false
-        //            self.starL.text = String(format: "%.1f", r)
-        //        } else {
-        //            self.starL.isHidden = true
-        //        }
+    func setModel(_ model: AVModel, _ list: [IndexDataListModel]) {
+        self.nameL.text = model.title
+        if let r = Float(model.rate) {
+            self.starL.isHidden = false
+            self.starL.text = String(format: "%.1f", r)
+        } else {
+            self.starL.isHidden = false
+            self.starL.text = "8.0"
+        }
+        if model.pub_date.count >= 4 {
+            self.yearL.text = model.pub_date.substring(to: 4)
+        }
+        self.contryL.text = model.country
+        self.typeL.text = model.genre_list.joined(separator: " / ")
+        self.desL.text = model.description
+        self.list = list
+        let f = DBManager.share.findWhiteDataWithModel(id: model.id)
+        self.likeBtn.isSelected = f
+        self.collectionView.reloadData()
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -64,6 +73,8 @@ class PlayDetailsCell: UITableViewCell {
     }
     
     @IBAction func clickLikeAction(_ sender: Any) {
+        self.likeBtn.isSelected = !self.likeBtn.isSelected
+        self.clickLikeBlock?(self.likeBtn.isSelected)
     }
     
     @IBAction func clickShareAction(_ sender: Any) {
@@ -88,14 +99,14 @@ extension PlayDetailsCell: UICollectionViewDelegate, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! PlayPeopleCell
         if let model = self.list.indexOfSafe(indexPath.item) {
-
+            cell.setModel(model)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let model = self.list.indexOfSafe(indexPath.item) {
-           
+            self.clickItemBlock?(model)
         }
     }
     

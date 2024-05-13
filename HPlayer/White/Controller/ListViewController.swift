@@ -134,8 +134,8 @@ extension ListViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let model = self.list.indexOfSafe(indexPath.item) {
-            let vc = PlayViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+//            let vc = PlayViewController()
+//            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

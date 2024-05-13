@@ -23,4 +23,7 @@ class PlayMaxImgCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func setUrl(_ url: String) {
+        self.imgV.setImage(with: url)
+    }
 }

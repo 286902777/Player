@@ -79,6 +79,7 @@ extension MyLibraryViewController: UITableViewDelegate, UITableViewDataSource {
             if let model = self.list.indexOfSafe(indexPath.row) {
                 vc.name = model.type.rawValue
             }
+            vc.isvideo = false
             vc.link = HPKey.privacy
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
@@ -87,6 +88,7 @@ extension MyLibraryViewController: UITableViewDelegate, UITableViewDataSource {
             if let model = self.list.indexOfSafe(indexPath.row) {
                 vc.name = model.type.rawValue
             }
+            vc.isvideo = false
             vc.link = HPKey.terms
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)

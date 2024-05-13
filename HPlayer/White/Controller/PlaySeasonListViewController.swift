@@ -10,7 +10,9 @@ import UIKit
 import JXPagingView
 
 class PlaySeasonListViewController: UIViewController {
-
+    var list: [AVInfoSsnlistModel] = []
+    var id: String = ""
+    
     let cellIdentifier = "PlaySeasonCell"
     lazy var tableView: UITableView = {
         let table = UITableView.init(frame: .zero, style: .plain)
@@ -35,6 +37,7 @@ class PlaySeasonListViewController: UIViewController {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        self.list.first?.isSelect = true
         tableView.reloadData()
     }
 }
@@ -42,6 +45,9 @@ class PlaySeasonListViewController: UIViewController {
 extension PlaySeasonListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PlaySeasonCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! PlaySeasonCell
+        if let model = self.list.indexOfSafe(indexPath.row) {
+            cell.setModel(model)
+        }
         return cell
     }
  
@@ -50,17 +56,24 @@ extension PlaySeasonListViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        4
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let vc = PlaySeasonSubListViewController()
-        vc.name = "Saeson 1"
-        self.navigationController?.pushViewController(vc, animated: true)
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.list.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let _ = self.list.map({$0.isSelect = false})
+        if let model = self.list.indexOfSafe(indexPath.row) {
+            model.isSelect = true
+            self.tableView.reloadData()
+            let vc = PlaySeasonSubListViewController()
+            vc.name = model.title
+            vc.id = self.id
+            vc.ssnId = model.id
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 extension PlaySeasonListViewController: JXPagingViewListViewDelegate, UIScrollViewDelegate {

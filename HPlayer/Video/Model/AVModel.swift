@@ -26,6 +26,14 @@ class AVEpsModel: BaseModel {
 
     var caption_list: [AVCaptionModel] = []
     
+    var cover: String = ""
+    
+    var overview: String = ""
+    
+    var runtime: Int = 0
+    
+    var storage_timestamp: TimeInterval = 0
+    
     override func mapping(mapper: HelpingMapper) {
         super.mapping(mapper: mapper)
         mapper.specify(property: &id, name: Mod_id)
@@ -33,6 +41,10 @@ class AVEpsModel: BaseModel {
         mapper.specify(property: &video, name: Mod_video)
         mapper.specify(property: &caption_list, name: Mod_caption_list)
         mapper.specify(property: &eps_num, name: Mod_eps_num)
+        mapper.specify(property: &cover, name: Mod_cover)
+        mapper.specify(property: &overview, name: Mod_overview)
+        mapper.specify(property: &runtime, name: Mod_runtime)
+        mapper.specify(property: &storage_timestamp, name: Mod_time)
     }
 }
 
@@ -93,6 +105,10 @@ class AVModel: BaseModel {
 
     var caption_list: [AVCaptionModel] = []
 
+    var trailer: String = ""
+    
+    var images: [AVImageModel] = []
+    
     var midCaptions: [AVCaption] {
         set {
             self.captions = newValue
@@ -127,9 +143,26 @@ class AVModel: BaseModel {
         mapper.specify(property: &pub_date, name: Mod_pubDate)
         mapper.specify(property: &eps_num, name: Mod_eps_num)
         mapper.specify(property: &cover, name: Mod_cover)
+        mapper.specify(property: &trailer, name: Mod_trailer)
+        mapper.specify(property: &images, name: Mod_images)
     }
 }
 
+class AVImageModel: BaseModel {
+    enum ModeType: Int, HandyJSONEnum {
+        case horizontal
+        case vertical
+    }
+
+    var url: String = ""
+    var img_mode: ModeType = .horizontal
+    
+    override func mapping(mapper: HelpingMapper) {
+        super.mapping(mapper: mapper)
+        mapper.specify(property: &url, name: Mod_url)
+        mapper.specify(property: &img_mode, name: Mod_img_mode)
+    }
+}
 
 
 class AVCaptionModel: BaseModel {
@@ -211,6 +244,8 @@ class AVMoreModel: BaseModel {
     
     var celebrity_list: [AVCastsModel] = []
     
+    var cast: [IndexDataListModel] = []
+    
     var related_list: [AVMoreListModel] = []
     
     var pub_date: String = ""
@@ -227,6 +262,7 @@ class AVMoreModel: BaseModel {
         mapper.specify(property: &genre_list, name: Mod_genre_list)
         mapper.specify(property: &celebrity_list, name: Mod_celebrity_list)
         mapper.specify(property: &related_list, name: Mod_list)
+        mapper.specify(property: &cast, name: Mod_cast)
     }
 }
 
@@ -256,13 +292,15 @@ class AVCastsModel: BaseModel {
 }
 
 class AVInfoSsnlistModel: BaseModel {
-    var id = ""
-    var title = ""
+    var id: String = ""
+    var title: String = ""
+    var cover: String = ""
     var isSelect: Bool = false
     override func mapping(mapper: HelpingMapper) {
         super.mapping(mapper: mapper)
         mapper.specify(property: &title, name: Mod_title)
         mapper.specify(property: &id, name: Mod_id)
+        mapper.specify(property: &cover, name: Mod_cover)
     }
 }
 

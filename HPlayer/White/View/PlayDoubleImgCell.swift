@@ -27,4 +27,8 @@ class PlayDoubleImgCell: UITableViewCell {
 
     }
     
+    func setUrl(_ arr: [String]) {
+        self.leftV.setImage(with: arr.first)
+        self.rightV.setImage(with: arr.last)
+    }
 }

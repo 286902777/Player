@@ -174,6 +174,7 @@
 		A79C3C512BEF667E00E8FAA7 /* LikeDB+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C3C4F2BEF667E00E8FAA7 /* LikeDB+CoreDataClass.swift */; };
 		A79C3C522BEF667E00E8FAA7 /* LikeDB+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C3C502BEF667E00E8FAA7 /* LikeDB+CoreDataProperties.swift */; };
 		A79C3C542BEF814500E8FAA7 /* PeopleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C3C532BEF814500E8FAA7 /* PeopleListViewController.swift */; };
+		A79D65262BF1A49500B98BC4 /* PeopleInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79D65252BF1A49500B98BC4 /* PeopleInfoController.swift */; };
 		A79ECFF52BE9BD0500E7356B /* AVFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79ECFF32BE9BD0500E7356B /* AVFilterCell.xib */; };
 		A79ECFF62BE9BD0500E7356B /* AVFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79ECFF42BE9BD0500E7356B /* AVFilterCell.swift */; };
 		A79ECFF92BE9BEBA00E7356B /* AVFilterSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79ECFF72BE9BEB900E7356B /* AVFilterSearchView.xib */; };
@@ -365,6 +366,7 @@
 		A79C3C4F2BEF667E00E8FAA7 /* LikeDB+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LikeDB+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		A79C3C502BEF667E00E8FAA7 /* LikeDB+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LikeDB+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		A79C3C532BEF814500E8FAA7 /* PeopleListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleListViewController.swift; sourceTree = "<group>"; };
+		A79D65252BF1A49500B98BC4 /* PeopleInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleInfoController.swift; sourceTree = "<group>"; };
 		A79ECFF32BE9BD0500E7356B /* AVFilterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVFilterCell.xib; sourceTree = "<group>"; };
 		A79ECFF42BE9BD0500E7356B /* AVFilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFilterCell.swift; sourceTree = "<group>"; };
 		A79ECFF72BE9BEB900E7356B /* AVFilterSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVFilterSearchView.xib; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 				A793983C2BEB81680030F9DE /* IndexViewController.swift */,
 				A79A234E2BEDB7610010B0EC /* ListViewController.swift */,
 				A79C3C532BEF814500E8FAA7 /* PeopleListViewController.swift */,
+				A79D65252BF1A49500B98BC4 /* PeopleInfoController.swift */,
 				A79EE4DD2BECADEA00526257 /* FavoriteViewController.swift */,
 				A79EE4E12BECAEC200526257 /* MyLibraryViewController.swift */,
 				A79A23562BEDE7440010B0EC /* SearchViewController.swift */,
@@ -909,6 +912,7 @@
 				A7969A472BE878A300FE02FB /* HPCommon.swift in Sources */,
 				A73BFBEA2BE8DC0900A672E7 /* HPPlayerSelectSsnCell.swift in Sources */,
 				A73BFB962BE8C78A00A672E7 /* AVPlayViewController.swift in Sources */,
+				A79D65262BF1A49500B98BC4 /* PeopleInfoController.swift in Sources */,
 				A73BFB4C2BE8BA8600A672E7 /* VBaseViewController.swift in Sources */,
 				A73BFB952BE8C78A00A672E7 /* AVSearchViewController.swift in Sources */,
 				A73BFBAA2BE8CB2900A672E7 /* AVCell.swift in Sources */,

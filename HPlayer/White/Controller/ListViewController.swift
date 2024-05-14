@@ -90,7 +90,7 @@ class ListViewController: BaseViewController {
             return
         }
         HPProgressHUD.show()
-        PlayerNetAPI.share.AVFilterInfoData(type: self.isMovie ? "1" : "2") { [weak self] success, list in
+        PlayerNetAPI.share.AVFilterInfoData(type: self.isMovie ? "1" : "2", page: self.page) { [weak self] success, list in
             HPProgressHUD.dismiss()
             guard let self = self else { return }
             if !success {

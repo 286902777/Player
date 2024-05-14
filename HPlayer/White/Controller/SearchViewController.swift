@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 class SearchViewController: BaseViewController {
     let gHostUrl = "https://suggestqueries.google.com/complete/search?client=youtube&q="
@@ -53,9 +54,14 @@ class SearchViewController: BaseViewController {
     }()
     private var page: Int = 1
     let recordView: IndexSearchRecordView = IndexSearchRecordView.view()
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.shared.enable = true
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.isHidden = true
+        self.collectionView.isHidden = true
         self.recordView.refreshData()
         NotificationCenter.default.addObserver(forName: HPKey.Noti_Like, object: nil, queue: .main) { [weak self] _ in
             guard let self = self else { return }
@@ -98,6 +104,7 @@ class SearchViewController: BaseViewController {
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.key = text
+                self.searchView.searchTF.text = text
                 self.showResult()
             }
         }
@@ -122,9 +129,9 @@ class SearchViewController: BaseViewController {
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(54)
         }
-        searchView.clickCancelBlcok = {
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
+        searchView.clickCancelBlcok = { [weak self] in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
                 self.navigationController?.popViewController(animated: true)
             }
         }
@@ -162,7 +169,9 @@ class SearchViewController: BaseViewController {
                 guard let self = self else { return }
                 if self.searchKeys.count > 0 {
                     self.tableView.isHidden = false
+                    self.recordView.isHidden = true
                     self.emptyView.isHidden = true
+                    self.collectionView.isHidden = true
                     self.tableView.reloadData()
                 }
             }
@@ -200,6 +209,8 @@ class SearchViewController: BaseViewController {
         }
         self.recordView.isHidden = false
         self.emptyView.isHidden = true
+        self.collectionView.isHidden = true
+        self.tableView.isHidden = true
         self.recordView.refreshData()
     }
     
@@ -238,17 +249,23 @@ class SearchViewController: BaseViewController {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.tableView.isHidden = true
+                self.recordView.isHidden = true
+                self.emptyView.isHidden = true
                 self.collectionView.isHidden = false
                 self.collectionView.reloadData()
             }
         }
     }
     func showResult() {
+        self.setRecordText(self.key)
+        self.searchView.searchTF.resignFirstResponder()
         self.page = 1
         self.list.removeAll()
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
+            self.emptyView.isHidden = true
             self.tableView.isHidden = true
+            self.recordView.isHidden = true
             self.collectionView.isHidden = false
         }
         self.loadMoreData()

@@ -42,7 +42,6 @@ class BaseViewController: UIViewController {
         view.addSubview(backView)
         backView.contentMode = .scaleToFill
         backView.image = UIImage.init(named: "home_bg")
-        view.insertSubview(backView, at: 0)
         backView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }

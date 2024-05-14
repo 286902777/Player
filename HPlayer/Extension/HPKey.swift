@@ -64,8 +64,8 @@ let Mod_overview = "ZmBJYTkerx"
 let Mod_runtime = "HSbQnp"
 
 class HPKey {
-    static let privacy = "privacy"
-    static let terms = "terms"
+    static let privacy = "https://movietrackiosapp.com/privacy/"
+    static let terms = "https://movietrackiosapp.com/terms/"
     static let APPID = "6474994352"
     static let isUser = "isUser"
     static let isVip = "isVip"

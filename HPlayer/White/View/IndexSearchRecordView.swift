@@ -77,7 +77,7 @@ extension IndexSearchRecordView: UICollectionViewDelegate, UICollectionViewDataS
         return CGSize(width: w + 28, height: 38)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let str = self.list.indexOfSafe(indexPath.item) {
             self.clickBlock?(str)
         }

@@ -51,10 +51,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self?.netStatus = status
         })
         addTrack()
+        setIQKeyBoard()
 //        addAdjust()
         return true
     }
 
+    /// 配置IQKeyboardManager
+    func setIQKeyBoard() {
+        // 配置键盘
+        IQKeyboardManager.shared.enable = true
+        // 点击背景收起键盘
+        IQKeyboardManager.shared.resignOnTouchOutside = true
+        IQKeyboardManager.shared.toolbarConfiguration.previousNextDisplayMode = .alwaysHide
+        IQKeyboardManager.shared.enableAutoToolbar = true
+    }
+    
+    
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         if lock {
             return .landscape

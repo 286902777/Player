@@ -34,6 +34,7 @@ class FavoriteViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
         self.list = DBManager.share.selectWhiteData()
         self.tableView.reloadData()
     }
@@ -88,9 +89,11 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
         self.list.count
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let model = self.list.indexOfSafe(indexPath.row) {
-
+            let vc = PlayViewController(model: model)
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

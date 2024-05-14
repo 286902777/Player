@@ -85,7 +85,7 @@ class AVPlayViewController: UIViewController {
     private var captionView: HPPlayerCaptionFullSetView?
     private var captionVC: HPPlayerCaptionSetView?
     private var isFirst: Bool = true
-
+    
     private var tempPlay: Bool = true
     private var isPlayStatus: Bool = true
     private var errorInfo: String = "play failed"
@@ -98,7 +98,7 @@ class AVPlayViewController: UIViewController {
         self.from = from
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -110,7 +110,7 @@ class AVPlayViewController: UIViewController {
         getVideoResource()
         
         NotificationCenter.default.addObserver(self, selector: #selector(loadPushVideo), name: HPKey.Noti_PushAPNS, object: nil)
-
+        
         NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
             guard let self = self else { return }
             let device = UIDevice.current
@@ -221,7 +221,7 @@ class AVPlayViewController: UIViewController {
             appdelegate.allow = true
         }
         self.currentTime = Date().timeIntervalSince1970
-      
+        
         let device = UIDevice.current
         if device.orientation == .landscapeLeft || device.orientation == .landscapeRight{
             isScreenFull = true
@@ -247,12 +247,12 @@ class AVPlayViewController: UIViewController {
                 self.player.removeFromSuperview()
                 self.player = nil
             }
-   
+            
             removeTimer()
             NotificationCenter.default.removeObserver(self)
         }
         let name = self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.title
-
+        
         if self.dataModel.title.count > 0 || name?.count ?? 0 > 0 {
             HPLog.tb_movie_play_len(movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: name ?? "", movie_type: "\(self.model.type)", watch_len: String(Int(ceil(Date().timeIntervalSince1970 - self.currentTime))))
         }
@@ -432,38 +432,35 @@ class AVPlayViewController: UIViewController {
                 }
             }
         }
-        group.notify(queue: dispatchQueue){ [weak self] in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                HPProgressHUD.dismiss()
-                self.infoModel.pub_date = self.dataModel.pub_date
-                self.infoModel.country = self.dataModel.country
-                self.tableView.isHidden = false
-                self.tableView.reloadData()
-                if self.model.type == 2 {
-                    self.dataModel.ssn_list.first(where: {$0.id == self.ssnId})?.isSelect = true
-                    self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.isSelect = true
-                    self.epsName = self.dataModel.eps_name
+        group.notify(queue: .main){
+            HPProgressHUD.dismiss()
+            self.infoModel.pub_date = self.dataModel.pub_date
+            self.infoModel.country = self.dataModel.country
+            self.tableView.isHidden = false
+            self.tableView.reloadData()
+            if self.model.type == 2 {
+                self.dataModel.ssn_list.first(where: {$0.id == self.ssnId})?.isSelect = true
+                self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.isSelect = true
+                self.epsName = self.dataModel.eps_name
+            }
+            if self.dataModel.type == 1 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
                 }
-                if self.dataModel.type == 1 {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-                    }
-                }
-
-                let name = self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.title
-
-                if let url = URL(string: self.dataModel.video), requestResult {
-                    self.FailedView.isHidden = true
-                    self.player.isFaceBook = false
-                    asset = PlayerResource(name: self.dataModel.title, config: [HPPlayerResourceConfig(url: url, definition: "480p")], cover: nil, subtitles: self.captions)
-                    HPLog.tb_movie_play_sh(movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.dataModel.type == 1 ? "" : self.epsId, eps_name: (self.dataModel.type == 1 ? "" : name) ?? "", source: "\(self.from.rawValue)", movie_type: "\(self.dataModel.type)")
-                    self.player.setVideo(resource: asset!, sourceKey: self.id)
-                } else {
-                    self.tableView.isHidden = true
-                    self.FailedView.isHidden = false
-                    self.player.isFaceBook = true
-                }
+            }
+            
+            let name = self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.title
+            
+            if let url = URL(string: self.dataModel.video), requestResult {
+                self.FailedView.isHidden = true
+                self.player.isFaceBook = false
+                asset = PlayerResource(name: self.dataModel.title, config: [HPPlayerResourceConfig(url: url, definition: "480p")], cover: nil, subtitles: self.captions)
+                HPLog.tb_movie_play_sh(movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.dataModel.type == 1 ? "" : self.epsId, eps_name: (self.dataModel.type == 1 ? "" : name) ?? "", source: "\(self.from.rawValue)", movie_type: "\(self.dataModel.type)")
+                self.player.setVideo(resource: asset!, sourceKey: self.id)
+            } else {
+                self.tableView.isHidden = true
+                self.FailedView.isHidden = false
+                self.player.isFaceBook = true
             }
         }
         HPADManager.share.tempDismissComplete = { [weak self] in
@@ -471,7 +468,7 @@ class AVPlayViewController: UIViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-
+            
             self.isAdsPlaying = false
             if let _ = self.player, self.tempPlay {
                 self.player.play()
@@ -519,7 +516,7 @@ class AVPlayViewController: UIViewController {
         
         let device = UIDevice.current
         if isFull == false {
-//            HPADManager.share.hplayeraddAds(type: .play)
+            //            HPADManager.share.hplayeraddAds(type: .play)
             if let view = self.epsView {
                 view.dismissSelf()
             }
@@ -544,13 +541,13 @@ class AVPlayViewController: UIViewController {
                 }
             }
         } else {
-//            HPADManager.share.hplayeraddAds(type: .other)
+            //            HPADManager.share.hplayeraddAds(type: .other)
             if #available(iOS 16.0, *) {
                 self.setNeedsUpdateOfSupportedInterfaceOrientations()
                 let scene = UIApplication.shared.connectedScenes.first
                 guard let window = scene as? UIWindowScene else { return }
                 var dirction: UIInterfaceOrientationMask =  UIInterfaceOrientationMask.landscapeLeft
-
+                
                 if device.orientation == .landscapeLeft {
                     dirction = .landscapeRight
                 } else {
@@ -686,7 +683,7 @@ class AVPlayViewController: UIViewController {
             timer = nil
         }
     }
-
+    
     override var prefersHomeIndicatorAutoHidden: Bool {
         return true
     }
@@ -795,7 +792,7 @@ extension AVPlayViewController: UITableViewDelegate, UITableViewDataSource {
             self.model.eps_id = self.epsId
             self.model.playProgress = 0
             self.model.playedTime = 0
-
+            
             DBManager.share.updateData(self.model)
             let _ = self.dataModel.eps_list.map({$0.isSelect = false})
             model.isSelect = true
@@ -968,14 +965,14 @@ extension AVPlayViewController: HPPlayerDelegate {
             self.removeTimer()
             self.playerNextAction()
         case .finished:
-//            var event = ADJEvent(eventToken: "y7ntfn")
-//            #if DEBUG
-//            #else
-//            event = ADJEvent(eventToken: "d3h40b")
-//            #endif
-//            Adjust.trackEvent(event)
-//            AppEvents.shared.logEvent(AppEvents.Name.viewedContent)
-
+            //            var event = ADJEvent(eventToken: "y7ntfn")
+            //            #if DEBUG
+            //            #else
+            //            event = ADJEvent(eventToken: "d3h40b")
+            //            #endif
+            //            Adjust.trackEvent(event)
+            //            AppEvents.shared.logEvent(AppEvents.Name.viewedContent)
+            
             if self.isAdsPlaying || HPConfig.topVC()?.isKind(of: AVPlayViewController.self) == false   {
                 if let p = self.player {
                     p.pause()
@@ -1110,7 +1107,7 @@ extension AVPlayViewController: HPPlayerDelegate {
                     }
                 }
             }
-
+            
             vc.modalPresentationStyle = .overFullScreen
             self.captionVC = vc
             self.present(vc, animated: false)

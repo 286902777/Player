@@ -12,10 +12,11 @@ class HPProgressHUD {
     static func config() {
         ProgressHUD.animationType = .circleRotateChase
         ProgressHUD.colorBackground = .white
-        ProgressHUD.colorAnimation = .darkGray
+        ProgressHUD.colorAnimation = .black
         ProgressHUD.mediaSize = 60
         ProgressHUD.marginSize = 20
         ProgressHUD.colorStatus = .black
+        ProgressHUD.colorBannerTitle = .black
         ProgressHUD.fontStatus = .systemFont(ofSize: 18)
     }
     static func show() {

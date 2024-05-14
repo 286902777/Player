@@ -218,31 +218,27 @@ class AVHomeViewController: VBaseViewController {
                 group.leave()
             }
         }
-        group.notify(queue: dispatchQueue){ [weak self] in
-            guard let self = self else { return }
+        group.notify(queue: .main){
             self.refreshUI()
         }
     }
     
     func refreshUI() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            if self.bannerList.count > 0, self.dataList.count > 0 {
-                self.emptyView.isHidden = true
-                self.bannerView.isHidden = false
-                self.tableView.isHidden = false
-                self.bannerView.reloadView()
-            } else {
-                self.emptyView.isHidden = false
-                self.bgView.isHidden = true
-                self.tableView.isHidden = true
-                self.bannerView.isHidden = true
-            }
-            self.tableView.reloadData()
-            if self.bannerList.count > 0 {
-                self.showEffect = true
-                self.bgView.isHidden = false
-            }
+        if self.bannerList.count > 0, self.dataList.count > 0 {
+            self.emptyView.isHidden = true
+            self.bannerView.isHidden = false
+            self.tableView.isHidden = false
+            self.bannerView.reloadView()
+        } else {
+            self.emptyView.isHidden = false
+            self.bgView.isHidden = true
+            self.tableView.isHidden = true
+            self.bannerView.isHidden = true
+        }
+        self.tableView.reloadData()
+        if self.bannerList.count > 0 {
+            self.showEffect = true
+            self.bgView.isHidden = false
         }
     }
     

@@ -11,7 +11,7 @@ class AVSearchCell: UITableViewCell {
     
     lazy var titleL: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = UIColor.hexColor("#FFFFFF", alpha: 0.5)
         label.font = .font(weigth: .medium, size: 14)
         return label
     }()
@@ -50,7 +50,7 @@ class AVSearchCell: UITableViewCell {
     }
     
     func setText(_ text: String, _ key: String) {
-        self.titleL.attributedText = self.setAttributeStringTexts(text, [key], [UIColor.hexColor("#FFFFFF", alpha: 0.5)])
+        self.titleL.attributedText = self.setAttributeStringTexts(text, [key], [UIColor.hexColor("#FFFFFF")])
     }
 
     /// 获取字符出现的位置信息(支持多次位置获取)
@@ -99,7 +99,7 @@ class AVSearchCell: UITableViewCell {
         //不需要改变的文本
         range = NSString.init(string: strFullText).range(of: String.init(strFullText))
         
-        dicAttr = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        dicAttr = [NSAttributedString.Key.foregroundColor: UIColor.hexColor("#FFFFFF", alpha: 0.5)]
         attributeString.addAttributes(dicAttr!, range: range!)
         
         //需要改变的文本

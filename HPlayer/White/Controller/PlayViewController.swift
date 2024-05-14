@@ -35,7 +35,7 @@ class PlayViewController: BaseViewController {
         self.model = model
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -46,7 +46,7 @@ class PlayViewController: BaseViewController {
     }
     
     deinit {
-       print("PlayViewController deinit")
+        print("PlayViewController deinit")
     }
     
     override func reSetRequest() {
@@ -76,6 +76,8 @@ class PlayViewController: BaseViewController {
     
     func requestResouce() {
         HPProgressHUD.show()
+        self.pageView.isHidden = true
+        self.segementView.isHidden = true
         var requestResult: Bool = true
         let group = DispatchGroup()
         let dispatchQueue = DispatchQueue.global()
@@ -117,36 +119,36 @@ class PlayViewController: BaseViewController {
                 }
             }
         }
-        group.notify(queue: dispatchQueue){ [weak self] in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                HPProgressHUD.dismiss()
-                if requestResult == false {
-                    self.pageView.isHidden = true
-                    self.emptyView.isHidden = false
+        group.notify(queue: .main){
+            HPProgressHUD.dismiss()
+            if requestResult == false {
+                self.pageView.isHidden = true
+                self.segementView.isHidden = true
+                self.emptyView.isHidden = false
+            } else {
+                self.pageView.isHidden = false
+                self.segementView.isHidden = false
+                self.emptyView.isHidden = true
+                if self.model.type == 1 {
+                    self.segementView.titles = ["Details", "Media", "Recommendations"]
                 } else {
-                    self.pageView.isHidden = false
-                    self.emptyView.isHidden = true
-                    if self.model.type == 1 {
-                        self.segementView.titles = ["Details", "Media", "Recommendations"]
-                    } else {
-                        self.segementView.titles = ["Details", "Season", "Media", "Recommendations"]
-                    }
-                    self.segementView.setUrl(self.dataModel.cover)
+                    self.segementView.titles = ["Details", "Season", "Media", "Recommendations"]
                 }
-                self.segementView.segView.selectItemAt(index: 0)
-                self.segementView.segView.reloadData()
-                self.segementView.clickBlock = {
-                    DispatchQueue.main.async {
-                        let vc = AVWebViewController()
-                        vc.name = self.model.title
-                        vc.isvideo = false
-                        vc.link = self.dataModel.trailer
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                }
-                self.pageView.reloadData()
+                self.segementView.setUrl(self.dataModel.cover)
             }
+            self.segementView.segView.selectItemAt(index: 0)
+            self.segementView.segView.reloadData()
+            self.segementView.clickBlock = { [weak self] in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    let vc = AVWebViewController()
+                    vc.name = self.model.title
+                    vc.isvideo = false
+                    vc.link = self.dataModel.trailer
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            self.pageView.reloadData()
         }
     }
 }

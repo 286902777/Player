@@ -184,20 +184,10 @@ extension NetManager{
     }
     
     fileprivate func codeToJson(_ text: String?) -> String? {
-        if let str = text, str.count > 9 {
+        if let str = text, str.count > 42 {
             let s = str.substring(to: str.count - 42)
-            var result: String = ""
-            for i in 0..<s.count {
-                let c: Character = Character(s[i])
-                if c.isUppercase {
-                    result.append(s[i].lowercased())
-                } else if c.isLowercase {
-                    result.append(s[i].uppercased())
-                } else {
-                    result.append(s[i])
-                }
-            }
-            let data = Data(base64Encoded: result) ?? Data()
+            let result = s.map({$0.isUppercase ? $0.lowercased() : $0.uppercased()})
+            let data = Data(base64Encoded: String(result.joined())) ?? Data()
             let json = String(data: data, encoding: String.Encoding.utf8)
             return json
         }

@@ -13,13 +13,14 @@ class PlaySegView: UIView {
     private lazy var imgV: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
+        view.isUserInteractionEnabled = true
         view.clipsToBounds = true
         return view
     }()
     
     private lazy var playBtn: UIButton = {
         let btn = UIButton()
-        btn.setImage(UIImage(named: "w_banner_play"), for: .normal)
+        btn.setImage(UIImage(named: "w_head_play"), for: .normal)
         return btn
     }()
     var lineV: UIView = {
@@ -74,6 +75,8 @@ class PlaySegView: UIView {
             make.center.equalTo(self.imgV)
             make.size.equalTo(CGSize(width: 48, height: 48))
         }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(clickPlayAction))
+        self.imgV.addGestureRecognizer(tap)
         self.playBtn.addTarget(self, action: #selector(clickPlayAction), for: .touchUpInside)
     }
     

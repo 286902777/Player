@@ -109,12 +109,14 @@ class IndexViewController: BaseViewController {
         view.insertSubview(bgView, at: 0)
         view.insertSubview(tableView, at: 1)
         view.insertSubview(emptyView, at: 2)
-        view.insertSubview(self.navBar, at: 3)
+        view.insertSubview(navBar, at: 3)
     }
     
     func addRefresh() {
         let header = RefreshGifHeader { [weak self] in
             guard let self = self else { return }
+            self.list.removeAll()
+            self.bannerlist.removeAll()
             self.configData()
         }
         tableView.mj_header = header
@@ -127,8 +129,6 @@ class IndexViewController: BaseViewController {
     }
     
     func configData() {
-        self.list.removeAll()
-        self.bannerlist.removeAll()
         let group = DispatchGroup()
         let dispatchQueue = DispatchQueue.global()
         group.enter()
@@ -170,34 +170,31 @@ class IndexViewController: BaseViewController {
                 group.leave()
             }
         }
-        group.notify(queue: dispatchQueue){ [weak self] in
+        group.notify(queue: .main){ [weak self] in
             guard let self = self else { return }
-            self.list.append(self.peopleModel)
-            self.tableView.mj_header?.endRefreshing()
             self.refreshUI()
         }
     }
     
     func refreshUI() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            if self.list.count > 0 {
-                self.emptyView.isHidden = true
-                self.headView.isHidden = false
-                self.tableView.isHidden = false
-                self.showEffect = true
-                self.bgView.isHidden = false
-                self.bannerView.reloadView()
-            } else {
-                self.emptyView.isHidden = false
-                self.bgView.isHidden = true
-                self.tableView.isHidden = true
-                self.headView.isHidden = true
-                self.showEffect = false
-                self.bgView.isHidden = true
-            }
-            self.tableView.reloadData()
+        self.list.append(self.peopleModel)
+        self.tableView.mj_header?.endRefreshing()
+        if self.list.count > 0 {
+            self.emptyView.isHidden = true
+            self.headView.isHidden = false
+            self.tableView.isHidden = false
+            self.showEffect = true
+            self.bgView.isHidden = false
+            self.bannerView.reloadView()
+        } else {
+            self.emptyView.isHidden = false
+            self.bgView.isHidden = true
+            self.tableView.isHidden = true
+            self.headView.isHidden = true
+            self.showEffect = false
+            self.bgView.isHidden = true
         }
+        self.tableView.reloadData()
     }
     
     override func rightAction() {

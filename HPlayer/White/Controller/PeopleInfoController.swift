@@ -128,6 +128,13 @@ extension PeopleInfoController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! IndexCell
         if let model = self.list.indexOfSafe(indexPath.item) {
             cell.setModel(model: model)
+            cell.clickLikeBlock = { like in
+                if like {
+                    DBManager.share.insertWhiteData(mod: model)
+                } else {
+                    DBManager.share.deleteWhiteData(model)
+                }
+            }
         }
         return cell
     }

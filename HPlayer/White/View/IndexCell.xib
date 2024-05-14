@@ -24,13 +24,6 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cell_top_bg" translatesAutoresizingMaskIntoConstraints="NO" id="BgF-i4-Q2A">
                         <rect key="frame" x="0.0" y="0.0" width="134" height="177"/>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="w_unlike" translatesAutoresizingMaskIntoConstraints="NO" id="ooe-iJ-CCI">
-                        <rect key="frame" x="116" y="4" width="14" height="14"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="14" id="kvo-eT-I0U"/>
-                            <constraint firstAttribute="height" constant="14" id="pKv-Ss-uMe"/>
-                        </constraints>
-                    </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OUm-QT-rpB">
                         <rect key="frame" x="0.0" y="181" width="134" height="14"/>
                         <subviews>
@@ -55,6 +48,19 @@
                         <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1U2-QG-7an">
+                        <rect key="frame" x="116" y="4" width="14" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="SYY-XV-0Hm"/>
+                            <constraint firstAttribute="width" constant="14" id="XFX-Ci-cYj"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="w_unlike"/>
+                        <state key="selected" image="w_like"/>
+                        <connections>
+                            <action selector="clickAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="gtt-lK-jMG"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -64,29 +70,30 @@
                 <constraint firstItem="BgF-i4-Q2A" firstAttribute="leading" secondItem="VIJ-1h-tXg" secondAttribute="leading" id="3zc-zS-R2U"/>
                 <constraint firstAttribute="trailing" secondItem="VIJ-1h-tXg" secondAttribute="trailing" id="4vY-Nd-xif"/>
                 <constraint firstItem="VIJ-1h-tXg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="FK5-Ew-11u"/>
-                <constraint firstItem="ooe-iJ-CCI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="Fk8-YT-bdL"/>
                 <constraint firstItem="VIJ-1h-tXg" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JuW-8Z-hJ1"/>
+                <constraint firstAttribute="trailing" secondItem="1U2-QG-7an" secondAttribute="trailing" constant="4" id="MHE-0a-8Ec"/>
                 <constraint firstItem="CWQ-LI-INB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="Sc0-6t-3po"/>
                 <constraint firstItem="BgF-i4-Q2A" firstAttribute="top" secondItem="VIJ-1h-tXg" secondAttribute="top" id="aDK-y3-rOl"/>
                 <constraint firstItem="OUm-QT-rpB" firstAttribute="top" secondItem="VIJ-1h-tXg" secondAttribute="bottom" constant="4" id="hwY-D2-8G4"/>
-                <constraint firstAttribute="trailing" secondItem="ooe-iJ-CCI" secondAttribute="trailing" constant="4" id="lky-7v-xQs"/>
                 <constraint firstItem="OUm-QT-rpB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="mXC-oy-cUS"/>
                 <constraint firstItem="BgF-i4-Q2A" firstAttribute="bottom" secondItem="VIJ-1h-tXg" secondAttribute="bottom" id="sUo-QB-K4c"/>
                 <constraint firstItem="BgF-i4-Q2A" firstAttribute="trailing" secondItem="VIJ-1h-tXg" secondAttribute="trailing" id="uZU-rc-RSd"/>
                 <constraint firstAttribute="trailing" secondItem="OUm-QT-rpB" secondAttribute="trailing" id="vHE-XN-NrU"/>
+                <constraint firstItem="1U2-QG-7an" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="vpS-Gn-MHC"/>
             </constraints>
             <size key="customSize" width="134" height="195"/>
             <connections>
                 <outlet property="contentL" destination="DGe-bt-tRn" id="RVT-ee-ham"/>
                 <outlet property="imageV" destination="VIJ-1h-tXg" id="mTi-yg-So6"/>
-                <outlet property="likeView" destination="ooe-iJ-CCI" id="vE8-ie-gw0"/>
+                <outlet property="likeBtn" destination="1U2-QG-7an" id="7zz-JG-SQJ"/>
                 <outlet property="scoreL" destination="CWQ-LI-INB" id="mHg-Tc-rXw"/>
             </connections>
             <point key="canvasLocation" x="-505.34351145038164" y="69.366197183098592"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="cell_top_bg" width="110" height="146"/>
+        <image name="cell_top_bg" width="120" height="180"/>
+        <image name="w_like" width="16" height="16"/>
         <image name="w_unlike" width="16" height="16"/>
     </resources>
 </document>

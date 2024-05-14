@@ -8,7 +8,8 @@
 import UIKit
 
 class IndexCell: UICollectionViewCell {
-    @IBOutlet weak var likeView: UIImageView!
+
+    @IBOutlet weak var likeBtn: UIButton!
     
     @IBOutlet weak var imageV: UIImageView!
     
@@ -16,12 +17,18 @@ class IndexCell: UICollectionViewCell {
     
     @IBOutlet weak var scoreL: UILabel!
     
+    var clickLikeBlock: ((_ like: Bool) -> Void)?
     override func awakeFromNib() {
         super.awakeFromNib()
         imageV.layer.cornerRadius = 4
         imageV.layer.masksToBounds = true
     }
 
+    @IBAction func clickAction(_ sender: Any) {
+        self.likeBtn.isSelected = !self.likeBtn.isSelected
+        self.clickLikeBlock?(self.likeBtn.isSelected)
+    }
+    
     func setScoreFont(_ text: String) {
         let shadow = NSShadow()
         // 设置阴影的颜色
@@ -43,7 +50,7 @@ class IndexCell: UICollectionViewCell {
         } else {
             self.scoreL.isHidden = true
         }
-        self.likeView.image = UIImage(named: model.isLike ? "w_like" : "w_unlike")
+        self.likeBtn.isSelected = model.isLike
         self.contentL.text = model.title
         self.imageV.setImage(with: model.cover)
     }
@@ -56,7 +63,7 @@ class IndexCell: UICollectionViewCell {
         } else {
             self.scoreL.isHidden = true
         }
-        self.likeView.image = UIImage(named: like ? "w_like" : "w_unlike")
+        self.likeBtn.isSelected = like
         self.contentL.text = model.title
         self.imageV.setImage(with: model.cover)
     }

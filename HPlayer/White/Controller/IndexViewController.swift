@@ -59,6 +59,7 @@ class IndexViewController: BaseViewController {
         addRefresh()
         NotificationCenter.default.addObserver(forName: HPKey.Noti_Like, object: nil, queue: .main) { [weak self] _ in
             guard let self = self else { return }
+            self.bannerView.reloadView()
             self.tableView.reloadData()
         }
     }
@@ -117,6 +118,7 @@ class IndexViewController: BaseViewController {
             guard let self = self else { return }
             self.list.removeAll()
             self.bannerlist.removeAll()
+            self.peopleModel = IndexModel()
             self.configData()
         }
         tableView.mj_header = header
@@ -125,6 +127,8 @@ class IndexViewController: BaseViewController {
         
     override func reSetRequest() {
         HPProgressHUD.dismiss()
+        self.emptyView.isHidden = true
+        self.tableView.isHidden = false
         tableView.mj_header?.beginRefreshing()
     }
     
@@ -177,14 +181,15 @@ class IndexViewController: BaseViewController {
     }
     
     func refreshUI() {
-        self.list.append(self.peopleModel)
         self.tableView.mj_header?.endRefreshing()
         if self.list.count > 0 {
+            self.list.append(self.peopleModel)
             self.emptyView.isHidden = true
             self.headView.isHidden = false
             self.tableView.isHidden = false
             self.showEffect = true
             self.bgView.isHidden = false
+            self.bannerView.isHidden = false
             self.bannerView.reloadView()
         } else {
             self.emptyView.isHidden = false
@@ -192,7 +197,7 @@ class IndexViewController: BaseViewController {
             self.tableView.isHidden = true
             self.headView.isHidden = true
             self.showEffect = false
-            self.bgView.isHidden = true
+            self.bannerView.isHidden = true
         }
         self.tableView.reloadData()
     }
@@ -217,7 +222,9 @@ class IndexViewController: BaseViewController {
     }
     
     func pushPeopleVC(_ model: IndexDataListModel) {
-        let vc = PlayViewController(model: model)
+        let vc = PeopleInfoController()
+        vc.pId = model.id
+        vc.name = model.name
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }

@@ -407,7 +407,7 @@ class DBManager {
         return false
     }
     
-    func insertWhiteData(mod: IndexDataListModel) {
+    func insertWhiteData(mod: IndexDataListModel, _ push: Bool = true) {
         if self.findWhiteDataWithModel(id: mod.id) == false {
             let context:NSManagedObjectContext = DBManager.share.context
             let m = NSEntityDescription.insertNewObject(forEntityName: "LikeDB", into: context) as! LikeDB
@@ -419,12 +419,14 @@ class DBManager {
             m.time = Double(Date().timeIntervalSince1970)
             do {
                 try context.save()
-                NotificationCenter.default.post(name: HPKey.Noti_Like, object: nil)
+                if push {
+                    NotificationCenter.default.post(name: HPKey.Noti_Like, object: nil)
+                }
             } catch { }
         }
     }
     
-    func deleteWhiteData(_ model: IndexDataListModel) {
+    func deleteWhiteData(_ model: IndexDataListModel, _ push: Bool = true) {
         let context:NSManagedObjectContext = DBManager.share.context
         let request:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "LikeDB")
         request.predicate = NSPredicate(format: "id=%@", model.id)
@@ -436,7 +438,9 @@ class DBManager {
                 }
             }
             try context.save()
-            NotificationCenter.default.post(name: HPKey.Noti_Like, object: nil)
+            if push {
+                NotificationCenter.default.post(name: HPKey.Noti_Like, object: nil)
+            }
         } catch {
         
         }

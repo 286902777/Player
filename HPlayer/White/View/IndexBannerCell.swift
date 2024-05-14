@@ -52,6 +52,11 @@ class IndexBannerCell: JXBannerBaseCell {
         return view
     }()
     
+    lazy var likeBtn: UIButton = {
+        let btn = UIButton()
+        return btn
+    }()
+    
     lazy var favoriteL: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
@@ -74,6 +79,8 @@ class IndexBannerCell: JXBannerBaseCell {
         return view
     }()
 
+    private var model: IndexDataListModel = IndexDataListModel()
+    
     open override func jx_addSubviews() {
         super.jx_addSubviews()
         self.layer.cornerRadius = 8
@@ -97,10 +104,15 @@ class IndexBannerCell: JXBannerBaseCell {
         }
         
         likeView.addSubview(stackV)
+        likeView.addSubview(likeBtn)
         stackV.snp.makeConstraints { make in
             make.edges.equalTo(UIEdgeInsets(top: 0, left: 7, bottom: 0, right: 7))
         }
         
+        likeBtn.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        likeBtn.addTarget(self, action: #selector(clickAction), for: .touchUpInside)
         stackV.addArrangedSubview(favImgV)
         stackV.addArrangedSubview(favoriteL)
 
@@ -133,6 +145,7 @@ class IndexBannerCell: JXBannerBaseCell {
     }
 
     func setModel(_ model: IndexDataListModel) {
+        self.model = model
         let attr: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium), NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.strokeColor: UIColor.hexColor("#141414"), NSAttributedString.Key.strokeWidth: -0.5]
         self.titleL.attributedText = NSAttributedString(string: model.title, attributes: attr)
         self.imageView.setImage(with: model.horizontal_cover)
@@ -147,8 +160,20 @@ class IndexBannerCell: JXBannerBaseCell {
         let arr = DBManager.share.selectWhiteData()
         if let _ = arr.first(where: {$0.id == model.id}) {
             model.isLike = true
+        } else {
+            model.isLike = false
         }
         self.favImgV.image = UIImage(named: model.isLike ? "w_like" : "w_unlike")
         self.favoriteL.text = model.isLike ? "Favorited" : "Favorite"
+    }
+    
+    @objc func clickAction() {
+        self.model.isLike = !self.model.isLike
+        self.favImgV.image = UIImage(named: self.model.isLike ? "w_like" : "w_unlike")
+        if self.model.isLike {
+            DBManager.share.insertWhiteData(mod: model, false)
+        } else {
+            DBManager.share.deleteWhiteData(model, false)
+        }
     }
 }

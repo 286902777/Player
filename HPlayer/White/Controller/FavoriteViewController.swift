@@ -35,9 +35,9 @@ class FavoriteViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
-        self.list = DBManager.share.selectWhiteData()
-        self.tableView.reloadData()
+        self.setData()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navBar.setBackHidden(true)
@@ -61,6 +61,10 @@ class FavoriteViewController: BaseViewController {
         self.emptyView.setType(.favorite)
     }
     
+    func setData() {
+        self.list = DBManager.share.selectWhiteData()
+        self.tableView.reloadData()
+    }
     override func rightAction() {
         let vc = SearchViewController()
         vc.hidesBottomBarWhenPushed = true
@@ -73,6 +77,13 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
         let cell:FavoriteCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! FavoriteCell
         if let model = self.list.indexOfSafe(indexPath.row) {
             cell.setModel(model)
+            cell.clickBlock = { [weak self] in
+                guard let self = self else { return }
+                DBManager.share.deleteWhiteData(model)
+                DispatchQueue.main.async {
+                    self.setData()
+                }
+            }
         }
         return cell
     }

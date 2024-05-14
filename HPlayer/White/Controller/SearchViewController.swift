@@ -10,7 +10,7 @@ import UIKit
 import IQKeyboardManagerSwift
 
 class SearchViewController: BaseViewController {
-    let gHostUrl = "https://suggestqueries.google.com/complete/search?client=youtube&q="
+    let gHostUrl = "https://suggestqueries.google.com/complete/search?client=firefox&q="
     let cellW = floor((kScreenWidth - 36) / 3)
     var list: [AVDataInfoModel] = []
     var searchView: IndexSearchView = IndexSearchView.view()
@@ -84,13 +84,13 @@ class SearchViewController: BaseViewController {
         }
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(searchView.snp.bottom).offset(22)
+            make.top.equalTo(searchView.snp.bottom).offset(12)
             make.left.bottom.right.equalToSuperview()
         }
         
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(searchView.snp.bottom).offset(22)
+            make.top.equalTo(searchView.snp.bottom).offset(12)
             make.left.bottom.right.equalToSuperview()
         }
         
@@ -127,7 +127,7 @@ class SearchViewController: BaseViewController {
         searchView.searchTF.delegate = self
         searchView.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(54)
+            make.height.equalTo(44)
         }
         searchView.clickCancelBlcok = { [weak self] in
             guard let self = self else { return }
@@ -156,8 +156,8 @@ class SearchViewController: BaseViewController {
                 for i in arr {
                     if let sub = i as? Array<Any> {
                         for s in sub {
-                            if let keys = s as? Array<Any> {
-                                self.searchKeys.append(keys.first as? String ?? "")
+                            if s is String {
+                                self.searchKeys.append(s as? String ?? "")
                             }
                         }
                     } else if i is String {
@@ -178,14 +178,7 @@ class SearchViewController: BaseViewController {
         }
     }
     
-    func getSearchData(_ data: String) -> Array<Any>? {
-        guard let start = data.range(of: "(") else {
-            return nil
-        }
-
-        let stratRange = NSRange(start, in: data)
-        let str = data.substring(withRange: NSRange(location: stratRange.location + 1, length: data.count - stratRange.location - 2))
-        print(str)
+    func getSearchData(_ str: String) -> Array<Any>? {
         do {
             if let d = str.data(using: .utf8) {
                 let arr = try JSONSerialization.jsonObject(with: d, options: .mutableContainers)
@@ -194,8 +187,26 @@ class SearchViewController: BaseViewController {
         } catch {
             print("error")
         }
-        return nil
+        return ["s"]
     }
+//    func getSearchData(_ data: String) -> Array<Any>? {
+//        guard let start = data.range(of: "(") else {
+//            return nil
+//        }
+//
+//        let stratRange = NSRange(start, in: data)
+//        let str = data.substring(withRange: NSRange(location: stratRange.location + 1, length: data.count - stratRange.location - 2))
+//        print(str)
+//        do {
+//            if let d = str.data(using: .utf8) {
+//                let arr = try JSONSerialization.jsonObject(with: d, options: .mutableContainers)
+//                return arr as? Array<Any>
+//            }
+//        } catch {
+//            print("error")
+//        }
+//        return nil
+//    }
     
     func setRecordText(_ text: String) {
         if let arr = UserDefaults.standard.object(forKey: HPKey.searchRecord) as? [String] {
@@ -314,6 +325,19 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IndexCellIdentifier, for: indexPath) as! IndexCell
         if let model = self.list.indexOfSafe(indexPath.item) {
             cell.setPlayModel(model: model)
+            cell.clickLikeBlock = { like in
+                let mod = IndexDataListModel()
+                mod.id = model.id
+                mod.type = model.type
+                mod.title = model.title
+                mod.cover = model.cover
+                mod.rate = model.rate
+                if like {
+                    DBManager.share.insertWhiteData(mod: mod)
+                } else {
+                    DBManager.share.deleteWhiteData(mod)
+                }
+            }
         }
         return cell
     }

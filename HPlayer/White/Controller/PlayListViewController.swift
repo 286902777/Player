@@ -56,6 +56,19 @@ extension PlayListViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! IndexCell
         if let model = self.list.indexOfSafe(indexPath.item) {
             cell.setPlayModel(model: model)
+            cell.clickLikeBlock = { like in
+                let mod = IndexDataListModel()
+                mod.id = model.id
+                mod.type = model.type
+                mod.title = model.title
+                mod.cover = model.cover
+                mod.rate = model.rate
+                if like {
+                    DBManager.share.insertWhiteData(mod: mod)
+                } else {
+                    DBManager.share.deleteWhiteData(mod)
+                }
+            }
         }
         return cell
     }

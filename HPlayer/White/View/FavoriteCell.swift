@@ -20,6 +20,7 @@ class FavoriteCell: UITableViewCell {
     
     @IBOutlet weak var fView: UIView!
     
+    var clickBlock: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,7 +35,7 @@ class FavoriteCell: UITableViewCell {
         self.titleL.text = model.title
         if let r = Float(model.rate) {
             self.starL.isHidden = false
-            let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "Open Sans", size: 24) ?? UIFont.systemFont(ofSize: 16, weight: .medium), .foregroundColor: UIColor.hexColor("#B2AAFF")]
+            let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "Open Sans", size: 16) ?? UIFont.systemFont(ofSize: 16, weight: .medium), .foregroundColor: UIColor.hexColor("#B2AAFF")]
             self.starL.attributedText = NSAttributedString(string: String(format: "%.1f", r), attributes: attr)
             self.starL.text = String(format: "%.1f", r)
         } else {
@@ -42,6 +43,9 @@ class FavoriteCell: UITableViewCell {
         }
     }
     
+    @IBAction func clickAction(_ sender: Any) {
+        self.clickBlock?()
+    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

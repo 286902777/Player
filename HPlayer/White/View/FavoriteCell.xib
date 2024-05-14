@@ -73,13 +73,24 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzo-pL-ja4">
+                                                <rect key="frame" x="10" y="0.0" width="76" height="26"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <connections>
+                                                    <action selector="clickAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="3lm-ix-thO"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="mzo-pL-ja4" firstAttribute="trailing" secondItem="i10-sN-7Wq" secondAttribute="trailing" id="1Lb-9B-MCp"/>
                                             <constraint firstAttribute="bottom" secondItem="i10-sN-7Wq" secondAttribute="bottom" id="1tJ-wh-Tzf"/>
+                                            <constraint firstItem="mzo-pL-ja4" firstAttribute="bottom" secondItem="i10-sN-7Wq" secondAttribute="bottom" id="4X3-AT-ejg"/>
                                             <constraint firstAttribute="trailing" secondItem="i10-sN-7Wq" secondAttribute="trailing" constant="10" id="UpD-8U-xkR"/>
                                             <constraint firstItem="i10-sN-7Wq" firstAttribute="leading" secondItem="gbT-fv-Usn" secondAttribute="leading" constant="10" id="WtD-HX-TxT"/>
                                             <constraint firstItem="i10-sN-7Wq" firstAttribute="top" secondItem="gbT-fv-Usn" secondAttribute="top" id="ZVb-oE-CQ3"/>
+                                            <constraint firstItem="mzo-pL-ja4" firstAttribute="top" secondItem="i10-sN-7Wq" secondAttribute="top" id="k5s-DA-Pzb"/>
+                                            <constraint firstItem="mzo-pL-ja4" firstAttribute="leading" secondItem="i10-sN-7Wq" secondAttribute="leading" id="rNT-kM-pV8"/>
                                         </constraints>
                                     </view>
                                 </subviews>

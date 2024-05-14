@@ -30,7 +30,7 @@ class AVCell: UICollectionViewCell {
         shadow.shadowOffset = CGSize(width: 0, height: 2)
         // 设置阴影的模糊半径
         shadow.shadowBlurRadius = 3
-        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "Bebas Neue Regular", size: 20) ?? UIFont.systemFont(ofSize: 20, weight: .medium), .foregroundColor: UIColor.hexColor("#796BFF"),  .strokeColor: UIColor.hexColor("#796BFF"), .strokeWidth: -4, .shadow: shadow]
+        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "Bebas Neue", size: 20) ?? UIFont.systemFont(ofSize: 20, weight: .medium), .foregroundColor: UIColor.hexColor("#796BFF"),  .strokeColor: UIColor.hexColor("#796BFF"), .strokeWidth: -4, .shadow: shadow]
         scoreL.attributedText = NSAttributedString(string: text, attributes: attr)
     }
   

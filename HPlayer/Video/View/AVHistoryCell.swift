@@ -23,7 +23,7 @@ class AVHistoryCell: UITableViewCell {
     @IBOutlet weak var progressView: UIProgressView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.scoreL.font = UIFont(name: "Bebas Neue Regular", size: 20)
+        self.scoreL.font = UIFont(name: "Bebas Neue", size: 20)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

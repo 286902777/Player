@@ -47,7 +47,7 @@ class AVPlayHeadCell: UITableViewCell {
         super.awakeFromNib()
         self.midView.layer.cornerRadius = 2
         self.midView.layer.masksToBounds = true
-        scroL.font = UIFont(name: "Bebas Neue Regular", size: 32)
+        scroL.font = UIFont(name: "Bebas Neue", size: 32)
         collectionView.setCollectionViewLayout(self.layout, animated: false)
         collectionView.register(UINib(nibName: String(describing: AVPlayHeadCategoryCell.self), bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
     }

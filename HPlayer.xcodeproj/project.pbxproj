@@ -135,6 +135,8 @@
 		A7969A4F2BE878A300FE02FB /* HPRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7969A412BE878A300FE02FB /* HPRefresh.swift */; };
 		A7969A512BE878A300FE02FB /* HPRemoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7969A432BE878A300FE02FB /* HPRemoteManager.swift */; };
 		A7969A532BE881A700FE02FB /* VipManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7969A522BE881A700FE02FB /* VipManager.swift */; };
+		A79861B02BF352C700027C42 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A79EE4DC2BECABB000526257 /* OpenSans-Bold.ttf */; };
+		A79861B42BF35C2800027C42 /* BebasNeue-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A79861B32BF35C2800027C42 /* BebasNeue-Regular.ttf */; };
 		A79A23482BEDB3780010B0EC /* IndexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A23462BEDB3780010B0EC /* IndexCell.swift */; };
 		A79A23492BEDB3780010B0EC /* IndexCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79A23472BEDB3780010B0EC /* IndexCell.xib */; };
 		A79A234C2BEDB5960010B0EC /* PeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A234A2BEDB5960010B0EC /* PeopleCell.swift */; };
@@ -185,7 +187,6 @@
 		A79ED0022BE9BF6A00E7356B /* AVHistoryBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79ED0002BE9BF6A00E7356B /* AVHistoryBottomView.xib */; };
 		A79ED0042BE9C52700E7356B /* AVNoNetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79ED0032BE9C52700E7356B /* AVNoNetView.swift */; };
 		A79ED0062BE9C53600E7356B /* AVNoNetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79ED0052BE9C53600E7356B /* AVNoNetView.xib */; };
-		A79ED0082BEA082100E7356B /* BebasNeue-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A79ED0072BEA082100E7356B /* BebasNeue-Regular.ttf */; };
 		A79EE4DE2BECADEA00526257 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE4DD2BECADEA00526257 /* FavoriteViewController.swift */; };
 		A79EE4E22BECAEC200526257 /* MyLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE4E12BECAEC200526257 /* MyLibraryViewController.swift */; };
 		A79EE4E52BECAF1F00526257 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE4E32BECAF1F00526257 /* FavoriteCell.swift */; };
@@ -327,6 +328,7 @@
 		A7969A412BE878A300FE02FB /* HPRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPRefresh.swift; sourceTree = "<group>"; };
 		A7969A432BE878A300FE02FB /* HPRemoteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPRemoteManager.swift; sourceTree = "<group>"; };
 		A7969A522BE881A700FE02FB /* VipManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VipManager.swift; sourceTree = "<group>"; };
+		A79861B32BF35C2800027C42 /* BebasNeue-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Regular.ttf"; sourceTree = "<group>"; };
 		A79A23462BEDB3780010B0EC /* IndexCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexCell.swift; sourceTree = "<group>"; };
 		A79A23472BEDB3780010B0EC /* IndexCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndexCell.xib; sourceTree = "<group>"; };
 		A79A234A2BEDB5960010B0EC /* PeopleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleCell.swift; sourceTree = "<group>"; };
@@ -377,7 +379,6 @@
 		A79ED0002BE9BF6A00E7356B /* AVHistoryBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVHistoryBottomView.xib; sourceTree = "<group>"; };
 		A79ED0032BE9C52700E7356B /* AVNoNetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVNoNetView.swift; sourceTree = "<group>"; };
 		A79ED0052BE9C53600E7356B /* AVNoNetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AVNoNetView.xib; sourceTree = "<group>"; };
-		A79ED0072BEA082100E7356B /* BebasNeue-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Regular.ttf"; sourceTree = "<group>"; };
 		A79EE4DC2BECABB000526257 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		A79EE4DD2BECADEA00526257 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		A79EE4E12BECAEC200526257 /* MyLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryViewController.swift; sourceTree = "<group>"; };
@@ -638,7 +639,7 @@
 				A7969A252BE8748400FE02FB /* Info.plist */,
 				A73BFB412BE8A62300A672E7 /* GoogleService-Info.plist */,
 				A79EE4DC2BECABB000526257 /* OpenSans-Bold.ttf */,
-				A79ED0072BEA082100E7356B /* BebasNeue-Regular.ttf */,
+				A79861B32BF35C2800027C42 /* BebasNeue-Regular.ttf */,
 			);
 			path = HPlayer;
 			sourceTree = "<group>";
@@ -801,7 +802,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A79861B02BF352C700027C42 /* OpenSans-Bold.ttf in Resources */,
 				A73BFBA62BE8CAC600A672E7 /* AVListCell.xib in Resources */,
+				A79861B42BF35C2800027C42 /* BebasNeue-Regular.ttf in Resources */,
 				A73BFB552BE8BB8500A672E7 /* ad_debug.json in Resources */,
 				A73BFBDD2BE8DC0900A672E7 /* HPPlayerLoadingView.xib in Resources */,
 				A73BFB562BE8BB8500A672E7 /* refresh.json in Resources */,
@@ -812,7 +815,6 @@
 				A79ECFF52BE9BD0500E7356B /* AVFilterCell.xib in Resources */,
 				A79A23632BEDF73F0010B0EC /* SearchAlertController.xib in Resources */,
 				A7969A242BE8748400FE02FB /* LaunchScreen.storyboard in Resources */,
-				A79ED0082BEA082100E7356B /* BebasNeue-Regular.ttf in Resources */,
 				A79ED0022BE9BF6A00E7356B /* AVHistoryBottomView.xib in Resources */,
 				A73BFBC22BE8D89F00A672E7 /* AVSearchItemCell.xib in Resources */,
 				A73BFBE02BE8DC0900A672E7 /* HPPlayerFailView.xib in Resources */,
@@ -1196,7 +1198,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HPlayer/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Movflix;
+				INFOPLIST_KEY_CFBundleDisplayName = MovieTrack;
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This identifier will be used to deliver personalized ads to you.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
@@ -1232,7 +1234,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HPlayer/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Movflix;
+				INFOPLIST_KEY_CFBundleDisplayName = MovieTrack;
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This identifier will be used to deliver personalized ads to you.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;

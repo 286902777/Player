@@ -32,7 +32,6 @@ class IndexBannerCell: JXBannerBaseCell {
     lazy var starL: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.hexColor("#B2AAFF")
-        label.font = UIFont(name: "Open Sans Bold", size: 24)
         label.textAlignment = .center
         return label
     }()
@@ -137,14 +136,16 @@ class IndexBannerCell: JXBannerBaseCell {
         let attr: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium), NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.strokeColor: UIColor.hexColor("#141414"), NSAttributedString.Key.strokeWidth: -0.5]
         self.titleL.attributedText = NSAttributedString(string: model.title, attributes: attr)
         self.imageView.setImage(with: model.horizontal_cover)
+
         if let r = Float(model.rate) {
             self.starL.isHidden = false
-            self.starL.text = String(format: "%.1f", r)
+            let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "Open Sans", size: 24) ?? UIFont.systemFont(ofSize: 24, weight: .medium), .foregroundColor: UIColor.hexColor("#B2AAFF")]
+            self.starL.attributedText = NSAttributedString(string: String(format: "%.1f", r), attributes: attr)
         } else {
             self.starL.isHidden = true
         }
         let arr = DBManager.share.selectWhiteData()
-        if let m = arr.first(where: {$0.id == model.id}) {
+        if let _ = arr.first(where: {$0.id == model.id}) {
             model.isLike = true
         }
         self.favImgV.image = UIImage(named: model.isLike ? "w_like" : "w_unlike")

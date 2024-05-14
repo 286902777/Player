@@ -42,7 +42,7 @@ class PlayDetailsCell: UITableViewCell {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: String(describing: PlayPeopleCell.self), bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
-        self.starL.font = UIFont(name: "Open Sans Bold", size: 24)
+        self.starL.font = UIFont(name: "Open Sans", size: 24)
 
     }
 

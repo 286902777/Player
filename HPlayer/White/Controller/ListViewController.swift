@@ -11,7 +11,7 @@ import UIKit
 class ListViewController: BaseViewController {
     let cellW = floor((kScreenWidth - 36) / 3)
     var name: String = ""
-    var listId: String = ""
+    var isMovie: Bool = false
     var list: [AVDataInfoModel] = []
     let cellIdentifier = "IndexCellIdentifier"
     private var page: Int = 1
@@ -90,15 +90,13 @@ class ListViewController: BaseViewController {
             return
         }
         HPProgressHUD.show()
-        PlayerNetAPI.share.AVMoreList(id: self.listId, page: self.page) { [weak self] success, list in
+        PlayerNetAPI.share.AVFilterInfoData(type: self.isMovie ? "1" : "2") { [weak self] success, list in
             HPProgressHUD.dismiss()
             guard let self = self else { return }
             if !success {
                 self.emptyView.isHidden = false
             } else {
-                if list.count > 0 {
-                    self.list.append(contentsOf: list)
-                }
+                self.list.append(contentsOf: list)
                 self.emptyView.isHidden = true
             }
             self.collectionView.mj_header?.endRefreshing()
@@ -127,15 +125,21 @@ extension ListViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! IndexCell
         if let model = self.list.indexOfSafe(indexPath.item) {
-//            cell.setModel(model: model)
+            cell.setPlayModel(model: model)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let model = self.list.indexOfSafe(indexPath.item) {
-//            let vc = PlayViewController()
-//            self.navigationController?.pushViewController(vc, animated: true)
+            let mod = IndexDataListModel()
+            mod.id = model.id
+            mod.type = model.type
+            mod.title = model.title
+            mod.cover = model.cover
+            mod.rate = model.rate
+            let vc = PlayViewController(model: mod)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

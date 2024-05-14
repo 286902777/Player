@@ -234,7 +234,7 @@ extension IndexViewController: UITableViewDelegate, UITableViewDataSource {
                     if model.type == .list {
                         let vc = ListViewController()
                         vc.name = model.title
-                        vc.listId = model.title
+                        vc.isMovie = indexPath.row == 0 ? true : false
                         vc.hidesBottomBarWhenPushed = true
                         self.navigationController?.pushViewController(vc, animated: true)
                     } else {

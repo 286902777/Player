@@ -31,7 +31,7 @@ class AVBannerCell: JXBannerBaseCell {
     lazy var starL: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.hexColor("#B2AAFF")
-        label.font = UIFont(name: "Bebas Neue Regular", size: 24)
+        label.font = UIFont(name: "Bebas Neue", size: 24)
         label.textAlignment = .center
         return label
     }()

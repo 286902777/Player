@@ -215,6 +215,10 @@ class SearchViewController: BaseViewController {
     }
     
     override func reSetRequest() {
+        self.emptyView.isHidden = true
+        self.tableView.isHidden = true
+        self.recordView.isHidden = true
+        self.collectionView.isHidden = false
         self.showResult()
     }
     

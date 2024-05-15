@@ -44,9 +44,8 @@ class IndexSearchRecordView: UIView {
     func refreshData() {
         if let arr = UserDefaults.standard.object(forKey: HPKey.searchRecord) as? [String] {
             self.list = arr
-            self.isHidden = arr.count == 0 
         } else {
-            self.isHidden = true
+            self.list.removeAll()
         }
         collectionView.reloadData()
     }

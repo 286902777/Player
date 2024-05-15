@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self?.netStatus = status
         })
         addTrack()
-        setIQKeyBoard()
+//        setIQKeyBoard()
 //        addAdjust()
         return true
     }

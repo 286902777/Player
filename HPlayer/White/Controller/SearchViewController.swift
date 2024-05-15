@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import IQKeyboardManagerSwift
+//import IQKeyboardManagerSwift
 
 class SearchViewController: BaseViewController {
     let gHostUrl = "https://suggestqueries.google.com/complete/search?client=firefox&q="
@@ -22,6 +22,7 @@ class SearchViewController: BaseViewController {
             self.searchView.clearBtn.isHidden = self.key.count == 0
         }
     }
+    var task: URLSessionDataTask?
     
     lazy var tableView: UITableView = {
         let table = UITableView.init(frame: .zero, style: .plain)
@@ -56,7 +57,7 @@ class SearchViewController: BaseViewController {
     let recordView: IndexSearchRecordView = IndexSearchRecordView.view()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        IQKeyboardManager.shared.enable = true
+//        IQKeyboardManager.shared.enable = true
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,64 +150,57 @@ class SearchViewController: BaseViewController {
         if text.count == 0 {
             return
         }
-        NetManager.requestSearch(url: gHostUrl + text) { [weak self] data in
-            guard let self = self else { return }
-            self.searchKeys.removeAll()
-            if let arr = self.getSearchData(data) {
-                for i in arr {
-                    if let sub = i as? Array<Any> {
-                        for s in sub {
-                            if s is String {
-                                self.searchKeys.append(s as? String ?? "")
+        self.searchKeys.removeAll()
+        let url: String = gHostUrl + text
+        var request: URLRequest = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+        let session: URLSession = URLSession(configuration: configuration)
+        self.task?.cancel()
+        self.task = session.dataTask(with: request, completionHandler: { data, response, error in
+            guard error == nil else {
+                return
+            }
+            if let result = response as? HTTPURLResponse, result.statusCode == 200, let d = data {
+                if let arr = self.getSearchData(d) {
+                    for i in arr {
+                        if let sub = i as? Array<Any> {
+                            for s in sub {
+                                if s is String {
+                                    self.searchKeys.append(s as? String ?? "")
+                                }
                             }
+                        } else if i is String {
+                            self.searchKeys.append(i as? String ?? "")
                         }
-                    } else if i is String {
-                        self.searchKeys.append(i as? String ?? "")
                     }
                 }
-            }
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                if self.searchKeys.count > 0 {
-                    self.tableView.isHidden = false
-                    self.recordView.isHidden = true
-                    self.emptyView.isHidden = true
-                    self.collectionView.isHidden = true
-                    self.tableView.reloadData()
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    if self.searchKeys.count > 0 {
+                        self.tableView.isHidden = false
+                        self.recordView.isHidden = true
+                        self.emptyView.isHidden = true
+                        self.collectionView.isHidden = true
+                        self.tableView.reloadData()
+                    }
                 }
+                return
             }
-        }
+        })
+        self.task?.resume()
     }
     
-    func getSearchData(_ str: String) -> Array<Any>? {
+    func getSearchData(_ data: Data) -> Array<Any>? {
         do {
-            if let d = str.data(using: .utf8) {
-                let arr = try JSONSerialization.jsonObject(with: d, options: .mutableContainers)
-                return arr as? Array<Any>
-            }
+            let arr = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+            return arr as? Array<Any>
         } catch {
             print("error")
         }
         return nil
     }
-//    func getSearchData(_ data: String) -> Array<Any>? {
-//        guard let start = data.range(of: "(") else {
-//            return nil
-//        }
-//
-//        let stratRange = NSRange(start, in: data)
-//        let str = data.substring(withRange: NSRange(location: stratRange.location + 1, length: data.count - stratRange.location - 2))
-//        print(str)
-//        do {
-//            if let d = str.data(using: .utf8) {
-//                let arr = try JSONSerialization.jsonObject(with: d, options: .mutableContainers)
-//                return arr as? Array<Any>
-//            }
-//        } catch {
-//            print("error")
-//        }
-//        return nil
-//    }
     
     func setRecordText(_ text: String) {
         if let arr = UserDefaults.standard.object(forKey: HPKey.searchRecord) as? [String] {

@@ -18,7 +18,7 @@ class AVFeedBackViewController: VBaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        IQKeyboardManager.shared.enable = true
+//        IQKeyboardManager.shared.enable = true
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +49,8 @@ class AVFeedBackViewController: VBaseViewController {
     }
 
     override func clickRightAction() {
+        self.contentV.resignFirstResponder()
+        self.emailV.resignFirstResponder()
         if contentV.text.count > 0, emailV.text.count > 0 {
             toast("Feedback successful")
             self.navigationController?.popViewController(animated: true)

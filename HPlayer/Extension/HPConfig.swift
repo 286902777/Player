@@ -19,7 +19,7 @@ class HPConfig{
         case play
     }
     
-    static let SafeBUNDLEID = "com.movietackios.flix"
+    static let SafeBUNDLEID = "com.movietrackios.box"
 
     static let app_version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     

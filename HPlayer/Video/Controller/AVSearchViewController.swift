@@ -16,7 +16,6 @@ class AVSearchViewController: VBaseViewController {
         case list
         case cancel
     }
-    let hostUrl = "https://suggestqueries.google.com/complete/search?client=youtube&q="
     let cellIdentifier = "AVSearchCellIdentifier"
     var searchKeys: [String] = []
     var dataList: [AVDataInfoModel] = []
@@ -25,6 +24,7 @@ class AVSearchViewController: VBaseViewController {
     private var page: Int = 1
     private var key: String = "" {
         didSet {
+            self.searchView.searchTF.text = self.key
             self.searchView.clearBtn.isHidden = self.key.count == 0
         }
     }
@@ -198,7 +198,7 @@ class AVSearchViewController: VBaseViewController {
             return
         }
         self.searchKeys.removeAll()
-        let url: String = hostUrl + text
+        let url: String = HPKey.gHostUrl + text
         var request: URLRequest = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -334,7 +334,6 @@ extension AVSearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let text = self.searchKeys.indexOfSafe(indexPath.row)?.removeSpace {
             self.key = text
-            self.searchView.searchTF.text = self.key
             self.requestData()
         }
     }

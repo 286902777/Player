@@ -58,11 +58,11 @@ class NetManager {
     var contentType: String = "application/x-www-form-urlencoded"
     
     /// 接口地址
-#if DEBUG
-    let Host: String = "https://test.movietackiosflix.com/"
-#else
-    let Host: String = "https://prod.movietackiosflix.com/"
-#endif
+//#if DEBUG
+//    let Host: String = "https://test.movietrackiosapp.com/"
+//#else
+    let Host: String = "https://prod.movietrackiosapp.com/"
+//#endif
         
     /// 参数编码方式
     let ParameterEncoder : ParameterEncoder = URLEncodedFormParameterEncoder.default
@@ -184,10 +184,16 @@ extension NetManager{
     }
     
     fileprivate func codeToJson(_ text: String?) -> String? {
-        if let str = text, str.count > 42 {
-            let s = str.substring(to: str.count - 42)
-            let result = s.map({$0.isUppercase ? $0.lowercased() : $0.uppercased()})
-            let data = Data(base64Encoded: String(result.joined())) ?? Data()
+//        if let str = text, str.count > 42 {
+//            let s = str.substring(to: str.count - 42)
+//            let result = s.map({$0.isUppercase ? $0.lowercased() : $0.uppercased()})
+//            let data = Data(base64Encoded: String(result.joined())) ?? Data()
+//            let json = String(data: data, encoding: String.Encoding.utf8)
+//            return json
+//        }
+        if let str = text, str.count > 5 {
+            let s = str.substring(from: 5)
+            let data = Data(base64Encoded: String(s.reversed())) ?? Data()
             let json = String(data: data, encoding: String.Encoding.utf8)
             return json
         }

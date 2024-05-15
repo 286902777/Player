@@ -69,9 +69,9 @@ extension IndexListCell: UICollectionViewDelegateFlowLayout, UICollectionViewDel
                 cell.setModel(model: model)
                 cell.clickLikeBlock = { like in
                     if like {
-                        DBManager.share.insertWhiteData(mod: model)
+                        DBManager.share.insertWhiteData(mod: model, false)
                     } else {
-                        DBManager.share.deleteWhiteData(model)
+                        DBManager.share.deleteWhiteData(model, false)
                     }
                 }
             }

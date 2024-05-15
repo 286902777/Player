@@ -8,33 +8,33 @@
 import Foundation
 enum AVNetAPI: String {
     /// 首页
-    case AVIndexApi = "KRFUhMzQTo/oLtyNph/uIgoF"
+    case AVIndexApi = "SwfKHULPSE/SEJhhFOTCw/QUmVs"
     /// banner
-    case AVBannerApi = "unKteclflZ/aJqjiX/qKmEWjORV"
+    case AVBannerApi = "wKQ/CxXvjFvr"
     /// 更多
-    case AVMoreListApi = "AarX/TzDrCPvQp/sBzmLk"
+    case AVMoreListApi = "BfQt/uNgPPEK/lfDz"
     /// 搜索TopData
-    case AVSearchTopApi = "nZxIU/RTmh"
+    case AVSearchTopApi = "nIdaCaV/MfofDteKjc/eFByNWFMh"
     /// filter head
-    case AVFilterHeadApi = "TiaeYYPwuk/tsELcc/yghQMy"
+    case AVFilterHeadApi = "asOb/JLHI"
     /// filter
-    case AVFilterApi = "oDes/qiBDnvl/jxt"
+    case AVFilterApi = "XbhG/ikgxzPY/YmS"
     /// tveps
-    case AVTvEpsApi = "uEUfPCMYo/sBNOCKgoD/aleQ"
+    case AVTvEpsApi = "Knxr/kTA/lJCWr"
     /// tvssn
-    case AVTvSsnApi = "jLNJFqEOY/ZopR"
+    case AVTvSsnApi = "RuS/ExpiNqK"
     /// AV,tvInfo
-    case AVInfoApi = "jpjVqEiw/CJwVvvVh/EILLTXpOEC"
+    case AVInfoApi = "ZsDNt/bXqZGEAWxf"
     /// AV More Info
-    case AVMoreInfoApi = "idGyp/FsM/yGeKlmCz"
+    case AVMoreInfoApi = "bsvxWGKrOa/iiWilfE"
     /// SearchClickCount
-    case AVSearchClickCountApi = "KjIJMX/qmj"
+    case AVSearchClickCountApi = "RzWKOm/QUcH/KCBmK"
     /// A page Trending、Popular
-    case WBannerApi = "fijpptGv/PUfQhW/xWPIwviisA"
+    case WBannerApi = "JPhZ/VvrVJa/OHs"
     /// A page Popular People
-    case WPeopleApi = "xgSIPeYFCw/zjyeKK"
+    case WPeopleApi = "KaAfe/ylUwUPvCF"
     /// A page Popular People Video
-    case WPeopleDataApi = "mzcAySvZp/uFnkX"
+    case WPeopleDataApi = "HQYPMLq/mgHv"
 }
 
 class PlayerNetAPI {

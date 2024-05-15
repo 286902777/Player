@@ -7,10 +7,8 @@
 //
 
 import UIKit
-//import IQKeyboardManagerSwift
 
 class SearchViewController: BaseViewController {
-    let gHostUrl = "https://suggestqueries.google.com/complete/search?client=firefox&q="
     let cellW = floor((kScreenWidth - 36) / 3)
     var list: [AVDataInfoModel] = []
     var searchView: IndexSearchView = IndexSearchView.view()
@@ -19,10 +17,10 @@ class SearchViewController: BaseViewController {
     var IndexCellIdentifier: String = "IndexCellIdentifier"
     var key: String = "" {
         didSet {
+            self.searchView.searchTF.text = key
             self.searchView.clearBtn.isHidden = self.key.count == 0
         }
     }
-    var task: URLSessionDataTask?
     
     lazy var tableView: UITableView = {
         let table = UITableView.init(frame: .zero, style: .plain)
@@ -53,11 +51,12 @@ class SearchViewController: BaseViewController {
         collectionView.contentInsetAdjustmentBehavior = .never
         return collectionView
     }()
+    var task: URLSessionDataTask?
+
     private var page: Int = 1
     let recordView: IndexSearchRecordView = IndexSearchRecordView.view()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        IQKeyboardManager.shared.enable = true
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -151,7 +150,7 @@ class SearchViewController: BaseViewController {
             return
         }
         self.searchKeys.removeAll()
-        let url: String = gHostUrl + text
+        let url: String = HPKey.gHostUrl + text
         var request: URLRequest = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -212,10 +211,6 @@ class SearchViewController: BaseViewController {
             UserDefaults.standard.set([text], forKey: HPKey.searchRecord)
             UserDefaults.standard.synchronize()
         }
-        self.recordView.isHidden = false
-        self.emptyView.isHidden = true
-        self.collectionView.isHidden = true
-        self.tableView.isHidden = true
         self.recordView.refreshData()
     }
     
@@ -224,8 +219,8 @@ class SearchViewController: BaseViewController {
     }
     
     private func loadMoreData() {
-        searchView.searchTF.resignFirstResponder()
         HPProgressHUD.show()
+        NetManager.cancelAllRequest()
         PlayerNetAPI.share.AVFilterInfoData(page: self.page, key: self.key) { [weak self] success, list in
             guard let self = self else { return }
             HPProgressHUD.dismiss()
@@ -244,16 +239,14 @@ class SearchViewController: BaseViewController {
             }
             self.collectionView.mj_header?.endRefreshing()
             self.collectionView.mj_footer?.endRefreshing()
-           
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
+            DispatchQueue.main.async {
                 if self.list.count == 0 {
                     self.collectionView.mj_footer?.isHidden = true
                     self.emptyView.setType(.content)
                     self.emptyView.isHidden = false
-                    self.collectionView.isHidden = true
                     self.tableView.isHidden = true
                     self.recordView.isHidden = true
+                    self.collectionView.isHidden = true
                 } else {
                     self.tableView.isHidden = true
                     self.recordView.isHidden = true
@@ -265,17 +258,10 @@ class SearchViewController: BaseViewController {
         }
     }
     func showResult() {
-        self.setRecordText(self.key)
         self.searchView.searchTF.resignFirstResponder()
+        self.setRecordText(self.key)
         self.page = 1
         self.list.removeAll()
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.emptyView.isHidden = true
-            self.tableView.isHidden = true
-            self.recordView.isHidden = true
-            self.collectionView.isHidden = false
-        }
         self.loadMoreData()
     }
 }
@@ -292,10 +278,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let text = self.searchKeys.indexOfSafe(indexPath.row)?.removeSpace {
             self.key = text
-            self.searchView.searchTF.text = self.key
             self.showResult()
         }
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         48
     }
@@ -375,6 +361,9 @@ extension SearchViewController: UITextFieldDelegate {
     }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
+        if textField.text == self.key {
+            return
+        }
         if let text = textField.text?.removeSpace {
             self.key = text
             searchText(text)
@@ -382,6 +371,9 @@ extension SearchViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        if textField.text == self.key {
+            return
+        }
         if let text = textField.text?.removeSpace {
             self.key = text
             searchText(text)

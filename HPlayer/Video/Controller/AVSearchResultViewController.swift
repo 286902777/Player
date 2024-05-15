@@ -8,7 +8,6 @@
 import UIKit
 
 class AVSearchResultViewController: VBaseViewController {
-    let glHostUrl = "https://suggestqueries.google.com/complete/search?client=firefox&q="
     let cellIdentifier = "AVSearchCellIdentifier"
     var searchKeys: [String] = []
     var list: [AVDataInfoModel] = []
@@ -19,6 +18,7 @@ class AVSearchResultViewController: VBaseViewController {
     private var page: Int = 1
     var key: String = "" {
         didSet {
+            self.searchView.searchTF.text = self.key
             self.searchView.clearBtn.isHidden = self.key.count == 0
         }
     }
@@ -190,7 +190,7 @@ class AVSearchResultViewController: VBaseViewController {
             return
         }
         self.searchKeys.removeAll()
-        let url: String = glHostUrl + text
+        let url: String = HPKey.gHostUrl + text
         var request: URLRequest = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -323,6 +323,9 @@ extension AVSearchResultViewController: UITextFieldDelegate {
     }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
+        if textField.text == self.key {
+            return
+        }
         if let text = textField.text?.removeSpace {
             self.key = text
             searchText(text)
@@ -330,6 +333,9 @@ extension AVSearchResultViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        if textField.text == self.key {
+            return
+        }
         if let text = textField.text?.removeSpace {
             self.key = text
             searchText(text)

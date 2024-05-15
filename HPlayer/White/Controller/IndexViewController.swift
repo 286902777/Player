@@ -52,20 +52,13 @@ class IndexViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        self.bannerView.reloadView()
+        self.tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addRefresh()
-        NotificationCenter.default.addObserver(forName: HPKey.Noti_Like, object: nil, queue: .main) { [weak self] _ in
-            guard let self = self else { return }
-            self.bannerView.reloadView()
-            self.tableView.reloadData()
-        }
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
     
     override func setUI() {
@@ -370,7 +363,11 @@ extension IndexViewController: JXBannerDataSource {
     }
     
     func jxBanner(_ banner: JXBannerType, centerIndex: Int, centerCell: UICollectionViewCell) {
-
+        if let list = self.bannerlist.first(where: {$0.title == (self.isDay ? .today : .week)})?.data_list {
+            if let model = list.indexOfSafe(centerIndex) {
+                self.bgView.imageV.setImage(with: model.horizontal_cover)
+            }
+        }
     }
     
     func jxBanner(_ banner: JXBannerType, lastCenterIndex: Int?, lastCenterCell: UICollectionViewCell?) {

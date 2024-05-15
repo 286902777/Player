@@ -107,10 +107,11 @@ class IndexViewController: BaseViewController {
         }
         self.emptyView.setType()
         
-        view.insertSubview(bgView, at: 0)
-        view.insertSubview(tableView, at: 1)
-        view.insertSubview(emptyView, at: 2)
-        view.insertSubview(navBar, at: 3)
+        view.insertSubview(backView, at: 0)
+        view.insertSubview(bgView, at: 1)
+        view.insertSubview(tableView, at: 2)
+        view.insertSubview(emptyView, at: 3)
+        view.insertSubview(navBar, at: 4)
     }
     
     func addRefresh() {

@@ -8,7 +8,7 @@
 import UIKit
 
 class AVSearchResultViewController: VBaseViewController {
-    let glHostUrl = "https://suggestqueries.google.com/complete/search?client=youtube&q="
+    let glHostUrl = "https://suggestqueries.google.com/complete/search?client=firefox&q="
     let cellIdentifier = "AVSearchCellIdentifier"
     var searchKeys: [String] = []
     var list: [AVDataInfoModel] = []
@@ -192,12 +192,12 @@ class AVSearchResultViewController: VBaseViewController {
         NetManager.requestSearch(url: glHostUrl + text) { [weak self] data in
             guard let self = self else { return }
             self.searchKeys.removeAll()
-            if let arr = self.getSearchData(data) {
+            if let arr = self.setSearchList(data) {
                 for i in arr {
                     if let sub = i as? Array<Any> {
                         for s in sub {
-                            if let keys = s as? Array<Any> {
-                                self.searchKeys.append(keys.first as? String ?? "")
+                            if s is String {
+                                self.searchKeys.append(s as? String ?? "")
                             }
                         }
                     } else if i is String {
@@ -216,14 +216,7 @@ class AVSearchResultViewController: VBaseViewController {
         }
     }
     
-    func getSearchData(_ data: String) -> Array<Any>? {
-        guard let start = data.range(of: "(") else {
-            return nil
-        }
-
-        let stratRange = NSRange(start, in: data)
-        let str = data.substring(withRange: NSRange(location: stratRange.location + 1, length: data.count - stratRange.location - 2))
-        print(str)
+    func setSearchList(_ str: String) -> Array<Any>? {
         do {
             if let d = str.data(using: .utf8) {
                 let arr = try JSONSerialization.jsonObject(with: d, options: .mutableContainers)

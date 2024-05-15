@@ -18,14 +18,14 @@
                     <rect key="frame" x="12" y="0.0" width="306" height="54"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="w_search_icon" translatesAutoresizingMaskIntoConstraints="NO" id="sce-ZX-BLX">
-                            <rect key="frame" x="8" y="15" width="24" height="24"/>
+                            <rect key="frame" x="8" y="18" width="18" height="18"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="24" id="Yi7-X1-qPl"/>
-                                <constraint firstAttribute="width" constant="24" id="eFk-NM-Yc7"/>
+                                <constraint firstAttribute="height" constant="18" id="Yi7-X1-qPl"/>
+                                <constraint firstAttribute="width" constant="18" id="eFk-NM-Yc7"/>
                             </constraints>
                         </imageView>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AJr-U7-FhR">
-                            <rect key="frame" x="44" y="0.0" width="208" height="54"/>
+                            <rect key="frame" x="38" y="0.0" width="214" height="54"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="textColor" red="0.078431372549019607" green="0.078431372549019607" blue="0.078431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>

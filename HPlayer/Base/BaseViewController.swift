@@ -21,8 +21,8 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.F141414
-        addNavBar()
         addBackView()
+        addNavBar()
         setUI()
         emptyView.isHidden = true
         emptyView.clickBlock = { [weak self] in

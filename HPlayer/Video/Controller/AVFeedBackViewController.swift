@@ -10,6 +10,7 @@ import IQKeyboardManagerSwift
 
 class AVFeedBackViewController: VBaseViewController {
     var titleName: String = ""
+    var isVideo: Bool = true
     @IBOutlet weak var top: NSLayoutConstraint!
     @IBOutlet weak var feedBackL: UILabel!
     @IBOutlet weak var contentV: IQTextView!
@@ -22,6 +23,7 @@ class AVFeedBackViewController: VBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navBar.rightBtn.isHidden = false
+        self.navBar.backBtn.setImage(UIImage(named: self.isVideo ? "nav_back" : "w_back"), for: .normal)
         self.navBar.rightBtn.setImage(UIImage(named: "nav_sure"), for: .normal)
         self.navBar.titleL.text = titleName
         
@@ -41,6 +43,9 @@ class AVFeedBackViewController: VBaseViewController {
         emailV.textColor = UIColor.white
         emailV.placeholderTextColor = UIColor.hexColor("#FFFFFF", alpha: 0.5)
         emailV.backgroundColor = UIColor.hexColor("#FFFFFF", alpha: 0.1)
+        
+        contentV.delegate = self
+        emailV.delegate = self
     }
 
     override func clickRightAction() {
@@ -52,3 +57,13 @@ class AVFeedBackViewController: VBaseViewController {
         }
     }
 }
+
+extension AVFeedBackViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentText = textView.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
+        return updatedText.count <= 200
+    }
+}
+

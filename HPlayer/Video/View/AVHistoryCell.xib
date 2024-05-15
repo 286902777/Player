@@ -23,6 +23,7 @@
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZQw-OZ-F3g">
                         <rect key="frame" x="44" y="12" width="80" height="120"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="ZQw-OZ-F3g" secondAttribute="height" multiplier="2:3" id="UZy-6N-tCE"/>
                         </constraints>
@@ -142,7 +143,7 @@
     </objects>
     <resources>
         <image name="cell_bottom_bg" width="110" height="146"/>
-        <image name="cell_top_bg" width="110" height="146"/>
+        <image name="cell_top_bg" width="120" height="180"/>
         <image name="his_play" width="36" height="36"/>
         <image name="his_star" width="16" height="16"/>
         <image name="his_unSelect" width="20" height="20"/>

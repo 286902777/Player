@@ -187,7 +187,7 @@ class SearchViewController: BaseViewController {
         } catch {
             print("error")
         }
-        return ["s"]
+        return nil
     }
 //    func getSearchData(_ data: String) -> Array<Any>? {
 //        guard let start = data.range(of: "(") else {
@@ -247,22 +247,25 @@ class SearchViewController: BaseViewController {
                 } else {
                     self.collectionView.mj_footer?.endRefreshingWithNoMoreData()
                 }
-                
-                if self.list.count == 0 {
-                    self.collectionView.mj_footer?.isHidden = true
-                    self.emptyView.setType(.content)
-                    self.emptyView.isHidden = false
-                }
             }
             self.collectionView.mj_header?.endRefreshing()
             self.collectionView.mj_footer?.endRefreshing()
            
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                self.tableView.isHidden = true
-                self.recordView.isHidden = true
-                self.emptyView.isHidden = true
-                self.collectionView.isHidden = false
+                if self.list.count == 0 {
+                    self.collectionView.mj_footer?.isHidden = true
+                    self.emptyView.setType(.content)
+                    self.emptyView.isHidden = false
+                    self.collectionView.isHidden = true
+                    self.tableView.isHidden = true
+                    self.recordView.isHidden = true
+                } else {
+                    self.tableView.isHidden = true
+                    self.recordView.isHidden = true
+                    self.emptyView.isHidden = true
+                    self.collectionView.isHidden = false
+                }
                 self.collectionView.reloadData()
             }
         }

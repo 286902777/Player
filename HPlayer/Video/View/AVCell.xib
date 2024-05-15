@@ -19,7 +19,7 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VIJ-1h-tXg">
                         <rect key="frame" x="0.0" y="0.0" width="134" height="177"/>
-                        <color key="backgroundColor" red="0.078431372549019607" green="0.078431372549019607" blue="0.078431372549019607" alpha="0.75" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.99999994039535522" blue="1" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cell_top_bg" translatesAutoresizingMaskIntoConstraints="NO" id="BgF-i4-Q2A">
                         <rect key="frame" x="0.0" y="0.0" width="134" height="177"/>
@@ -106,6 +106,6 @@
     </objects>
     <resources>
         <image name="cell_bottom_bg" width="110" height="146"/>
-        <image name="cell_top_bg" width="110" height="146"/>
+        <image name="cell_top_bg" width="120" height="180"/>
     </resources>
 </document>

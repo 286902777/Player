@@ -102,6 +102,7 @@ extension MyLibraryViewController: UITableViewDelegate, UITableViewDataSource {
             if let model = self.list.indexOfSafe(indexPath.row) {
                 vc.titleName = model.type.rawValue
             }
+            vc.isVideo = false
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         case .Share:

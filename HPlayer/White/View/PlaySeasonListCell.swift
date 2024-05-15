@@ -35,6 +35,8 @@ class PlaySeasonListCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.desL.isHidden = true
+        self.imgV.layer.cornerRadius = 4
+        self.imgV.layer.masksToBounds = true
         let attr = NSAttributedString(string: "Overview", attributes: [.font: UIFont.systemFont(ofSize: 12), .foregroundColor: UIColor.hexColor("#CCC7FF"), .underlineStyle: NSUnderlineStyle.single.rawValue, .underlineColor: UIColor.hexColor("#CCC7FF")])
         overBtn.setAttributedTitle(attr, for: .normal)
 

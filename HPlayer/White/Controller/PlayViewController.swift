@@ -87,6 +87,7 @@ class PlayViewController: BaseViewController {
             PlayerNetAPI.share.AVInfoData(isMovie: self.model.type == 1 ? true : false, id: self.model.id) { success, model in
                 if success {
                     self.dataModel = model
+                    self.dataModel.type = self.model.type
                 } else {
                     requestResult = false
                 }

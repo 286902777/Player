@@ -58,11 +58,13 @@ class NetManager {
     var contentType: String = "application/x-www-form-urlencoded"
     
     /// 接口地址
-#if DEBUG
-    let Host: String = "https://test.movietrackiosapp.com/"
-#else
     let Host: String = "https://prod.movietrackiosapp.com/"
-#endif
+
+//#if DEBUG
+//    let Host: String = "https://test.movietrackiosapp.com/"
+//#else
+//    let Host: String = "https://prod.movietrackiosapp.com/"
+//#endif
         
     /// 参数编码方式
     let ParameterEncoder : ParameterEncoder = URLEncodedFormParameterEncoder.default

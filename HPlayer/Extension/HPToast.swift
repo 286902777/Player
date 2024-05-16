@@ -72,7 +72,6 @@ public struct HPToast {
         
         let padding: CGFloat = 32
         
-        
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.width - self.fontSize * 4, height: CGFloat.greatestFiniteMagnitude))
         label.text = message
         label.font = .systemFont(ofSize: self.fontSize, weight: .medium)
@@ -81,35 +80,35 @@ public struct HPToast {
         label.textColor = self.textColor
         label.sizeToFit()
         
-        let back = UIView()
-        back.frame = CGRect(origin: label.frame.origin, size: CGSize(width: label.frame.width + padding * 2, height: label.frame.height + padding))
-        back.layer.cornerRadius = self.radiusSize
-        back.layer.masksToBounds = true
-        back.backgroundColor = self.backColor
-        back.addSubview(label)
-        label.center = back.center
+        let backView = UIView()
+        backView.frame = CGRect(origin: label.frame.origin, size: CGSize(width: label.frame.width + padding * 2, height: label.frame.height + padding))
+        backView.layer.cornerRadius = self.radiusSize
+        backView.layer.masksToBounds = true
+        backView.backgroundColor = self.backColor
+        backView.addSubview(label)
+        label.center = backView.center
         
         DispatchQueue.main.async {
-            view.addSubview(back)
-            view.bringSubviewToFront(back)
+            view.addSubview(backView)
+            view.bringSubviewToFront(backView)
             switch self.position {
             case let .top(offset):
-                back.center = CGPoint(x: view.center.x, y: back.frame.height + padding - offset)
+                backView.center = CGPoint(x: view.center.x, y: backView.frame.height + padding - offset)
             case let .middle(offset):
-                back.center = CGPoint(x: view.center.x, y: view.center.y - offset)
+                backView.center = CGPoint(x: view.center.x, y: view.center.y - offset)
             case let .bottom(offset):
-                back.center = CGPoint(x: view.center.x, y: view.frame.height - back.frame.height - padding - offset)
+                backView.center = CGPoint(x: view.center.x, y: view.frame.height - backView.frame.height - padding - offset)
             }
             
             UIView.animate(withDuration: 0.5){
-                back.alpha = 1.0
+                backView.alpha = 1.0
             }
             
             Timer.scheduledTimer(withTimeInterval: self.duration, repeats: false) { timer in
                 UIView.animate(withDuration: 0.5) {
-                    back.alpha = 0.0
+                    backView.alpha = 0.0
                 } completion: { _ in
-                    back.removeFromSuperview()
+                    backView.removeFromSuperview()
                 }
                 timer.invalidate()
             }

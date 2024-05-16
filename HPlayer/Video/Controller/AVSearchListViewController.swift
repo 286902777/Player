@@ -10,7 +10,7 @@ import JXPagingView
 
 class AVSearchListViewController: UIViewController {
     var list: [AVDataInfoModel] = []
-    var type: String = "1"
+    var type: Int = 0
     let cellW = floor((kScreenWidth - 36) / 3)
     let cellIdentifier = "AVSearchItemCellIdentifier"
     
@@ -61,7 +61,7 @@ extension AVSearchListViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let model = self.list.indexOfSafe(indexPath.item) {
             DBManager.share.updateData(model)
-            HPLog.tb_search_cl(kid: "1", movie_id: model.id, movie_name: model.title, type: self.type)
+            HPLog.tb_search_cl(kid: "1", movie_id: model.id, movie_name: model.title, type: "\(self.type)")
             PlayerNetAPI.share.AVSearchClickInfo(model.id) { success, model in
                 
             }

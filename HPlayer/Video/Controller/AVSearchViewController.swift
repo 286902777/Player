@@ -389,7 +389,7 @@ extension AVSearchViewController: JXPagingViewDelegate {
         let vc = AVSearchListViewController()
         if let model = self.topList.indexOfSafe(index) {
             vc.list = model.data_list
-            vc.type = "\(index + 1)"
+            vc.type = index + 1
         }
         return vc
     }

@@ -17,9 +17,9 @@ class AVTabController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let index = addChildVC(controller: AVHomeViewController(),title: TabBarStauts.index.rawValue, image: "index", selectImage: "index_sel")
-        let explore = addChildVC(controller: AVFilterViewController(),title: TabBarStauts.explore.rawValue, image: "exp", selectImage: "exp_sel")
-        let set = addChildVC(controller: AVSettingViewController(),title: TabBarStauts.set.rawValue, image: "setting", selectImage: "setting_sel")
+        let index = addSubVC(controller: AVHomeViewController(),title: TabBarStauts.index.rawValue, image: "index", selectImage: "index_sel")
+        let explore = addSubVC(controller: AVFilterViewController(),title: TabBarStauts.explore.rawValue, image: "exp", selectImage: "exp_sel")
+        let set = addSubVC(controller: AVSettingViewController(),title: TabBarStauts.set.rawValue, image: "setting", selectImage: "setting_sel")
 //        let vip = setChildVC(vc: VipViewController(),title: TabBarItem.vip.rawValue, image: "vipTab", selectImage: "vipTab_select")
 
         self.tabBar.barTintColor = UIColor.hexColor("#141414")
@@ -28,7 +28,7 @@ class AVTabController: UITabBarController {
         self.viewControllers = [index, explore, set]
     }
     
-    func addChildVC(controller: UIViewController, title: String, image: String, selectImage: String) -> UINavigationController {
+    func addSubVC(controller: UIViewController, title: String, image: String, selectImage: String) -> UINavigationController {
         controller.tabBarItem.title = title
         controller.tabBarItem.image = UIImage(named: image)
         controller.tabBarItem.setTitleTextAttributes([.foregroundColor: UIColor.hexColor("#FFFFFF", alpha: 0.5), .font: UIFont.systemFont(ofSize: 10)], for: .normal)

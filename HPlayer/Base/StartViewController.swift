@@ -21,24 +21,24 @@ class StartViewController: UIViewController {
     }
     
     func setTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(recordTime), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(timeToRootVC), userInfo: nil, repeats: true)
         if let t = timer {
             RunLoop.main.add(t, forMode: .common)
         }
     }
     
-    @objc func recordTime() {
+    @objc func timeToRootVC() {
         timeCount -= 1
         let p: Float = 1 / Float(HPADManager.share.maxStartWait)
         self.progView.progress += p
         if timeCount <= 0 {
-            cancelTimer()
+            timerCancel()
             setRootVC()
         }
     }
     
 
-    func cancelTimer() {
+    func timerCancel() {
         if (timer != nil) {
             timer?.invalidate()
             timer = nil

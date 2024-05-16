@@ -13,30 +13,13 @@ class RefreshGifHeader: MJRefreshGifHeader{
     override func prepare() {
         super.prepare()
         self.gifView?.isHidden = true
-        let animation = LottieAnimationView(name: "refresh")
-        let view = UIView(frame: CGRect(x: (kScreenWidth - 60) * 0.5, y: 10, width: 60, height: 60))
-        animation.frame = view.bounds
-        animation.loopMode = .loop
-        animation.play()
-        view.addSubview(animation)
-        self.addSubview(view)
-        self.mj_h = 80
-        self.stateLabel?.isHidden = true
-        self.lastUpdatedTimeLabel?.isHidden = true
-    }
-}
-
-class RefreshFilterGifHeader: MJRefreshGifHeader{
-    override func prepare() {
-        super.prepare()
-        self.gifView?.isHidden = true
-        let animation = LottieAnimationView(name: "refresh")
-        let view = UIView(frame: CGRect(x: (kScreenWidth - 60) * 0.5, y: -202, width: 60, height: 60))
-        animation.frame = view.bounds
-        animation.loopMode = .loop
-        animation.play()
-        view.addSubview(animation)
-        self.addSubview(view)
+        let lottieV = LottieAnimationView(name: "refresh")
+        let v = UIView(frame: CGRect(x: (kScreenWidth - 60) * 0.5, y: 10, width: 60, height: 60))
+        lottieV.frame = v.bounds
+        lottieV.loopMode = .loop
+        lottieV.play()
+        v.addSubview(lottieV)
+        self.addSubview(v)
         self.mj_h = 80
         self.stateLabel?.isHidden = true
         self.lastUpdatedTimeLabel?.isHidden = true
@@ -54,3 +37,21 @@ class RefreshAutoNormalFooter: MJRefreshAutoStateFooter {
         self.setTitle("No more content", for: .noMoreData)
     }
 }
+
+class RefreshFilterGifHeader: MJRefreshGifHeader{
+    override func prepare() {
+        super.prepare()
+        self.gifView?.isHidden = true
+        let lottieV = LottieAnimationView(name: "refresh")
+        let v = UIView(frame: CGRect(x: (kScreenWidth - 60) * 0.5, y: -202, width: 60, height: 60))
+        lottieV.frame = v.bounds
+        lottieV.loopMode = .loop
+        lottieV.play()
+        v.addSubview(lottieV)
+        self.addSubview(v)
+        self.mj_h = 80
+        self.stateLabel?.isHidden = true
+        self.lastUpdatedTimeLabel?.isHidden = true
+    }
+}
+

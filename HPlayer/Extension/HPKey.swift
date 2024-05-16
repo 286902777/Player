@@ -67,11 +67,11 @@ class HPKey {
     static let privacy = "https://movietrackiosapp.com/privacy/"
     static let terms = "https://movietrackiosapp.com/terms/"
     static let gHostUrl = "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&q="
-    static let APPID = "6474994352"
+    static let APPID = "6502696354"
     static let isUser = "isUser"
     static let isVip = "isVip"
     
-    static let email = "slihacwtu@hotmail.com"
+    static let email = "ayubmilk257271@outlook.com"
     
     static let app_version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     static let HPLogs = "HPLogs"

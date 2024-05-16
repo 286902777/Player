@@ -10,10 +10,10 @@ import UIKit
 class AVHistoryViewListController: VBaseViewController {
     let cellW = floor((kScreenWidth - 36) / 3)
     var listId: String = ""
-    var dataList: [AVDataInfoModel] = []
+    var list: [AVDataInfoModel] = []
     private var page: Int = 1
     private var isSelect: Bool = false
-    let cellIdentifier = "AVHistoryCell"
+    let cellIdentifier = "AVHistoryCellIdentifier"
  
     lazy var tableView: UITableView = {
         let table = UITableView.init(frame: .zero, style: .plain)
@@ -68,7 +68,7 @@ class AVHistoryViewListController: VBaseViewController {
             self.botView.show()
             self.botView.clickSelectBlock = { [weak self] select in
                 guard let self = self else { return }
-                let _ = self.dataList.map({$0.isSelect = select})
+                let _ = self.list.map({$0.isSelect = select})
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -76,7 +76,7 @@ class AVHistoryViewListController: VBaseViewController {
             self.botView.clickBlock = { [weak self] index in
                 guard let self = self else { return }
                 if index == 1 {
-                    let _ = self.dataList.map({$0.isSelect = false})
+                    let _ = self.list.map({$0.isSelect = false})
                     self.isSelect = false
                     DispatchQueue.main.async {
                         self.navBar.rightBtn.setImage(UIImage(named: "his_edit"), for: .normal)
@@ -85,18 +85,18 @@ class AVHistoryViewListController: VBaseViewController {
                         self.tableView.reloadData()
                     }
                 } else {
-                    let selectArr = self.dataList.filter({$0.isSelect == true})
+                    let selectArr = self.list.filter({$0.isSelect == true})
                     for (_, m) in selectArr.enumerated() {
                         let model = AVModel()
                         model.title = m.title
                         model.id = m.id
                         DBManager.share.deleteData(model)
                     }
-                    self.dataList = self.dataList.filter({$0.isSelect == false})
+                    self.list = self.list.filter({$0.isSelect == false})
                     DispatchQueue.main.async {
                         toast("Delete success!")
                         self.tableView.reloadData()
-                        if self.dataList.count == 0 {
+                        if self.list.count == 0 {
                             self.navigationController?.popViewController(animated: true)
                         }
                     }
@@ -106,13 +106,13 @@ class AVHistoryViewListController: VBaseViewController {
             navBar.rightBtn.setImage(UIImage(named: "nav_sure"), for: .normal)
             self.botView.frame = CGRect(x: 0, y: kScreenHeight, width: 0, height: 0)
             self.botView.isHidden = true
-            let _ = self.dataList.map({$0.isSelect = false})
+            let _ = self.list.map({$0.isSelect = false})
             self.tableView.reloadData()
         }
     }
     
     func initData() {
-        self.dataList = DBManager.share.selectHistoryDatas()
+        self.list = DBManager.share.selectHistoryDatas()
         self.tableView.reloadData()
     }
 }
@@ -120,7 +120,7 @@ class AVHistoryViewListController: VBaseViewController {
 extension AVHistoryViewListController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: AVHistoryCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! AVHistoryCell
-        if let model = self.dataList.indexOfSafe(indexPath.item) {
+        if let model = self.list.indexOfSafe(indexPath.item) {
             cell.setModel(isShow: self.isSelect, model: model)
         }
         return cell
@@ -131,7 +131,7 @@ extension AVHistoryViewListController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.dataList.count
+        self.list.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -139,18 +139,14 @@ extension AVHistoryViewListController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let model = self.dataList.indexOfSafe(indexPath.item) {
+        if let model = self.list.indexOfSafe(indexPath.item) {
             if self.isSelect {
                 model.isSelect = !model.isSelect
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     self.tableView.reloadRows(at: [indexPath], with: .none)
-                    let selectArr = self.dataList.filter({$0.isSelect == false})
-                    if selectArr.count == 0 {
-                        self.botView.selectBtn.isSelected = true
-                    } else {
-                        self.botView.selectBtn.isSelected = false
-                    }
+                    let selectArr = self.list.filter({$0.isSelect == false})
+                    self.botView.selectBtn.isSelected = selectArr.count == 0
                 }
             } else {
                 DBManager.share.updateData(model)

@@ -10,7 +10,7 @@ import UIKit
 class AVFilterViewController: VBaseViewController {
     let cellIdentifier = "AVCellIdentifier"
     let cellWidth = floor((kScreenWidth - 36) / 3)
-    var dataList: [AVDataInfoModel?] = []
+    var list: [AVDataInfoModel?] = []
     var filterList: [[AVFilterCategoryInfoModel]] = []
     private var type: String = ""
     private var videoType: String = ""
@@ -36,13 +36,13 @@ class AVFilterViewController: VBaseViewController {
         return collectionView
     }()
     
-    private lazy var infoView: UIImageView = {
+    private lazy var showView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "filter_show_Bg")
         view.isHidden = true
         return view
     }()
-    private lazy var showInfoL: UILabel = {
+    private lazy var showLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
         label.numberOfLines = 2
@@ -100,13 +100,13 @@ class AVFilterViewController: VBaseViewController {
             make.left.bottom.right.equalToSuperview()
         }
         collectionView.addSubview(categroyView)
-        view.addSubview(infoView)
-        infoView.addSubview(showInfoL)
-        infoView.snp.makeConstraints { make in
+        view.addSubview(showView)
+        showView.addSubview(showLabel)
+        showView.snp.makeConstraints { make in
             make.left.top.right.equalToSuperview()
             make.bottom.equalTo(search).offset(72)
         }
-        showInfoL.snp.makeConstraints { make in
+        showLabel.snp.makeConstraints { make in
             make.left.equalTo(16)
             make.right.equalTo(-16)
             make.bottom.equalToSuperview()
@@ -118,10 +118,10 @@ class AVFilterViewController: VBaseViewController {
         }
         self.emptyView.setType()
 
-        view.insertSubview(collectionView, at: 0)
-        view.insertSubview(emptyView, at: 1)
-        view.insertSubview(infoView, at: 2)
-        view.insertSubview(self.navBar, at: 3)
+        view.insertSubview(collectionView, at: 1)
+        view.insertSubview(emptyView, at: 2)
+        view.insertSubview(showView, at: 3)
+        view.insertSubview(navBar, at: 4)
     }
     
     func setRefresh() {
@@ -129,9 +129,9 @@ class AVFilterViewController: VBaseViewController {
             guard let self = self else { return }
             self.page = 1
             self.filterList.removeAll()
-            self.dataList.removeAll()
-            self.showInfoL.text = ""
-            self.setData()
+            self.list.removeAll()
+            self.showLabel.text = ""
+            self.requestData()
             self.type = ""
             self.genre = ""
             self.year = ""
@@ -153,7 +153,7 @@ class AVFilterViewController: VBaseViewController {
         self.collectionView.mj_header?.beginRefreshing()
     }
     
-    func setData() {
+    func requestData() {
         PlayerNetAPI.share.AVFilterHeadInfo {[weak self] success, model in
             guard let self = self else { return }
             var typeArr: [AVFilterCategoryInfoModel] = []
@@ -203,12 +203,12 @@ class AVFilterViewController: VBaseViewController {
             self.filterList.append(yearArr)
             self.filterList.append(countryArr)
             DispatchQueue.main.async {
-                self.setfilterListData()
+                self.setfilterHead()
             }
         }
     }
     
-    private func setfilterListData() {
+    private func setfilterHead() {
         self.categroyView.setModel(self.filterList) { [weak self] type, title, idx in
             guard let self = self else { return }
             switch type {
@@ -229,12 +229,12 @@ class AVFilterViewController: VBaseViewController {
             case .country:
                 self.cntyno = idx == 0 ? "" : title
             }
-            self.getSelectInfo()
+            self.setSelectInfo()
             self.requestFilterData()
         }
     }
     
-    private func getSelectInfo() {
+    private func setSelectInfo() {
         var arr: [String] = []
         for items in self.filterList {
             for (index, item) in items.enumerated() {
@@ -243,12 +243,12 @@ class AVFilterViewController: VBaseViewController {
                 }
             }
         }
-        self.showInfoL.text = arr.joined(separator: " · ")
+        self.showLabel.text = arr.joined(separator: " · ")
     }
     private func requestFilterData() {
         self.collectionView.mj_footer?.isHidden = false
         self.page = 1
-        self.dataList.removeAll()
+        self.list.removeAll()
         self.loadMoreData()
     }
     
@@ -259,7 +259,7 @@ class AVFilterViewController: VBaseViewController {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.collectionView.isHidden = true
-                self.dataList.removeAll()
+                self.list.removeAll()
                 self.collectionView.reloadData()
             }
             return
@@ -278,7 +278,7 @@ class AVFilterViewController: VBaseViewController {
                 self.collectionView.isHidden = false
                 self.emptyView.isHidden = true
                 if list.count > 0 {
-                    self.dataList.append(contentsOf: list)
+                    self.list.append(contentsOf: list)
                 }
             }
             DispatchQueue.main.async { [weak self] in
@@ -298,7 +298,7 @@ class AVFilterViewController: VBaseViewController {
 
 extension AVFilterViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        self.dataList.count
+        self.list.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -307,14 +307,14 @@ extension AVFilterViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! AVCell
-        if let model = self.dataList.indexOfSafe(indexPath.item), let m = model {
+        if let model = self.list.indexOfSafe(indexPath.item), let m = model {
             cell.setModel(model: m)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let model = self.dataList.indexOfSafe(indexPath.item), let m = model {
+        if let model = self.list.indexOfSafe(indexPath.item), let m = model {
             let g = self.genre.isEmpty ? "all" : self.genre
             let y = self.year.isEmpty ? "all" : self.year
             let c = self.cntyno.isEmpty ? "all" : self.cntyno
@@ -342,17 +342,17 @@ extension AVFilterViewController: UICollectionViewDelegate, UICollectionViewData
 
 extension AVFilterViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if self.showInfoL.text?.count == 0 {
-            self.infoView.isHidden = true
+        if self.showLabel.text?.count == 0 {
+            self.showView.isHidden = true
             self.backView.isHidden = false
             return
         }
         
         if scrollView.contentOffset.y > 0 {
-            self.infoView.isHidden = false
+            self.showView.isHidden = false
             self.backView.isHidden = true
         } else {
-            self.infoView.isHidden = true
+            self.showView.isHidden = true
             self.backView.isHidden = false
         }
     }

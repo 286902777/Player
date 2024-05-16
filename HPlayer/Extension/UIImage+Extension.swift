@@ -116,5 +116,4 @@ extension UIColor {
     static var F7465EA05: UIColor {
         return UIColor.hexColor("#7465EA", alpha: 0.05)
     }
-
 }

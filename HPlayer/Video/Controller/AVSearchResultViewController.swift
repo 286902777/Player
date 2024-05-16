@@ -202,7 +202,7 @@ class AVSearchResultViewController: VBaseViewController {
                 return
             }
             if let result = response as? HTTPURLResponse, result.statusCode == 200, let d = data {
-                if let arr = self.getSearchData(d) {
+                if let arr = self.setSearchData(d) {
                     for i in arr {
                         if let sub = i as? Array<Any> {
                             for s in sub {
@@ -230,7 +230,7 @@ class AVSearchResultViewController: VBaseViewController {
         self.task?.resume()
     }
     
-    func getSearchData(_ data: Data) -> Array<Any>? {
+    func setSearchData(_ data: Data) -> Array<Any>? {
         do {
             let arr = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
             return arr as? Array<Any>

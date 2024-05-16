@@ -54,7 +54,7 @@ class AVHomeViewController: VBaseViewController {
         self.tabBarController?.tabBar.isHidden = false
         self.currentTime = Date().timeIntervalSince1970
         if isRefresh {
-            refreshHistoryData()
+            reSetHistoryData()
         }
         if self.dataList.count == 0 {
             self.tableView.mj_header?.beginRefreshing()
@@ -70,7 +70,7 @@ class AVHomeViewController: VBaseViewController {
         HPLog.tb_home_len(len: String(Int(ceil(Date().timeIntervalSince1970 - self.currentTime))))
     }
     
-    func refreshHistoryData() {
+    func reSetHistoryData() {
         let arr = DBManager.share.selectHistoryDatas()
         if let m = self.dataList.first, m.name == "History" {
             dataList.removeFirst()

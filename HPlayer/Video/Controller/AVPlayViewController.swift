@@ -116,11 +116,11 @@ class AVPlayViewController: UIViewController {
             let device = UIDevice.current
             if device.orientation == .landscapeLeft || device.orientation == .landscapeRight{
                 self.isScreenFull = true
-                self.screenOrientationChanged(isLand: true)
+                self.screenUIChange(isLand: true)
             } else if device.orientation == .portrait || device.orientation == .portraitUpsideDown {
                 if self.playLock == false {
                     self.isScreenFull = false
-                    self.screenOrientationChanged(isLand: false)
+                    self.screenUIChange(isLand: false)
                 }
             }
         }
@@ -128,7 +128,7 @@ class AVPlayViewController: UIViewController {
         NotificationCenter.default.addObserver(forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: .main) { [weak self] _ in
             guard let self = self, let _ = self.player else { return }
             self.player.pause()
-            self.screenOrientationChanged(isLand: self.isScreenFull)
+            self.screenUIChange(isLand: self.isScreenFull)
             let name = self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.title
             
             HPLog.tb_movie_play_len(movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: name ?? "", movie_type: "\(self.model.type)", watch_len: String(Int(ceil(Date().timeIntervalSince1970 - self.currentTime))))
@@ -225,11 +225,11 @@ class AVPlayViewController: UIViewController {
         let device = UIDevice.current
         if device.orientation == .landscapeLeft || device.orientation == .landscapeRight{
             isScreenFull = true
-            self.screenOrientationChanged(isLand: true)
+            self.screenUIChange(isLand: true)
         } else if device.orientation == .portrait || device.orientation == .portraitUpsideDown {
             if self.playLock == false {
                 isScreenFull = false
-                self.screenOrientationChanged(isLand: false)
+                self.screenUIChange(isLand: false)
             }
         }
     }
@@ -495,15 +495,24 @@ class AVPlayViewController: UIViewController {
             vc.dismiss(animated: false) { [weak self] in
                 guard let self = self else { return }
                 DispatchQueue.main.async {
-                    self.changeScreenOrientation(isFull)
+                    self.setScreenUI(isFull)
                 }
             }
         } else {
-            self.changeScreenOrientation(isFull)
+            self.setScreenUI(isFull)
         }
     }
     
-    func changeScreenOrientation(_ isFull: Bool) {
+    func screenUIChange(isLand: Bool) {
+        if self.playLock == false, let _ = self.player {
+            self.player.isFullScreen = isLand
+            self.setPlayerTransed(isFull: isLand)
+            self.player.reSetUI(isLand)
+            self.tableView.isHidden = isLand
+        }
+    }
+    
+    func setScreenUI(_ isFull: Bool) {
         self.player.snp.remakeConstraints { (make) in
             if isFull {
                 make.edges.equalToSuperview()
@@ -567,17 +576,7 @@ class AVPlayViewController: UIViewController {
             }
         }
     }
-    
-    
-    func screenOrientationChanged(isLand: Bool) {
-        if self.playLock == false, let _ = self.player {
-            self.player.isFullScreen = isLand
-            self.setPlayerTransed(isFull: isLand)
-            self.player.reSetUI(isLand)
-            self.tableView.isHidden = isLand
-        }
-    }
-    
+
     // tv播放下一集
     func playerNextAction() {
         let _ = self.dataModel.ssn_list.map({$0.isSelect = false})

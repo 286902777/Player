@@ -15,7 +15,7 @@ class AVBannerEffectView: UIView {
         return view
     }()
     
-    lazy var bgView: UIView = {
+    lazy var backView: UIView = {
         let view = UIView()
         return view
     }()
@@ -35,14 +35,14 @@ class AVBannerEffectView: UIView {
         self.imageV.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        self.addSubview(bgView)
-        self.bgView.snp.makeConstraints { make in
+        self.addSubview(backView)
+        self.backView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
     
     func setEffect() {
         self.layoutIfNeeded()
-        bgView.setEffectView(CGSize(width: self.frame.size.width, height: self.frame.size.height))
+        backView.setEffectView(CGSize(width: self.frame.size.width, height: self.frame.size.height))
     }
 }

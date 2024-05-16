@@ -10,8 +10,8 @@ import UIKit
 
 class MyLibraryViewController: BaseViewController {
     
-    let cellIdentifier = "AVSettingCell"
-    var list: [SettingModel] = []
+    let cellIdentifier = "settingCellIdentifier"
+    var list: [AVSettingModel] = []
     lazy var tableView: UITableView = {
         let table = UITableView.init(frame: .zero, style: .plain)
         table.delegate = self
@@ -30,7 +30,7 @@ class MyLibraryViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
-        self.list = [SettingModel(type: .About), SettingModel(type: .Feedback), SettingModel(type: .Share), SettingModel(type: .Evaluate), SettingModel(type: .Privacy), SettingModel(type: .Terms)]
+        self.list = [AVSettingModel(type: .About), AVSettingModel(type: .Feedback), AVSettingModel(type: .Share), AVSettingModel(type: .Evaluate), AVSettingModel(type: .Privacy), AVSettingModel(type: .Terms)]
         //        if HPUMPManager.shared.isPrivacyOptionsRequired {
         //            self.list.append(SettingModel(type: .PrivacySetting))
         //        }

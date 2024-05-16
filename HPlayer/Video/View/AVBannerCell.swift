@@ -36,7 +36,7 @@ class AVBannerCell: JXBannerBaseCell {
         return label
     }()
     
-    lazy var pxL: UILabel = {
+    lazy var qualityL: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
@@ -81,7 +81,7 @@ class AVBannerCell: JXBannerBaseCell {
         contentView.addSubview(playView)
         contentView.addSubview(starImgV)
         contentView.addSubview(starL)
-        contentView.addSubview(pxL)
+        contentView.addSubview(qualityL)
         contentView.addSubview(titleL)
         contentView.addSubview(topMengView)
 
@@ -112,7 +112,7 @@ class AVBannerCell: JXBannerBaseCell {
             make.centerY.equalTo(starImgV)
         }
         
-        pxL.snp.makeConstraints { make in
+        qualityL.snp.makeConstraints { make in
             make.left.equalTo(starL.snp.right).offset(12)
             make.centerY.equalTo(starImgV)
             make.size.equalTo(CGSize(width: 36, height: 20))
@@ -141,8 +141,8 @@ class AVBannerCell: JXBannerBaseCell {
             self.starL.isHidden = true
         }
         self.newL.isHidden = Date.IsWeekData(tp: model.storage_timestamp)
-        self.pxL.isHidden = model.quality.count > 0 ? false : true
-        self.pxL.text = model.quality
+        self.qualityL.isHidden = model.quality.count > 0 ? false : true
+        self.qualityL.text = model.quality
         self.playView.isHidden = true
         self.topMengView.isHidden = false
     }

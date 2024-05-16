@@ -210,7 +210,7 @@ class AVSearchViewController: VBaseViewController {
                 return
             }
             if let result = response as? HTTPURLResponse, result.statusCode == 200, let d = data {
-                if let arr = self.getSearchData(d) {
+                if let arr = self.setSearchData(d) {
                     for i in arr {
                         if let sub = i as? Array<Any> {
                             for s in sub {
@@ -239,7 +239,7 @@ class AVSearchViewController: VBaseViewController {
         self.task?.resume()
     }
     
-    func getSearchData(_ data: Data) -> Array<Any>? {
+    func setSearchData(_ data: Data) -> Array<Any>? {
         do {
             let arr = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
             return arr as? Array<Any>
@@ -248,26 +248,7 @@ class AVSearchViewController: VBaseViewController {
         }
         return nil
     }
-    
-    func getSearchData(_ data: String) -> Array<Any>? {
-        guard let start = data.range(of: "(") else {
-            return nil
-        }
 
-        let stratRange = NSRange(start, in: data)
-        let str = data.substring(withRange: NSRange(location: stratRange.location + 1, length: data.count - stratRange.location - 2))
-        print(str)
-        do {
-            if let d = str.data(using: .utf8) {
-                let arr = try JSONSerialization.jsonObject(with: d, options: .mutableContainers)
-                return arr as? Array<Any>
-            }
-        } catch {
-            print("error")
-        }
-        return nil
-    }
-    
     //MARK: - histroy
     func configHistoryView() {
         if let arr = UserDefaults.standard.object(forKey: HPKey.history) as? [String], arr.count > 0 {
@@ -360,6 +341,9 @@ extension AVSearchViewController: UITextFieldDelegate {
     }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
+        if textField.text == self.key {
+            return
+        }
         if let text = textField.text?.removeSpace {
             self.key = text
             searchText(text)
@@ -367,6 +351,9 @@ extension AVSearchViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        if textField.text == self.key {
+            return
+        }
         if let text = textField.text?.removeSpace {
             self.key = text
             searchText(text)

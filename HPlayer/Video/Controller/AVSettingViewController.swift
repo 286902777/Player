@@ -2,7 +2,7 @@
 //  AVSettingViewController.swift
 //  HPlayer
 //
-//  Created by HF on 2023/1/3.
+//  Created by HF on 2024/3/13.
 //
 
 
@@ -11,8 +11,9 @@ import UIKit
 //import GoogleMobileAds
 
 class AVSettingViewController: VBaseViewController {
-    let cellIdentifier = "AVSettingCell"
-    var list: [SettingModel] = []
+    var list: [AVSettingModel] = []
+    let cellIdentifier = "AVSettingCellIdentifier"
+
     lazy var tableView: UITableView = {
         let table = UITableView.init(frame: .zero, style: .plain)
         table.delegate = self
@@ -31,9 +32,9 @@ class AVSettingViewController: VBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
-        self.list = [SettingModel(type: .About), SettingModel(type: .Feedback), SettingModel(type: .Share), SettingModel(type: .Evaluate), SettingModel(type: .Privacy), SettingModel(type: .Terms)]
+        self.list = [AVSettingModel(type: .About), AVSettingModel(type: .Feedback), AVSettingModel(type: .Share), AVSettingModel(type: .Evaluate), AVSettingModel(type: .Privacy), AVSettingModel(type: .Terms)]
 //        if HPUMPManager.shared.isPrivacyOptionsRequired {
-//            self.list.append(SettingModel(type: .PrivacySetting))
+//            self.list.append(AVSettingModel(type: .PrivacySetting))
 //        }
         self.tableView.reloadData()
     }
@@ -147,7 +148,7 @@ extension AVSettingViewController: UITableViewDelegate, UITableViewDataSource {
 //    }
 }
 
-class SettingModel: BaseModel {
+class AVSettingModel: BaseModel {
     enum SettingType: String {
         case About = "About"
         case Feedback = "Feedback"

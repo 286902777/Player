@@ -2,7 +2,7 @@
 //  AVAlertController.swift
 //  HPlayer
 //
-//  Created by HF on 2023/1/3.
+//  Created by HF on 2024/4/3.
 //
 
 import UIKit
@@ -27,13 +27,13 @@ class AVAlertController: UIViewController {
     
     var clickBlock:(() -> Void)?
     
-    private var titleStr: String?
-    private var contentStr: String?
+    private var titleText: String?
+    private var contentText: String?
     init(_ title: String?, _ content: String?) {
         super.init(nibName: nil, bundle:nil)
         self.modalPresentationStyle = .overFullScreen
-        self.titleStr = title
-        self.contentStr = content
+        self.titleText = title
+        self.contentText = content
     }
     
     required init?(coder: NSCoder) {
@@ -72,7 +72,7 @@ class AVAlertController: UIViewController {
     }
     
     private func showView() {
-        self.titleL.text = self.titleStr
-        self.contentL.text = self.contentStr
+        self.titleL.text = self.titleText
+        self.contentL.text = self.contentText
     }
 }

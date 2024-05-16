@@ -28,6 +28,7 @@ class PlayDetailsCell: UITableViewCell {
     
     @IBOutlet weak var desL: UILabel!
     
+    @IBOutlet weak var castL: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     let cellIdentifier = "PlayPeopleCell"
     var list: [IndexDataListModel] = []
@@ -62,6 +63,7 @@ class PlayDetailsCell: UITableViewCell {
         self.typeL.text = model.genre_list.joined(separator: " / ")
         self.desL.text = model.description
         self.list = list
+        self.castL.isHidden = list.count == 0
         let f = DBManager.share.findWhiteDataWithModel(id: model.id)
         self.likeBtn.isSelected = f
         self.collectionView.reloadData()

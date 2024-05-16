@@ -205,6 +205,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="castL" destination="4hy-hH-joc" id="RMs-hB-M9I"/>
                 <outlet property="collectionView" destination="w1A-M6-pSS" id="VSI-pw-vBq"/>
                 <outlet property="contryL" destination="QU9-PH-8My" id="wfW-bd-qkQ"/>
                 <outlet property="desL" destination="XiM-Y5-VZ0" id="NEW-Yb-rgI"/>

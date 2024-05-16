@@ -28,6 +28,8 @@ class PlayDetailsCell: UITableViewCell {
     
     @IBOutlet weak var desL: UILabel!
     
+    @IBOutlet weak var castL: UILabel!
+    
     @IBOutlet weak var collectionView: UICollectionView!
     let cellIdentifier = "PlayPeopleCell"
     var list: [IndexDataListModel] = []
@@ -64,6 +66,7 @@ class PlayDetailsCell: UITableViewCell {
         self.list = list
         let f = DBManager.share.findWhiteDataWithModel(id: model.id)
         self.likeBtn.isSelected = f
+        self.castL.isHidden = list.count == 0
         self.collectionView.reloadData()
     }
     override func setSelected(_ selected: Bool, animated: Bool) {

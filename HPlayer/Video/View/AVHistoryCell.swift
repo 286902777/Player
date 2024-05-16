@@ -33,18 +33,18 @@ class AVHistoryCell: UITableViewCell {
     }
     
     func setModel(isShow: Bool, model: AVDataInfoModel) {
-        self.epsL.isHidden = model.type == 1
-        self.epsL.text = model.ssn_eps
-        self.selectImgV.isHidden = !isShow
-        self.leftW.constant = isShow ? 44 : 0
-        self.coverImgV.setImage(with: model.cover)
-        self.progressView.progress = Float(model.playProgress)
         if let r = Float(model.rate) {
             self.scoreL.isHidden = false
             self.scoreL.text = String(format: "%.1f", r)
         } else {
             self.scoreL.isHidden = true
         }
+        self.epsL.isHidden = model.type == 1
+        self.epsL.text = model.ssn_eps
+        self.selectImgV.isHidden = !isShow
+        self.leftW.constant = isShow ? 44 : 0
+        self.coverImgV.setImage(with: model.cover)
+        self.progressView.progress = Float(model.playProgress)
         self.nameL.text = model.title
         self.selectImgV.image = UIImage(named: model.isSelect ? "his_select" : "his_unSelect")
     }

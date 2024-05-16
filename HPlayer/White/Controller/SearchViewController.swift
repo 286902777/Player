@@ -62,7 +62,7 @@ class SearchViewController: BaseViewController {
         super.viewDidLoad()
         self.tableView.isHidden = true
         self.collectionView.isHidden = true
-        self.recordView.refreshData()
+        self.recordView.refreshData(true)
         NotificationCenter.default.addObserver(forName: HPKey.Noti_Like, object: nil, queue: .main) { [weak self] _ in
             guard let self = self else { return }
             self.collectionView.reloadData()
@@ -115,7 +115,7 @@ class SearchViewController: BaseViewController {
                 vc.clickBlock = {
                     UserDefaults.standard.set([], forKey: HPKey.searchRecord)
                     UserDefaults.standard.synchronize()
-                    self.recordView.refreshData()
+                    self.recordView.refreshData(true)
                 }
                 self.present(vc, animated: false)
             }

@@ -41,11 +41,16 @@ class IndexSearchRecordView: UIView {
         collectionView.register(UINib(nibName: String(describing: AVPlayHeadCategoryCell.self), bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
     }
     
-    func refreshData() {
+    func refreshData(_ hid: Bool = false) {
         if let arr = UserDefaults.standard.object(forKey: HPKey.searchRecord) as? [String] {
             self.list = arr
         } else {
             self.list.removeAll()
+        }
+        if hid {
+            self.isHidden = self.list.count == 0
+        } else {
+            self.isHidden = hid
         }
         collectionView.reloadData()
     }

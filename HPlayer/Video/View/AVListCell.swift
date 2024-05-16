@@ -44,7 +44,7 @@ class AVListCell: UITableViewCell {
         self.clickMoreHandle = clickMoreBlock
         self.clickHandle = clickBlock
         self.history = (model.name == "History" && model.id.isEmpty)
-        self.list = model.m20
+        self.list = model.list
         self.collectionView.reloadData()
     }
 }

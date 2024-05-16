@@ -12,13 +12,13 @@ class AVHomeModel: BaseModel {
     var id: String = ""
     var name: String = ""
     var type: Int = 1
-    var m20: [AVDataInfoModel] = []
+    var list: [AVDataInfoModel] = []
     override func mapping(mapper: HelpingMapper) {
         super.mapping(mapper: mapper)
         mapper.specify(property: &id, name: Mod_id)
         mapper.specify(property: &name, name: Mod_topic)
         mapper.specify(property: &type, name: Mod_type)
-        mapper.specify(property: &m20, name: Mod_list)
+        mapper.specify(property: &list, name: Mod_list)
     }
 }
 

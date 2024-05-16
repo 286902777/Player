@@ -47,6 +47,7 @@ class IndexSearchRecordView: UIView {
         } else {
             self.list.removeAll()
         }
+        self.isHidden = self.list.count == 0
         collectionView.reloadData()
     }
 }

@@ -15,7 +15,7 @@ class AVHomeViewController: VBaseViewController {
     let AVBannerCellID = "AVBannerCell"
     private var dataList: [AVHomeModel] = []
     private var bannerList: [AVDataInfoModel] = []
-    private var bgView: AVBannerEffectView = AVBannerEffectView()
+    private var backV: AVBannerEffectView = AVBannerEffectView()
     
     var headView: AVHomeHeadView = AVHomeHeadView.view()
     
@@ -42,7 +42,7 @@ class AVHomeViewController: VBaseViewController {
         return table
     }()
     
-    private var isNeedRefresh: Bool = false
+    private var isRefresh: Bool = false
     
     private var first: Bool = true
     private var showEffect: Bool = false
@@ -53,7 +53,7 @@ class AVHomeViewController: VBaseViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
         self.currentTime = Date().timeIntervalSince1970
-        if isNeedRefresh {
+        if isRefresh {
             refreshHistoryData()
         }
         if self.dataList.count == 0 {
@@ -78,7 +78,7 @@ class AVHomeViewController: VBaseViewController {
         if arr.count > 0 {
             let model = AVHomeModel()
             model.name = "History"
-            model.m20 = arr
+            model.list = arr
             self.dataList.insert(model, at: 0)
         }
         self.tableView.reloadData()
@@ -87,15 +87,15 @@ class AVHomeViewController: VBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
-        addRefresh()
-        startPushNoti()
+        setRefreshControll()
+        setNotiPush()
         NotificationCenter.default.addObserver(forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: .main) { [weak self] _ in
             guard let self = self else { return }
             HPLog.tb_home_len(len: String(Int(ceil(Date().timeIntervalSince1970 - self.currentTime))))
         }
     }
 
-    func startPushNoti() {
+    func setNotiPush() {
         if let appdelegate = UIApplication.shared.delegate as? AppDelegate, let vid = appdelegate.pushApnsId  {
             PlayerManager.share.openPlayer(vc: self, id: vid, from: .push, animation: false)
             appdelegate.pushApnsId = nil
@@ -104,13 +104,13 @@ class AVHomeViewController: VBaseViewController {
     
     func setUpUI() {
         self.navBar.isHidden = true
-        view.addSubview(bgView)
-        bgView.isHidden = true
-        bgView.snp.makeConstraints { make in
+        view.addSubview(backV)
+        backV.isHidden = true
+        backV.snp.makeConstraints { make in
             make.left.top.right.equalToSuperview()
             make.height.equalTo(kTopSafeHeight + 54 + kScreenWidth / 375 * 180)
         }
-        bgView.setEffect()
+        backV.setEffect()
         view.addSubview(headView)
         headView.clickBlock = { [weak self] type in
             guard let self = self else { return }
@@ -120,7 +120,7 @@ class AVHomeViewController: VBaseViewController {
                     HPLog.tb_vip_sh(source: "2")
                     HPLog.tb_home_cl(kid: "6", c_id: "", c_name: "", ctype: "", secname: "", secid: "")
                 } else {
-                    self.openSearch()
+                    self.openSearchVC()
                 }
             }
         }
@@ -143,10 +143,10 @@ class AVHomeViewController: VBaseViewController {
         self.emptyView.setType()
     }
     
-    func addRefresh() {
+    func setRefreshControll() {
         let header = RefreshGifHeader { [weak self] in
             guard let self = self else { return }
-            self.configData()
+            self.requestData()
         }
         tableView.mj_header = header
         if HPConfig.share.avRequest == false {
@@ -156,8 +156,8 @@ class AVHomeViewController: VBaseViewController {
             if HPConfig.share.cfgDataList.count > 0, HPConfig.share.cfgBannerList.count > 0 {
                 self.dataList = HPConfig.share.cfgDataList
                 self.bannerList =  HPConfig.share.cfgBannerList
-                self.isNeedRefresh = true
-                self.refreshUI()
+                self.isRefresh = true
+                self.upDateUI()
             } else {
                 NetManager.cancelAllRequest()
                 self.tableView.mj_header?.beginRefreshing()
@@ -165,15 +165,15 @@ class AVHomeViewController: VBaseViewController {
         }
     }
     
-    func getDBData() {
+    func setHistoryData() {
         for item in self.dataList {
-           let _ = item.m20.map{$0.type = item.type}
+           let _ = item.list.map{$0.type = item.type}
         }
         let arr = DBManager.share.selectHistoryDatas()
         if arr.count > 0 {
             let model = AVHomeModel()
             model.name = "History"
-            model.m20 = arr
+            model.list = arr
             self.dataList.insert(model, at: 0)
         }
     }
@@ -183,8 +183,8 @@ class AVHomeViewController: VBaseViewController {
         tableView.mj_header?.beginRefreshing()
     }
     
-    func configData() {
-        self.isNeedRefresh = false
+    func requestData() {
+        self.isRefresh = false
         self.dataList.removeAll()
         self.bannerList.removeAll()
         let group = DispatchGroup()
@@ -210,20 +210,20 @@ class AVHomeViewController: VBaseViewController {
                 } else {
                     if list.count > 0 {
                         self.dataList = list
-                        self.getDBData()
+                        self.setHistoryData()
                     }
-                    self.isNeedRefresh = true
+                    self.isRefresh = true
                 }
                 self.tableView.mj_header?.endRefreshing()
                 group.leave()
             }
         }
         group.notify(queue: .main){
-            self.refreshUI()
+            self.upDateUI()
         }
     }
     
-    func refreshUI() {
+    func upDateUI() {
         if self.bannerList.count > 0, self.dataList.count > 0 {
             self.emptyView.isHidden = true
             self.bannerView.isHidden = false
@@ -231,18 +231,18 @@ class AVHomeViewController: VBaseViewController {
             self.bannerView.reloadView()
         } else {
             self.emptyView.isHidden = false
-            self.bgView.isHidden = true
+            self.backV.isHidden = true
             self.tableView.isHidden = true
             self.bannerView.isHidden = true
         }
         self.tableView.reloadData()
         if self.bannerList.count > 0 {
             self.showEffect = true
-            self.bgView.isHidden = false
+            self.backV.isHidden = false
         }
     }
     
-    @objc func openSearch() {
+    @objc func openSearchVC() {
         let vc = AVSearchViewController()
         vc.hidesBottomBarWhenPushed = true
         vc.from = .home
@@ -363,17 +363,17 @@ extension AVHomeViewController: JXBannerDataSource {
                   numberOfPages: Int,
                   coverView: UIView,
                   builder: JXBannerPageControlBuilder) -> JXBannerPageControlBuilder {
-        let pageControl = JXPageControlScale()
-        pageControl.contentMode = .bottom
-        pageControl.activeSize = CGSize(width: 9, height: 3)
-        pageControl.inactiveSize = CGSize(width: 3, height: 3)
-        pageControl.activeColor = UIColor.white
-        pageControl.inactiveColor = UIColor.hexColor("#FFFFFF", alpha: 0.3)
-        pageControl.columnSpacing = -2
-        pageControl.isAnimation = true
-        builder.pageControl = pageControl
+        let control = JXPageControlScale()
+        control.contentMode = .bottom
+        control.activeSize = CGSize(width: 9, height: 3)
+        control.inactiveSize = CGSize(width: 3, height: 3)
+        control.activeColor = UIColor.white
+        control.inactiveColor = UIColor.hexColor("#FFFFFF", alpha: 0.3)
+        control.columnSpacing = -2
+        control.isAnimation = true
+        builder.pageControl = control
         builder.layout = {
-            pageControl.snp.makeConstraints { (maker) in
+            control.snp.makeConstraints { (maker) in
                 maker.left.right.equalTo(coverView)
                 maker.bottom.equalTo(coverView.snp.bottom).offset(-10)
                 maker.height.equalTo(3)
@@ -383,11 +383,13 @@ extension AVHomeViewController: JXBannerDataSource {
     }
     
     func jxBanner(_ banner: JXBannerType, centerIndex: Int, centerCell: UICollectionViewCell) {
-        let tempCell = centerCell as! AVBannerCell
-        tempCell.playView.isHidden = false
-        tempCell.topMengView.isHidden = true
+        if let cell = centerCell as? AVBannerCell {
+            cell.playView.isHidden = false
+            cell.topMengView.isHidden = true
+        }
+       
         if let model = self.bannerList.indexOfSafe(centerIndex) {
-            self.bgView.imageV.setImage(with: model.horizontal_cover)
+            self.backV.imageV.setImage(with: model.horizontal_cover)
         }
     }
     
@@ -422,11 +424,11 @@ extension AVHomeViewController: JXBannerDelegate {
 extension AVHomeViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y > 10 {
-            self.bgView.isHidden = true
+            self.backV.isHidden = true
         } else {
-            self.bgView.alpha = (10 - scrollView.contentOffset.y) / 10
+            self.backV.alpha = (10 - scrollView.contentOffset.y) / 10
             if self.showEffect {
-                self.bgView.isHidden = false
+                self.backV.isHidden = false
             }
         }
     }

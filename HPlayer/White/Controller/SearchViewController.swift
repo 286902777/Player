@@ -211,7 +211,6 @@ class SearchViewController: BaseViewController {
             UserDefaults.standard.set([text], forKey: HPKey.searchRecord)
             UserDefaults.standard.synchronize()
         }
-        self.recordView.refreshData()
     }
     
     override func reSetRequest() {

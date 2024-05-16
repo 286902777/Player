@@ -30,83 +30,7 @@
 		A73BFB7E2BE8C4DF00A672E7 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFB7D2BE8C4DF00A672E7 /* PlayerManager.swift */; };
 		A73BFB812BE8C6C200A672E7 /* AVWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFB7F2BE8C6C200A672E7 /* AVWebViewController.swift */; };
 		A73BFB822BE8C6C200A672E7 /* AVTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFB802BE8C6C200A672E7 /* AVTabController.swift */; };
-		A73BFB902BE8C78A00A672E7 /* AVAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFB832BE8C78A00A672E7 /* AVAboutViewController.xib */; };
-		A73BFB912BE8C78A00A672E7 /* AVSearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFB842BE8C78A00A672E7 /* AVSearchResultViewController.swift */; };
-		A73BFB922BE8C78A00A672E7 /* AVHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFB852BE8C78A00A672E7 /* AVHomeViewController.swift */; };
-		A73BFB932BE8C78A00A672E7 /* AVListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFB862BE8C78A00A672E7 /* AVListViewController.swift */; };
-		A73BFB942BE8C78A00A672E7 /* AVFeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFB872BE8C78A00A672E7 /* AVFeedBackViewController.xib */; };
-		A73BFB952BE8C78A00A672E7 /* AVSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFB882BE8C78A00A672E7 /* AVSearchViewController.swift */; };
-		A73BFB962BE8C78A00A672E7 /* AVPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFB892BE8C78A00A672E7 /* AVPlayViewController.swift */; };
-		A73BFB972BE8C78A00A672E7 /* AVFeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFB8A2BE8C78A00A672E7 /* AVFeedBackViewController.swift */; };
-		A73BFB982BE8C78A00A672E7 /* AVAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFB8B2BE8C78A00A672E7 /* AVAboutViewController.swift */; };
-		A73BFB992BE8C78A00A672E7 /* AVSearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFB8C2BE8C78A00A672E7 /* AVSearchListViewController.swift */; };
-		A73BFB9A2BE8C78A00A672E7 /* AVFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFB8D2BE8C78A00A672E7 /* AVFilterViewController.swift */; };
-		A73BFB9B2BE8C78A00A672E7 /* AVSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFB8E2BE8C78A00A672E7 /* AVSettingViewController.swift */; };
-		A73BFB9C2BE8C78A00A672E7 /* AVHistoryViewListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFB8F2BE8C78A00A672E7 /* AVHistoryViewListController.swift */; };
-		A73BFB9F2BE8C9B400A672E7 /* AVHomeHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFB9D2BE8C9B400A672E7 /* AVHomeHeadView.xib */; };
-		A73BFBA02BE8C9B400A672E7 /* AVHomeHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFB9E2BE8C9B400A672E7 /* AVHomeHeadView.swift */; };
-		A73BFBA22BE8C9F900A672E7 /* AVBannerEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBA12BE8C9F900A672E7 /* AVBannerEffectView.swift */; };
-		A73BFBA52BE8CAC600A672E7 /* AVListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBA32BE8CAC600A672E7 /* AVListCell.swift */; };
-		A73BFBA62BE8CAC600A672E7 /* AVListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFBA42BE8CAC600A672E7 /* AVListCell.xib */; };
-		A73BFBA92BE8CB2900A672E7 /* AVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFBA72BE8CB2900A672E7 /* AVCell.xib */; };
-		A73BFBAA2BE8CB2900A672E7 /* AVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBA82BE8CB2900A672E7 /* AVCell.swift */; };
-		A73BFBAC2BE8CB8C00A672E7 /* AVBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBAB2BE8CB8C00A672E7 /* AVBannerCell.swift */; };
 		A73BFBAE2BE8CC1000A672E7 /* PlayerNetAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBAD2BE8CC1000A672E7 /* PlayerNetAPI.swift */; };
-		A73BFBB02BE8CCF200A672E7 /* AVSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBAF2BE8CCF200A672E7 /* AVSettingCell.swift */; };
-		A73BFBB22BE8D4EB00A672E7 /* AVHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBB12BE8D4EB00A672E7 /* AVHistoryView.swift */; };
-		A73BFBB52BE8D5B500A672E7 /* AVHistorySearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBB32BE8D5B500A672E7 /* AVHistorySearchView.swift */; };
-		A73BFBB62BE8D5B500A672E7 /* AVHistorySearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFBB42BE8D5B500A672E7 /* AVHistorySearchView.xib */; };
-		A73BFBB82BE8D63A00A672E7 /* AVSearchTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBB72BE8D63A00A672E7 /* AVSearchTopView.swift */; };
-		A73BFBBA2BE8D6DB00A672E7 /* AVSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBB92BE8D6DB00A672E7 /* AVSearchCell.swift */; };
-		A73BFBBD2BE8D73300A672E7 /* AVAlertController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFBBB2BE8D73300A672E7 /* AVAlertController.xib */; };
-		A73BFBBE2BE8D73300A672E7 /* AVAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBBC2BE8D73300A672E7 /* AVAlertController.swift */; };
-		A73BFBC12BE8D89F00A672E7 /* AVSearchItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBBF2BE8D89F00A672E7 /* AVSearchItemCell.swift */; };
-		A73BFBC22BE8D89F00A672E7 /* AVSearchItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFBC02BE8D89F00A672E7 /* AVSearchItemCell.xib */; };
-		A73BFBC82BE8DB7100A672E7 /* HPPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBC72BE8DB7000A672E7 /* HPPlayerControlView.swift */; };
-		A73BFBDC2BE8DC0900A672E7 /* HPPlayerLightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBC92BE8DC0800A672E7 /* HPPlayerLightView.swift */; };
-		A73BFBDD2BE8DC0900A672E7 /* HPPlayerLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFBCA2BE8DC0800A672E7 /* HPPlayerLoadingView.xib */; };
-		A73BFBDE2BE8DC0900A672E7 /* HPPlayerLanguageFullView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFBCB2BE8DC0800A672E7 /* HPPlayerLanguageFullView.xib */; };
-		A73BFBDF2BE8DC0900A672E7 /* HPPlayerSelectEpsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBCC2BE8DC0800A672E7 /* HPPlayerSelectEpsCell.swift */; };
-		A73BFBE02BE8DC0900A672E7 /* HPPlayerFailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFBCD2BE8DC0800A672E7 /* HPPlayerFailView.xib */; };
-		A73BFBE12BE8DC0900A672E7 /* HPPlayerLanguageFullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBCE2BE8DC0800A672E7 /* HPPlayerLanguageFullView.swift */; };
-		A73BFBE22BE8DC0900A672E7 /* HPPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBCF2BE8DC0800A672E7 /* HPPlayer.swift */; };
-		A73BFBE32BE8DC0900A672E7 /* HPPlayerCaptionSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBD02BE8DC0800A672E7 /* HPPlayerCaptionSetView.swift */; };
-		A73BFBE42BE8DC0900A672E7 /* HPPlayerFailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBD12BE8DC0800A672E7 /* HPPlayerFailView.swift */; };
-		A73BFBE52BE8DC0900A672E7 /* HPPlayerCaptionSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFBD22BE8DC0800A672E7 /* HPPlayerCaptionSetView.xib */; };
-		A73BFBE62BE8DC0900A672E7 /* HPPlayerSelectEpsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBD32BE8DC0800A672E7 /* HPPlayerSelectEpsView.swift */; };
-		A73BFBE72BE8DC0900A672E7 /* HPPlayerSelectEpsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFBD42BE8DC0800A672E7 /* HPPlayerSelectEpsView.xib */; };
-		A73BFBE82BE8DC0900A672E7 /* HPPlayerSelectSsnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFBD52BE8DC0800A672E7 /* HPPlayerSelectSsnCell.xib */; };
-		A73BFBE92BE8DC0900A672E7 /* HPPlayerCaptionFullSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFBD62BE8DC0800A672E7 /* HPPlayerCaptionFullSetView.xib */; };
-		A73BFBEA2BE8DC0900A672E7 /* HPPlayerSelectSsnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBD72BE8DC0800A672E7 /* HPPlayerSelectSsnCell.swift */; };
-		A73BFBEB2BE8DC0900A672E7 /* HPPlayerLightView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFBD82BE8DC0800A672E7 /* HPPlayerLightView.xib */; };
-		A73BFBEC2BE8DC0900A672E7 /* HPPlayerLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBD92BE8DC0800A672E7 /* HPPlayerLoadingView.swift */; };
-		A73BFBED2BE8DC0900A672E7 /* HPPlayerCaptionFullSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBDA2BE8DC0900A672E7 /* HPPlayerCaptionFullSetView.swift */; };
-		A73BFBEE2BE8DC0900A672E7 /* HPPlayerSelectEpsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFBDB2BE8DC0900A672E7 /* HPPlayerSelectEpsCell.xib */; };
-		A73BFBF02BE8DCDA00A672E7 /* PlayerLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBEF2BE8DCDA00A672E7 /* PlayerLanguageView.swift */; };
-		A73BFBF32BE8DD3F00A672E7 /* PlayerLanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBF12BE8DD3F00A672E7 /* PlayerLanguageCell.swift */; };
-		A73BFBF42BE8DD3F00A672E7 /* PlayerLanguageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFBF22BE8DD3F00A672E7 /* PlayerLanguageCell.xib */; };
-		A73BFBF62BE8DF7E00A672E7 /* PlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBF52BE8DF7E00A672E7 /* PlayerItem.swift */; };
-		A73BFBF82BE8DFA800A672E7 /* HPSubtitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBF72BE8DFA800A672E7 /* HPSubtitles.swift */; };
-		A73BFBFA2BE8E01600A672E7 /* PlayerLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBF92BE8E01600A672E7 /* PlayerLayerView.swift */; };
-		A73BFBFC2BE8E04D00A672E7 /* HPTimeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBFB2BE8E04D00A672E7 /* HPTimeSlider.swift */; };
-		A73BFC082BE8E20800A672E7 /* AVPlayHeadInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBFD2BE8E20700A672E7 /* AVPlayHeadInfoCell.swift */; };
-		A73BFC092BE8E20800A672E7 /* AVPlayLikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFBFE2BE8E20700A672E7 /* AVPlayLikeCell.swift */; };
-		A73BFC0A2BE8E20800A672E7 /* AVPlayHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFBFF2BE8E20700A672E7 /* AVPlayHeadCell.xib */; };
-		A73BFC0B2BE8E20800A672E7 /* AVPlayHeadInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFC002BE8E20700A672E7 /* AVPlayHeadInfoCell.xib */; };
-		A73BFC0C2BE8E20800A672E7 /* AVPlayLikeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFC012BE8E20700A672E7 /* AVPlayLikeCell.xib */; };
-		A73BFC0D2BE8E20800A672E7 /* AVPlaySsnHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFC022BE8E20700A672E7 /* AVPlaySsnHeadView.swift */; };
-		A73BFC0E2BE8E20800A672E7 /* AVPlayHeadIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFC032BE8E20700A672E7 /* AVPlayHeadIconCell.swift */; };
-		A73BFC0F2BE8E20800A672E7 /* AVPlayHeadCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFC042BE8E20700A672E7 /* AVPlayHeadCategoryCell.swift */; };
-		A73BFC102BE8E20800A672E7 /* AVPlayHeadIconCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFC052BE8E20700A672E7 /* AVPlayHeadIconCell.xib */; };
-		A73BFC112BE8E20800A672E7 /* AVPlayHeadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFC062BE8E20800A672E7 /* AVPlayHeadCell.swift */; };
-		A73BFC122BE8E20800A672E7 /* AVPlayHeadCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFC072BE8E20800A672E7 /* AVPlayHeadCategoryCell.xib */; };
-		A73BFC142BE8E29800A672E7 /* HPPlayLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFC132BE8E29800A672E7 /* HPPlayLayout.swift */; };
-		A73BFC172BE8E3B800A672E7 /* HPPlayEpsListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFC152BE8E3B800A672E7 /* HPPlayEpsListCell.xib */; };
-		A73BFC182BE8E3B800A672E7 /* HPPlayEpsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFC162BE8E3B800A672E7 /* HPPlayEpsListCell.swift */; };
-		A73BFC1C2BE8E71800A672E7 /* HPCaptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFC1B2BE8E71800A672E7 /* HPCaptionManager.swift */; };
-		A73BFC1E2BE8E83600A672E7 /* AVFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFC1D2BE8E83600A672E7 /* AVFilterView.swift */; };
-		A73BFC212BE8E88800A672E7 /* AVFilterListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73BFC1F2BE8E88700A672E7 /* AVFilterListCell.swift */; };
-		A73BFC222BE8E88800A672E7 /* AVFilterListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73BFC202BE8E88700A672E7 /* AVFilterListCell.xib */; };
 		A793983D2BEB81680030F9DE /* IndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A793983C2BEB81680030F9DE /* IndexViewController.swift */; };
 		A79398402BEB81A50030F9DE /* WNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = A793983E2BEB81A40030F9DE /* WNavigationBar.xib */; };
 		A79398412BEB81A50030F9DE /* WNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A793983F2BEB81A50030F9DE /* WNavigationBar.swift */; };
@@ -177,16 +101,6 @@
 		A79C3C522BEF667E00E8FAA7 /* LikeDB+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C3C502BEF667E00E8FAA7 /* LikeDB+CoreDataProperties.swift */; };
 		A79C3C542BEF814500E8FAA7 /* PeopleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C3C532BEF814500E8FAA7 /* PeopleListViewController.swift */; };
 		A79D65262BF1A49500B98BC4 /* PeopleInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79D65252BF1A49500B98BC4 /* PeopleInfoController.swift */; };
-		A79ECFF52BE9BD0500E7356B /* AVFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79ECFF32BE9BD0500E7356B /* AVFilterCell.xib */; };
-		A79ECFF62BE9BD0500E7356B /* AVFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79ECFF42BE9BD0500E7356B /* AVFilterCell.swift */; };
-		A79ECFF92BE9BEBA00E7356B /* AVFilterSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79ECFF72BE9BEB900E7356B /* AVFilterSearchView.xib */; };
-		A79ECFFA2BE9BEBA00E7356B /* AVFilterSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79ECFF82BE9BEBA00E7356B /* AVFilterSearchView.swift */; };
-		A79ECFFD2BE9BF2800E7356B /* AVHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79ECFFB2BE9BF2800E7356B /* AVHistoryCell.swift */; };
-		A79ECFFE2BE9BF2800E7356B /* AVHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79ECFFC2BE9BF2800E7356B /* AVHistoryCell.xib */; };
-		A79ED0012BE9BF6A00E7356B /* AVHistoryBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79ECFFF2BE9BF6A00E7356B /* AVHistoryBottomView.swift */; };
-		A79ED0022BE9BF6A00E7356B /* AVHistoryBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79ED0002BE9BF6A00E7356B /* AVHistoryBottomView.xib */; };
-		A79ED0042BE9C52700E7356B /* AVNoNetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79ED0032BE9C52700E7356B /* AVNoNetView.swift */; };
-		A79ED0062BE9C53600E7356B /* AVNoNetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79ED0052BE9C53600E7356B /* AVNoNetView.xib */; };
 		A79EE4DE2BECADEA00526257 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE4DD2BECADEA00526257 /* FavoriteViewController.swift */; };
 		A79EE4E22BECAEC200526257 /* MyLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE4E12BECAEC200526257 /* MyLibraryViewController.swift */; };
 		A79EE4E52BECAF1F00526257 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE4E32BECAF1F00526257 /* FavoriteCell.swift */; };
@@ -196,6 +110,20 @@
 		A79EE4EC2BECD70700526257 /* IndexBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE4EB2BECD70700526257 /* IndexBannerCell.swift */; };
 		A79EE4EF2BED03F900526257 /* IndexListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79EE4ED2BED03F900526257 /* IndexListCell.xib */; };
 		A79EE4F02BED03F900526257 /* IndexListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE4EE2BED03F900526257 /* IndexListCell.swift */; };
+		A7BDC9DB2BF5A9A9009C5C34 /* AVFeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BDC9D72BF5A9A9009C5C34 /* AVFeedBackViewController.swift */; };
+		A7BDC9DC2BF5A9A9009C5C34 /* AVAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BDC9D82BF5A9A9009C5C34 /* AVAboutViewController.swift */; };
+		A7BDC9DD2BF5A9A9009C5C34 /* AVFeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7BDC9D92BF5A9A9009C5C34 /* AVFeedBackViewController.xib */; };
+		A7BDC9DE2BF5A9A9009C5C34 /* AVAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7BDC9DA2BF5A9A9009C5C34 /* AVAboutViewController.xib */; };
+		A7BDC9E22BF5AA0E009C5C34 /* AVNoNetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7BDC9E02BF5AA0E009C5C34 /* AVNoNetView.xib */; };
+		A7BDC9E32BF5AA0E009C5C34 /* AVNoNetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BDC9E12BF5AA0E009C5C34 /* AVNoNetView.swift */; };
+		A7BDC9E52BF5AA53009C5C34 /* HPPlayLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BDC9E42BF5AA53009C5C34 /* HPPlayLayout.swift */; };
+		A7BDC9E72BF5AA8C009C5C34 /* AVBannerEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BDC9E62BF5AA8C009C5C34 /* AVBannerEffectView.swift */; };
+		A7BDC9E92BF5AADE009C5C34 /* AVSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BDC9E82BF5AADE009C5C34 /* AVSearchCell.swift */; };
+		A7BDC9EB2BF5AB41009C5C34 /* AVSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BDC9EA2BF5AB41009C5C34 /* AVSettingViewController.swift */; };
+		A7BDC9ED2BF5AB57009C5C34 /* AVSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BDC9EC2BF5AB57009C5C34 /* AVSettingCell.swift */; };
+		A7BDC9F12BF5ABC0009C5C34 /* AVHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BDC9F02BF5ABC0009C5C34 /* AVHistoryView.swift */; };
+		A7BDC9F42BF5B191009C5C34 /* AVPlayHeadCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BDC9F22BF5B191009C5C34 /* AVPlayHeadCategoryCell.swift */; };
+		A7BDC9F52BF5B191009C5C34 /* AVPlayHeadCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7BDC9F32BF5B191009C5C34 /* AVPlayHeadCategoryCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -221,83 +149,7 @@
 		A73BFB7D2BE8C4DF00A672E7 /* PlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		A73BFB7F2BE8C6C200A672E7 /* AVWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVWebViewController.swift; sourceTree = "<group>"; };
 		A73BFB802BE8C6C200A672E7 /* AVTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTabController.swift; sourceTree = "<group>"; };
-		A73BFB832BE8C78A00A672E7 /* AVAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVAboutViewController.xib; sourceTree = "<group>"; };
-		A73BFB842BE8C78A00A672E7 /* AVSearchResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVSearchResultViewController.swift; sourceTree = "<group>"; };
-		A73BFB852BE8C78A00A672E7 /* AVHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVHomeViewController.swift; sourceTree = "<group>"; };
-		A73BFB862BE8C78A00A672E7 /* AVListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVListViewController.swift; sourceTree = "<group>"; };
-		A73BFB872BE8C78A00A672E7 /* AVFeedBackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVFeedBackViewController.xib; sourceTree = "<group>"; };
-		A73BFB882BE8C78A00A672E7 /* AVSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVSearchViewController.swift; sourceTree = "<group>"; };
-		A73BFB892BE8C78A00A672E7 /* AVPlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayViewController.swift; sourceTree = "<group>"; };
-		A73BFB8A2BE8C78A00A672E7 /* AVFeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFeedBackViewController.swift; sourceTree = "<group>"; };
-		A73BFB8B2BE8C78A00A672E7 /* AVAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAboutViewController.swift; sourceTree = "<group>"; };
-		A73BFB8C2BE8C78A00A672E7 /* AVSearchListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVSearchListViewController.swift; sourceTree = "<group>"; };
-		A73BFB8D2BE8C78A00A672E7 /* AVFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFilterViewController.swift; sourceTree = "<group>"; };
-		A73BFB8E2BE8C78A00A672E7 /* AVSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVSettingViewController.swift; sourceTree = "<group>"; };
-		A73BFB8F2BE8C78A00A672E7 /* AVHistoryViewListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVHistoryViewListController.swift; sourceTree = "<group>"; };
-		A73BFB9D2BE8C9B400A672E7 /* AVHomeHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVHomeHeadView.xib; sourceTree = "<group>"; };
-		A73BFB9E2BE8C9B400A672E7 /* AVHomeHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVHomeHeadView.swift; sourceTree = "<group>"; };
-		A73BFBA12BE8C9F900A672E7 /* AVBannerEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVBannerEffectView.swift; sourceTree = "<group>"; };
-		A73BFBA32BE8CAC600A672E7 /* AVListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVListCell.swift; sourceTree = "<group>"; };
-		A73BFBA42BE8CAC600A672E7 /* AVListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVListCell.xib; sourceTree = "<group>"; };
-		A73BFBA72BE8CB2900A672E7 /* AVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVCell.xib; sourceTree = "<group>"; };
-		A73BFBA82BE8CB2900A672E7 /* AVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCell.swift; sourceTree = "<group>"; };
-		A73BFBAB2BE8CB8C00A672E7 /* AVBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVBannerCell.swift; sourceTree = "<group>"; };
 		A73BFBAD2BE8CC1000A672E7 /* PlayerNetAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerNetAPI.swift; sourceTree = "<group>"; };
-		A73BFBAF2BE8CCF200A672E7 /* AVSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVSettingCell.swift; sourceTree = "<group>"; };
-		A73BFBB12BE8D4EB00A672E7 /* AVHistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVHistoryView.swift; sourceTree = "<group>"; };
-		A73BFBB32BE8D5B500A672E7 /* AVHistorySearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVHistorySearchView.swift; sourceTree = "<group>"; };
-		A73BFBB42BE8D5B500A672E7 /* AVHistorySearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVHistorySearchView.xib; sourceTree = "<group>"; };
-		A73BFBB72BE8D63A00A672E7 /* AVSearchTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVSearchTopView.swift; sourceTree = "<group>"; };
-		A73BFBB92BE8D6DB00A672E7 /* AVSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVSearchCell.swift; sourceTree = "<group>"; };
-		A73BFBBB2BE8D73300A672E7 /* AVAlertController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVAlertController.xib; sourceTree = "<group>"; };
-		A73BFBBC2BE8D73300A672E7 /* AVAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAlertController.swift; sourceTree = "<group>"; };
-		A73BFBBF2BE8D89F00A672E7 /* AVSearchItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVSearchItemCell.swift; sourceTree = "<group>"; };
-		A73BFBC02BE8D89F00A672E7 /* AVSearchItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVSearchItemCell.xib; sourceTree = "<group>"; };
-		A73BFBC72BE8DB7000A672E7 /* HPPlayerControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPPlayerControlView.swift; sourceTree = "<group>"; };
-		A73BFBC92BE8DC0800A672E7 /* HPPlayerLightView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPPlayerLightView.swift; sourceTree = "<group>"; };
-		A73BFBCA2BE8DC0800A672E7 /* HPPlayerLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HPPlayerLoadingView.xib; sourceTree = "<group>"; };
-		A73BFBCB2BE8DC0800A672E7 /* HPPlayerLanguageFullView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HPPlayerLanguageFullView.xib; sourceTree = "<group>"; };
-		A73BFBCC2BE8DC0800A672E7 /* HPPlayerSelectEpsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPPlayerSelectEpsCell.swift; sourceTree = "<group>"; };
-		A73BFBCD2BE8DC0800A672E7 /* HPPlayerFailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HPPlayerFailView.xib; sourceTree = "<group>"; };
-		A73BFBCE2BE8DC0800A672E7 /* HPPlayerLanguageFullView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPPlayerLanguageFullView.swift; sourceTree = "<group>"; };
-		A73BFBCF2BE8DC0800A672E7 /* HPPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPPlayer.swift; sourceTree = "<group>"; };
-		A73BFBD02BE8DC0800A672E7 /* HPPlayerCaptionSetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPPlayerCaptionSetView.swift; sourceTree = "<group>"; };
-		A73BFBD12BE8DC0800A672E7 /* HPPlayerFailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPPlayerFailView.swift; sourceTree = "<group>"; };
-		A73BFBD22BE8DC0800A672E7 /* HPPlayerCaptionSetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HPPlayerCaptionSetView.xib; sourceTree = "<group>"; };
-		A73BFBD32BE8DC0800A672E7 /* HPPlayerSelectEpsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPPlayerSelectEpsView.swift; sourceTree = "<group>"; };
-		A73BFBD42BE8DC0800A672E7 /* HPPlayerSelectEpsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HPPlayerSelectEpsView.xib; sourceTree = "<group>"; };
-		A73BFBD52BE8DC0800A672E7 /* HPPlayerSelectSsnCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HPPlayerSelectSsnCell.xib; sourceTree = "<group>"; };
-		A73BFBD62BE8DC0800A672E7 /* HPPlayerCaptionFullSetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HPPlayerCaptionFullSetView.xib; sourceTree = "<group>"; };
-		A73BFBD72BE8DC0800A672E7 /* HPPlayerSelectSsnCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPPlayerSelectSsnCell.swift; sourceTree = "<group>"; };
-		A73BFBD82BE8DC0800A672E7 /* HPPlayerLightView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HPPlayerLightView.xib; sourceTree = "<group>"; };
-		A73BFBD92BE8DC0800A672E7 /* HPPlayerLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPPlayerLoadingView.swift; sourceTree = "<group>"; };
-		A73BFBDA2BE8DC0900A672E7 /* HPPlayerCaptionFullSetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPPlayerCaptionFullSetView.swift; sourceTree = "<group>"; };
-		A73BFBDB2BE8DC0900A672E7 /* HPPlayerSelectEpsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HPPlayerSelectEpsCell.xib; sourceTree = "<group>"; };
-		A73BFBEF2BE8DCDA00A672E7 /* PlayerLanguageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerLanguageView.swift; sourceTree = "<group>"; };
-		A73BFBF12BE8DD3F00A672E7 /* PlayerLanguageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerLanguageCell.swift; sourceTree = "<group>"; };
-		A73BFBF22BE8DD3F00A672E7 /* PlayerLanguageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerLanguageCell.xib; sourceTree = "<group>"; };
-		A73BFBF52BE8DF7E00A672E7 /* PlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerItem.swift; sourceTree = "<group>"; };
-		A73BFBF72BE8DFA800A672E7 /* HPSubtitles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPSubtitles.swift; sourceTree = "<group>"; };
-		A73BFBF92BE8E01600A672E7 /* PlayerLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerLayerView.swift; sourceTree = "<group>"; };
-		A73BFBFB2BE8E04D00A672E7 /* HPTimeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPTimeSlider.swift; sourceTree = "<group>"; };
-		A73BFBFD2BE8E20700A672E7 /* AVPlayHeadInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayHeadInfoCell.swift; sourceTree = "<group>"; };
-		A73BFBFE2BE8E20700A672E7 /* AVPlayLikeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayLikeCell.swift; sourceTree = "<group>"; };
-		A73BFBFF2BE8E20700A672E7 /* AVPlayHeadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVPlayHeadCell.xib; sourceTree = "<group>"; };
-		A73BFC002BE8E20700A672E7 /* AVPlayHeadInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVPlayHeadInfoCell.xib; sourceTree = "<group>"; };
-		A73BFC012BE8E20700A672E7 /* AVPlayLikeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVPlayLikeCell.xib; sourceTree = "<group>"; };
-		A73BFC022BE8E20700A672E7 /* AVPlaySsnHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlaySsnHeadView.swift; sourceTree = "<group>"; };
-		A73BFC032BE8E20700A672E7 /* AVPlayHeadIconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayHeadIconCell.swift; sourceTree = "<group>"; };
-		A73BFC042BE8E20700A672E7 /* AVPlayHeadCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayHeadCategoryCell.swift; sourceTree = "<group>"; };
-		A73BFC052BE8E20700A672E7 /* AVPlayHeadIconCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVPlayHeadIconCell.xib; sourceTree = "<group>"; };
-		A73BFC062BE8E20800A672E7 /* AVPlayHeadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayHeadCell.swift; sourceTree = "<group>"; };
-		A73BFC072BE8E20800A672E7 /* AVPlayHeadCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVPlayHeadCategoryCell.xib; sourceTree = "<group>"; };
-		A73BFC132BE8E29800A672E7 /* HPPlayLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPPlayLayout.swift; sourceTree = "<group>"; };
-		A73BFC152BE8E3B800A672E7 /* HPPlayEpsListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HPPlayEpsListCell.xib; sourceTree = "<group>"; };
-		A73BFC162BE8E3B800A672E7 /* HPPlayEpsListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPPlayEpsListCell.swift; sourceTree = "<group>"; };
-		A73BFC1B2BE8E71800A672E7 /* HPCaptionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPCaptionManager.swift; sourceTree = "<group>"; };
-		A73BFC1D2BE8E83600A672E7 /* AVFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFilterView.swift; sourceTree = "<group>"; };
-		A73BFC1F2BE8E88700A672E7 /* AVFilterListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFilterListCell.swift; sourceTree = "<group>"; };
-		A73BFC202BE8E88700A672E7 /* AVFilterListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVFilterListCell.xib; sourceTree = "<group>"; };
 		A793983C2BEB81680030F9DE /* IndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewController.swift; sourceTree = "<group>"; };
 		A793983E2BEB81A40030F9DE /* WNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WNavigationBar.xib; sourceTree = "<group>"; };
 		A793983F2BEB81A50030F9DE /* WNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WNavigationBar.swift; sourceTree = "<group>"; };
@@ -369,16 +221,6 @@
 		A79C3C502BEF667E00E8FAA7 /* LikeDB+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LikeDB+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		A79C3C532BEF814500E8FAA7 /* PeopleListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleListViewController.swift; sourceTree = "<group>"; };
 		A79D65252BF1A49500B98BC4 /* PeopleInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleInfoController.swift; sourceTree = "<group>"; };
-		A79ECFF32BE9BD0500E7356B /* AVFilterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVFilterCell.xib; sourceTree = "<group>"; };
-		A79ECFF42BE9BD0500E7356B /* AVFilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFilterCell.swift; sourceTree = "<group>"; };
-		A79ECFF72BE9BEB900E7356B /* AVFilterSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVFilterSearchView.xib; sourceTree = "<group>"; };
-		A79ECFF82BE9BEBA00E7356B /* AVFilterSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFilterSearchView.swift; sourceTree = "<group>"; };
-		A79ECFFB2BE9BF2800E7356B /* AVHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVHistoryCell.swift; sourceTree = "<group>"; };
-		A79ECFFC2BE9BF2800E7356B /* AVHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVHistoryCell.xib; sourceTree = "<group>"; };
-		A79ECFFF2BE9BF6A00E7356B /* AVHistoryBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVHistoryBottomView.swift; sourceTree = "<group>"; };
-		A79ED0002BE9BF6A00E7356B /* AVHistoryBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVHistoryBottomView.xib; sourceTree = "<group>"; };
-		A79ED0032BE9C52700E7356B /* AVNoNetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVNoNetView.swift; sourceTree = "<group>"; };
-		A79ED0052BE9C53600E7356B /* AVNoNetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AVNoNetView.xib; sourceTree = "<group>"; };
 		A79EE4DC2BECABB000526257 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		A79EE4DD2BECADEA00526257 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		A79EE4E12BECAEC200526257 /* MyLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryViewController.swift; sourceTree = "<group>"; };
@@ -389,6 +231,20 @@
 		A79EE4EB2BECD70700526257 /* IndexBannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexBannerCell.swift; sourceTree = "<group>"; };
 		A79EE4ED2BED03F900526257 /* IndexListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndexListCell.xib; sourceTree = "<group>"; };
 		A79EE4EE2BED03F900526257 /* IndexListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexListCell.swift; sourceTree = "<group>"; };
+		A7BDC9D72BF5A9A9009C5C34 /* AVFeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFeedBackViewController.swift; sourceTree = "<group>"; };
+		A7BDC9D82BF5A9A9009C5C34 /* AVAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAboutViewController.swift; sourceTree = "<group>"; };
+		A7BDC9D92BF5A9A9009C5C34 /* AVFeedBackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVFeedBackViewController.xib; sourceTree = "<group>"; };
+		A7BDC9DA2BF5A9A9009C5C34 /* AVAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVAboutViewController.xib; sourceTree = "<group>"; };
+		A7BDC9E02BF5AA0E009C5C34 /* AVNoNetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVNoNetView.xib; sourceTree = "<group>"; };
+		A7BDC9E12BF5AA0E009C5C34 /* AVNoNetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVNoNetView.swift; sourceTree = "<group>"; };
+		A7BDC9E42BF5AA53009C5C34 /* HPPlayLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPPlayLayout.swift; sourceTree = "<group>"; };
+		A7BDC9E62BF5AA8C009C5C34 /* AVBannerEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVBannerEffectView.swift; sourceTree = "<group>"; };
+		A7BDC9E82BF5AADE009C5C34 /* AVSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVSearchCell.swift; sourceTree = "<group>"; };
+		A7BDC9EA2BF5AB41009C5C34 /* AVSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVSettingViewController.swift; sourceTree = "<group>"; };
+		A7BDC9EC2BF5AB57009C5C34 /* AVSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVSettingCell.swift; sourceTree = "<group>"; };
+		A7BDC9F02BF5ABC0009C5C34 /* AVHistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVHistoryView.swift; sourceTree = "<group>"; };
+		A7BDC9F22BF5B191009C5C34 /* AVPlayHeadCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayHeadCategoryCell.swift; sourceTree = "<group>"; };
+		A7BDC9F32BF5B191009C5C34 /* AVPlayHeadCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVPlayHeadCategoryCell.xib; sourceTree = "<group>"; };
 		CF7FE3CD896F4338FA2CCBDD /* Pods_HPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51F623333A3D17A5E570F06 /* Pods-HPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HPlayer.debug.xcconfig"; path = "Target Support Files/Pods-HPlayer/Pods-HPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		F59FA9FD3EAC701A4364737D /* Pods-HPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HPlayer.release.xcconfig"; path = "Target Support Files/Pods-HPlayer/Pods-HPlayer.release.xcconfig"; sourceTree = "<group>"; };
@@ -427,66 +283,6 @@
 				A79C3C4A2BEF155C00E8FAA7 /* StartViewController.xib */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		A73BFB482BE8B79400A672E7 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				A73BFBA32BE8CAC600A672E7 /* AVListCell.swift */,
-				A73BFBA42BE8CAC600A672E7 /* AVListCell.xib */,
-				A73BFBA82BE8CB2900A672E7 /* AVCell.swift */,
-				A73BFBA72BE8CB2900A672E7 /* AVCell.xib */,
-				A73BFB9E2BE8C9B400A672E7 /* AVHomeHeadView.swift */,
-				A73BFB9D2BE8C9B400A672E7 /* AVHomeHeadView.xib */,
-				A73BFBA12BE8C9F900A672E7 /* AVBannerEffectView.swift */,
-				A73BFBAB2BE8CB8C00A672E7 /* AVBannerCell.swift */,
-				A73BFBAF2BE8CCF200A672E7 /* AVSettingCell.swift */,
-				A73BFBB12BE8D4EB00A672E7 /* AVHistoryView.swift */,
-				A73BFBB32BE8D5B500A672E7 /* AVHistorySearchView.swift */,
-				A73BFBB42BE8D5B500A672E7 /* AVHistorySearchView.xib */,
-				A73BFBB72BE8D63A00A672E7 /* AVSearchTopView.swift */,
-				A73BFBB92BE8D6DB00A672E7 /* AVSearchCell.swift */,
-				A73BFBBC2BE8D73300A672E7 /* AVAlertController.swift */,
-				A73BFBBB2BE8D73300A672E7 /* AVAlertController.xib */,
-				A73BFBBF2BE8D89F00A672E7 /* AVSearchItemCell.swift */,
-				A73BFBC02BE8D89F00A672E7 /* AVSearchItemCell.xib */,
-				A73BFC162BE8E3B800A672E7 /* HPPlayEpsListCell.swift */,
-				A73BFC152BE8E3B800A672E7 /* HPPlayEpsListCell.xib */,
-				A73BFC1D2BE8E83600A672E7 /* AVFilterView.swift */,
-				A73BFC1F2BE8E88700A672E7 /* AVFilterListCell.swift */,
-				A73BFC202BE8E88700A672E7 /* AVFilterListCell.xib */,
-				A79ECFF42BE9BD0500E7356B /* AVFilterCell.swift */,
-				A79ECFF32BE9BD0500E7356B /* AVFilterCell.xib */,
-				A79ECFF82BE9BEBA00E7356B /* AVFilterSearchView.swift */,
-				A79ECFF72BE9BEB900E7356B /* AVFilterSearchView.xib */,
-				A79ECFFB2BE9BF2800E7356B /* AVHistoryCell.swift */,
-				A79ECFFC2BE9BF2800E7356B /* AVHistoryCell.xib */,
-				A79ECFFF2BE9BF6A00E7356B /* AVHistoryBottomView.swift */,
-				A79ED0002BE9BF6A00E7356B /* AVHistoryBottomView.xib */,
-				A79ED0032BE9C52700E7356B /* AVNoNetView.swift */,
-				A79ED0052BE9C53600E7356B /* AVNoNetView.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		A73BFB492BE8B79C00A672E7 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				A73BFB8B2BE8C78A00A672E7 /* AVAboutViewController.swift */,
-				A73BFB832BE8C78A00A672E7 /* AVAboutViewController.xib */,
-				A73BFB8A2BE8C78A00A672E7 /* AVFeedBackViewController.swift */,
-				A73BFB872BE8C78A00A672E7 /* AVFeedBackViewController.xib */,
-				A73BFB8D2BE8C78A00A672E7 /* AVFilterViewController.swift */,
-				A73BFB8F2BE8C78A00A672E7 /* AVHistoryViewListController.swift */,
-				A73BFB852BE8C78A00A672E7 /* AVHomeViewController.swift */,
-				A73BFB862BE8C78A00A672E7 /* AVListViewController.swift */,
-				A73BFB8C2BE8C78A00A672E7 /* AVSearchListViewController.swift */,
-				A73BFB842BE8C78A00A672E7 /* AVSearchResultViewController.swift */,
-				A73BFB882BE8C78A00A672E7 /* AVSearchViewController.swift */,
-				A73BFB8E2BE8C78A00A672E7 /* AVSettingViewController.swift */,
-				A73BFB892BE8C78A00A672E7 /* AVPlayViewController.swift */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		A73BFB4A2BE8B7A200A672E7 /* Model */ = {
@@ -628,7 +424,7 @@
 				A73BFB432BE8B00900A672E7 /* Base */,
 				A7969A2B2BE8771000FE02FB /* Extension */,
 				A73BFBC32BE8DA7400A672E7 /* White */,
-				A7969A2D2BE8773D00FE02FB /* Player */,
+				A7BDC9DF2BF5A9E6009C5C34 /* Other */,
 				A7969A2C2BE8772B00FE02FB /* Video */,
 				A7969A142BE8748200FE02FB /* AppDelegate.swift */,
 				A7969A162BE8748200FE02FB /* SceneDelegate.swift */,
@@ -671,57 +467,29 @@
 			isa = PBXGroup;
 			children = (
 				A73BFB4A2BE8B7A200A672E7 /* Model */,
-				A73BFB492BE8B79C00A672E7 /* Controller */,
-				A73BFB482BE8B79400A672E7 /* View */,
 			);
 			path = Video;
 			sourceTree = "<group>";
 		};
-		A7969A2D2BE8773D00FE02FB /* Player */ = {
+		A7BDC9DF2BF5A9E6009C5C34 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				A73BFC132BE8E29800A672E7 /* HPPlayLayout.swift */,
-				A73BFC042BE8E20700A672E7 /* AVPlayHeadCategoryCell.swift */,
-				A73BFC072BE8E20800A672E7 /* AVPlayHeadCategoryCell.xib */,
-				A73BFC062BE8E20800A672E7 /* AVPlayHeadCell.swift */,
-				A73BFBFF2BE8E20700A672E7 /* AVPlayHeadCell.xib */,
-				A73BFC032BE8E20700A672E7 /* AVPlayHeadIconCell.swift */,
-				A73BFC052BE8E20700A672E7 /* AVPlayHeadIconCell.xib */,
-				A73BFBFD2BE8E20700A672E7 /* AVPlayHeadInfoCell.swift */,
-				A73BFC002BE8E20700A672E7 /* AVPlayHeadInfoCell.xib */,
-				A73BFBFE2BE8E20700A672E7 /* AVPlayLikeCell.swift */,
-				A73BFC012BE8E20700A672E7 /* AVPlayLikeCell.xib */,
-				A73BFC022BE8E20700A672E7 /* AVPlaySsnHeadView.swift */,
-				A73BFBC72BE8DB7000A672E7 /* HPPlayerControlView.swift */,
-				A73BFBCF2BE8DC0800A672E7 /* HPPlayer.swift */,
-				A73BFBDA2BE8DC0900A672E7 /* HPPlayerCaptionFullSetView.swift */,
-				A73BFBD62BE8DC0800A672E7 /* HPPlayerCaptionFullSetView.xib */,
-				A73BFBD02BE8DC0800A672E7 /* HPPlayerCaptionSetView.swift */,
-				A73BFBD22BE8DC0800A672E7 /* HPPlayerCaptionSetView.xib */,
-				A73BFBD12BE8DC0800A672E7 /* HPPlayerFailView.swift */,
-				A73BFBCD2BE8DC0800A672E7 /* HPPlayerFailView.xib */,
-				A73BFBCE2BE8DC0800A672E7 /* HPPlayerLanguageFullView.swift */,
-				A73BFBCB2BE8DC0800A672E7 /* HPPlayerLanguageFullView.xib */,
-				A73BFBC92BE8DC0800A672E7 /* HPPlayerLightView.swift */,
-				A73BFBD82BE8DC0800A672E7 /* HPPlayerLightView.xib */,
-				A73BFBD92BE8DC0800A672E7 /* HPPlayerLoadingView.swift */,
-				A73BFBCA2BE8DC0800A672E7 /* HPPlayerLoadingView.xib */,
-				A73BFBCC2BE8DC0800A672E7 /* HPPlayerSelectEpsCell.swift */,
-				A73BFBDB2BE8DC0900A672E7 /* HPPlayerSelectEpsCell.xib */,
-				A73BFBD32BE8DC0800A672E7 /* HPPlayerSelectEpsView.swift */,
-				A73BFBD42BE8DC0800A672E7 /* HPPlayerSelectEpsView.xib */,
-				A73BFBD72BE8DC0800A672E7 /* HPPlayerSelectSsnCell.swift */,
-				A73BFBD52BE8DC0800A672E7 /* HPPlayerSelectSsnCell.xib */,
-				A73BFBEF2BE8DCDA00A672E7 /* PlayerLanguageView.swift */,
-				A73BFBF12BE8DD3F00A672E7 /* PlayerLanguageCell.swift */,
-				A73BFBF22BE8DD3F00A672E7 /* PlayerLanguageCell.xib */,
-				A73BFBF52BE8DF7E00A672E7 /* PlayerItem.swift */,
-				A73BFBF72BE8DFA800A672E7 /* HPSubtitles.swift */,
-				A73BFBF92BE8E01600A672E7 /* PlayerLayerView.swift */,
-				A73BFBFB2BE8E04D00A672E7 /* HPTimeSlider.swift */,
-				A73BFC1B2BE8E71800A672E7 /* HPCaptionManager.swift */,
+				A7BDC9F22BF5B191009C5C34 /* AVPlayHeadCategoryCell.swift */,
+				A7BDC9F32BF5B191009C5C34 /* AVPlayHeadCategoryCell.xib */,
+				A7BDC9F02BF5ABC0009C5C34 /* AVHistoryView.swift */,
+				A7BDC9EC2BF5AB57009C5C34 /* AVSettingCell.swift */,
+				A7BDC9EA2BF5AB41009C5C34 /* AVSettingViewController.swift */,
+				A7BDC9E82BF5AADE009C5C34 /* AVSearchCell.swift */,
+				A7BDC9E62BF5AA8C009C5C34 /* AVBannerEffectView.swift */,
+				A7BDC9E12BF5AA0E009C5C34 /* AVNoNetView.swift */,
+				A7BDC9E02BF5AA0E009C5C34 /* AVNoNetView.xib */,
+				A7BDC9D82BF5A9A9009C5C34 /* AVAboutViewController.swift */,
+				A7BDC9DA2BF5A9A9009C5C34 /* AVAboutViewController.xib */,
+				A7BDC9D72BF5A9A9009C5C34 /* AVFeedBackViewController.swift */,
+				A7BDC9D92BF5A9A9009C5C34 /* AVFeedBackViewController.xib */,
+				A7BDC9E42BF5AA53009C5C34 /* HPPlayLayout.swift */,
 			);
-			path = Player;
+			path = Other;
 			sourceTree = "<group>";
 		};
 		B1DF28AC0C18A231CCDE8EDF /* Frameworks */ = {
@@ -803,60 +571,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				A79861B02BF352C700027C42 /* OpenSans-Bold.ttf in Resources */,
-				A73BFBA62BE8CAC600A672E7 /* AVListCell.xib in Resources */,
 				A79861B42BF35C2800027C42 /* BebasNeue-Regular.ttf in Resources */,
 				A73BFB552BE8BB8500A672E7 /* ad_debug.json in Resources */,
-				A73BFBDD2BE8DC0900A672E7 /* HPPlayerLoadingView.xib in Resources */,
 				A73BFB562BE8BB8500A672E7 /* refresh.json in Resources */,
-				A73BFBE82BE8DC0900A672E7 /* HPPlayerSelectSsnCell.xib in Resources */,
-				A73BFBE72BE8DC0900A672E7 /* HPPlayerSelectEpsView.xib in Resources */,
-				A73BFC0C2BE8E20800A672E7 /* AVPlayLikeCell.xib in Resources */,
-				A73BFC102BE8E20800A672E7 /* AVPlayHeadIconCell.xib in Resources */,
-				A79ECFF52BE9BD0500E7356B /* AVFilterCell.xib in Resources */,
 				A79A23632BEDF73F0010B0EC /* SearchAlertController.xib in Resources */,
 				A7969A242BE8748400FE02FB /* LaunchScreen.storyboard in Resources */,
-				A79ED0022BE9BF6A00E7356B /* AVHistoryBottomView.xib in Resources */,
-				A73BFBC22BE8D89F00A672E7 /* AVSearchItemCell.xib in Resources */,
-				A73BFBE02BE8DC0900A672E7 /* HPPlayerFailView.xib in Resources */,
-				A73BFC122BE8E20800A672E7 /* AVPlayHeadCategoryCell.xib in Resources */,
-				A73BFBDE2BE8DC0900A672E7 /* HPPlayerLanguageFullView.xib in Resources */,
 				A79A235F2BEDECE70010B0EC /* IndexSearchRecordView.xib in Resources */,
-				A73BFB9F2BE8C9B400A672E7 /* AVHomeHeadView.xib in Resources */,
 				A73BFB422BE8A62300A672E7 /* GoogleService-Info.plist in Resources */,
-				A79ECFF92BE9BEBA00E7356B /* AVFilterSearchView.xib in Resources */,
 				A79398402BEB81A50030F9DE /* WNavigationBar.xib in Resources */,
 				A79A23832BEE2A8F0010B0EC /* PlayDoubleImgCell.xib in Resources */,
+				A7BDC9F52BF5B191009C5C34 /* AVPlayHeadCategoryCell.xib in Resources */,
 				A79A23792BEE120D0010B0EC /* PlaySeasonListCell.xib in Resources */,
-				A73BFB902BE8C78A00A672E7 /* AVAboutViewController.xib in Resources */,
+				A7BDC9DE2BF5A9A9009C5C34 /* AVAboutViewController.xib in Resources */,
 				A79A237F2BEE28F60010B0EC /* PlayMaxImgCell.xib in Resources */,
 				A79A236E2BEE03330010B0EC /* PlayPeopleCell.xib in Resources */,
 				A79A236B2BEDFCA00010B0EC /* PlayDetailsCell.xib in Resources */,
-				A73BFBF42BE8DD3F00A672E7 /* PlayerLanguageCell.xib in Resources */,
 				A79C3C4C2BEF155C00E8FAA7 /* StartViewController.xib in Resources */,
-				A73BFB942BE8C78A00A672E7 /* AVFeedBackViewController.xib in Resources */,
-				A73BFBE52BE8DC0900A672E7 /* HPPlayerCaptionSetView.xib in Resources */,
-				A73BFBEE2BE8DC0900A672E7 /* HPPlayerSelectEpsCell.xib in Resources */,
 				A7969A212BE8748400FE02FB /* Assets.xcassets in Resources */,
 				A79A23732BEE0EC00010B0EC /* PlaySeasonCell.xib in Resources */,
-				A73BFBA92BE8CB2900A672E7 /* AVCell.xib in Resources */,
 				A73BFB472BE8B05D00A672E7 /* BaseNavigationBar.xib in Resources */,
-				A73BFC0B2BE8E20800A672E7 /* AVPlayHeadInfoCell.xib in Resources */,
-				A73BFC172BE8E3B800A672E7 /* HPPlayEpsListCell.xib in Resources */,
 				A79A23492BEDB3780010B0EC /* IndexCell.xib in Resources */,
-				A73BFBEB2BE8DC0900A672E7 /* HPPlayerLightView.xib in Resources */,
-				A73BFBE92BE8DC0900A672E7 /* HPPlayerCaptionFullSetView.xib in Resources */,
-				A73BFC222BE8E88800A672E7 /* AVFilterListCell.xib in Resources */,
 				A79EE4EF2BED03F900526257 /* IndexListCell.xib in Resources */,
 				A73BFB542BE8BB8500A672E7 /* loading.json in Resources */,
-				A73BFBBD2BE8D73300A672E7 /* AVAlertController.xib in Resources */,
+				A7BDC9E22BF5AA0E009C5C34 /* AVNoNetView.xib in Resources */,
 				A79A234D2BEDB5970010B0EC /* PeopleCell.xib in Resources */,
 				A73BFB532BE8BB8500A672E7 /* ad_release.json in Resources */,
-				A79ED0062BE9C53600E7356B /* AVNoNetView.xib in Resources */,
 				A79A23872BEE2B9D0010B0EC /* PlayMixImgCell.xib in Resources */,
-				A73BFC0A2BE8E20800A672E7 /* AVPlayHeadCell.xib in Resources */,
-				A73BFBB62BE8D5B500A672E7 /* AVHistorySearchView.xib in Resources */,
+				A7BDC9DD2BF5A9A9009C5C34 /* AVFeedBackViewController.xib in Resources */,
 				A79A235A2BEDE7A60010B0EC /* IndexSearchView.xib in Resources */,
-				A79ECFFE2BE9BF2800E7356B /* AVHistoryCell.xib in Resources */,
 				A7969A1C2BE8748200FE02FB /* Main.storyboard in Resources */,
 				A79EE4E62BECAF1F00526257 /* FavoriteCell.xib in Resources */,
 			);
@@ -912,136 +654,90 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7969A472BE878A300FE02FB /* HPCommon.swift in Sources */,
-				A73BFBEA2BE8DC0900A672E7 /* HPPlayerSelectSsnCell.swift in Sources */,
-				A73BFB962BE8C78A00A672E7 /* AVPlayViewController.swift in Sources */,
 				A79D65262BF1A49500B98BC4 /* PeopleInfoController.swift in Sources */,
 				A73BFB4C2BE8BA8600A672E7 /* VBaseViewController.swift in Sources */,
-				A73BFB952BE8C78A00A672E7 /* AVSearchViewController.swift in Sources */,
-				A73BFBAA2BE8CB2900A672E7 /* AVCell.swift in Sources */,
+				A7BDC9E52BF5AA53009C5C34 /* HPPlayLayout.swift in Sources */,
 				A79A23532BEDBDB50010B0EC /* PlaySegView.swift in Sources */,
 				A7969A482BE878A300FE02FB /* HPToast.swift in Sources */,
 				A73BFB602BE8BE4500A672E7 /* AVModel.swift in Sources */,
-				A73BFBEC2BE8DC0900A672E7 /* HPPlayerLoadingView.swift in Sources */,
 				A73BFB812BE8C6C200A672E7 /* AVWebViewController.swift in Sources */,
-				A73BFBDC2BE8DC0900A672E7 /* HPPlayerLightView.swift in Sources */,
 				A793983D2BEB81680030F9DE /* IndexViewController.swift in Sources */,
 				A79A234F2BEDB7610010B0EC /* ListViewController.swift in Sources */,
-				A73BFBB82BE8D63A00A672E7 /* AVSearchTopView.swift in Sources */,
 				A73BFB7C2BE8C37900A672E7 /* CapDB+CoreDataProperties.swift in Sources */,
 				A73BFB6C2BE8C09D00A672E7 /* DBManager.swift in Sources */,
 				A79EE4EA2BECCEEB00526257 /* IndexHeadView.swift in Sources */,
-				A73BFBA52BE8CAC600A672E7 /* AVListCell.swift in Sources */,
-				A73BFB922BE8C78A00A672E7 /* AVHomeViewController.swift in Sources */,
-				A73BFBE62BE8DC0900A672E7 /* HPPlayerSelectEpsView.swift in Sources */,
+				A7BDC9E32BF5AA0E009C5C34 /* AVNoNetView.swift in Sources */,
 				A73BFB5A2BE8BCFE00A672E7 /* NetManager.swift in Sources */,
 				A7969A442BE878A300FE02FB /* HPConfig.swift in Sources */,
 				A73BFB612BE8BE4500A672E7 /* AVFilterModel.swift in Sources */,
 				A73BFB5C2BE8BDE200A672E7 /* CapTransformer.swift in Sources */,
-				A73BFB9B2BE8C78A00A672E7 /* AVSettingViewController.swift in Sources */,
 				A73BFB7A2BE8C37900A672E7 /* AVDB+CoreDataProperties.swift in Sources */,
-				A73BFBB02BE8CCF200A672E7 /* AVSettingCell.swift in Sources */,
 				A7969A4A2BE878A300FE02FB /* UIView+Extension.swift in Sources */,
-				A73BFBAC2BE8CB8C00A672E7 /* AVBannerCell.swift in Sources */,
+				A7BDC9F42BF5B191009C5C34 /* AVPlayHeadCategoryCell.swift in Sources */,
 				A79A235B2BEDE7A60010B0EC /* IndexSearchView.swift in Sources */,
-				A73BFB992BE8C78A00A672E7 /* AVSearchListViewController.swift in Sources */,
-				A73BFBE12BE8DC0900A672E7 /* HPPlayerLanguageFullView.swift in Sources */,
-				A73BFB9C2BE8C78A00A672E7 /* AVHistoryViewListController.swift in Sources */,
 				A7969A4C2BE878A300FE02FB /* HPKey.swift in Sources */,
-				A73BFBED2BE8DC0900A672E7 /* HPPlayerCaptionFullSetView.swift in Sources */,
 				A79C3C512BEF667E00E8FAA7 /* LikeDB+CoreDataClass.swift in Sources */,
-				A73BFBBA2BE8D6DB00A672E7 /* AVSearchCell.swift in Sources */,
 				A79A237B2BEE16520010B0EC /* PlaySeasonSubListViewController.swift in Sources */,
-				A73BFC112BE8E20800A672E7 /* AVPlayHeadCell.swift in Sources */,
 				A7969A322BE8777100FE02FB /* Date+Extension.swift in Sources */,
 				A79A23822BEE2A8F0010B0EC /* PlayDoubleImgCell.swift in Sources */,
 				A73BFB7E2BE8C4DF00A672E7 /* PlayerManager.swift in Sources */,
 				A79A23722BEE0EC00010B0EC /* PlaySeasonCell.swift in Sources */,
-				A73BFC142BE8E29800A672E7 /* HPPlayLayout.swift in Sources */,
 				A79EE4F02BED03F900526257 /* IndexListCell.swift in Sources */,
 				A79A237E2BEE28F60010B0EC /* PlayMaxImgCell.swift in Sources */,
 				A73BFBAE2BE8CC1000A672E7 /* PlayerNetAPI.swift in Sources */,
-				A73BFBB52BE8D5B500A672E7 /* AVHistorySearchView.swift in Sources */,
-				A73BFBB22BE8D4EB00A672E7 /* AVHistoryView.swift in Sources */,
 				A79A236F2BEE03330010B0EC /* PlayPeopleCell.swift in Sources */,
+				A7BDC9EB2BF5AB41009C5C34 /* AVSettingViewController.swift in Sources */,
 				A7969A192BE8748200FE02FB /* ViewController.swift in Sources */,
 				A73BFB822BE8C6C200A672E7 /* AVTabController.swift in Sources */,
 				A79A23482BEDB3780010B0EC /* IndexCell.swift in Sources */,
 				A7969A1F2BE8748200FE02FB /* HPlayer.xcdatamodeld in Sources */,
-				A73BFC182BE8E3B800A672E7 /* HPPlayEpsListCell.swift in Sources */,
 				A73BFB462BE8B05D00A672E7 /* BaseNavigationBar.swift in Sources */,
 				A73BFB7B2BE8C37900A672E7 /* CapDB+CoreDataClass.swift in Sources */,
 				A79A236A2BEDFCA00010B0EC /* PlayDetailsCell.swift in Sources */,
 				A7969A492BE878A300FE02FB /* HPLog.swift in Sources */,
-				A73BFBFC2BE8E04D00A672E7 /* HPTimeSlider.swift in Sources */,
-				A79ED0042BE9C52700E7356B /* AVNoNetView.swift in Sources */,
-				A73BFBF62BE8DF7E00A672E7 /* PlayerItem.swift in Sources */,
-				A79ECFFA2BE9BEBA00E7356B /* AVFilterSearchView.swift in Sources */,
 				A7969A332BE8777100FE02FB /* Array+Extension.swift in Sources */,
 				A79C3C542BEF814500E8FAA7 /* PeopleListViewController.swift in Sources */,
-				A73BFB9A2BE8C78A00A672E7 /* AVFilterViewController.swift in Sources */,
-				A73BFC0F2BE8E20800A672E7 /* AVPlayHeadCategoryCell.swift in Sources */,
-				A73BFB912BE8C78A00A672E7 /* AVSearchResultViewController.swift in Sources */,
-				A73BFB932BE8C78A00A672E7 /* AVListViewController.swift in Sources */,
-				A73BFC082BE8E20800A672E7 /* AVPlayHeadInfoCell.swift in Sources */,
-				A73BFBF82BE8DFA800A672E7 /* HPSubtitles.swift in Sources */,
 				A79A23572BEDE7440010B0EC /* SearchViewController.swift in Sources */,
-				A73BFBF32BE8DD3F00A672E7 /* PlayerLanguageCell.swift in Sources */,
-				A73BFBF02BE8DCDA00A672E7 /* PlayerLanguageView.swift in Sources */,
 				A79A23512BEDBC000010B0EC /* PlayViewController.swift in Sources */,
-				A73BFC0E2BE8E20800A672E7 /* AVPlayHeadIconCell.swift in Sources */,
 				A79A23752BEE10B70010B0EC /* PlaySeasonListViewController.swift in Sources */,
 				A7969A4D2BE878A300FE02FB /* HPADManager.swift in Sources */,
 				A7969A4F2BE878A300FE02FB /* HPRefresh.swift in Sources */,
+				A7BDC9ED2BF5AB57009C5C34 /* AVSettingCell.swift in Sources */,
+				A7BDC9E92BF5AADE009C5C34 /* AVSearchCell.swift in Sources */,
 				A79EE4E22BECAEC200526257 /* MyLibraryViewController.swift in Sources */,
 				A79C3C522BEF667E00E8FAA7 /* LikeDB+CoreDataProperties.swift in Sources */,
 				A7969A152BE8748200FE02FB /* AppDelegate.swift in Sources */,
-				A79ED0012BE9BF6A00E7356B /* AVHistoryBottomView.swift in Sources */,
+				A7BDC9DC2BF5A9A9009C5C34 /* AVAboutViewController.swift in Sources */,
 				A73BFB792BE8C37900A672E7 /* AVDB+CoreDataClass.swift in Sources */,
-				A73BFBA22BE8C9F900A672E7 /* AVBannerEffectView.swift in Sources */,
+				A7BDC9F12BF5ABC0009C5C34 /* AVHistoryView.swift in Sources */,
 				A79EE4E82BECBA0600526257 /* WTabController.swift in Sources */,
 				A7969A4B2BE878A300FE02FB /* HPProgressHUD.swift in Sources */,
-				A73BFC0D2BE8E20800A672E7 /* AVPlaySsnHeadView.swift in Sources */,
 				A7969A462BE878A300FE02FB /* HPTBAManager.swift in Sources */,
-				A79ECFF62BE9BD0500E7356B /* AVFilterCell.swift in Sources */,
 				A73BFB592BE8BCFE00A672E7 /* HPUMPManager.swift in Sources */,
+				A7BDC9E72BF5AA8C009C5C34 /* AVBannerEffectView.swift in Sources */,
 				A73BFB622BE8BE4500A672E7 /* AVHomeModel.swift in Sources */,
 				A79A23622BEDF73F0010B0EC /* SearchAlertController.swift in Sources */,
 				A7969A532BE881A700FE02FB /* VipManager.swift in Sources */,
-				A73BFBA02BE8C9B400A672E7 /* AVHomeHeadView.swift in Sources */,
-				A73BFBC12BE8D89F00A672E7 /* AVSearchItemCell.swift in Sources */,
 				A79EE4E52BECAF1F00526257 /* FavoriteCell.swift in Sources */,
 				A79EE4EC2BECD70700526257 /* IndexBannerCell.swift in Sources */,
-				A73BFBFA2BE8E01600A672E7 /* PlayerLayerView.swift in Sources */,
 				A79A234C2BEDB5960010B0EC /* PeopleCell.swift in Sources */,
 				A79A23892BEE2D4A0010B0EC /* PlayImgListViewController.swift in Sources */,
-				A73BFBE22BE8DC0900A672E7 /* HPPlayer.swift in Sources */,
-				A79ECFFD2BE9BF2800E7356B /* AVHistoryCell.swift in Sources */,
-				A73BFC092BE8E20800A672E7 /* AVPlayLikeCell.swift in Sources */,
 				A79EE4DE2BECADEA00526257 /* FavoriteViewController.swift in Sources */,
 				A7969A342BE8777100FE02FB /* BaseViewController.swift in Sources */,
 				A7969A352BE8777100FE02FB /* BaseModel.swift in Sources */,
 				A7969A4E2BE878A300FE02FB /* UIImage+Extension.swift in Sources */,
+				A7BDC9DB2BF5A9A9009C5C34 /* AVFeedBackViewController.swift in Sources */,
 				A79A23782BEE120D0010B0EC /* PlaySeasonListCell.swift in Sources */,
-				A73BFBBE2BE8D73300A672E7 /* AVAlertController.swift in Sources */,
-				A73BFBC82BE8DB7100A672E7 /* HPPlayerControlView.swift in Sources */,
 				A79C3C4E2BEF487F00E8FAA7 /* WhiteModel.swift in Sources */,
 				A7969A512BE878A300FE02FB /* HPRemoteManager.swift in Sources */,
-				A73BFC1C2BE8E71800A672E7 /* HPCaptionManager.swift in Sources */,
-				A73BFC1E2BE8E83600A672E7 /* AVFilterView.swift in Sources */,
 				A79A23552BEDC3590010B0EC /* PlayListViewController.swift in Sources */,
 				A79C3C4B2BEF155C00E8FAA7 /* StartViewController.swift in Sources */,
 				A79A23672BEDFC060010B0EC /* PlayDetailsListViewController.swift in Sources */,
 				A79398412BEB81A50030F9DE /* WNavigationBar.swift in Sources */,
-				A73BFBE42BE8DC0900A672E7 /* HPPlayerFailView.swift in Sources */,
-				A73BFB972BE8C78A00A672E7 /* AVFeedBackViewController.swift in Sources */,
 				A79A23862BEE2B9D0010B0EC /* PlayMixImgCell.swift in Sources */,
 				A7969A452BE878A300FE02FB /* String+Extension.swift in Sources */,
-				A73BFBDF2BE8DC0900A672E7 /* HPPlayerSelectEpsCell.swift in Sources */,
-				A73BFB982BE8C78A00A672E7 /* AVAboutViewController.swift in Sources */,
 				A79A235D2BEDECE10010B0EC /* IndexSearchRecordView.swift in Sources */,
-				A73BFC212BE8E88800A672E7 /* AVFilterListCell.swift in Sources */,
 				A7969A172BE8748200FE02FB /* SceneDelegate.swift in Sources */,
-				A73BFBE32BE8DC0900A672E7 /* HPPlayerCaptionSetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

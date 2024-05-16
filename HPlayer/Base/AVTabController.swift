@@ -17,15 +17,15 @@ class AVTabController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let index = addChildVC(controller: AVHomeViewController(),title: TabBarStauts.index.rawValue, image: "index", selectImage: "index_sel")
-        let explore = addChildVC(controller: AVFilterViewController(),title: TabBarStauts.explore.rawValue, image: "exp", selectImage: "exp_sel")
-        let set = addChildVC(controller: AVSettingViewController(),title: TabBarStauts.set.rawValue, image: "setting", selectImage: "setting_sel")
-//        let vip = setChildVC(vc: VipViewController(),title: TabBarItem.vip.rawValue, image: "vipTab", selectImage: "vipTab_select")
-
-        self.tabBar.barTintColor = UIColor.hexColor("#141414")
-        self.tabBar.backgroundColor = UIColor.hexColor("#141414")
-        self.tabBar.isTranslucent = false
-        self.viewControllers = [index, explore, set]
+//        let index = addChildVC(controller: AVHomeViewController(),title: TabBarStauts.index.rawValue, image: "index", selectImage: "index_sel")
+//        let explore = addChildVC(controller: AVFilterViewController(),title: TabBarStauts.explore.rawValue, image: "exp", selectImage: "exp_sel")
+//        let set = addChildVC(controller: AVSettingViewController(),title: TabBarStauts.set.rawValue, image: "setting", selectImage: "setting_sel")
+////        let vip = setChildVC(vc: VipViewController(),title: TabBarItem.vip.rawValue, image: "vipTab", selectImage: "vipTab_select")
+//
+//        self.tabBar.barTintColor = UIColor.hexColor("#141414")
+//        self.tabBar.backgroundColor = UIColor.hexColor("#141414")
+//        self.tabBar.isTranslucent = false
+//        self.viewControllers = [index, explore, set]
     }
     
     func addChildVC(controller: UIViewController, title: String, image: String, selectImage: String) -> UINavigationController {

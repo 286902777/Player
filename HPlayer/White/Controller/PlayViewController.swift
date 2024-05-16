@@ -229,3 +229,5 @@ extension PlayViewController: JXPagingViewDelegate {
         self.segementView.titles.count
     }
 }
+
+extension JXPagingListContainerView: JXSegmentedViewListContainer {}

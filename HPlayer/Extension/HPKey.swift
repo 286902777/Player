@@ -75,7 +75,7 @@ class HPKey {
     
     static let app_version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     static let HPLogs = "HPLogs"
-    static let advertiseKey = "advertiseKey"
+    static let advertiseKey = "advertise"
     static let history = "history"
     static let searchRecord = "searchRecord"
 

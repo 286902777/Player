@@ -60,11 +60,11 @@ class PlayerManager {
             HPProgressHUD.error("No network!")
             return
         }
-        if let model = DBManager.share.selectAVData(id: id) {
-            let controller = AVPlayViewController(model: model, from: from)
-            controller.hidesBottomBarWhenPushed = true
-            vc.navigationController?.pushViewController(controller, animated: animation)
-        }
+//        if let model = DBManager.share.selectAVData(id: id) {
+//            let controller = AVPlayViewController(model: model, from: from)
+//            controller.hidesBottomBarWhenPushed = true
+//            vc.navigationController?.pushViewController(controller, animated: animation)
+//        }
     }
     
     func getLanguage() -> String {

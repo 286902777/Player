@@ -281,8 +281,7 @@ class AVFilterViewController: VBaseViewController {
                     self.list.append(contentsOf: list)
                 }
             }
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
+            DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
         }

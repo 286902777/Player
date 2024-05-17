@@ -57,9 +57,7 @@ class HPPlayer: UIView {
     var tempIsPlaying: Bool = false
     var isFaceBook: Bool = false {
         didSet {
-            DispatchQueue.main.async {
-                self.controlView.controlShowAnimation(isShowing: !self.controlView.showing)
-            }
+            self.controlView.controlShowAnimation(isShowing: !self.controlView.showing)
             if isFaceBook {
                 self.controlView.hideLottie()
             }

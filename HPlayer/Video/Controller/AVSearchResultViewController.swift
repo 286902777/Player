@@ -176,8 +176,7 @@ class AVSearchResultViewController: VBaseViewController {
             self.collectionView.mj_header?.endRefreshing()
             self.collectionView.mj_footer?.endRefreshing()
            
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
+            DispatchQueue.main.async {
                 self.tableView.isHidden = true
                 self.collectionView.isHidden = false
                 self.collectionView.reloadData()

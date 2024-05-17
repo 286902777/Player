@@ -159,9 +159,7 @@ class AVSearchViewController: VBaseViewController {
                 self.emptyView.isHidden = false
                 self.historyView.isHidden = true
             }
-           
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
+            DispatchQueue.main.async {
                 self.tableView.isHidden = true
                 self.pageView.isHidden = false
                 self.segementView.titles = self.topList.map({$0.title})

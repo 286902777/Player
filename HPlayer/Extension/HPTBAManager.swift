@@ -37,7 +37,7 @@ class HPTBAManager: NSObject {
     var HPLogs: [[String: Any]] = UserDefaults.standard.value(forKey: HPKey.HPLogs) == nil ? [] : UserDefaults.standard.value(forKey: HPKey.HPLogs) as! [[String: Any]] {
         didSet {
             UserDefaults.standard.set(HPLogs, forKey: HPKey.HPLogs)
-            HPLog.log("HPPlixor.HPLogs: \(HPLogs.count) \(HPLogs)")
+            HPLog.logMsg("HPPlixor.HPLogs: \(HPLogs.count) \(HPLogs)")
         }
     }
     
@@ -81,22 +81,22 @@ class HPTBAManager: NSObject {
         let session: URLSession = URLSession(configuration: configuration)
         self.task = session.dataTask(with: request, completionHandler: { data, response, error in
             guard error == nil else {
-                HPLog.log("TBA---error: \(error?.localizedDescription ?? "")")
+                HPLog.logMsg("TBA---error: \(error?.localizedDescription ?? "")")
                 self.task = nil
                 return
             }
             if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                HPLog.log("TBA---data: \(dataString)")
+                HPLog.logMsg("TBA---data: \(dataString)")
             }
             if let res = response as? HTTPURLResponse, res.statusCode == 200 {
-                HPLog.log("TBA---success!")
+                HPLog.logMsg("TBA---success!")
                 for item in tempHPaLogs {
                     if let index = self.HPLogs.firstIndex(where: { (($0["select"] as? [String: Any]))?["brawl"] as? String == ((item["select"] as? [String: Any]))?["brawl"] as? String }) {
                         self.HPLogs.remove(at: index)
                     }
                 }
             } else {
-                HPLog.log("TBA---fail!")
+                HPLog.logMsg("TBA---fail!")
             }
             self.task = nil
             
@@ -172,7 +172,7 @@ class HPTBAManager: NSObject {
                 paras[name] = eventMap
             }
         }
-        HPLog.log("REQUEST---paras: \(paras)")
+        HPLog.logMsg("REQUEST---paras: \(paras)")
         return paras
     }
     

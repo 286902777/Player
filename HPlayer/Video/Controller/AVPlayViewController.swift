@@ -280,7 +280,7 @@ class AVPlayViewController: UIViewController {
             make.height.equalTo(120)
         }
         
-        FailedView.clickBlock = { [weak self] in
+        FailedView.clickTryBlock = { [weak self] in
             guard let self = self else { return }
             self.getVideoResource()
         }
@@ -617,8 +617,7 @@ class AVPlayViewController: UIViewController {
                                         HPLog.tb_movie_play_cl(kid: "2", movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: self.epsName)
                                         DispatchQueue.main.async {
                                             self.tableView.reloadData()
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-                                                guard let self = self else { return }
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                                                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .none, animated: false)
                                             }
                                         }

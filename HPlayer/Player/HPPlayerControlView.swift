@@ -915,18 +915,11 @@ class HPPlayerControlView: UIView {
     }
     
     func showCover(url: URL?) {
-        if let url = url {
-            DispatchQueue.global(qos: .default).async { [weak self] in
-                let data = try? Data(contentsOf: url)
-                DispatchQueue.main.async(execute: { [weak self] in
-                    guard let self = self else { return }
-                    if let data = data {
-                        self.ImageView.image = UIImage(data: data)
-                    } else {
-                        self.ImageView.image = nil
-                    }
-                    //                    self.hideLottie()
-                });
+        if let url = url, let data = try? Data(contentsOf: url) {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.ImageView.image = UIImage(data: data)
+                //                    self.hideLottie()
             }
         }
     }

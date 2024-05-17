@@ -256,8 +256,7 @@ extension AVHomeViewController: UITableViewDelegate, UITableViewDataSource {
         if let model = self.dataList.indexOfSafe(indexPath.row) {
             cell.setModel(model: model, clickMoreBlock: { [weak self] in
                 guard let self = self else { return }
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
+                DispatchQueue.main.async {
                         if model.name == "History", model.id.isEmpty {
                             HPLog.tb_home_cl(kid: "8", c_id: "", c_name: "", ctype: "", secname: model.name, secid: "")
                             let vc = AVHistoryViewListController()
@@ -272,9 +271,9 @@ extension AVHomeViewController: UITableViewDelegate, UITableViewDataSource {
                             self.navigationController?.pushViewController(vc, animated: true)
                         }
                 }
-            }, clickBlock: { movieModel in
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
+            }, clickBlock: {  [weak self] movieModel in
+                guard let self = self else { return }
+                DispatchQueue.main.async { 
                     DBManager.share.updateData(movieModel)
                     if model.name == "History" && model.id.isEmpty {
                         HPLog.tb_home_cl(kid: "3", c_id: movieModel.id, c_name: movieModel.title, ctype: movieModel.type == 1 ? "1" : "2", secname: model.name, secid: "")

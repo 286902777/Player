@@ -230,8 +230,7 @@ extension IndexViewController: UITableViewDelegate, UITableViewDataSource {
         if let model = self.list.indexOfSafe(indexPath.row) {
             cell.setModel(model: model, clickMoreBlock: { [weak self] in
                 guard let self = self else { return }
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
+                DispatchQueue.main.async {
                     if model.type == .list {
                         let vc = ListViewController()
                         vc.name = model.title

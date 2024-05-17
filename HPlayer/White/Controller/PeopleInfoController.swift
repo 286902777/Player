@@ -107,8 +107,7 @@ class PeopleInfoController: BaseViewController {
                 self.collectionView.mj_footer?.endRefreshingWithNoMoreData()
                 self.collectionView.mj_footer?.isHidden = true
             }
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
+            DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
         }

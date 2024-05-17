@@ -141,7 +141,8 @@ class HPCaptionManager: NSObject, URLSessionDelegate, URLSessionDownloadDelegate
                 print("file error")
             }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 self.addLocalData(localPath: srcsURL, captionId: captionId)
             }
         }
@@ -153,7 +154,8 @@ class HPCaptionManager: NSObject, URLSessionDelegate, URLSessionDownloadDelegate
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if let error = error as? NSError, error.code != -999 {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 if let downloadTask = task as? URLSessionDownloadTask, let _ = self.getDownload(task: downloadTask) {
                     
                 }

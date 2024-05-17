@@ -16,7 +16,7 @@ class IndexBannerCell: JXBannerBaseCell {
         return label
     }()
     
-    lazy var bgView: UIImageView = {
+    lazy var backView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.image = UIImage(named: "banner_mask")
@@ -86,14 +86,14 @@ class IndexBannerCell: JXBannerBaseCell {
         self.layer.cornerRadius = 8
         self.layer.masksToBounds = true
         self.imageView.contentMode = .scaleAspectFill
-        contentView.addSubview(bgView)
+        contentView.addSubview(backView)
         contentView.addSubview(likeView)
         contentView.addSubview(playView)
         contentView.addSubview(starImgV)
         contentView.addSubview(starL)
         contentView.addSubview(titleL)
 
-        bgView.snp.makeConstraints { make in
+        backView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         

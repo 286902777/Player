@@ -14,7 +14,7 @@ enum AVNetAPI: String {
     /// 更多
     case AVMoreListApi = "BfQt/uNgPPEK/lfDz"
     /// 搜索TopData
-    case AVSearchTopApi = "nIdaCaV/MfofDteKjc/eFByNWFMh"
+    case AVSearchTopApi = "nIdaCaV/MfofDteKjc/eFByNWFM"
     /// filter head
     case AVFilterHeadApi = "asOb/JLHI"
     /// filter
@@ -40,7 +40,8 @@ enum AVNetAPI: String {
 class PlayerNetAPI {
     static let share = PlayerNetAPI()
     let pageSize: Int = 30
-    
+    var task: URLSessionDataTask?
+
     func AVIndexList(_ completion: @escaping (_ success: Bool, _ list: [AVHomeModel]) -> ()) {
         let currentTime: TimeInterval = Date().timeIntervalSince1970
         let para: [String: String] = [:]
@@ -257,5 +258,51 @@ class PlayerNetAPI {
                 completion(false, [IndexDataListModel()])
             }
         }
+    }
+    
+    func searchRequestApi(_ text: String, _ completion: @escaping (_ success: Bool, _ list: Array<String>) -> ()) {
+        var list: [String] = []
+        let url: String = HPKey.gHostUrl + text
+        var request: URLRequest = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+        let session: URLSession = URLSession(configuration: configuration)
+        self.task?.cancel()
+        self.task = session.dataTask(with: request, completionHandler: { [weak self] data, response, error in
+            guard let self = self, error == nil else {
+                completion(false, list)
+                return
+            }
+            if let result = response as? HTTPURLResponse, result.statusCode == 200, let d = data {
+                if let arr = self.searchJsonToArray(d) {
+                    for i in arr {
+                        if let sub = i as? Array<Any> {
+                            for s in sub {
+                                if s is String {
+                                    list.append(s as? String ?? "")
+                                }
+                            }
+                        } else if i is String {
+                            list.append(i as? String ?? "")
+                        }
+                    }
+                    completion(true, list)
+                }
+            } else {
+                completion(false, list)
+            }
+        })
+        self.task?.resume()
+    }
+  
+    func searchJsonToArray(_ data: Data) -> Array<Any>? {
+        do {
+            let arr = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+            return arr as? Array<Any>
+        } catch {
+            print("error")
+        }
+        return nil
     }
 }

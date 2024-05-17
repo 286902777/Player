@@ -73,10 +73,10 @@ class HPPlayerControlView: UIView {
         didSet {
             if isFullscreen, isMovie == false {
                 self.epsButton.isHidden = false
-                self.nexHPutton.isHidden = false
+                self.nextBtn.isHidden = false
             } else {
                 self.epsButton.isHidden = true
-                self.nexHPutton.isHidden = true
+                self.nextBtn.isHidden = true
             }
             self.sizeButton.isHidden = !isFullscreen
         }
@@ -102,7 +102,7 @@ class HPPlayerControlView: UIView {
     var baseView   = UIView()
     var topView    = UIView()
     var bottomView = UIView()
-    var centerContentView = UIView()
+    var centerView = UIView()
     var leftShowView   = UIView()
     var rightShowView = UIView()
     
@@ -147,7 +147,7 @@ class HPPlayerControlView: UIView {
     /* fullScreen button
      fullButton.isSelected = player.isFullscreen
      */
-    var nexHPutton = UIButton(type: .custom)
+    var nextBtn = UIButton(type: .custom)
     var fullButton = UIButton(type: .custom)
     var sizeButton = UIButton(type: .custom)
     
@@ -213,7 +213,7 @@ class HPPlayerControlView: UIView {
         baseView.addSubview(rightShowView)
         baseView.addSubview(topView)
         baseView.addSubview(bottomView)
-        baseView.addSubview(centerContentView)
+        baseView.addSubview(centerView)
         baseView.insertSubview(ImageView, at: 0)
         baseView.clipsToBounds = true
         baseView.backgroundColor = UIColor(white: 0, alpha: 0.4 )
@@ -255,7 +255,7 @@ class HPPlayerControlView: UIView {
         bottomWrapperView.addSubview(totalTimeL)
         bottomWrapperView.addSubview(progressView)
         bottomWrapperView.addSubview(timeSlider)
-        bottomWrapperView.addSubview(nexHPutton)
+        bottomWrapperView.addSubview(nextBtn)
         bottomWrapperView.addSubview(epsButton)
         bottomWrapperView.addSubview(fullButton)
         bottomWrapperView.addSubview(sizeButton)
@@ -297,9 +297,9 @@ class HPPlayerControlView: UIView {
         
         baseView.addSubview(lockButton)
         
-        nexHPutton.tag = HPButtonType.next.rawValue
-        nexHPutton.setImage(UIImage(named: "play_next"), for: .normal)
-        nexHPutton.addTarget(self, action: #selector(clickBtnAction(_:)), for: .touchUpInside)
+        nextBtn.tag = HPButtonType.next.rawValue
+        nextBtn.setImage(UIImage(named: "play_next"), for: .normal)
+        nextBtn.addTarget(self, action: #selector(clickBtnAction(_:)), for: .touchUpInside)
         
         lockButton.tag = HPButtonType.lock.rawValue
         lockButton.contentHorizontalAlignment = .left
@@ -318,7 +318,7 @@ class HPPlayerControlView: UIView {
         sizeButton.setImage(UIImage(named: "play_mixSize"), for: .selected)
         sizeButton.addTarget(self, action: #selector(clickBtnAction(_:)), for: .touchUpInside)
         
-        centerContentView.addSubview(centerWrapperView)
+        centerView.addSubview(centerWrapperView)
         centerWrapperView.addSubview(playMiddleBtn)
         centerWrapperView.addSubview(backwBtn)
         centerWrapperView.addSubview(forwBtn)
@@ -424,7 +424,7 @@ class HPPlayerControlView: UIView {
             make.bottom.leading.trailing.equalToSuperview()
         }
         
-        centerContentView.snp.makeConstraints {  make in
+        centerView.snp.makeConstraints {  make in
             make.bottom.leading.trailing.equalTo(self.baseView)
         }
         
@@ -655,7 +655,7 @@ class HPPlayerControlView: UIView {
             make.height.equalTo(4)
         }
         
-        nexHPutton.snp.remakeConstraints { make in
+        nextBtn.snp.remakeConstraints { make in
             make.width.height.equalTo(40)
             make.bottom.equalToSuperview().offset(-16)
             make.left.equalToSuperview().offset(leading)
@@ -713,7 +713,7 @@ class HPPlayerControlView: UIView {
             $0.height.equalTo(isFullscreen ? 120 : 50)
         }
         
-        self.centerContentView.snp.remakeConstraints {
+        self.centerView.snp.remakeConstraints {
             $0.center.equalTo(self.baseView)
             $0.width.equalTo(220)
             $0.height.equalTo(56)
@@ -888,19 +888,19 @@ class HPPlayerControlView: UIView {
                 $0.height.equalTo(self.isFullscreen ? 200 : 50)
             }
            
-            self.centerContentView.snp.remakeConstraints {
+            self.centerView.snp.remakeConstraints {
                 $0.center.equalToSuperview()
                 $0.height.equalTo(56)
                 $0.width.equalTo(220)
             }
 
             if isShowing, self.player?.isFaceBook == false {
-                self.centerContentView.alpha = 1.0
+                self.centerView.alpha = 1.0
                 if self.isFullscreen {
                     self.lockButton.isHidden = false
                 }
             } else {
-                self.centerContentView.alpha = 0
+                self.centerView.alpha = 0
                 self.lockButton.isHidden = true
             }
             self.baseView.backgroundColor = UIColor(white: 0, alpha: isShowing ? (self.isFullscreen ? 0.65 : 0.16) : 0)
@@ -1014,18 +1014,8 @@ class HPPlayerControlView: UIView {
     
     private func setLockStatus(_ lock: Bool = false) {
         self.topView.isHidden = lock
-        self.centerContentView.isHidden = lock
+        self.centerView.isHidden = lock
         self.bottomView.isHidden = lock
-//        self.backButton.isEnabled = !lock
-//        self.nexHPutton.isEnabled = !lock
-//        self.ccButton.isEnabled = !lock
-//        self.epsButton.isEnabled = !lock
-//        self.fullButton.isEnabled = !lock
-//        self.playButton.isEnabled = !lock
-//        self.playMiddleBtn.isEnabled = !lock
-//        self.forwBtn.isEnabled = !lock
-//        self.backwBtn.isEnabled = !lock
-//        self.timeSlider.isEnabled = !lock
     }
     /**
      Call when the tap gesture tapped
@@ -1042,7 +1032,6 @@ class HPPlayerControlView: UIView {
     @objc func doubleAction(_ gesture: UITapGestureRecognizer) {
         guard let player = player else { return }
         guard  playerState == .ready ||  playerState == .waiting ||  playerState == .finished else { return }
-        
         if player.isPlaying {
             player.pause()
         } else {
@@ -1129,10 +1118,6 @@ class HPPlayerControlView: UIView {
             delegate?.controlView(view: self, didChooseDefinition: button.tag)
         }
         upDatedefChooseViewUI()
-    }
-    
-    @objc fileprivate func onReplyButtonPressed() {
-        //        replayButton.isHidden = true
     }
 }
 

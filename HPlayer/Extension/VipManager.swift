@@ -12,7 +12,7 @@ import Adjust
 #if DEBUG
 let vipHost = "https://apporder.powerfulclean.net"
 #else
-let vipHost = "https://prod.plixoriosorder.com"
+let vipHost = ""
 #endif
 
 // 内购模型枚举

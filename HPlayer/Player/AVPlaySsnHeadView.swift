@@ -37,23 +37,23 @@ class AVPlaySsnHeadView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUI()
+        configUI()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setUI()
+        configUI()
     }
     
-    func setUI() {
+    func configUI() {
         self.backgroundColor = UIColor.hexColor("#141414")
         self.addSubview(collectionView)
-        self.addSubview(lineL)
         self.collectionView.snp.makeConstraints { make in
             make.top.equalTo(16)
             make.left.right.equalToSuperview()
             make.height.equalTo(36)
         }
+        self.addSubview(lineL)
         self.lineL.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(self.collectionView.snp.bottom)

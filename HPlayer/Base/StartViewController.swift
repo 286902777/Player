@@ -46,7 +46,7 @@ class StartViewController: UIViewController {
     }
     
     func setRootVC() {
-        let tabbar = WTabController()
+        let tabbar = AVTabController()
         HPConfig.share.currentWindow()?.rootViewController = tabbar
     }
 }

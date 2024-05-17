@@ -87,13 +87,13 @@ class AVSearchViewController: VBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setSearchBar()
+        addSearchBar()
         setUpUI()
         requestListData()
         HPLog.tb_home_cl(kid: "2", c_id: "", c_name: "", ctype: "", secname: "", secid: "")
     }
     
-    func setSearchBar() {
+    func addSearchBar() {
         navBar.isHidden = true
         view.addSubview(searchView)
         searchView.searchTF.delegate = self
@@ -152,13 +152,11 @@ class AVSearchViewController: VBaseViewController {
             if success {
                 self.emptyView.isHidden = true
                 self.topList.append(contentsOf: list)
-                self.segementView.isHidden = false
                 if self.topList.count == 0 {
                     self.pageView.isHidden = true
                 }
             } else {
                 self.emptyView.isHidden = false
-                self.segementView.isHidden = true
                 self.historyView.isHidden = true
             }
            
@@ -198,55 +196,20 @@ class AVSearchViewController: VBaseViewController {
             return
         }
         self.searchKeys.removeAll()
-        let url: String = HPKey.gHostUrl + text
-        var request: URLRequest = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10)
-        request.httpMethod = "GET"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let configuration: URLSessionConfiguration = URLSessionConfiguration.default
-        let session: URLSession = URLSession(configuration: configuration)
-        self.task?.cancel()
-        self.task = session.dataTask(with: request, completionHandler: { data, response, error in
-            guard error == nil else {
-                return
-            }
-            if let result = response as? HTTPURLResponse, result.statusCode == 200, let d = data {
-                if let arr = self.setSearchData(d) {
-                    for i in arr {
-                        if let sub = i as? Array<Any> {
-                            for s in sub {
-                                if s is String {
-                                    self.searchKeys.append(s as? String ?? "")
-                                }
-                            }
-                        } else if i is String {
-                            self.searchKeys.append(i as? String ?? "")
-                        }
-                    }
-                }
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
+        PlayerNetAPI.share.searchRequestApi(text) { [weak self] success, list in
+            guard let self = self else { return }
+            if success {
+                self.searchKeys = list
+                DispatchQueue.main.async {
                     if self.searchKeys.count > 0 {
                         self.emptyView.isHidden = true
-                        self.segementView.isHidden = true
                         self.historyView.isHidden = true
                         self.tableView.isHidden = false
                         self.tableView.reloadData()
                     }
                 }
-                return
             }
-        })
-        self.task?.resume()
-    }
-    
-    func setSearchData(_ data: Data) -> Array<Any>? {
-        do {
-            let arr = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-            return arr as? Array<Any>
-        } catch {
-            print("error")
         }
-        return nil
     }
 
     //MARK: - histroy

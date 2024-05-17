@@ -91,7 +91,7 @@ class HPPlayerControlView: UIView {
     
     var playerState: PlayerState = .noURL
     
-    let leading: CGFloat = 48
+    let left: CGFloat = 48
     let marge: CGFloat = 8
     let space: CGFloat = 72
 
@@ -393,12 +393,12 @@ class HPPlayerControlView: UIView {
         }
         
         leftShowView.snp.makeConstraints {  make in
-            make.top.leading.bottom.equalTo(self.baseView)
+            make.top.left.bottom.equalTo(self.baseView)
             make.width.equalTo(kScreenWidth * 0.45)
         }
         
         rightShowView.snp.makeConstraints {  make in
-            make.top.trailing.bottom.equalTo(self.baseView)
+            make.top.right.bottom.equalTo(self.baseView)
             make.width.equalTo(kScreenWidth * 0.45)
         }
         
@@ -407,52 +407,52 @@ class HPPlayerControlView: UIView {
         }
         
         topView.snp.makeConstraints {  make in
-            make.top.leading.trailing.equalTo(self.baseView)
+            make.top.left.right.equalTo(self.baseView)
         }
         
         topWrapperView.snp.makeConstraints { (make) in
             make.height.equalTo(44)
-            make.leading.trailing.bottom.equalToSuperview()
+            make.left.right.bottom.equalToSuperview()
         }
         
         bottomView.snp.makeConstraints {  make in
-            make.bottom.leading.trailing.equalTo(self.baseView)
+            make.bottom.left.right.equalTo(self.baseView)
         }
         
         bottomWrapperView.snp.makeConstraints { (make) in
             make.height.equalTo(200)
-            make.bottom.leading.trailing.equalToSuperview()
+            make.bottom.left.right.equalToSuperview()
         }
         
         centerView.snp.makeConstraints {  make in
-            make.bottom.leading.trailing.equalTo(self.baseView)
+            make.bottom.left.right.equalTo(self.baseView)
         }
         
         centerWrapperView.snp.makeConstraints { (make) in
             make.height.equalTo(56)
-            make.top.leading.trailing.equalToSuperview()
+            make.top.left.right.equalToSuperview()
         }
         
         // Top views
         backButton.snp.makeConstraints { (make) in
             make.width.height.equalTo(40)
-            make.leading.equalToSuperview().offset(18)
+            make.left.equalToSuperview().offset(18)
             make.bottom.equalToSuperview()
         }
         
         lockButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(backButton)
+            make.left.equalTo(backButton)
             make.width.height.equalTo(40)
         }
         titleL.snp.makeConstraints {  make in
-            make.leading.equalTo(self.backButton.snp.trailing)
-            make.trailing.equalToSuperview().offset(-130)
+            make.left.equalTo(self.backButton.snp.right).priority(.high)
+            make.right.equalToSuperview().offset(-130)
             make.centerY.equalTo(self.backButton)
         }
         
         defChooseView.snp.makeConstraints {  make in
-            make.trailing.equalToSuperview().offset(-20)
+            make.right.equalToSuperview().offset(-20)
             make.top.equalTo(self.titleL.snp.top).offset(-4)
             make.width.equalTo(60)
             make.height.equalTo(30)
@@ -476,7 +476,7 @@ class HPPlayerControlView: UIView {
         }
         
         progressView.snp.makeConstraints {  make in
-            make.leading.trailing.equalTo(self.timeSlider)
+            make.left.right.equalTo(self.timeSlider)
             make.centerY.equalTo(self.timeSlider)
             make.height.equalTo(4)
         }
@@ -493,13 +493,13 @@ class HPPlayerControlView: UIView {
         
         backwBtn.snp.makeConstraints {  make in
             make.width.height.equalTo(48)
-            make.trailing.equalTo(playMiddleBtn.snp.leading).offset(-48)
+            make.right.equalTo(playMiddleBtn.snp.left).offset(-48)
             make.centerY.equalToSuperview()
         }
         
         forwBtn.snp.makeConstraints { (make) in
             make.width.height.equalTo(48)
-            make.leading.equalTo(playMiddleBtn.snp.trailing).offset(48)
+            make.left.equalTo(playMiddleBtn.snp.right).offset(48)
             make.centerY.equalToSuperview()
         }
 
@@ -540,8 +540,8 @@ class HPPlayerControlView: UIView {
         }
         
         captionL.snp.makeConstraints {  make in
-            make.leading.equalTo(self.captionBgView.snp.leading).offset(10)
-            make.trailing.equalTo(self.captionBgView.snp.trailing).offset(-10)
+            make.left.equalTo(self.captionBgView.snp.left).offset(10)
+            make.right.equalTo(self.captionBgView.snp.right).offset(-10)
             make.top.equalTo(self.captionBgView.snp.top).offset(2)
             make.bottom.equalTo(self.captionBgView.snp.bottom).offset(-2)
         }
@@ -578,15 +578,14 @@ class HPPlayerControlView: UIView {
         }
         
         rightShowView.snp.remakeConstraints {  make in
-            make.top.trailing.bottom.equalTo(self.baseView)
-            make.trailing.equalTo(-self.space)
+            make.top.bottom.equalTo(self.baseView)
+            make.right.equalTo(-self.space)
             make.width.equalTo(isFullscreen ? ((kScreenHeight - 144) * 0.45) : (kScreenWidth * 0.45))
         }
         
         backButton.snp.remakeConstraints { (make) in
-            make.width.height.equalTo(44)
-            make.leading.equalToSuperview().offset(isFullscreen ? leading : 18)
-            make.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(isFullscreen ? left : 18)
+            make.top.bottom.equalToSuperview()
         }
   
         playButton.isHidden = isFullscreen
@@ -601,13 +600,13 @@ class HPPlayerControlView: UIView {
             
             backwBtn.snp.remakeConstraints {  make in
                 make.width.height.equalTo(48)
-                make.trailing.equalTo(playMiddleBtn.snp.leading).offset(-48)
+                make.right.equalTo(playMiddleBtn.snp.left).offset(-48)
                 make.centerY.equalToSuperview()
             }
             
             forwBtn.snp.remakeConstraints { (make) in
                 make.width.height.equalTo(48)
-                make.leading.equalTo(playMiddleBtn.snp.trailing).offset(48)
+                make.left.equalTo(playMiddleBtn.snp.right).offset(48)
                 make.centerY.equalToSuperview()
             }
         } else {
@@ -619,7 +618,7 @@ class HPPlayerControlView: UIView {
         currentTimeL.snp.remakeConstraints {  make in
             if isFullscreen {
                 make.bottom.equalTo(timeSlider.snp.top).offset(4)
-                make.left.equalToSuperview().offset(leading)
+                make.left.equalToSuperview().offset(left)
             } else {
                 make.centerY.equalTo(playButton)
                 make.left.equalTo(playButton.snp.right)
@@ -630,7 +629,7 @@ class HPPlayerControlView: UIView {
         totalTimeL.snp.remakeConstraints {  make in
             make.centerY.equalTo(self.currentTimeL)
             if isFullscreen {
-                make.right.equalToSuperview().offset(-leading)
+                make.right.equalToSuperview().offset(-left)
             } else {
                 make.right.equalTo(fullButton.snp.left).offset(-marge)
             }
@@ -639,18 +638,18 @@ class HPPlayerControlView: UIView {
         timeSlider.snp.remakeConstraints {  make in
             if isFullscreen {
                 make.bottom.equalTo(fullButton.snp.top)
-                make.leading.equalTo(currentTimeL.snp.leading)
-                make.trailing.equalTo(totalTimeL.snp.trailing)
+                make.left.equalTo(currentTimeL.snp.left).priority(.high)
+                make.right.equalTo(totalTimeL.snp.right).priority(.high)
             } else {
                 make.centerY.equalTo(playButton)
-                make.leading.equalTo(currentTimeL.snp.trailing).offset(marge)
-                make.trailing.equalTo(totalTimeL.snp.leading).offset(-marge)
+                make.left.equalTo(currentTimeL.snp.right).offset(marge).priority(.high)
+                make.right.equalTo(totalTimeL.snp.left).offset(-marge).priority(.high)
             }
             make.height.equalTo(30)
         }
         
         progressView.snp.remakeConstraints {  make in
-            make.leading.trailing.equalTo(self.timeSlider)
+            make.left.right.equalTo(self.timeSlider)
             make.centerY.equalTo(self.timeSlider)
             make.height.equalTo(4)
         }
@@ -658,14 +657,14 @@ class HPPlayerControlView: UIView {
         nextBtn.snp.remakeConstraints { make in
             make.width.height.equalTo(40)
             make.bottom.equalToSuperview().offset(-16)
-            make.left.equalToSuperview().offset(leading)
+            make.left.equalToSuperview().offset(left)
         }
         
         fullButton.snp.remakeConstraints {  make in
             make.width.height.equalTo(40)
             if isFullscreen {
                 make.bottom.equalToSuperview().offset(-16)
-                make.trailing.equalToSuperview().offset(-leading + marge)
+                make.right.equalToSuperview().offset(-left + marge)
             } else {
                 make.centerY.equalTo(playButton)
                 make.right.equalToSuperview().offset(-marge)
@@ -679,9 +678,9 @@ class HPPlayerControlView: UIView {
             make.width.height.equalTo(40)
             make.centerY.equalTo(self.backButton)
             if isFullscreen {
-                make.trailing.equalTo(-leading + marge)
+                make.right.equalTo(-left + marge)
             } else {
-                make.trailing.equalTo(-marge)
+                make.right.equalTo(-marge)
             }
         }
         

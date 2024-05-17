@@ -61,9 +61,9 @@ class PlayerManager {
             return
         }
         if let model = DBManager.share.selectAVData(id: id) {
-            let controller = AVPlayViewController(model: model, from: from)
-            controller.hidesBottomBarWhenPushed = true
-            vc.navigationController?.pushViewController(controller, animated: animation)
+            let controll = AVPlayViewController(model, from)
+            controll.hidesBottomBarWhenPushed = true
+            vc.navigationController?.pushViewController(controll, animated: animation)
         }
     }
     

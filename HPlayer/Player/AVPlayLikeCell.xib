@@ -10,11 +10,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="168" id="KGk-i7-Jjw" customClass="AVPlayLikeCell" customModule="HPlayer" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="329" height="168"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="256" id="KGk-i7-Jjw" customClass="AVPlayLikeCell" customModule="HPlayer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="329" height="256"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="329" height="168"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="329" height="256"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4J-SX-Bum">
@@ -27,10 +27,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ZmV-an-Jaz">
-                        <rect key="frame" x="0.0" y="56" width="329" height="94"/>
+                        <rect key="frame" x="0.0" y="56" width="329" height="200"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="94" id="ojg-lL-Xop"/>
+                            <constraint firstAttribute="height" priority="750" constant="200" id="ojg-lL-Xop"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="6" minimumInteritemSpacing="6" id="BSX-p3-X1G">
                             <size key="itemSize" width="128" height="128"/>
@@ -61,7 +61,7 @@
                 <outlet property="collectionView" destination="ZmV-an-Jaz" id="dbK-d8-ddE"/>
                 <outlet property="titleL" destination="C4J-SX-Bum" id="vmq-Ky-hxF"/>
             </connections>
-            <point key="canvasLocation" x="113.74045801526717" y="63.380281690140848"/>
+            <point key="canvasLocation" x="113.74045801526717" y="94.366197183098592"/>
         </tableViewCell>
     </objects>
 </document>

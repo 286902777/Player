@@ -44,16 +44,14 @@ class AVPlayViewController: UIViewController {
         }
     }
     
-    private var catptionList: [AVCaption] = []
+    private var capLists: [AVCaption] = []
+    private var showInfo: Bool = false
+    
     private let AVPlayHeadCellID = "AVPlayHeadCell"
-    private let AVPlayHeadInfoCellID = "AVPlayHeadInfoCell"
     private let AVPlayLikeCellID = "AVPlayLikeCell"
     private let HPPlayEpsListCellID = "HPPlayEpsListCell"
-    private var showInfo: Bool = false {
-        didSet {
-            self.tableView.reloadData()
-        }
-    }
+    private let AVPlayHeadInfoCellID = "AVPlayHeadInfoCell"
+    
     lazy var tableView: UITableView = {
         let table = UITableView.init(frame: .zero, style: .plain)
         table.delegate = self
@@ -83,14 +81,14 @@ class AVPlayViewController: UIViewController {
     private var playLock: Bool = false
     private var epsView: HPPlayerSelectEpsView?
     private var captionView: HPPlayerCaptionFullSetView?
-    private var captionVC: HPPlayerCaptionSetView?
+    private var captionSetView: HPPlayerCaptionSetView?
     private var isFirst: Bool = true
     
     private var tempPlay: Bool = true
     private var isPlayStatus: Bool = true
     private var errorInfo: String = "play failed"
     
-    init(model: AVModel, from: PlayFrom) {
+    init(_ model: AVModel, _ from: PlayFrom) {
         self.model = model
         self.id = self.model.id
         self.ssnId = self.model.ssn_id
@@ -106,8 +104,8 @@ class AVPlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        configPlayerManager()
-        getVideoResource()
+        resetManager()
+        requestResource()
         
         NotificationCenter.default.addObserver(self, selector: #selector(loadPushVideo), name: HPKey.Noti_PushAPNS, object: nil)
         
@@ -192,7 +190,7 @@ class AVPlayViewController: UIViewController {
                         model.captions.first?.isSelect = true
                     }
                 }
-                self.catptionList = model.captions
+                self.capLists = model.captions
                 if let caption = model.captions.first(where: { $0.isSelect == true}) {
                     if let url = URL(string: "\(caption.local_address)") {
                         self.captions = HPSubtitles(url: url)
@@ -282,7 +280,7 @@ class AVPlayViewController: UIViewController {
         
         FailedView.clickTryBlock = { [weak self] in
             guard let self = self else { return }
-            self.getVideoResource()
+            self.requestResource()
         }
         player.vc = self
         player.delegate = self
@@ -316,13 +314,13 @@ class AVPlayViewController: UIViewController {
         self.view.layoutIfNeeded()
     }
     
-    func getVideoResource() {
+    func requestResource() {
         self.currentTime = Date().timeIntervalSince1970
         self.getSourceDate = Date().timeIntervalSince1970
         self.readyDate = nil
         self.tempPlay = true
         self.tableView.isHidden = true
-        self.catptionList.removeAll()
+        self.capLists.removeAll()
         controller.ccButton.isEnabled = false
         self.controller.playRate = 1.0
         self.player.playerLayer?.player?.rate = 1.0
@@ -373,7 +371,7 @@ class AVPlayViewController: UIViewController {
                     self.dataModel.cover = model.cover
                     self.dataModel.type = self.model.type
                     self.model.captions = self.dataModel.captions
-                    self.getCaptionData()
+                    self.downLoadCaption()
                 } else {
                     requestResult = false
                 }
@@ -477,21 +475,18 @@ class AVPlayViewController: UIViewController {
         }
     }
     
-    func getCaptionData() {
-        DispatchQueue.global().async { [weak self] in
-            guard let self = self else { return }
-            HPCaptionManager.share.downLoadCaptions(self.model)
-        }
+    func downLoadCaption() {
+        HPCaptionManager.share.downLoadCaptions(self.model)
     }
     
-    func configPlayerManager() {
+    func resetManager() {
         PlayerManager.share.allowLog = false
         PlayerManager.share.autoPlay = true
         PlayerManager.share.topBarInCase = .always
     }
     
     func setPlayerTransed(isFull: Bool) {
-        if let vc = self.captionVC, isFull {
+        if let vc = self.captionSetView, isFull {
             vc.dismiss(animated: false) { [weak self] in
                 guard let self = self else { return }
                 DispatchQueue.main.async {
@@ -611,7 +606,7 @@ class AVPlayViewController: UIViewController {
                                         self.epsName = first.title
                                         self.model.eps_list = epsList
                                         self.model.video = first.video
-                                        self.getVideoResource()
+                                        self.requestResource()
                                         let _ = self.dataModel.ssn_list.map({$0.isSelect = false})
                                         self.dataModel.ssn_list.first(where: {$0.id == self.ssnId})?.isSelect = true
                                         HPLog.tb_movie_play_cl(kid: "2", movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: self.epsName)
@@ -631,7 +626,7 @@ class AVPlayViewController: UIViewController {
                                     self.model.video = mod.video
                                     HPLog.tb_movie_play_cl(kid: "2", movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: mod.eps_name)
                                     DBManager.share.updatePlayData(model)
-                                    self.getVideoResource()
+                                    self.requestResource()
                                     return
                                 }
                             }
@@ -645,7 +640,7 @@ class AVPlayViewController: UIViewController {
                         let _ = self.dataModel.eps_list.map({$0.isSelect = false})
                         self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.isSelect = true
                         HPLog.tb_movie_play_cl(kid: "2", movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: self.epsName)
-                        self.getVideoResource()
+                        self.requestResource()
                         return
                     }
                 }
@@ -720,6 +715,7 @@ extension AVPlayViewController: UITableViewDelegate, UITableViewDataSource {
                     guard let self = self else { return }
                     DispatchQueue.main.async {
                         self.showInfo = show
+                        self.tableView.reloadData()
                     }
                 } refreshBlock: { [weak self] in
                     guard let self = self else { return }
@@ -915,7 +911,7 @@ extension AVPlayViewController: UITableViewDelegate, UITableViewDataSource {
     func setSeekTime() {
         let name = self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.title
         HPLog.tb_movie_play_len(movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: name ?? "", movie_type: "\(self.model.type)", watch_len: String(Int(ceil(Date().timeIntervalSince1970 - self.currentTime))))
-        self.getVideoResource()
+        self.requestResource()
         if let db = DBManager.share.selectAVData(id: self.id, ssn_id: self.ssnId, eps_id: self.epsId) {
             self.seekTime = db.playedTime
         }
@@ -1046,7 +1042,7 @@ extension AVPlayViewController: HPPlayerDelegate {
             }
             
             HPLog.tb_movie_play_cl(kid: "3", movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: self.epsName)
-            self.getVideoResource()
+            self.requestResource()
         }
     }
     
@@ -1071,11 +1067,11 @@ extension AVPlayViewController: HPPlayerDelegate {
             self.captionView?.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
-            self.captionView?.setModel(self.catptionList, view: view)
+            self.captionView?.setModel(self.capLists, view: view)
             self.captionView?.clickBlock = {[weak self] address in
                 guard let self = self else { return }
                 DispatchQueue.main.async {
-                    if let caption = self.catptionList.first(where: { $0.local_address == address}) {
+                    if let caption = self.capLists.first(where: { $0.local_address == address}) {
                         if let url = URL(string: "\(caption.local_address)") {
                             self.captions = HPSubtitles(url: url)
                         }
@@ -1083,7 +1079,7 @@ extension AVPlayViewController: HPPlayerDelegate {
                 }
             }
         } else {
-            let vc = HPPlayerCaptionSetView(list: self.catptionList)
+            let vc = HPPlayerCaptionSetView(list: self.capLists)
             if self.player.isPlaying {
                 self.player.pause()
             }
@@ -1098,7 +1094,7 @@ extension AVPlayViewController: HPPlayerDelegate {
             vc.clickItemBlock = { [weak self] address in
                 guard let self = self else { return }
                 DispatchQueue.main.async {
-                    if let caption = self.catptionList.first(where: { $0.local_address == address}) {
+                    if let caption = self.capLists.first(where: { $0.local_address == address}) {
                         if let url = URL(string: "\(caption.local_address)") {
                             self.captions = HPSubtitles(url: url)
                         }
@@ -1107,7 +1103,7 @@ extension AVPlayViewController: HPPlayerDelegate {
             }
             
             vc.modalPresentationStyle = .overFullScreen
-            self.captionVC = vc
+            self.captionSetView = vc
             self.present(vc, animated: false)
         }
     }

@@ -384,7 +384,7 @@ extension AVHomeViewController: JXBannerDataSource {
     func jxBanner(_ banner: JXBannerType, centerIndex: Int, centerCell: UICollectionViewCell) {
         if let cell = centerCell as? AVBannerCell {
             cell.playView.isHidden = false
-            cell.topMengView.isHidden = true
+            cell.topView.isHidden = true
         }
        
         if let model = self.bannerList.indexOfSafe(centerIndex) {
@@ -395,7 +395,7 @@ extension AVHomeViewController: JXBannerDataSource {
     func jxBanner(_ banner: JXBannerType, lastCenterIndex: Int?, lastCenterCell: UICollectionViewCell?) {
         if let tempCell = lastCenterCell, let cell = tempCell as? AVBannerCell {
             cell.playView.isHidden = true
-            cell.topMengView.isHidden = false
+            cell.topView.isHidden = false
         }
     }
 }

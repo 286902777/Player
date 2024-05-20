@@ -9,11 +9,11 @@
 import Foundation
 
 class HPSubtitles {
-    var groups: [GroupList] = []
+    var subGroups: [subtitleList] = []
     /// subtitles delayTime, positive:fast, negative:forward
     var delayTime: TimeInterval = 0
     
-    struct GroupList: CustomStringConvertible {
+    struct subtitleList: CustomStringConvertible {
         var index: Int
         var start: TimeInterval
         var end  : TimeInterval
@@ -21,8 +21,8 @@ class HPSubtitles {
         
         init(_ index: Int, _ start: NSString, _ end: NSString, _ text: NSString) {
             self.index = index
-            self.start = GroupList.getTimeData(start as String)
-            self.end   = GroupList.getTimeData(end as String)
+            self.start = subtitleList.getTimeData(start as String)
+            self.end   = subtitleList.getTimeData(end as String)
             self.text  = text as String
         }
         
@@ -54,7 +54,7 @@ class HPSubtitles {
                 } else {
                     string = try String(contentsOf: url)
                 }
-                self?.groups = HPSubtitles.parseSubRip(string) ?? []
+                self?.subGroups = HPSubtitles.setData(string) ?? []
             } catch {
                 print("HPPlayer -- Error failed to load \(url.absoluteString) \(error.localizedDescription)")
             }
@@ -62,9 +62,9 @@ class HPSubtitles {
     }
 
     
-    fileprivate static func parseSubRip(_ payload: String) -> [GroupList]? {
-        var groups: [GroupList] = []
-        let replacStr = payload.replacingOccurrences(of: "\n\n\n", with: "\nMTSPACE\n\n")
+    fileprivate static func setData(_ cap: String) -> [subtitleList]? {
+        var list: [subtitleList] = []
+        let replacStr = cap.replacingOccurrences(of: "\n\n\n", with: "\nMTSPACE\n\n")
         let replacStr2 = replacStr.replacingOccurrences(of: "\r\n\r\n", with: "\n\n")
         let scanner = Scanner(string: replacStr2)
         while !scanner.isAtEnd {
@@ -94,21 +94,21 @@ class HPSubtitles {
                let start = startString,
                let end   = endString,
                let text  = textString {
-                let group = GroupList(index, start, end, text)
-                groups.append(group)
+                let model = subtitleList(index, start, end, text)
+                list.append(model)
             }
         }
-        return groups
+        return list
     }
     
     
-    func checkSubtitle(for time: TimeInterval) -> GroupList? {
-        let result = groups.first(where: { group -> Bool in
-            if group.start - delayTime <= time && group.end - delayTime >= time {
+    func checkSubtitle(for time: TimeInterval) -> subtitleList? {
+        let r = subGroups.first(where: { list -> Bool in
+            if list.start - delayTime <= time && list.end - delayTime >= time {
                 return true
             }
             return false
         })
-        return result
+        return r
     }
 }

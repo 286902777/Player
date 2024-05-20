@@ -65,8 +65,7 @@ extension AVSettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:AVSettingCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! AVSettingCell
         let t = self.list[indexPath.row].type.rawValue
-        cell.titleL.textColor = .white
-        cell.titleL.text = t
+        cell.nameL.text = t
         return cell
     }
 

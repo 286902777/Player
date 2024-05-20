@@ -264,7 +264,6 @@ class AVPlayViewController: UIViewController {
         view.backgroundColor = UIColor.hexColor("#141414")
         player = HPPlayer(customControlView: controller)
         view.addSubview(player)
-        player.sourceKey = self.id
         player.snp.makeConstraints { (make) in
             make.leading.trailing.equalToSuperview()
             make.top.equalToSuperview().offset(statusH)
@@ -454,7 +453,7 @@ class AVPlayViewController: UIViewController {
                 self.player.isFaceBook = false
                 asset = PlayerResource(name: self.dataModel.title, config: [HPPlayerResourceConfig(url: url, definition: "480p")], cover: nil, subtitles: self.captions)
                 HPLog.tb_movie_play_sh(movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.dataModel.type == 1 ? "" : self.epsId, eps_name: (self.dataModel.type == 1 ? "" : name) ?? "", source: "\(self.from.rawValue)", movie_type: "\(self.dataModel.type)")
-                self.player.setVideo(resource: asset!, sourceKey: self.id)
+                self.player.setVideoResource(asset!)
             } else {
                 self.tableView.isHidden = true
                 self.FailedView.isHidden = false

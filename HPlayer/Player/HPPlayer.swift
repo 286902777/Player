@@ -97,7 +97,7 @@ class HPPlayer: UIView {
     var voSlider: UISlider!
     var voValue: Float = 0
     
-    lazy var lightView: HPPlayerLightView = {
+    lazy var lgtView: HPPlayerLightView = {
         let view = HPPlayerLightView.view()
         view.isHidden = true
         self.playerLayer?.addSubview(view)
@@ -146,19 +146,17 @@ class HPPlayer: UIView {
      - parameter resource:        media resource
      - parameter definitionIndex: starting definition index, default start with the first definition
      */
-    open func setVideo(resource: PlayerResource, sourceKey: String, index: Int = 0) {
+    open func setVideoResource(_ resource: PlayerResource) {
         isURLSet = false
         self.resource = resource
-        self.sourceKey = sourceKey
-                
-        IndexDef = index
-        controlView.prepareUI(for: resource, currentIndex: index)
+        IndexDef = 0
+        controlView.prepareUI(for: resource, currentIndex: 0)
         controlView.playRate = 1.0
         self.playerLayer?.player?.rate = 1.0
         
         if PlayerManager.share.autoPlay {
             isURLSet = true
-            let asset = resource.config[index]
+            let asset = resource.config[0]
             playerLayer?.playAsset(asset: asset.avURLAsset)
         } else {
             controlView.showCover(url: resource.cover)
@@ -287,9 +285,9 @@ class HPPlayer: UIView {
                     self.isVolume = true
                 } else {
                     self.isVolume = false
-                    self.playerLayer?.bringSubviewToFront(self.lightView)
-                    self.lightView.isHidden = false
-                    self.lightView.imageView.isHighlighted = true
+                    self.playerLayer?.bringSubviewToFront(self.lgtView)
+                    self.lgtView.isHidden = false
+                    self.lgtView.imageView.isHighlighted = true
                 }
             }
             
@@ -325,7 +323,7 @@ class HPPlayer: UIView {
                 self.sumTime = 0.0
             case HPPlayerPanDirection.vertical:
                 self.isVolume = false
-                self.lightView.isHidden = true
+                self.lgtView.isHidden = true
             }
         default:
             break
@@ -338,9 +336,9 @@ class HPPlayer: UIView {
             self.voValue -= Float(value / 10000)
         } else if PlayerManager.share.enableBrightnessGestures && !self.isVolume {
             UIScreen.main.brightness -= value / 5000
-            self.lightView.isHidden = false
-            self.lightView.progressView.progress = Float(UIScreen.main.brightness)
-            self.lightView.layoutIfNeeded()
+            self.lgtView.isHidden = false
+            self.lgtView.progressView.progress = Float(UIScreen.main.brightness)
+            self.lgtView.layoutIfNeeded()
         }
     }
     

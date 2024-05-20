@@ -22,20 +22,20 @@ class AVBannerEffectView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUI()
+        configUI()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setUI()
+        configUI()
     }
     
-    func setUI() {
+    func configUI() {
         self.addSubview(imageV)
+        self.addSubview(backView)
         self.imageV.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        self.addSubview(backView)
         self.backView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }

@@ -15,7 +15,7 @@ class AVBannerCell: JXBannerBaseCell {
         return label
     }()
     
-    lazy var bgView: UIImageView = {
+    lazy var backView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.image = UIImage(named: "banner_mask")
@@ -65,7 +65,7 @@ class AVBannerCell: JXBannerBaseCell {
         return view
     }()
     
-    lazy var topMengView: UIView = {
+    lazy var topView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.hexColor("#141414", alpha: 0.35)
         return view
@@ -76,16 +76,16 @@ class AVBannerCell: JXBannerBaseCell {
         self.layer.cornerRadius = 8
         self.layer.masksToBounds = true
         self.imageView.contentMode = .scaleAspectFill
-        contentView.addSubview(bgView)
+        contentView.addSubview(backView)
         contentView.addSubview(newL)
         contentView.addSubview(playView)
         contentView.addSubview(starImgV)
         contentView.addSubview(starL)
         contentView.addSubview(qualityL)
         contentView.addSubview(titleL)
-        contentView.addSubview(topMengView)
+        contentView.addSubview(topView)
 
-        bgView.snp.makeConstraints { make in
+        backView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
@@ -124,7 +124,7 @@ class AVBannerCell: JXBannerBaseCell {
             make.bottom.equalTo(starImgV.snp.top).offset(-5)
         }
         
-        topMengView.snp.makeConstraints { make in
+        topView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
@@ -132,18 +132,19 @@ class AVBannerCell: JXBannerBaseCell {
     func setModel(_ model: AVDataInfoModel) {
         let attr: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium), NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.strokeColor: UIColor.hexColor("#141414"), NSAttributedString.Key.strokeWidth: -0.5]
         self.titleL.attributedText = NSAttributedString(string: model.title, attributes: attr)
-        
         self.imageView.setImage(with: model.horizontal_cover)
+        
+        self.newL.isHidden = Date.IsWeekData(tp: model.storage_timestamp)
+        self.qualityL.isHidden = model.quality.count > 0 ? false : true
+        self.qualityL.text = model.quality
+        self.playView.isHidden = true
+        self.topView.isHidden = false
+        
         if let r = Float(model.rate) {
             self.starL.isHidden = false
             self.starL.text = String(format: "%.1f", r)
         } else {
             self.starL.isHidden = true
         }
-        self.newL.isHidden = Date.IsWeekData(tp: model.storage_timestamp)
-        self.qualityL.isHidden = model.quality.count > 0 ? false : true
-        self.qualityL.text = model.quality
-        self.playView.isHidden = true
-        self.topMengView.isHidden = false
     }
 }

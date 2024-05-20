@@ -8,14 +8,14 @@
 import UIKit
 
 class AVSettingCell: UITableViewCell {
-    lazy var titleL: UILabel = {
+    lazy var nameL: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.F141414
+        label.textColor = .white
         label.font = UIFont.font(weigth: .medium, size: 14)
         return label
     }()
     
-    lazy var subTitleL: UILabel = {
+    lazy var desL: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.hexColor("#FFFFFF", alpha: 0.7)
         label.font = UIFont.font(size: 14)
@@ -42,11 +42,11 @@ class AVSettingCell: UITableViewCell {
     }
     
     func addUI() {
-        self.addSubview(titleL)
+        self.addSubview(nameL)
         self.addSubview(arrowV)
-        self.addSubview(subTitleL)
+        self.addSubview(desL)
         
-        titleL.snp.makeConstraints { make in
+        nameL.snp.makeConstraints { make in
             make.left.equalTo(16)
             make.top.bottom.equalToSuperview()
         }
@@ -56,7 +56,7 @@ class AVSettingCell: UITableViewCell {
             make.centerY.equalToSuperview()
         }
         
-        subTitleL.snp.makeConstraints { make in
+        desL.snp.makeConstraints { make in
             make.right.equalTo(-16)
             make.centerY.equalToSuperview()
         }

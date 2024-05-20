@@ -50,7 +50,7 @@ class AVSearchCell: UITableViewCell {
     }
     
     func setText(_ text: String, _ key: String) {
-        self.titleL.attributedText = self.setAttributeStringTexts(text, [key], [UIColor.hexColor("#FFFFFF")])
+        self.titleL.attributedText = self.setAttributeTexts(text, [key], [UIColor.hexColor("#FFFFFF")])
     }
 
     /// 获取字符出现的位置信息(支持多次位置获取)
@@ -90,14 +90,14 @@ class AVSearchCell: UITableViewCell {
     /// - Parameter changFonts: 需要改变的字体
     /// - Parameter changeColors: 需要改变的颜色
     /// - Parameter isLineThrough: 是否下划线
-    func setAttributeStringTexts(_ strFullText: String, _ changeTexts:[String],
+    func setAttributeTexts(_ sText: String, _ changeTexts:[String],
                                  _ changeColors:[UIColor]) -> NSAttributedString{
         var range:NSRange?
         var dicAttr:[NSAttributedString.Key:Any]?
-        let attributeString = NSMutableAttributedString.init(string: strFullText)
+        let attributeString = NSMutableAttributedString.init(string: sText)
         
         //不需要改变的文本
-        range = NSString.init(string: strFullText).range(of: String.init(strFullText))
+        range = NSString.init(string: sText).range(of: String.init(sText))
         
         dicAttr = [NSAttributedString.Key.foregroundColor: UIColor.hexColor("#FFFFFF", alpha: 0.5)]
         attributeString.addAttributes(dicAttr!, range: range!)
@@ -105,15 +105,13 @@ class AVSearchCell: UITableViewCell {
         //需要改变的文本
         var index:Int = 0
         for item in changeTexts {
-            //range = NSString.init(string: strFullText).range(of: item)
-            let ranges = self.rangeOfString(string: NSString.init(string: strFullText.lowercased()), andInString: item.lowercased())
- 
+            //range = NSString.init(string: sText).range(of: item)
+            let ranges = self.rangeOfString(string: NSString.init(string: sText.lowercased()), andInString: item.lowercased())
             for range in ranges {
                 dicAttr = [
                     NSAttributedString.Key.foregroundColor:changeColors.count > index ? changeColors[index] : changeColors.first as Any,
                 ]
- 
-                if range.location + range.length <= strFullText.count {
+                 if range.location + range.length <= sText.count {
                     attributeString.addAttributes(dicAttr!, range: range)
                 }
             }

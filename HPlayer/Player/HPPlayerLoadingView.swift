@@ -12,7 +12,7 @@ import Lottie
 class HPPlayerLoadingView: UIView {
     
     @IBOutlet weak var lottieView: UIView!
-    var animaView: LottieAnimationView?
+    var gifView: LottieAnimationView?
     
     class func view() -> HPPlayerLoadingView {
         let view = Bundle.main.loadNibNamed(String(describing: HPPlayerLoadingView.self), owner: nil)?.first as! HPPlayerLoadingView
@@ -21,26 +21,26 @@ class HPPlayerLoadingView: UIView {
     }
     
     func setUpUI() {
-        animaView = LottieAnimationView(name: "loading")
-        lottieView.addSubview(animaView!)
-        animaView?.isHidden = true
-        animaView?.snp.makeConstraints({make in
+        gifView = LottieAnimationView(name: "loading")
+        lottieView.addSubview(gifView!)
+        gifView?.isHidden = true
+        gifView?.snp.makeConstraints({make in
             make.edges.equalToSuperview()
         })
     }
     
     func show(progress: CGFloat = 0) {
-        animaView?.isHidden = false
-        animaView?.currentProgress = progress
-        animaView?.isHidden = false
-        animaView?.play(fromProgress: progress, toProgress: 1 - progress, loopMode: .loop, completion: {(state) in
+        gifView?.isHidden = false
+        gifView?.currentProgress = progress
+        gifView?.isHidden = false
+        gifView?.play(fromProgress: progress, toProgress: 1 - progress, loopMode: .loop, completion: {(state) in
 
         })
     }
     
     func dismiss() {
-        animaView?.currentProgress = 0
-        animaView?.stop()
-        animaView?.isHidden = true
+        gifView?.currentProgress = 0
+        gifView?.stop()
+        gifView?.isHidden = true
     }
 }

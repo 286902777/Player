@@ -39,7 +39,6 @@ class AVSearchViewController: VBaseViewController {
     lazy var pageView: JXPagingView = {
         let pageView = JXPagingView(delegate: self)
         pageView.backgroundColor = .clear
-        pageView.isHidden = true
         pageView.mainTableView.backgroundColor = .clear
         return pageView
     }()
@@ -119,7 +118,6 @@ class AVSearchViewController: VBaseViewController {
     }
     
     func setUpUI() {
-        self.configHistoryView()
         view.addSubview(pageView)
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
@@ -134,10 +132,11 @@ class AVSearchViewController: VBaseViewController {
         
         view.addSubview(emptyView)
         emptyView.snp.makeConstraints { make in
-            make.top.left.bottom.right.equalTo(tableView)
+            make.top.equalTo(searchView.snp.bottom).offset(0)
+            make.bottom.left.right.equalToSuperview()
         }
         self.emptyView.setType()
-
+        self.configHistoryView()
     }
     override func reSetRequest() {
         self.topList.removeAll()
@@ -152,15 +151,13 @@ class AVSearchViewController: VBaseViewController {
             if success {
                 self.emptyView.isHidden = true
                 self.segementView.isHidden = false
-                self.pageView.isHidden = false
                 self.topList.append(contentsOf: list)
             } else {
                 self.emptyView.isHidden = false
-                self.pageView.isHidden = true
                 self.segementView.isHidden = true
-                self.historyView.isHidden = true
             }
             DispatchQueue.main.async {
+                self.historyView.isHidden = false
                 self.tableView.isHidden = true
                 self.segementView.titles = self.topList.map({$0.title})
                 self.segementView.segView.reloadData()
@@ -231,6 +228,9 @@ class AVSearchViewController: VBaseViewController {
                         self.historyView.totalH = 0
                         self.historyView.isHidden = true
                         self.pageView.reloadData()
+                        self.emptyView.snp.updateConstraints { make in
+                            make.top.equalTo(self.searchView.snp.bottom).offset(0)
+                        }
                     }
                     self.present(vc, animated: false)
                 }
@@ -239,6 +239,9 @@ class AVSearchViewController: VBaseViewController {
                 guard let self = self else { return }
                 DispatchQueue.main.async {
                     self.pageView.reloadData()
+                    self.emptyView.snp.updateConstraints { make in
+                        make.top.equalTo(self.searchView.snp.bottom).offset(self.historyView.totalH)
+                    }
                 }
             }
             self.historyView.isHidden = false
@@ -246,6 +249,9 @@ class AVSearchViewController: VBaseViewController {
             self.historyView.isHidden = true
         }
         self.pageView.reloadData()
+        self.emptyView.snp.updateConstraints { make in
+            make.top.equalTo(self.searchView.snp.bottom).offset(self.historyView.totalH)
+        }
     }
     
     func setHistoryText(_ text: String) {

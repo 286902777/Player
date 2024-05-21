@@ -33,10 +33,10 @@ class AVNoNetView: UIView {
     func setType(_ type: EmptyType = .net) {
         switch type {
         case .net:
-            self.desL.text = "Oops! Looks like you're offline. Please reconnect."
+            self.desL.text = "No network, please retry."
             self.iconV.image = UIImage(named: "no_network")
         case .content:
-            self.desL.text = "Oops!Failed to load data."
+            self.desL.text = "No more content."
             self.iconV.image = UIImage(named: "no_content")
         default:
             self.desL.text = "No favorite content, please go to the homepage to view your favorite movies."

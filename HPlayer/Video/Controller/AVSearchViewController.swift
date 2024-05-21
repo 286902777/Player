@@ -151,17 +151,17 @@ class AVSearchViewController: VBaseViewController {
             HPProgressHUD.dismiss()
             if success {
                 self.emptyView.isHidden = true
+                self.segementView.isHidden = false
+                self.pageView.isHidden = false
                 self.topList.append(contentsOf: list)
-                if self.topList.count == 0 {
-                    self.pageView.isHidden = true
-                }
             } else {
                 self.emptyView.isHidden = false
+                self.pageView.isHidden = true
+                self.segementView.isHidden = true
                 self.historyView.isHidden = true
             }
             DispatchQueue.main.async {
                 self.tableView.isHidden = true
-                self.pageView.isHidden = false
                 self.segementView.titles = self.topList.map({$0.title})
                 self.segementView.segView.reloadData()
                 self.pageView.reloadData()
@@ -186,6 +186,7 @@ class AVSearchViewController: VBaseViewController {
             guard let self = self else { return }
             self.setHistoryText(text)
         }
+        self.tableView.isHidden = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -201,7 +202,7 @@ class AVSearchViewController: VBaseViewController {
                 DispatchQueue.main.async {
                     if self.searchKeys.count > 0 {
                         self.emptyView.isHidden = true
-                        self.historyView.isHidden = true
+                        self.historyView.isHidden = false
                         self.tableView.isHidden = false
                         self.tableView.reloadData()
                     }

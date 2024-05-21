@@ -31,6 +31,8 @@ class HPPlayerSelectEpsView: UIView {
     }
     
     @objc func dismissSelf() {
+        let _ = self.ssnList.map({$0?.isSelect = false})
+        self.ssnList.first(where: {$0?.id == self.ssnId})??.isSelect = true
         self.removeFromSuperview()
     }
     

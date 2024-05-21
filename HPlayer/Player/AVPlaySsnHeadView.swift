@@ -68,9 +68,10 @@ class AVPlaySsnHeadView: UIView {
         self.collectionView.reloadData()
         for (index, item) in self.list.enumerated() {
             if let m = item, m.isSelect {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
                     guard let self = self else { return }
-                    self.collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .right, animated: false)
+                    self.collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: false)
+                    return
                 }
             }
         }

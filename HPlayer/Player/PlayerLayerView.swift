@@ -384,7 +384,7 @@ class PlayerLayerView: UIView {
                    if let timeInterVarl    = self.availableDuration() {
                        let duration        = item.duration
                        let totalDuration   = CMTimeGetSeconds(duration)
-                       delegate?.player(player: self, loadedTimeDidChange: timeInterVarl, totalDuration: totalDuration)
+//                       delegate?.player(player: self, loadedTimeDidChange: timeInterVarl, totalDuration: totalDuration)
                    }
                    
                case "playbackBufferEmpty":

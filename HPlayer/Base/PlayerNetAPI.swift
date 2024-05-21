@@ -260,6 +260,9 @@ class PlayerNetAPI {
         }
     }
     
+    func cancelSearchRequestApi() {
+        self.task?.cancel()
+    }
     func searchRequestApi(_ text: String, _ completion: @escaping (_ success: Bool, _ list: Array<String>) -> ()) {
         var list: [String] = []
         let url: String = HPKey.gHostUrl + text

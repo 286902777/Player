@@ -435,9 +435,9 @@ class HPPlayerControlView: UIView {
         
         // Top views
         backButton.snp.makeConstraints { (make) in
-            make.width.height.equalTo(40)
+            make.width.equalTo(40)
             make.left.equalToSuperview().offset(18)
-            make.bottom.equalToSuperview()
+            make.top.bottom.equalToSuperview()
         }
         
         lockButton.snp.makeConstraints { make in
@@ -584,6 +584,7 @@ class HPPlayerControlView: UIView {
         }
         
         backButton.snp.remakeConstraints { (make) in
+            make.width.equalTo(40)
             make.left.equalToSuperview().offset(isFullscreen ? left : 18)
             make.top.bottom.equalToSuperview()
         }

@@ -24,7 +24,7 @@ class AVHistorySearchView: UIView {
         v.searchView.backgroundColor = UIColor.hexColor("#B2AAFF", alpha: 0.1)
         v.searchView.layer.borderWidth = 1
         v.searchView.layer.masksToBounds = true
-        let attr = NSAttributedString(string: "Search", attributes: [.foregroundColor: UIColor.hexColor("#FFFFFF", alpha: 0.5), .font: UIFont.systemFont(ofSize: 12)])
+        let attr = NSAttributedString(string: "Search Movies & TVShows", attributes: [.foregroundColor: UIColor.hexColor("#FFFFFF", alpha: 0.5), .font: UIFont.systemFont(ofSize: 12)])
         v.searchTF.attributedPlaceholder = attr
         return v
     }

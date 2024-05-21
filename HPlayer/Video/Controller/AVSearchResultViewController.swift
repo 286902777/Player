@@ -134,13 +134,9 @@ class AVSearchResultViewController: VBaseViewController {
     }
     
     func requestData() {
+        PlayerNetAPI.share.cancelSearchRequestApi()
         self.page = 1
         self.list.removeAll()
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.tableView.isHidden = true
-            self.collectionView.isHidden = false
-        }
         self.loadMoreData()
     }
     

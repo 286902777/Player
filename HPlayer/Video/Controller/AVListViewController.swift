@@ -95,8 +95,6 @@ class AVListViewController: VBaseViewController {
             } else {
                 if list.count > 0 {
                     self.dataList.append(contentsOf: list)
-                }
-                if self.dataList.count == 0 {
                     self.emptyView.isHidden = true
                 }
             }

@@ -317,6 +317,7 @@ class AVPlayViewController: UIViewController {
         self.currentTime = Date().timeIntervalSince1970
         self.getSourceDate = Date().timeIntervalSince1970
         self.readyDate = nil
+        self.midSsnId = ""
         self.tempPlay = true
         self.tableView.isHidden = true
         self.capLists.removeAll()
@@ -394,12 +395,16 @@ class AVPlayViewController: UIViewController {
             dispatchQueue.async {[weak self] in
                 guard let self = self else { return }
                 PlayerNetAPI.share.AVTVSsnData(id: self.id) { success, list in
-                    if success, let mod = list.last {
-                        self.ssnId = mod.id
+                    if success {
+                        if let mod = list.first(where: {$0.id == self.ssnId}) {
+                            self.ssnId = mod.id
+                        } else {
+                            self.ssnId = list.last?.id ?? ""
+                        }
                         self.model.ssn_list = list
                         self.dataModel.ssn_list = list
                         if self.dataModel.eps_list.count == 0 {
-                            PlayerNetAPI.share.AVTVEpsData(id: self.id, ssnId: mod.id) { success, epslist in
+                            PlayerNetAPI.share.AVTVEpsData(id: self.id, ssnId: self.ssnId) { success, epslist in
                                 if success {
                                     if self.epsId.count == 0 {
                                         if let epsModel = epslist.first {
@@ -485,10 +490,13 @@ class AVPlayViewController: UIViewController {
     }
     
     func setPlayerTransed(isFull: Bool) {
-        if let vc = self.captionSetView, isFull {
-            vc.dismiss(animated: false) { [weak self] in
+        if let _ = self.captionSetView, isFull {
+            HPConfig.share.currentWindow()?.rootViewController?.dismiss(animated: false) { [weak self] in
                 guard let self = self else { return }
                 DispatchQueue.main.async {
+                    if self.tempPlay {
+                        self.player.play()
+                    }
                     self.setScreenUI(isFull)
                 }
             }
@@ -622,7 +630,8 @@ class AVPlayViewController: UIViewController {
                                 if let mod = DBManager.share.selectAVData(id: self.id, ssn_id: self.ssnId, eps_id: self.epsId) {
                                     mod.playedTime = 0
                                     mod.playProgress = 0
-                                    self.model.video = mod.video
+                                    self.model.video = m.video
+                                    self.dataModel.video = m.video
                                     HPLog.tb_movie_play_cl(kid: "2", movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: mod.eps_name)
                                     DBManager.share.updatePlayData(model)
                                     self.requestResource()
@@ -636,6 +645,7 @@ class AVPlayViewController: UIViewController {
                         self.epsId = model.id
                         self.epsName = model.title
                         self.model.video = model.video
+                        self.dataModel.video = model.video
                         let _ = self.dataModel.eps_list.map({$0.isSelect = false})
                         self.dataModel.eps_list.first(where: {$0.id == self.epsId})?.isSelect = true
                         HPLog.tb_movie_play_cl(kid: "2", movie_id: self.id, movie_name: self.dataModel.title, eps_id: self.epsId, eps_name: self.epsName)
@@ -768,6 +778,7 @@ extension AVPlayViewController: UITableViewDelegate, UITableViewDataSource {
             view.setModel(self.dataModel.ssn_list) { [weak self] id in
                 guard let self = self else { return }
                 self.midSsnId = id
+                HPProgressHUD.show()
                 self.getTVData(id, section: section)
             }
             return view
@@ -888,6 +899,7 @@ extension AVPlayViewController: UITableViewDelegate, UITableViewDataSource {
             self.dataModel.ssn_list.first(where: {$0.id == ssnId})?.isSelect = true
         }
         PlayerNetAPI.share.AVTVEpsData(id: self.id, ssnId: ssnId) { [weak self] success, list in
+            HPProgressHUD.dismiss()
             guard let self = self else { return }
             if let m = list.first(where: {$0.id == self.epsId}) {
                 m.isSelect = true
@@ -1032,6 +1044,7 @@ extension AVPlayViewController: HPPlayerDelegate {
         epsView?.setModel(self.id, self.dataModel.ssn_list, self.dataModel.eps_list, self.epsId) { [weak self] epsList, ssnId, epsId in
             guard let self = self else { return }
             self.model.eps_list = epsList
+            self.dataModel.eps_list = epsList
             self.ssnId = ssnId
             self.epsId = epsId
             self.from = .selectTV
